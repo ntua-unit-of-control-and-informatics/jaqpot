@@ -1,0 +1,43 @@
+.datasetwrap{
+    display: flex;
+    width: 1000px;
+    height: 90%;
+} 
+
+
+.data_featured{
+    display: inline-block;
+    position: fixed;
+    top: 40px;
+    left: 20px;
+    transition: all .2s ease-in-out;
+    /* position: sticky; */
+    /* top: 20px;
+    right: 36px; */
+    color: lightseagreen;
+    opacity: 0.4;
+
+}
+
+.data_featured:hover{
+    transition: all .2s ease-in-out;
+    opacity: 1;
+}
+
+.add_data{
+    display: inline-block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    transition: all .2s ease-in-out;
+    /* position: sticky; */
+    /* top: 20px;
+    right: 36px; */
+    color: lightseagreen;
+    opacity: 0.4;
+}
+
+.add_data:hover{
+    transition: all .2s ease-in-out;
+    opacity: 1;
+}

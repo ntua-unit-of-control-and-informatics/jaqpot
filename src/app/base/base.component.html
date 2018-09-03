@@ -1,0 +1,83 @@
+
+  <mat-toolbar class="base-toolbar" color="primary">
+    <mat-toolbar-row>
+
+    
+
+    <h3>{{group.value}}</h3>
+
+    <span class="example-spacer"></span>
+
+    
+    
+    <mat-button-toggle-group #group="matButtonToggleGroup" value="Home">
+      <mat-button-toggle  
+              routerLink="/home" 
+              matTooltip="Home"
+              matTooltipPosition="below"
+              value="Home">
+        <i class="material-icons">&#xE88A;</i>
+      </mat-button-toggle>
+      <mat-button-toggle
+        routerLink="/algorithms"
+        matTooltip="Algorithms"
+        matTooltipPosition="below"
+        value="Algorithms">
+        <i class="material-icons">&#xE3A5;</i>
+      </mat-button-toggle>
+      <mat-button-toggle
+        routerLink="/models"
+        matTooltip="Models" 
+        matTooltipPosition="below"
+        value="Models">
+        <i class="material-icons">&#xE01D;</i>
+      </mat-button-toggle>
+      <mat-button-toggle  
+        routerLink="/datasets" 
+        matTooltip="Datasets" 
+        matTooltipPosition="below"
+        value="Datasets">
+        <i class="material-icons">&#xE2C7;</i>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+
+    
+    <button mat-icon-button
+           [matMenuTriggerFor]="menu"
+           matTooltip="Modeling parameters" 
+           matTooltipPosition="below"
+           class="modeling_session"
+           *ngIf="notReady; else okButton">
+        <mat-icon color="warn">compare_arrows</mat-icon>
+      </button>
+      <ng-template #okButton>
+        <button mat-icon-button 
+            class="modeling_session"
+            matTooltip="Ready for modeling!" 
+            matTooltipPosition="below">
+            <mat-icon >done_all</mat-icon>
+        </button>
+      </ng-template>
+
+        <mat-menu #menu="matMenu" y-position="below" x-position="before" >
+            <p *ngIf="datasetIsNotChosen else dataChosen" mat-menu-item>Dataset is not chosen</p>
+            <ng-template #dataChosen>
+              <p mat-menu-item>Dataset {{datasetForModel.meta.titles[0]}}</p>
+            </ng-template>
+
+            <p *ngIf="algoIsNotChosen else algoChosen" mat-menu-item>Algorithm is not chosen</p>
+            <ng-template #algoChosen>
+              <p mat-menu-item>Algorithm: {{ algoForModel._id }}</p>
+            </ng-template>
+        </mat-menu>
+      </mat-toolbar-row>
+
+     
+
+  </mat-toolbar>
+
+  <!-- <div class="session_bar mat-elevation-z8">session: </div> -->
+
+  <router-outlet></router-outlet>
+

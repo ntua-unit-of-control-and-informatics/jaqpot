@@ -1,0 +1,83 @@
+<div class="orgmeta">
+  <div *ngIf="edit else noEdit">
+    <h3>Descriptions</h3>
+    <div class="add-description">
+      <div class="edit-description" *ngFor="let dis of descriptions; let in=index; trackBy:trackByFn">
+        <mat-form-field class="edit-description">
+          <textarea matInput placeholder="description" [(ngModel)]="descriptions[in]">{{dis}}</textarea>
+        </mat-form-field>
+        <button class="delete-description-b" mat-mini-fab color="primary" (click)="deleteDescription(descriptions[in])">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <button class="add-description-b" mat-mini-fab color="primary" (click)="addDescription()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template #noEdit>
+    <div *ngIf="descriptions"></div>
+    <h3>Descriptions</h3>
+    <ul>
+      <li *ngFor="let dis of descriptions">{{dis}}</li>
+    </ul>
+  </ng-template>
+
+
+
+  <div *ngIf="edit else sub">
+    <h3>Subjects</h3>
+    <div class="add-subject">
+      <div class="edit-subject" *ngFor="let subj of subjects; let in=index; trackBy:trackByFn">
+        <mat-form-field class="edit-subject">
+          <textarea matInput placeholder="subject" [(ngModel)]="subjects[in]">{{subj}}</textarea>
+        </mat-form-field>
+        <button class="delete-subject-b" mat-mini-fab color="primary" (click)="deleteSubject(subjects[in])">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <button class="add-subject-b" mat-mini-fab color="primary" (click)="addSubject()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template #sub>
+    <div *ngIf="subjects">
+      <h3>Subjects</h3>
+      <ul>
+        <li *ngFor="let subj of subjects">{{subj}}</li>
+      </ul>
+    </div>
+  </ng-template>
+
+
+  <div *ngIf="edit else aud">
+    <h3>Audiences</h3>
+    <div class="add-audience">
+      <div class="edit-audience" *ngFor="let aud of audiences; let in=index; trackBy:trackByFn">
+        <mat-form-field class="edit-audience">
+          <textarea matInput placeholder="audience" [(ngModel)]="audiences[in]">{{aud}}</textarea>
+        </mat-form-field>
+        <button class="delete-audience-b" mat-mini-fab color="primary" (click)="deleteAudience(audiences[in])">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <button class="add-audience-b" mat-mini-fab color="primary" (click)="addAudience()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-template #aud>
+    <div *ngIf="audiences">
+      <h3>Audiences</h3>
+      <ul>
+        <li *ngFor="let aud of audiences">{{aud}}</li>
+      </ul>
+    </div>
+  </ng-template>
+
+
+</div>

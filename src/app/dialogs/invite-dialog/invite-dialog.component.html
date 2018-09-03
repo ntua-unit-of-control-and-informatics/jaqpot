@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Invite Users to your Organization</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field class="inputusername">
+      <input matInput placeholder="Username" [(ngModel)]="user" (keypress)="inputChanged($event.target.value)" [matAutocomplete]="auto" [formControl]="userInputCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+
+        <mat-option *ngFor="let user of users" [value]="user.name">
+              <img class="userim" *ngIf="user.profilePic" [src]="user.profilePic" />
+              <span class="username">{{ user.name }}</span>
+              <small *ngIf="user.occupation" class="username">| {{ user.occupation}} at {{user.occupationAt}}</small>
+              
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true" (click)="invite()">Invite</button>
+</mat-dialog-actions>

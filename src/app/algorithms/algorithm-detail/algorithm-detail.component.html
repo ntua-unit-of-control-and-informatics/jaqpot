@@ -1,0 +1,94 @@
+<div *ngIf="algorithm" class="algo_det">
+    <mat-card class="algorithm_card">
+        <mat-card-header>
+            <mat-card-title>Algorithm id: {{ algorithm._id }}</mat-card-title>
+            <mat-card-subtitle>{{ algorithm.meta.descriptions[0] }}</mat-card-subtitle>
+                <mat-icon *ngIf="checkAlgoModel" color="warn"
+                        matTooltip="Is used for modeling"
+                        matTooltipPosition="above" >
+                    <i class="material-icons" class="chosen">done</i>
+                </mat-icon>
+        </mat-card-header>
+
+        <mat-card-content>
+            
+            <mat-accordion>
+                <mat-expansion-panel class="firstexpr">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Titles
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Algorithm titles
+                        </mat-panel-description>
+                        
+                    </mat-expansion-panel-header>
+                    <p *ngFor="let tit of algorithm.meta.titles" >
+                            {{ tit }}
+                    </p>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Subjects
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Algorithm Subjects
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p *ngFor="let sub of algorithm.meta.subjects" >
+                            {{ sub }}
+                    </p>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Parameters
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Algorithm Parameters
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                        <mat-list-item *ngFor="let param of algorithm.parameters">
+                            <p mat-line>
+                                <span>{{ param.name }}</span>
+                                <span class="demo-2"> {{ param.value }} </span>
+                                <span class="demo-2"> {{ param.scope | lowercase }} </span>
+                            </p>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Ontology
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Ontological classes
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-list>
+                            <p *ngFor="let onto of algorithm.ontologicalClasses" >
+                                {{ onto }}
+                            </p>
+                        </mat-list>
+                    </mat-expansion-panel>
+            </mat-accordion>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="checkAlgoModel; else clearButton">
+                <button matTooltip="Clear from modeling"
+                    (click)="clearFromModeling()" mat-button>CLEAR</button>
+            </div>
+
+            <ng-template #clearButton><button matTooltip="Use for modeling"
+                (click)="useForModeling()" mat-button>USE</button>
+            </ng-template>
+            <button (click)="clearCard()" mat-button>Close</button>
+
+        </mat-card-actions>
+        
+    </mat-card>
+</div>
+

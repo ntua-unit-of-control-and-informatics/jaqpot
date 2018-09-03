@@ -1,0 +1,39 @@
+.algorithm_card{
+    width: 400px;
+    float: left;
+}
+
+
+.meta{
+    padding-right: 4em;
+}
+.algo_det{
+    /* margin: 2em; */
+    margin-top: 2em;
+}
+
+mat-list{
+    overflow: scroll;
+    max-height: 10em;
+}
+
+.firstexpr{
+    margin-top: 1em;
+}
+
+.chosen{
+    transition: all .8s ease-in-out;
+    opacity: 0.8;
+    float: left;
+}
+
+/* .label{
+    color: lightgreen
+} */
+/* .sub{
+    float: left;
+}
+
+.des{
+    float: right;
+} */

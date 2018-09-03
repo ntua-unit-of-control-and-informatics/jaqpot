@@ -1,0 +1,17 @@
+textarea{
+    min-width: 90%;
+    min-height: 100%;
+    max-height: 600px;
+    /* min-width: 400px;
+    min-height: 200px; */
+    font-family: "Times New Roman", Georgia, Serif;
+}
+
+mat-form-field{
+    min-width: 100%;
+    overflow: scroll;
+}
+
+button{
+    margin-top: 2em;
+}

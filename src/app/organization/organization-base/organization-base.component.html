@@ -1,0 +1,139 @@
+<mat-card class="orgcard">
+  <mat-card-header>
+
+    <div class="orgphotoall">
+      <div class="org-photo" *ngIf="photo_unavail else photo_avail">
+        <button mat-fab color="warn" class="org-not-pic" matTooltip="Add photo" matTooltipPosition="below" (click)="addOrgPicDialog()">
+          <mat-icon>add_a_photo</mat-icon>
+        </button>
+      </div>
+      <ng-template #photo_avail>
+        <div class="org-photo">
+          <a matTooltip="Update photo" matTooltipPosition="below" (click)="addOrgPicDialog()">
+            <img class="orgim" [src]="organization?.organizationPic" />
+          </a>
+
+        </div>
+      </ng-template>
+
+      <div class="orgiddiv">
+        <h2 class="orgid">{{organization?._id}}</h2>
+        <div class="editlocation" *ngIf="edit else editlocation">
+          <div *ngIf="organization.city">
+            <p class="orgwhere">{{organization?.city}}, {{organization?.country}}</p>
+          </div>
+        </div>
+        <ng-template #editlocation>
+          <div *ngIf="organization">
+            <mat-form-field class="edit-city">
+              <textarea matInput placeholder="Edit City" [(ngModel)]="organization.city"></textarea>
+            </mat-form-field>
+            <mat-form-field class="edit-country">
+              <textarea matInput placeholder="Edit Country" [(ngModel)]="organization.country"></textarea>
+            </mat-form-field>
+          </div>
+
+        </ng-template>
+      </div>
+
+    </div>
+
+  </mat-card-header>
+  <mat-card-content>
+
+    <mat-divider style="width: 94%; margin-left: 3%;"></mat-divider>
+
+    <div class="orgbase">
+
+
+      <div class="orgweb">
+
+        <div class="edidsite" *ngIf="edit else editwebsite">
+          <div class="website" *ngIf="organization.website">
+            <img class="socialpng" src="assets/internet.png">
+            <a class="orgsite" href="organization?.website">{{organization?.website}}</a>
+          </div>
+        </div>
+        <ng-template #editwebsite>
+          <img class="socialpng" src="assets/internet.png">
+          <div *ngIf="organization">
+            <mat-form-field class="edit-website">
+              <textarea matInput placeholder="Website" [(ngModel)]="organization.website"></textarea>
+            </mat-form-field>
+          </div>
+
+        </ng-template>
+
+
+        <div class="editcontact" *ngIf="edit else editcontact">
+
+          <div class="orgcontact">
+            <mat-icon class="contemail">alternate_email</mat-icon>
+            <p class="contact"> {{organization?.contact}}</p>
+          </div>
+
+        </div>
+        <ng-template #editcontact>
+          <div *ngIf="organization">
+            <mat-icon class="contemail">alternate_email</mat-icon>
+            <mat-form-field class="edit-contact">
+              <textarea matInput placeholder="Contact" [(ngModel)]="organization.contact"></textarea>
+            </mat-form-field>
+          </div>
+        </ng-template>
+
+      </div>
+
+    </div>
+
+
+    <div *ngIf="organization">
+      <app-organization-users class="org-users" [organization]="organization"></app-organization-users>
+    </div>
+
+
+    <div *ngIf="editabout else editaboutinp">
+      <div class="about">
+        <h3 class="abouttitle">About {{organization?._id}}</h3>
+      </div>
+      <mat-form-field class="edit-about-unput">
+        <textarea class="about-text" matInput placeholder="Edit About" [(ngModel)]="organization.about"></textarea>
+      </mat-form-field>
+    </div>
+
+    <ng-template #editaboutinp>
+      <div class="about">
+        <h3>About {{organization?._id}}</h3>
+        {{organization?.about}}
+      </div>
+    </ng-template>
+
+    <div *ngIf="organization">
+      <app-organization-details [editFromP]="editFromP" [organization]="organization"></app-organization-details>
+    </div>
+
+  </mat-card-content>
+</mat-card>
+
+<span class="app-action">
+  <div *ngIf="edit else save_b">
+
+    <div *ngIf="canedit">
+      <button class="edit" matTooltip="Edit" matTooltipPosition="after" (click)="editForm()" mat-fab>
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+
+    <button class="delete" matTooltip="Delete" matTooltipPosition="after" (click)="deleteOrg()" mat-fab>
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <ng-template #save_b>
+
+    <div *ngIf="canedit">
+      <button class="save_b" matTooltip="Save" matTooltipPosition="after" (click)="saveForm()" mat-fab>
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+  </ng-template>
+</span>

@@ -1,0 +1,153 @@
+#dataset_detail{
+    margin: 1em;
+    min-height: 80%;
+    max-width: 70%;
+    min-width: 70%;
+    float: left;
+}
+
+
+.loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+    margin-top: 8em;
+    margin-bottom: 3em;
+    min-height: 80%;
+    max-width: 70%;
+    min-width: 70%;
+    float: left;
+  }
+
+.title{
+    /* margin: 1em; */
+    /* background-color: lightgray; */
+    /* opacity: 0.3; */
+    padding-top: 0.1em;
+    /* padding-bottom: 0.1em; */
+    text-align: center left;
+}
+
+.header{
+    opacity: 1;
+    padding-left: 1em;
+    /* float: left; */
+    /* min-width: 100%; */
+}
+
+.basic_table{
+    border: 1px solid rgb(92, 92, 92);
+}
+
+
+.backb{
+    float: right;
+    margin-top: 1em;
+}
+.mat-table {
+    overflow: auto;
+    max-height: 300px;
+    margin-top: 0.3em;
+    /* min-width: 90%; */
+    /* margin: 1em; */
+  }
+
+.mat-header-cell{
+    min-width: 140px;
+    max-width: 160px;
+    overflow: auto;
+}
+
+.mat-cell{
+    min-width: 140px;
+    max-width: 160px;
+    overflow: auto;
+}
+
+.mat-row{
+    min-width: 100%
+}
+
+.mat-header-row{
+    min-width: 100%;
+}
+
+.mat-row:hover {
+    transition: all .2s ease-in-out;
+    background-color: lightgray;
+  }
+
+.example-container{
+    margin-left: 1em;
+    margin-right: 1em;
+    min-width: 60%;
+}
+
+.apimenu{
+    text-align: left;
+}
+
+.apim{
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+.apia{
+    margin-right: 1em;
+    margin-left: 1em;
+    min-width: 100px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin-bottom: 0.5em;
+    padding: 0;
+    overflow: hidden;
+    align-items: center;
+    /* border: 1px solid; */
+}
+
+li {
+    float: left;
+    margin:0.4em;
+    margin-left: 1em;
+}
+
+li.second{
+    float: right;
+    margin-right: 2em;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 18px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    /* background-color: #ddd; */
+    transition: all .2s ease-in-out;
+    background-color: lightgray;
+}
+
+li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
+
+li.second.chosen{
+
+    padding-top: 2.5em;
+}

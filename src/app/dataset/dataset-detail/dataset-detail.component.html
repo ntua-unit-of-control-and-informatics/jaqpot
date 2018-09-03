@@ -1,0 +1,101 @@
+<div  id="dataset_detail" class="mat-elevation-z8">
+
+  <div class="title">
+    <ul>
+      <li>
+          <h3 class="header">
+              Dataset {{dataset_chosen.meta.titles[0]}} 
+          </h3>
+      </li>
+      <li class="second"> 
+        <mat-icon *ngIf="checkDatasetModel" color="warn"
+                matTooltip="Is used for modeling"
+                matTooltipPosition="above" >
+            <i class="material-icons" class="chosen">done</i>
+        </mat-icon>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <div class="loading-shade" *ngIf="isLoading; else dataset_display">
+    <mat-spinner class="spinner" ></mat-spinner>
+  </div>
+
+  <ng-template class="dataset" #dataset_display>
+
+    <ul>
+      <li>  <button mat-mini-fab  
+        color="primary"
+        matTooltip="Back"
+        matTooltipPosition="below"
+        class="first"
+        value="Back"
+        (click)="closeDataset()">
+            <i class="material-icons">&#xE5C4;</i>
+          </button>
+      </li>
+
+      <li class="second">
+        <button mat-icon-button
+            matTooltip="Use for modeling"
+            matTooltipPosition="below"
+            (click)="useDataset()"
+            >
+          Use
+        </button>
+      </li>
+
+      <li class="second">
+        <button mat-icon-button
+            [matMenuTriggerFor]="menu"
+            matTooltip="Api endpoint details"
+            matTooltipPosition="below"
+            >
+          Api
+        </button>
+        <mat-menu class="apimenu" #menu="matMenu">
+          <p class="apim">Datasets uri is: </p>
+          <a [attr.href]="dataset_uri" target="_blank" class="apia"> {{server_base}}/dataset/{{ dataset_chosen._id }}</a>
+        </mat-menu>
+      </li>
+      
+      <li class="second">
+          <button mat-icon-button
+              matTooltip="Download csv"
+              matTooltipPosition="below"
+              >
+              <i class="material-icons">&#xE2C4;</i>
+          </button>
+          
+      </li>
+
+    </ul>
+    
+    <div class="example-container mat-elevation-z8">
+
+        <mat-table #table [dataSource]="dataSource">
+            
+            <mat-header-row [style.width]="rowwidth+'px'" *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row [style.width]="rowwidth+'px'" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            <ng-container *ngFor="let col of displayedColumns" cdkColumnDef={{col}}>
+              <mat-header-cell  *cdkHeaderCellDef > {{ col }}</mat-header-cell>
+              <mat-cell  *cdkCellDef="let row"> {{row[col]}}</mat-cell>
+            </ng-container>
+            
+        </mat-table>
+        <mat-paginator #paginator
+            [length]="totalRows"
+            [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 20]">
+        </mat-paginator>
+
+      </div>
+
+
+
+  </ng-template>
+  
+</div>

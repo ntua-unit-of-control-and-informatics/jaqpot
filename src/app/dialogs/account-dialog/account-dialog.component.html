@@ -1,0 +1,52 @@
+<mat-toolbar [color]="['primary']" class="acc_toolbar">
+  <button class="back_button" mat-icon-button color="accent" (click)="close()">
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  Account
+</mat-toolbar>
+<mat-divider></mat-divider>
+<mat-dialog-content id="account-container" fxLayout="row" fxLayoutAlign="space-around center" >
+
+  <form class="account-form">
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Name" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5" [disabled]=edit_name_is_disabled>{{name}}</textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Family Name" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5" [disabled]=edit_familyname_is_disabled>{{familyName}}</textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="First Name" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5" [disabled]=edit_firstyname_is_disabled>{{firstName}}</textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Prefered Username" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5" [disabled]="edit_preferedname_is_disabled">{{preferedUserName}}</textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Email" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5" disabled>{{email}}</textarea>
+    </mat-form-field>
+  </form>
+  <!-- <mat-divider [vertical]="true"></mat-divider> -->
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Organizations</mat-card-title>
+      <mat-card-subtitle>Organizations</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Organizations
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-icon-button color="primary" class="close">
+    <button mat-fab color="warn" (click)="close()">Close</button>
+  </button>
+</mat-dialog-actions>

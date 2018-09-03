@@ -1,0 +1,62 @@
+
+.algocard{
+  display: inline-block;
+  vertical-align: top;
+  min-height: 600px;
+  min-width: 40%;
+  margin: 2em;
+ }
+
+.algo-table {
+  /* display: flex; */
+  flex-direction: column;
+  max-width: 100%;
+  min-width: 640px;
+  /* min-height: 100%; */
+  /* height: 550px; */
+}
+
+.mat-card{
+  min-width: 40%;
+}
+
+/* mat-card-content{
+  min-width: 90%;
+} */
+
+mat-form-field{
+  min-height: 20px;
+  padding: 8px 24px 0;
+  min-width: 100%;
+  width: 90%;
+  min-width: 90%;
+  min-height: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 420px;
+  /* min-width: 600px; */
+  min-width: 100%;
+  min-height: 90%;
+}
+
+
+.mat-row:hover {
+  transition: all .2s ease-in-out;
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

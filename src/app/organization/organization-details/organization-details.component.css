@@ -1,0 +1,61 @@
+p{
+    margin-top: 2em;
+}
+
+.orgmeta{
+    width:60%;
+    margin-top: 2em;
+    margin-left: 1em;
+}
+
+/* .add-description{
+    width: 75%;
+}
+
+.add-subject{
+    width: 75%;
+}
+
+.add-audience{
+    width: 75%;
+} */
+
+.audience{
+    width: 40%;
+    float:left;
+}
+
+.discription{
+    width: 40%;
+    float:left;
+}
+
+.subject{
+    width: 40%;
+    float:left;
+}
+
+.edit-description{
+    width: 75%;
+}
+
+.delete-description-b{
+    margin-left: 2em;;
+}
+
+.edit-subject{
+    width: 75%;
+}
+
+.delete-subject-b{
+    margin-left: 2em;;
+}
+
+.edit-audience{
+    width: 75%;
+}
+
+.delete-audience-b{
+    margin-left: 2em;;
+}
+

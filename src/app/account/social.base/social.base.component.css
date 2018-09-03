@@ -1,0 +1,35 @@
+.socialpng{
+    margin-top: 1em;
+    width: 1.5em;
+}
+
+.social_input{
+    margin-top: 2em;
+    width:70%;
+}
+
+.input-f{
+    margin-top: 0.5em;
+    margin-left: 2em;
+    width:70%;
+}
+
+.delete-url{
+    margin-right: 4em;
+    float: right;
+    width: 2%;
+    margin-top: 2em;
+  }
+
+.social{margin-top: 2em;}
+
+form{
+    margin-top: 1em;
+}
+
+.save-url{
+    margin-right: 4em;
+    float: right;
+    width: 2%;
+    margin-top: 2em;   
+}

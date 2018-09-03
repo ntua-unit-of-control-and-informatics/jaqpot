@@ -1,0 +1,26 @@
+<div class="all">
+  <div *ngIf="organization.organizationPic">
+    <img class="orgpic" [src]="organization?.organizationPic" />
+  </div>
+  <div class="basis">
+    <h3 mat-dialog-title class="orgtitle">{{organization?._id}}</h3>
+    <p class="orgsite">{{organization?.website}}</p>
+    <div *ngIf="organization.city">
+      <p class="orgwhere">{{organization?.city}}, {{organization?.country}}</p>
+    </div>
+    <p class="contact">Contact: {{organization?.contact}}</p>
+  </div>
+
+</div>
+
+<mat-dialog-content class="orgcont">
+  <h3 class="about">About</h3>
+  {{organization?.about}}
+</mat-dialog-content>
+
+<button mat-button class="vieworg" (click)="goToOrganization()">View</button>
+
+<mat-dialog-actions *ngIf="edit">
+  <button mat-button (click)="goToOrganization()">Edit</button>
+  <button mat-button color="warn" (click)="deleteOrganization()">Delete</button>
+</mat-dialog-actions>

@@ -1,0 +1,170 @@
+.org-photo{
+  height: 8em;
+}
+
+.orgcard {
+  width: 60%;
+  margin-left: 18%;
+  margin-top: 5%;
+  margin-bottom: 4em;
+}
+
+.orgphotoall {
+  margin-top: -4em;
+  float: left;
+  width: 100%;
+  padding-bottom: 3em;
+}
+
+.orgim {
+  float: left;
+  border-radius: 15%;
+  border: 2px solid lightgrey;
+}
+
+.orgiddiv {
+  height: 100%;
+  margin-left: 10em;
+  margin-top: 2em;
+  bottom: 0%;
+  position: absolute;
+}
+
+.contemail {
+  width: 1.5em;
+  float: left;
+  margin-top: 0.5em;
+  /* margin-left: 1em; */
+}
+
+.orgweb {
+  margin-top: 1em;
+  width: 40%;
+  position: absolute;
+}
+
+.edit-website{
+  margin-left: 1em;
+  margin-top: -1em;
+}
+
+.website{
+  width:90%;
+}
+
+.orgcontact {
+  width: 90%;
+  float: left;
+  position: absolute;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.socialpng {
+  width: 2em;
+  float: left;
+  margin-top: -0.4em;
+}
+
+.base-div{
+  width: 80%;
+}
+
+/* .base-div{
+  margin-left: 5%;
+  width: 80%;
+} */
+
+.orgsite {
+  text-decoration: none;
+  margin-left: 1em;
+  float:left;
+}
+
+.orgbase {
+  position: relative;
+  padding-top: 1em;
+  margin-left: 1em;
+  width: 100%;
+}
+
+.orgweb {
+  width: 30%;
+  float: left;
+}
+
+.about {
+  width: 40%;
+  margin-top: 8em;
+  margin-left: 1em;
+}
+
+.abouttitle{
+  margin-top: 12em;
+}
+
+.org-not-pic {
+  width: 6em;
+  height: 6em;
+}
+
+
+.edit-about-form{
+  margin-top: 2em;
+  width: 60%;
+}
+
+.edit-about-unput{
+  margin-top: 2em;
+  width: 40%;
+  margin-left: 1em;
+}
+
+.about-text{
+  height: 120px;
+}
+
+.org-users{
+  float: right;
+  margin-right: 5%;
+  margin-top: 2%;
+  width:50%;
+}
+
+.edit {
+  display: inline-block;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  transition: all .2s ease-in-out;
+  color: lightseagreen;
+  opacity: 0.4;
+}
+
+.edit:hover {
+  transition: all .2s ease-in-out;
+  opacity: 1;
+}
+
+.delete{
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: all .2s ease-in-out;
+  color: lightseagreen;
+  opacity: 0.4;
+}
+
+.delete:hover {
+  transition: all .2s ease-in-out;
+  opacity: 1;
+}
+
+.save_b {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: lightseagreen;
+}

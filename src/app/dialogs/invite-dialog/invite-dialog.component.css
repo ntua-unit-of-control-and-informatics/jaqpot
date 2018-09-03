@@ -1,0 +1,14 @@
+.inputusername{
+    width: 100%;
+}
+
+.userim{
+    width:2em;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.username{
+    margin-left: 1em;
+    vertical-align: middle;
+}

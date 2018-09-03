@@ -1,0 +1,28 @@
+<div class="users">
+
+  <div class="userhead">
+    <h3 class="users-header">
+      Organization Members
+    </h3>
+    <div class="invite" *ngIf="caninvite">
+      <button matTooltip="Invite user to join" mat-mini-fab color="primary" (click)="openInviteDialog()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <mat-divider style="width:90%; margin-left: 5%; position: relative; margin-top: 1em; margin-bottom: 1em;"></mat-divider>
+  <mat-grid-list class="user-grid" cols="3" rowHeight="60px">
+    <mat-grid-tile *ngFor="let user of users">
+      <div class="userphoto" *ngIf="user.profilePic">
+        <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog()">
+          <img class="userim" [src]="user.profilePic" />
+        </a>
+      </div>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+
+</div>

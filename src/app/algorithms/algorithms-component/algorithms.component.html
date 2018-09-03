@@ -1,0 +1,31 @@
+<!-- <mat-grid-list cols="9" rowHeight="4:3" class="algogrid" fxLayoutAlign="end center">
+  <mat-grid-tile [colspan]="5" [rowspan]="7">
+    <app-algorithms-list></app-algorithms-list>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="6">
+    <app-algorithm-detail [algorithm]="selectedAlgorithm"></app-algorithm-detail>
+  </mat-grid-tile>
+  <span class="app-action">
+      <button matTooltip="Add Algorithm"
+              matTooltipPosition="after"
+              (click)="addAlgoDialog()"
+              mat-fab>
+          <mat-icon>add</mat-icon>
+      </button>
+  </span>
+</mat-grid-list> -->
+
+<div class="algowrap">
+  <app-algorithms-list class="algolist"></app-algorithms-list>
+  <app-algorithm-detail class="algodet" ></app-algorithm-detail>
+</div>
+
+  <span class="app-action">
+    <button matTooltip="Add Algorithm"
+            matTooltipPosition="after"
+            (click)="addAlgoDialog()"
+            mat-fab>
+        <mat-icon>add</mat-icon>
+    </button>
+  </span>
+

@@ -1,0 +1,139 @@
+.user-base {
+  height: 8.1em;
+}
+
+.user-photo {
+  display: block;
+  float: left;
+  /* margin-bottom: 1em; */
+  /* margin-top: 5em; */
+  border-radius: 25%;
+  width: 100px;
+  height: 100px;
+}
+
+.user-not-pic {
+  /* margin-top: 3.5em; */
+  margin-left: 0.3em;
+  margin-top: 0.5em;
+  /* font-size: 3em; */
+  display: block;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+}
+
+.names {
+  margin-right: 60%;
+  padding-right: 0.3em;
+}
+
+.user-base-comp {
+  margin-left: 22%;
+  margin-right: auto;
+}
+
+.user-names {
+  padding-top: 2em;
+  padding-left: 1em;
+  margin-right: 80em;
+  display: block;
+}
+
+.tabs {
+  position: relative;
+  overflow: scroll;
+  height: 100%;
+  margin-top: -9em;
+  margin-right: 18%;
+  float: right;
+  width: 32%;
+  margin-bottom: 4em;
+}
+
+.user-meta {
+  margin-top: 1%;
+  width: 28%;
+  margin-left: 22%;
+}
+
+.user-info {
+  height: 600px;
+
+  /* margin-bottom: -30%; */
+}
+
+.cropped {
+  margin-top: 0.5em;
+  width: 100%;
+  border-radius: 25%;
+  border: 2px gray solid;
+  /* width: 100%;
+    height: 100%;
+    margin-top: 1em; */
+}
+
+.socialpng{
+    width: 1.5em;
+}
+
+.social_input{
+    width:90%;
+}
+
+.input-f{
+    margin-left: 2em;
+    width:75%;
+}
+
+
+.edit{
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: all .2s ease-in-out;
+  /* position: sticky; */
+  /* top: 20px;
+  right: 36px; */
+  color: lightseagreen;
+  opacity: 0.4;
+}
+
+.edit:hover{
+  transition: all .2s ease-in-out;
+  opacity: 1;
+}
+
+.save_b{
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  /* transition: all .2s ease-in-out; */
+  /* position: sticky; */
+  /* top: 20px;
+  right: 36px; */
+  color: lightseagreen;
+  /* opacity: 0.4; */
+}
+
+.delete-url{
+  float: right;
+  width: 2%;
+  margin-top: 1em;
+}
+
+.simple-meta{
+  margin-left: 7%;
+  width: 75%;
+}
+
+
+
+.info-card{
+  min-height: 400px;
+  margin-bottom: 2em;
+  margin-right: 17px;
+  margin-left: 0.2em;
+}

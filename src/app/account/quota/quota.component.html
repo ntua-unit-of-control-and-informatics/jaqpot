@@ -1,0 +1,46 @@
+<mat-divider class="divid"></mat-divider>
+<mat-list>
+  <h3 mat-subheader>Capabilities</h3>
+  <mat-list-item>
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <h4 mat-line>Models</h4>
+    <p mat-line> {{user.capabilities.models}} </p>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <h4 mat-line>Algorithms</h4>
+    <p mat-line> {{user.capabilities.algorithms}} </p>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <h4 mat-line>Reports</h4>
+    <p mat-line> {{user.capabilities.reports}} </p>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <h4 mat-line>Tasks in parallel</h4>
+    <p mat-line> {{user.capabilities.tasksParallel}} </p>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <h4 mat-line>Datasets</h4>
+    <p mat-line> {{user.capabilities.datasets}} </p>
+  </mat-list-item>
+  <mat-list-item>
+      <mat-icon mat-list-icon>folder</mat-icon>
+      <h4 mat-line>Organizations</h4>
+      <p mat-line> {{user.capabilities.organizations}} </p>
+    </mat-list-item>
+  <mat-divider class="divid"></mat-divider>
+  <h3 mat-subheader>Publication Rate Per Week</h3>
+  <mat-list-item >
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>Models</h4>
+        <p mat-line> {{user.publicationRatePerWeek.models}} </p>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <h4 mat-line>Algorithms</h4>
+    <p mat-line> {{user.publicationRatePerWeek.algorithms}} </p>
+  </mat-list-item>
+</mat-list>

@@ -1,0 +1,175 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+h2{
+  font-family: Courier;
+  font-size: 1.5em;
+}
+
+main{
+  height: 100%;
+  width: 100%;
+}
+
+.app{
+  margin:0; 
+  padding:0;
+  overflow: auto;
+  margin: 0;
+  padding: 0em 0em;
+}
+
+
+.image{
+  margin-left: 8px;
+  margin-top: 10px;
+  height: 30%;
+  width: 30%;
+}
+
+.side_menu{
+  margin-right: 1em;
+  margin-top: 8px;
+}
+
+.login{
+  margin-top: 3px;
+}
+
+.logout{
+  margin-top: 8px;
+}
+
+mat-toolbar{
+  min-height: 24px;
+  max-height: 54px;
+}
+
+.side_menu{
+  margin-top: 0%;
+}
+
+.sidenav_cont{
+  z-index: 0;
+  /* position: fixed; */
+  min-height: 93%;
+  max-height: 93%;
+  overflow: auto;
+}
+.list_item{
+  min-height: 2em;
+  height: 2em;
+  margin: 0;
+}
+.sidenav{
+  min-width: 12% !important;
+}
+
+.toolbar{
+  /* position: fixed; */
+  overflow: hidden;
+  position: sticky;
+  align-items: center;
+  -webkit-box-align: center;  
+  box-shadow: 0px 5px 24px black;
+  top: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+i{
+  font-size: 130%;
+  margin-right: 40px;
+}
+
+.login {
+  transition: all .2s ease-in-out;
+  margin-right: 4px;
+  }
+
+.login:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.app-action{
+  margin-right: 20px;
+}
+
+.notifications{
+  margin-right: 10px;
+}
+
+.notif-icon{
+  color: lightrey;
+}
+
+.d3intro{
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 90%;  
+}
+
+.app_content{
+  height: 100%;
+}
+.side_nav_a{
+
+}
+
+.side_nav_a:hover{
+  background-color: lightgray;
+  transition: all .2s ease-in-out;
+}
+
+.side_header{
+  margin-top: 4em;
+  padding-top: 4em;
+}
+
+.side_icon{
+  color: dimgrey;
+  margin-right: 1em;
+  margin-left: 0.5em;
+  font-size: 1.8em;
+  margin-bottom: 6px;
+}
+
+/* .toxi_icon{
+  color: dimgrey;
+  margin-right: 1em;
+  margin-left: 0.5em;
+  font-size: 0.1em;
+  margin-bottom: 6px;
+} */
+
+
+.toxi_pic{
+  color: dimgrey;
+  /* margin-right: 1em;
+  margin-left: 0.5em; */
+  font-size: 5px;
+  margin-bottom: 6px;
+}
+
+.toxi_img{
+  /* margin-right: 1em; */
+  margin-left: 0.8em;
+  padding-right: 1.3em; 
+  width: 18%
+}
+
+.account{
+  margin-top: 8px;
+  margin-right: 4px;
+  font-size: 1.4em;
+  color: beige;
+}
+.settings{
+  /* margin-left: 2em; */
+  margin-bottom: 12px;
+  margin-right: 0.5em;
+  font-size: 0.95em;
+}

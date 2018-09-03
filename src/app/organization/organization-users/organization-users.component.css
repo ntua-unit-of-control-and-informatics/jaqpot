@@ -1,0 +1,35 @@
+.users{
+    border: 1px solid lightgray;
+    border-radius: 20px;
+}
+
+.userhead{
+    width: 100%;
+    position: relative;
+    height: 3em;
+}
+
+.users-header{
+    margin-top: 1em;
+    margin-left: 5%;
+    width:50%;
+    float: left;
+}
+
+.userim{
+    border-radius: 50%;
+    width: 4em;
+}
+
+.user-grid{
+    padding-bottom: 2em;
+}
+
+.invite{
+   /* width: 20%; */
+   float: right;
+   margin-right: 1em;
+   margin-bottom: 4em;
+   margin-top: 0.5em;
+
+}

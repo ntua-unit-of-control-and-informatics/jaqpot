@@ -1,0 +1,139 @@
+<main [class.dark-theme]="isDarkTheme" class="app">
+
+
+
+  <mat-toolbar class="toolbar" color="primary">
+    <mat-toolbar-row>
+
+      <div *ngIf="loggedIn">
+        <button mat-icon-button class="side_menu" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+      </div>
+
+      <h2>Jaqpot</h2>
+      <span>
+        <img class="image" src="../../assets/favicon.ico">
+      </span>
+      <span class="example-spacer"></span>
+
+
+      <span class="notifications">
+        <div *ngIf="loggedIn">
+          <app-notification></app-notification>
+        </div>
+      </span>
+      <span class="app-action">
+        <button mat-icon-button color="accent" (click)="changeTheme()">
+          <mat-icon>invert_colors</mat-icon>
+        </button>
+      </span>
+
+
+      <div *ngIf="loggedIn; else logout">
+        <a routerLink="/account" matTooltip="Account" matTooltipPosition="below">
+          <mat-icon class="account">
+            <i class="material-icons">account_circle</i>
+          </mat-icon>
+        </a>
+      </div>
+      <ng-template #logout>
+        <a class="login" (click)="trySSO()" matTooltip="Login" matTooltipPosition="below">
+          <mat-icon class="login">
+            <i class="material-icons">account_circle</i>
+          </mat-icon>
+        </a>
+      </ng-template>
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav_cont">
+
+    <mat-sidenav class="sidenav" #sidenav mode="over">
+      <mat-nav-list>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">home</mat-icon>
+          Home
+        </a>
+        <mat-divider></mat-divider>
+        <h2 mat-subheader class="side_header">API's</h2>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">repeat</mat-icon>
+          Models
+        </a>
+        <h2 mat-subheader class="side_header">STORAGE</h2>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">view_comfy</mat-icon>
+          Data Tables
+        </a>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">storage</mat-icon>
+          Q Blob
+        </a>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">format_align_center</mat-icon>
+          Linque
+        </a>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">bubble_chart</mat-icon>
+          Qraph
+        </a>
+        <h2 mat-subheader class="side_header">STATISTICS</h2>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">show_chart</mat-icon>
+          Visualization
+        </a>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">linear_scale</mat-icon>
+          Generalized M
+        </a>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">select_all</mat-icon>
+          DoE
+        </a>
+        <h2 mat-subheader class="side_header">MACHINE LEARNING</h2>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">visibility</mat-icon>
+          Computer Vision
+        </a>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">timeline</mat-icon>
+          Chronicles
+        </a>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">nature</mat-icon>
+          Trees
+        </a>
+        <h2 mat-subheader class="side_header">BIOKINETICS</h2>
+        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">pie_chart_outlined</mat-icon>
+          PkSim
+        </a>
+        <!-- <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+          <img class="toxi_img" src="../../assets/toxikin2.ico">
+          Httk
+        </a> -->
+        <a mat-list-item class="side_nav_a" routerLink="/httk" (click)="sidenav.toggle()">
+          <mat-icon class="side_icon">healing</mat-icon>
+          Httk
+        </a>
+
+        <h2 mat-subheader class="side_header">Info</h2>
+      </mat-nav-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content class="app_content">
+
+      <router-outlet *ngIf="loggedIn; else front_page"></router-outlet>
+
+      <ng-template #front_page>
+        <!-- <svg class="d3intro"></svg> -->
+      </ng-template>
+    </mat-sidenav-content>
+
+
+  </mat-sidenav-container>
+
+</main>
