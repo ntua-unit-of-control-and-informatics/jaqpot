@@ -14,6 +14,10 @@ import { InviteDialogComponent } from './invite-dialog/invite-dialog.component';
 import { UserService } from '../jaqpot-client/api/user.service';
 import { NotificationFactoryService } from '../jaqpot-client/factories/notification-factory.service';
 import { NotificationService } from '../jaqpot-client/api/notification.service';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { Model } from '../jaqpot-client';
+import { InvitationNotifDialogComponent } from './notification-dialogs/invitation-notif-dialog/invitation-notif-dialog.component';
+import { Notification } from '../jaqpot-client/model/notification';
 // import { ErrorReport } from '../jaqpot-'
 
 @Injectable()
@@ -35,6 +39,27 @@ export class DialogsService {
         this.dialog.closeAll();
     }
 
+    public confirmDeletion(){
+        let dialogRef: MatDialogRef<ConfirmationDialogComponent>;
+        dialogRef = this.dialog.open(ConfirmationDialogComponent);
+        return dialogRef.afterClosed();
+    }
+
+    public openActualNotifDialog(notification:Notification, 
+        organizationService:OrganizationService,
+        notificationService:NotificationService,
+        userService:UserService){
+        if(notification.type === "INVITATION"){
+            let dialogRef: MatDialogRef<InvitationNotifDialogComponent>;
+            dialogRef = this.dialog.open(InvitationNotifDialogComponent);
+            dialogRef.componentInstance.organizationService = organizationService
+            dialogRef.componentInstance.notificationService = notificationService
+            dialogRef.componentInstance.userService = userService
+            dialogRef.componentInstance.notification = notification
+            return dialogRef.afterClosed();
+        }
+    }
+
     public onOrganizationView(organization:Organization, organizationService:OrganizationService){
         let dialogRef: MatDialogRef<OrganizationDialogComponent>;
         dialogRef = this.dialog.open(OrganizationDialogComponent)
@@ -44,9 +69,9 @@ export class DialogsService {
     }
 
     public inviteToOrganization(userService:UserService,
-         notifFactory:NotificationFactoryService,
+        notifFactory:NotificationFactoryService,
         organization:Organization,
-    notificationService:NotificationService)
+        notificationService:NotificationService)
     {
         let dialogRef: MatDialogRef<InviteDialogComponent>;
         dialogRef = this.dialog.open(InviteDialogComponent);
@@ -59,14 +84,11 @@ export class DialogsService {
 
     
     public onError(error:Response){
-
         let dialogRef: MatDialogRef<ErrorDialogComponent>;
         dialogRef = this.dialog.open(ErrorDialogComponent);
-        
         dialogRef.componentInstance.httpStatus = error.json().httpStatus;
         dialogRef.componentInstance.details = error.json().details;
         dialogRef.componentInstance.message = error.json().message;
-
         return dialogRef.afterClosed();
     }
 

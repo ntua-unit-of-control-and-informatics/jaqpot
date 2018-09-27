@@ -3,9 +3,9 @@
 <div class="container">
 
   <div class="card-s">
-      <h3 class="titl">
-        Model Creation
-      </h3>
+    <h3 class="titl">
+      Model Creation
+    </h3>
     <mat-card class="step-card">
 
       <mat-card-header>
@@ -21,10 +21,43 @@
       </mat-card-header>
       <mat-divider class="card-div"></mat-divider>
       <mat-card-content>
-        <app-parametersteps *ngIf="parameters" [parameters]="parameters"></app-parametersteps>
-        <mat-vertical-stepper class="model-steps" [linear]="true" #stepper>
+        <!-- <app-parametersteps *ngIf="parameters" [parameters]="parameters"></app-parametersteps> -->
+        <mat-horizontal-stepper class="model-steps" [linear]="true" #stepper>
 
           <!-- <mat-step *ngFor="let parameter of parameters" [stepControl]="parametersFormGroup"></mat-step> -->
+
+          <mat-step [stepControl]="parametersFormGroup">
+            <form [formGroup]="parametersFormGroup">
+              <ng-template matStepLabel>Select species</ng-template>
+              <mat-form-field>
+                <mat-select [(value)]="species">
+                  <mat-option value="option1">Human</mat-option>
+                  <mat-option value="option2">Rat</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="parametersFormGroup">
+            <form [formGroup]="parametersFormGroup">
+              <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+                  [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
 
           <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
@@ -37,6 +70,7 @@
               </div>
             </form>
           </mat-step>
+
           <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup">
               <ng-template matStepLabel>Fill out your address</ng-template>
@@ -49,6 +83,7 @@
               </div>
             </form>
           </mat-step>
+
           <mat-step>
             <ng-template matStepLabel>Create Model</ng-template>
             You can start the creation of the model
@@ -57,11 +92,12 @@
               <button mat-button (click)="stepper.reset()">Reset</button>
             </div>
           </mat-step>
-        </mat-vertical-stepper>
+
+        </mat-horizontal-stepper>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+        <!-- <button mat-button>Create</button> -->
+        <!-- <button mat-button>SHARE</button> -->
       </mat-card-actions>
     </mat-card>
   </div>
@@ -69,6 +105,5 @@
 
 </div>
 <div class="paramlist" *ngIf="parameters">
-    <app-parameterlist [parameters]="parameters"></app-parameterlist>
+  <app-parameterlist [parameters]="parameters"></app-parameterlist>
 </div>
-

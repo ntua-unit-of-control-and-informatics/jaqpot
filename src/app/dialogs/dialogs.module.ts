@@ -40,7 +40,9 @@ import { CreateOrganizationComponent } from './create-organization/create-organi
 import { OrganizationService } from '../jaqpot-client/api/organization.service';
 import { InviteDialogComponent } from './invite-dialog/invite-dialog.component';
 import { UserService } from '../jaqpot-client/api/user.service';
-import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
+import { NotificationDialogComponent } from './notification-dialogs/notification-dialog/notification-dialog.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { InvitationNotifDialogComponent } from './notification-dialogs/invitation-notif-dialog/invitation-notif-dialog.component';
 // import { RouterModule } from '@angular/router/src/router_module';
 
 @NgModule({
@@ -73,9 +75,9 @@ import { NotificationDialogComponent } from './notification-dialog/notification-
     // RouterModule
 
   ],
-  declarations: [LoginDialogComponent, ErrorDialogComponent, LogoutDialogComponent, AddAlgorithmDialogComponent, AccountDialogComponent, ProfilepicDialogComponent, OrganizationDialogComponent, CreateOrganizationComponent, InviteDialogComponent, NotificationDialogComponent],
-  exports: [LoginDialogComponent, ErrorDialogComponent, LogoutDialogComponent, AddAlgorithmDialogComponent,  AccountDialogComponent, ProfilepicDialogComponent, OrganizationDialogComponent,CreateOrganizationComponent, InviteDialogComponent, NotificationDialogComponent],
-  entryComponents: [LoginDialogComponent, ErrorDialogComponent, LogoutDialogComponent, AddAlgorithmDialogComponent,  AccountDialogComponent, ProfilepicDialogComponent, OrganizationDialogComponent,CreateOrganizationComponent,InviteDialogComponent, NotificationDialogComponent],
+  declarations: [LoginDialogComponent, ErrorDialogComponent, LogoutDialogComponent, AddAlgorithmDialogComponent, AccountDialogComponent, ProfilepicDialogComponent, OrganizationDialogComponent, CreateOrganizationComponent, InviteDialogComponent, NotificationDialogComponent, ConfirmationDialogComponent, InvitationNotifDialogComponent],
+  exports: [LoginDialogComponent, ErrorDialogComponent, LogoutDialogComponent, AddAlgorithmDialogComponent,  AccountDialogComponent, ProfilepicDialogComponent, OrganizationDialogComponent,CreateOrganizationComponent, InviteDialogComponent, NotificationDialogComponent, ConfirmationDialogComponent, InvitationNotifDialogComponent],
+  entryComponents: [LoginDialogComponent, ErrorDialogComponent, LogoutDialogComponent, AddAlgorithmDialogComponent,  AccountDialogComponent, ProfilepicDialogComponent, OrganizationDialogComponent,CreateOrganizationComponent,InviteDialogComponent, NotificationDialogComponent, ConfirmationDialogComponent, InvitationNotifDialogComponent],
   providers: [
     DialogsService, AaService, OrganizationService
   ]

@@ -6,6 +6,7 @@ import { map } from '../../../../node_modules/@types/d3';
 import { MatDialog } from '../../../../node_modules/@angular/material';
 import { ProfilepicDialogComponent } from '../../dialogs/profilepic-dialog/profilepic-dialog.component';
 import { Subject } from '../../../../node_modules/rxjs';
+import { DialogsService } from '../../dialogs/dialogs.service';
 
 @Component({
   selector: 'app-organization-base',
@@ -20,17 +21,21 @@ export class OrganizationBaseComponent implements OnInit {
   edit = false;
   canedit = false;
   photo_unavail=true;
+  edit_l = false;
+  edit_w = false;
+  edit_c = false;
   editabout = false;
+  confirmationResult:boolean;
 
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private organizationService:OrganizationService,
+    private dialogService:DialogsService,
     private router:Router
-  ) { }
+  ) {   }
 
   ngOnInit() {
-
     const id = this.route.snapshot.params.id
 
     this.organizationService.getWithIdSecured(id).subscribe(orgGot =>{
@@ -78,6 +83,9 @@ export class OrganizationBaseComponent implements OnInit {
   editForm(){
     this.editFromP.next(true)
     this.edit = false;
+    this.edit_l = true;
+    this.edit_w = true;
+    this.edit_c = true;
     this.editabout = true;
   }
 
@@ -85,6 +93,9 @@ export class OrganizationBaseComponent implements OnInit {
     this.editFromP.next(false)
     this.edit = true;
     this.editabout = false;
+    this.edit_l = false;
+    this.edit_w = false;
+    this.edit_c = false;
     this.organizationService.putWithIdSecured(this.organization._id, this.organization)
       .subscribe(orgGot =>{
         this.organization = orgGot;
@@ -97,10 +108,16 @@ export class OrganizationBaseComponent implements OnInit {
   }
 
   deleteOrg(){
-    this.organizationService.deleteEntity(this.organization._id)
-      .subscribe(resp =>{
-        this.router.navigate(["account"])
-      })
+    this.dialogService.confirmDeletion().subscribe(result => {
+      this.confirmationResult = result;
+      if(result === true){
+        this.organizationService.deleteEntity(this.organization._id)
+        .subscribe(resp =>{
+          this.router.navigate(["account"])
+        })
+      }
+    });
+
   }
   
 }

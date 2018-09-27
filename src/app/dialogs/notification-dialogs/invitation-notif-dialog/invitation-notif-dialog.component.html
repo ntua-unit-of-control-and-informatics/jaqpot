@@ -1,0 +1,70 @@
+<div>
+<h2 mat-dialog-title>Invitation</h2>
+
+
+</div>
+<mat-dialog-content>
+  <!-- <mat-divider></mat-divider> -->
+
+  <div class="base-content">
+    <p>{{notification.body}}</p>
+  </div>
+
+  <div class="from-content" *ngIf="organ && from">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            From user
+          </mat-panel-title>
+          <mat-panel-description>
+            {{from.name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="cont-all">
+          <div class="user-photo" *ngIf="from.profilePic">
+            <img class="from-im" [src]="from.profilePic" />
+          </div>
+
+          <div class="user-cont">
+            <p>{{from.name}} <span *ngIf="from.occupation">| {{from.occupation }} </span><span *ngIf="from.occupationAt">at
+                {{from.occupationAt }} </span></p>
+            <p *ngIf="from.livesAtCity"> {{from.livesAtCity}} <span *ngIf="from.livesAtCountry">{{from.livesAtCountry}}
+              </span></p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Join
+        </mat-panel-title>
+        <mat-panel-description>
+          {{organ._id}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="cont-all">
+        <div class="organ-photo" *ngIf="organ.organizationPic">
+          <img class="organ-im" [src]="organ.organizationPic" />
+        </div>
+
+        <div class="organ-cont">
+          <p>{{organ.city}} <span *ngIf="organ.country"> {{organ.country}}</span> </p>
+          <p>{{organ.about}} </p>
+        </div>
+      </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-raised-button color="accent" matTooltip="Accept invitation" [mat-dialog-close]="true" (click)="acceptInvitation()">Accept</button>
+    <button mat-raised-button color="warn" matTooltip="Decline invitation" [mat-dialog-close]="true" (click)="declineInvitation()">Decline</button>
+    <button mat-button matTooltip="Notification won't appear" [mat-dialog-close]="true" (click)="resolveNotification()">Ignore</button>
+</mat-dialog-actions>

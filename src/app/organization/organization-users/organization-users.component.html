@@ -14,12 +14,16 @@
   <mat-divider style="width:90%; margin-left: 5%; position: relative; margin-top: 1em; margin-bottom: 1em;"></mat-divider>
   <mat-grid-list class="user-grid" cols="3" rowHeight="60px">
     <mat-grid-tile *ngFor="let user of users">
-      <div class="userphoto" *ngIf="user.profilePic">
+      <div class="userphoto" *ngIf="user.profilePic; else nopic">
         <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog()">
           <img class="userim" [src]="user.profilePic" />
         </a>
       </div>
-
+      <ng-template #nopic>
+        <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog()">
+          <button mat-fab color="primary">{{user.name.charAt(0)}}</button>
+        </a>
+      </ng-template>
     </mat-grid-tile>
   </mat-grid-list>
 

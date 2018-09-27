@@ -251,7 +251,7 @@ export class AppModule {
     let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
 
     openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
-    openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';
+    openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
     openIDImplicitFlowConfiguration.client_id = 'jaqpot-ui';
     openIDImplicitFlowConfiguration.response_type = 'id_token token';
     openIDImplicitFlowConfiguration.scope = 'openid email profile';
@@ -268,7 +268,7 @@ export class AppModule {
     openIDImplicitFlowConfiguration.max_id_token_iat_offset_allowed_in_seconds = 10;
     // openIDImplicitFlowConfiguration.override_well_known_configuration = false;
     // openIDImplicitFlowConfiguration.override_well_known_configuration_url = 'http://147.102.86.129:30008/auth/realms/Jaqpan/.well-known/openid-configuration';
-      // openIDImplicitFlowConfiguration.storage = localStorage;
+    // openIDImplicitFlowConfiguration.storage = localStorage;
           
     const authWellKnownEndpoints = new AuthWellKnownEndpoints();
     authWellKnownEndpoints.issuer = 'https://login.jaqpot.org/auth/realms/jaqpot'; 
@@ -285,8 +285,6 @@ export class AppModule {
   }
 
   changeTheme(theme:string){
-    
     this.overlayContainer.getContainerElement().classList.add(theme);
-    
   }
 }

@@ -41,9 +41,11 @@ export class OrganizationUsersComponent implements OnInit {
       }
 
       this.userIds = this.organization.userIds;
+      console.log(this.userIds)
       let user:User = <User>{}
-      let userFormed:User = <User>{}
+      
       this.userIds.forEach(id =>{
+        let userFormed:User = <User>{}
         userFormed._id = id
         this.userService.getPropertyWithIdSecured(id, "profilepic")
           .subscribe(userGot =>{
@@ -64,8 +66,10 @@ export class OrganizationUsersComponent implements OnInit {
         .subscribe(userGot => {
           user = userGot
           userFormed.name = user.name
+          console.log(userFormed)
         })
         this.users.push(userFormed)
+        console.log(this.users)
       })
     }
 

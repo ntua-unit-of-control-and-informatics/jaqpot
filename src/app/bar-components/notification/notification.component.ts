@@ -3,6 +3,9 @@ import {interval} from "rxjs/internal/observable/interval";
 import {startWith, switchMap} from "rxjs/operators";
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
 import { Notification } from '../../jaqpot-client/model/notification';
+import { DialogsService } from '../../dialogs/dialogs.service';
+import { OrganizationService } from '../../jaqpot-client/api/organization.service';
+import { UserService } from '../../jaqpot-client/api/user.service';
 
 @Component({
   selector: 'app-notification',
@@ -16,7 +19,10 @@ export class NotificationComponent implements OnInit {
   notifications:Array<Notification> = new Array()
 
   constructor(
-    private notificationService:NotificationService
+    private notificationService:NotificationService,
+    private organizationService:OrganizationService,
+    private userService:UserService,
+    private dialogsService:DialogsService
   ) { }
 
   ngOnInit() {
@@ -30,7 +36,10 @@ export class NotificationComponent implements OnInit {
   }
 
   openNotifDialog(notif){
-    console.log(notif)
+    this.dialogsService.openActualNotifDialog(notif,
+       this.organizationService, 
+       this.notificationService, 
+       this.userService);
   }
 
 }

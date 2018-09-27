@@ -1,21 +1,8 @@
-<!-- <mat-toolbar color="primary"> -->
 <mat-toolbar>
   <span>Httk</span>
 
   <mat-divider [vertical]="true"></mat-divider>
   <span class="example-spacer-2"></span>
-
-  <!-- <mat-button-toggle-group #group="matButtonToggleGroup">
-    <mat-button-toggle routerLink="/httk/createmodel" matTooltip="Create httk model">
-      <mat-icon>add</mat-icon>
-    </mat-button-toggle>
-    <mat-button-toggle routerLink="/algorithms" matTooltip="Create predictions">
-      <mat-icon>cached</mat-icon>
-    </mat-button-toggle>
-    <mat-button-toggle matTooltip="My models">
-      <mat-icon>archive</mat-icon>
-    </mat-button-toggle>
-  </mat-button-toggle-group> -->
 
   <span class="example-spacer"></span>
 
@@ -32,13 +19,20 @@
 
         <div class="info accent-color">
 
-          Functions and data tables for simulation and statistical analysis of chemical toxicokinetics ("TK") using data obtained from
-          relatively high throughput, in vitro studies. Both physiologically-based ("PBTK") and empirical (e.g., one compartment)
-          "TK" models can be parameterized for several hundred chemicals and multiple species. These models are solved efficiently,
-          often using compiled (C-based) code. A Monte Carlo sampler is included for simulating biological variability and
-          measurement limitations. Functions are also provided for exporting "PBTK" models to "SBML" and "JARNAC" for use
-          with other simulation software. These functions and data provide a set of tools for in vitro-in vivo extrapolation
-          ("IVIVE") of high throughput screening data (e.g., ToxCast) to real-world exposures via reverse dosimetry (also
+          Functions and data tables for simulation and statistical analysis of chemical toxicokinetics ("TK") using
+          data obtained from
+          relatively high throughput, in vitro studies. Both physiologically-based ("PBTK") and empirical (e.g., one
+          compartment)
+          "TK" models can be parameterized for several hundred chemicals and multiple species. These models are solved
+          efficiently,
+          often using compiled (C-based) code. A Monte Carlo sampler is included for simulating biological variability
+          and
+          measurement limitations. Functions are also provided for exporting "PBTK" models to "SBML" and "JARNAC" for
+          use
+          with other simulation software. These functions and data provide a set of tools for in vitro-in vivo
+          extrapolation
+          ("IVIVE") of high throughput screening data (e.g., ToxCast) to real-world exposures via reverse dosimetry
+          (also
           known as "RTK").
 
         </div>
@@ -55,11 +49,9 @@
       </section>
     </mat-card>
   </mat-menu>
- 
+
 </mat-toolbar>
-<!-- <div class="divider"> -->
-  <mat-divider class="first-div"></mat-divider>
-<!-- </div> -->
+<mat-divider class="first-div"></mat-divider>
 <div class="httk-rout">
   <mat-list role="list" class="httk-list">
 
@@ -67,28 +59,24 @@
 
       <button mat-mini-fab color="primary" matTooltip="Create httk model" routerLink="/httk/createmodel">
         <mat-icon class="side_icon">add</mat-icon>
-        <!-- <mat-divider [vertical]="true" class="second"></mat-divider> -->
       </button>
     </mat-list-item>
-    <!-- <mat-divider></mat-divider> -->
     <mat-list-item role="listitem">
       <button mat-mini-fab color="primary" matTooltip="Create predictions">
         <mat-icon class="side_icon">cached</mat-icon>
-        <!-- <mat-divider [vertical]="true" class="second"></mat-divider> -->
       </button>
     </mat-list-item>
-    <!-- <mat-divider></mat-divider> -->
     <mat-list-item role="listitem">
       <button mat-mini-fab color="primary" matTooltip="My models">
         <mat-icon class="side_icon">archive</mat-icon>
-        
+
       </button>
     </mat-list-item>
     <mat-list-item role="listitem">
 
     </mat-list-item>
     <mat-list-item role="listitem">
-        <mat-divider [vertical]="true" class="second"></mat-divider>
+      <mat-divider [vertical]="true" class="second"></mat-divider>
     </mat-list-item>
 
   </mat-list>
@@ -96,6 +84,5 @@
 </div>
 
 <div class="httk-routes">
-    <!-- <mat-divider class="first-div"></mat-divider> -->
   <router-outlet></router-outlet>
 </div>

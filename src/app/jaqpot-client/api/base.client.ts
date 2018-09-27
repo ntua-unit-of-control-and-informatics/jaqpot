@@ -78,6 +78,21 @@ export abstract class BaseClient <T extends Model>{
         );
     }
 
+    public putEntitySecured<T>(updateIt:any): Observable<T>{
+        let params = new URLSearchParams();
+            
+        let headers = new Headers({'Content-Type':'application/json'});
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        headers.set('Authorization', tokenValue);
+        let pathFormed = this._path
+        return this.http.put(pathFormed, updateIt, { headers: headers, search: params } ).pipe(
+            map((res : Response) => { 
+                return res.json()            
+            }),catchError( err => this.dialogsService.onError(err) )
+        );
+    }
+
     public postEntity<T>(entity:any): Observable<T>{
             
         let headers = new Headers({'Content-Type':'application/json'});

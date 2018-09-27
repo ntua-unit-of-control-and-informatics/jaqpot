@@ -12,7 +12,21 @@
               
         </mat-option>
       </mat-autocomplete>
+
+      
+
     </mat-form-field>
+
+    <div *ngIf="addBodyB; else noBody">
+        <mat-form-field class="invite-message">
+            <textarea matInput placeholder="Invitation Message" [(ngModel)]="inviteMessage"[ngModelOptions]="{standalone: true}" >{{inviteMessage}}</textarea>
+          </mat-form-field>
+      <button mat-button  (click)="cancelBody()">Cancel Message</button>
+    </div>
+    <ng-template #noBody>
+      <button mat-button  (click)="addBody()">Add Message</button>
+    </ng-template>
+    
   </form>
 
 </mat-dialog-content>

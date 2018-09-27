@@ -12,17 +12,17 @@
           <a matTooltip="Update photo" matTooltipPosition="below" (click)="addOrgPicDialog()">
             <img class="orgim" [src]="organization?.organizationPic" />
           </a>
-
         </div>
       </ng-template>
 
       <div class="orgiddiv">
         <h2 class="orgid">{{organization?._id}}</h2>
-        <div class="editlocation" *ngIf="edit else editlocation">
-          <div *ngIf="organization.city">
+        <div class="editlocation" *ngIf="!edit_l else editlocation">
+          <div *ngIf="organization?.city">
             <p class="orgwhere">{{organization?.city}}, {{organization?.country}}</p>
           </div>
         </div>
+
         <ng-template #editlocation>
           <div *ngIf="organization">
             <mat-form-field class="edit-city">
@@ -48,12 +48,13 @@
 
       <div class="orgweb">
 
-        <div class="edidsite" *ngIf="edit else editwebsite">
-          <div class="website" *ngIf="organization.website">
+        <div class="edidsite" *ngIf="!edit_w else editwebsite">
+          <div class="website" *ngIf="organization?.website">
             <img class="socialpng" src="assets/internet.png">
             <a class="orgsite" href="organization?.website">{{organization?.website}}</a>
           </div>
         </div>
+
         <ng-template #editwebsite>
           <img class="socialpng" src="assets/internet.png">
           <div *ngIf="organization">
@@ -61,11 +62,10 @@
               <textarea matInput placeholder="Website" [(ngModel)]="organization.website"></textarea>
             </mat-form-field>
           </div>
-
         </ng-template>
 
 
-        <div class="editcontact" *ngIf="edit else editcontact">
+        <div class="editcontact" *ngIf="!edit_c else editcontact">
 
           <div class="orgcontact">
             <mat-icon class="contemail">alternate_email</mat-icon>

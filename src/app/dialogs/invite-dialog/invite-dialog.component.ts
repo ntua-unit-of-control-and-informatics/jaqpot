@@ -22,11 +22,14 @@ export class InviteDialogComponent implements OnInit {
   organization:Organization
   notification:Notification
 
+  inviteMessage:string;
+
   username: string;
   usersTemp: Array<User> = new Array();
   users: Array<User> = new Array();
   user: User
 
+  addBodyB:boolean=false;
 
   public userInputCtrl: FormControl;
 
@@ -81,6 +84,11 @@ export class InviteDialogComponent implements OnInit {
     }
     var userData = JSON.parse(sessionStorage.getItem('userData'))
     this.notification = this.notifFactory.invitationNotification(userData.sub, userToInv._id, this.organization._id)
+    
+    if(this.addBodyB === true && this.inviteMessage != null){
+      this.notification.body = this.inviteMessage
+    }
+    
     console.log(this.notification)
     this.notificationService.postEntity(this.notification)
       .subscribe(notifGot =>{
@@ -88,5 +96,12 @@ export class InviteDialogComponent implements OnInit {
       })
   }
 
+  addBody(){
+    this.addBodyB = true;
+  }
+
+  cancelBody(){
+    this.addBodyB = false;
+  }
 
 }

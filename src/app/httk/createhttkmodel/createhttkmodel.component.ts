@@ -14,13 +14,17 @@ import { ParameterstepsComponent } from '../../base/components/parametersteps/pa
 export class CreatehttkmodelComponent implements OnInit {
 
   // parentMessage = "message from parent"
+  species: string;
+
 
   public algo: Algorithm;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   public parameters: Array<Parameter>;
   parametersFormGroup: FormGroup;
-  
+  speciesFormGroup: FormGroup;
+
+
   @ViewChild(ParameterlistComponent) parametersList;
   @ViewChild(ParameterstepsComponent) parameterSteps;
 
@@ -30,6 +34,9 @@ export class CreatehttkmodelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.parametersFormGroup = this._formBuilder.group({
+    })
+
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -42,6 +49,8 @@ export class CreatehttkmodelComponent implements OnInit {
       this.algo = algoGot;
       // console.log(algoGot._id);
       this.parameters = algoGot.parameters
+      console.log(algoGot.parameters)
+      console.log(this.parameters)
       // this.parameters = this.parametersList.parameters
     })
   }
@@ -50,16 +59,5 @@ export class CreatehttkmodelComponent implements OnInit {
 
   }
 
-  // ngAfterViewChecked(){
-  //   this.algoService.getAlgorithmById('httk')
-  //   .subscribe(algoGot=>{
-  //     this.algo = algoGot;
-  //     // console.log(algoGot._id);
-  //     this.parameters = algoGot.parameters
-  //     // this.parameters = this.parametersList.parameters
-  //   })
-
-    
-  // }
 
 }
