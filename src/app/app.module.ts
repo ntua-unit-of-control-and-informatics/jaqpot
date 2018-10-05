@@ -251,7 +251,7 @@ export class AppModule {
     let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
 
     openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
-    openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
+    openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';
     openIDImplicitFlowConfiguration.client_id = 'jaqpot-ui';
     openIDImplicitFlowConfiguration.response_type = 'id_token token';
     openIDImplicitFlowConfiguration.scope = 'openid email profile';

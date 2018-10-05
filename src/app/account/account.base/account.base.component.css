@@ -42,7 +42,6 @@
 
 .tabs {
   position: relative;
-  overflow: scroll;
   height: 100%;
   margin-top: -9em;
   margin-right: 18%;
