@@ -12,7 +12,7 @@ export class SessionService{
     token: string;
     private accessToken: Subject<string> = new BehaviorSubject(this.token);
     private userName = new Subject<any>();
-    private loggedIn = new Subject<any>();
+    //private loggedIn = new Subject<any>();
     private theme = new Subject<any>();
     algo:Algorithm
     algorithm$: Subject<Algorithm> = new BehaviorSubject(this.algo);
@@ -31,9 +31,9 @@ export class SessionService{
         return this.subjectId.asObservable();
     }
 
-    getLoggedIn(): Observable<any>{
-        return this.loggedIn.asObservable();
-    }
+   // getLoggedIn(): Observable<any>{
+    //    return this.loggedIn.asObservable();
+  //  }
 
     getUserName(): Observable<any>{
         return this.userName.asObservable();
@@ -110,11 +110,11 @@ export class SessionService{
                 this.subjectId.next();
                 break;
             }
-            case 'loggedIn':{
-                var fal = "false";
-                this.loggedIn.next({ fal });
-                break;
-            }
+            //case 'loggedIn':{
+           //     var fal = "false";
+           //     this.loggedIn.next({ fal });
+          //      break;
+         //   }
             case 'userName':{
                 this.userName.next();
                 break;
@@ -127,7 +127,7 @@ export class SessionService{
     clear(){
         var nul = "null";
         this.subjectId.next({ nul });
-        this.loggedIn.next({ nul });
+     //   this.loggedIn.next({ nul });
         this.userName.next({ nul });
         return sessionStorage.clear();
     }
@@ -146,10 +146,6 @@ export class SessionService{
         switch(key){
             case 'subjectId':{
                 this.subjectId.next({ data });
-                break;
-            }
-            case 'loggedIn':{
-                this.loggedIn.next({ data });
                 break;
             }
             case 'userName':{

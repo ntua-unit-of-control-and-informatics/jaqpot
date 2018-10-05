@@ -17,14 +17,10 @@ export class AuthGuardService implements CanActivate {
 
     return this.oidcSecurityService.getIsAuthorized().pipe(
         map((isAuthorized: boolean) => {
-            // console.log('AuthorizationGuard, canActivate isAuthorized: ' + isAuthorized);
-
             if (isAuthorized) {
-                this.sessionService.set('loggedIn', 'true')
                 return true;
             }
-
-            this.router.navigate(['/unauthorized']);
+            this.router.navigate(['']);
             return false;
         })
     );

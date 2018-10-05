@@ -13,9 +13,9 @@ import {  HttkBaseComponent } from './httk/base/httk.base.component';
 import { CreatehttkmodelComponent } from './httk/createhttkmodel/createhttkmodel.component';
 import { AccountBaseComponent } from './account/account.base/account.base.component';
 import { OrganizationBaseComponent } from './organization/organization-base/organization-base.component';
+import {FrontComponent} from './front/front.component';
 
-const routes: Routes=[
-  // {path: '', redirectTo: '/home', pathMatch: 'full'},
+const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'account', component: AccountBaseComponent, canActivate: [AuthGuard]},
   {path: 'algorithms', component: AlgorithmsComponent, canActivate: [AuthGuard]},
@@ -24,7 +24,9 @@ const routes: Routes=[
   {path: 'dataset/detail', component: DatasetDetailComponent, data : {dataset : 'some value'}},
   {path: 'httk', component:  HttkBaseComponent, canActivate: [AuthGuard]},
   {path: 'httk/createmodel', component:  CreatehttkmodelComponent, canActivate: [AuthGuard]},
-  {path: 'organization/:id', component:  OrganizationBaseComponent, canActivate: [AuthGuard]}
+  {path: 'organization/:id', component:  OrganizationBaseComponent, canActivate: [AuthGuard]},
+  {path: '', component:  FrontComponent}
+
 ];
 
 

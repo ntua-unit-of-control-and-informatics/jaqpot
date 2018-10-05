@@ -95,6 +95,8 @@ import { OrganizationBaseComponent } from './organization/organization-base/orga
 import { OrganizationDetailsComponent } from './organization/organization-details/organization-details.component';
 import { OrganizationUsersComponent } from './organization/organization-users/organization-users.component';
 import { NotificationComponent } from './bar-components/notification/notification.component';
+import { FrontComponent } from './front/front.component';
+
 /**
  * NgModule that includes all Material modules that are required to serve 
  * the Plunker.
@@ -157,7 +159,7 @@ import { NotificationComponent } from './bar-components/notification/notificatio
 
   ],
   declarations: [],
-  imports: [],
+
   providers: [
     // OidcConfigService,
     // {
@@ -188,7 +190,8 @@ export class MaterialModule {}
     HttpClientModule,
     ImageCropperModule,
     // AuthModule.forRoot( { storage:SecurityStorage } ),
-    AuthModule.forRoot( )
+    AuthModule.forRoot( ),
+    CommonModule,
   ],
   exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule],
   declarations: [AppComponent,
@@ -196,7 +199,7 @@ export class MaterialModule {}
     DatasetComponent,
     DatasetListComponent,
     DatasetDetailComponent,
-    ModelsComponent, 
+    ModelsComponent,
     HomeComponent,
     HttkBaseComponent,
     CreatehttkmodelComponent,
@@ -209,8 +212,10 @@ export class MaterialModule {}
     OrganizationBaseComponent,
     OrganizationDetailsComponent,
     OrganizationUsersComponent,
-    NotificationComponent
-    ],
+    NotificationComponent,
+    FrontComponent
+    //
+  ],
   bootstrap: [AppComponent],
   providers: [SessionService],
   entryComponents: []
@@ -251,7 +256,7 @@ export class AppModule {
     let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
 
     openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
-    openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';
+    openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
     openIDImplicitFlowConfiguration.client_id = 'jaqpot-ui';
     openIDImplicitFlowConfiguration.response_type = 'id_token token';
     openIDImplicitFlowConfiguration.scope = 'openid email profile';

@@ -56,7 +56,7 @@ export class AccountBaseComponent implements OnInit {
     private router:Router,
     public oidcSecurityService: OidcSecurityService,
     public snackBar: MatSnackBar
-  ) { 
+  ) {
     this.username = this.sessionService.get('userName');
     var userData = JSON.parse(sessionStorage.getItem('userData'))
     this.name =userData.name
@@ -86,7 +86,6 @@ export class AccountBaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    
   }
 
   ngAfterViewInit(){
@@ -121,7 +120,6 @@ export class AccountBaseComponent implements OnInit {
     .subscribe(userGot =>{
       this.user = userGot;
     })
-    
   }
 
   openSnackBar(message: string, action: string) {
@@ -149,5 +147,4 @@ export class AccountBaseComponent implements OnInit {
   createOrganization(){
     let dialogRef = this.dialog.open(CreateOrganizationComponent,{})
   }
-
 }

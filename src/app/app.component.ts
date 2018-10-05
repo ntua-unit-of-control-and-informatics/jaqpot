@@ -48,18 +48,6 @@ export class AppComponent implements OnInit, OnDestroy{
       }
 
       this.subscription = this.sessionService
-      .getLoggedIn().subscribe(data => {
-        
-        var login = (<any>Object).values(data);
-        if(login[0] === "true"){
-        this.loggedIn = true;
-      }else{
-        this.loggedIn = false;
-      }});  
-
-
-
-      this.subscription = this.sessionService
       .getTheme().subscribe(theme => {
         var the = (<any>Object).values(theme);
         if(the[0] === 'default-theme'){
@@ -71,26 +59,16 @@ export class AppComponent implements OnInit, OnDestroy{
       })
 
       if (this.oidcSecurityService.moduleSetup) {
-            this.doCallbackLogicIfRequired();
-        } else {
-            this.oidcSecurityService.onModuleSetup.subscribe(() => {
-                this.doCallbackLogicIfRequired();
-            });
-      }
+      this.doCallbackLogicIfRequired();
+    } else {
+      this.oidcSecurityService.onModuleSetup.subscribe(() => {
+        this.doCallbackLogicIfRequired();
+      });
+    }
 
     }
 
   ngOnInit(){
-    // var checkSes = this.sessionService.get('loggedIn');
-    // var subjectId = this.sessionService.get('subjectId')
-    // if(checkSes === 'true'){
-    //   this.aaService.vallidate(subjectId).subscribe(res => {
-    //     this.loggedIn = true;
-    //     // this.router.navigate(['/home']);
-    //   },err=> this.sessionService.clear());
-    // }else{
-    //   this.loggedIn = false;
-    // }
     this.isAuthorizedSubscription = this.oidcSecurityService.getIsAuthorized().subscribe(
       (isAuthorized: boolean) => {
         if(isAuthorized === true){
@@ -98,16 +76,14 @@ export class AppComponent implements OnInit, OnDestroy{
         }else{
           this.loggedIn = false;
         }
-        
+        console.log("loggedin?" + this.loggedIn)
       });
   }
 
 
   
   ngAfterViewInit(){
-
     var svg = d3.select("svg");
-    
   }
 
   ngOnDestroy(): void {
@@ -135,7 +111,7 @@ export class AppComponent implements OnInit, OnDestroy{
   // }
   
 
-  changeTheme():void{
+  changeTheme(): void{
       if (this.isDarkTheme === true) {
         this.sessionService.set('theme', 'default-theme');
     } else {
@@ -143,7 +119,7 @@ export class AppComponent implements OnInit, OnDestroy{
     }
   }
 
-  trySSO():void{
+  trySSO(): void{
     this.oidcSecurityService.authorize();
   }
 

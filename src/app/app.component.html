@@ -125,12 +125,7 @@
 
     </mat-sidenav>
     <mat-sidenav-content class="app_content">
-
-      <router-outlet *ngIf="loggedIn; else front_page"></router-outlet>
-
-      <ng-template #front_page>
-        <!-- <svg class="d3intro"></svg> -->
-      </ng-template>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
 
 
