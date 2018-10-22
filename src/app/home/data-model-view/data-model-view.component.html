@@ -1,0 +1,91 @@
+<div class="grid_list">
+  <div *ngIf="grid_view; else list_view">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="space-around center">
+      <ng-container *ngFor="let item of view_items">
+        <mat-card matTooltip={{item.meta.descriptions[0]}} fxFlex.xl="12%" fxFlex.lg="18%" fxFlex.md="24%" fxFlex.sm="42%"
+          class="card">
+          <mat-card-header class="card_header">
+            <mat-card-title>Title: {{item.meta.titles[0]}}</mat-card-title>
+            <mat-card-subtitle>{{item.meta.date | date}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div *ngIf="item.meta.picture; else no_image" class="image_div">
+              <img class="entity_image" src="{{item.meta.picture}}">
+            </div>
+            <ng-template #no_image>
+
+              <img *ngIf="item.type == 'Dataset'; else model_icon" class="entity_image" src="assets/dataset3.png">
+              <ng-template #model_icon>
+                  <img class="entity_image" src="assets/model_wb.png">
+              </ng-template>
+            </ng-template>
+            <h4>{{item.type}}</h4>
+            <!--  <p class="description">
+                {{item.meta.descriptions[0]}}
+              </p> -->
+          </mat-card-content>
+          <mat-card-actions>
+              <button mat-icon-button matTooltip="View"
+                matTooltipPosition='above'
+                class="card_item_button"
+                (click)="goToView(item)">
+                  <mat-icon>remove_red_eye</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="Delete" matTooltipPosition='above' class="card_item_button">
+                <mat-icon>delete</mat-icon>
+              </button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    </div>
+    <!-- <mat-grid-list cols="4" rowHeight="280px" class="grid_list">
+    <mat-grid-tile class="grid_tile" *ngFor="let item of view_items" [colspan]="item.cols" [rowspan]="item.rows">
+      <mat-card class="item_card">
+        <mat-card-header>
+          <mat-card-title>{{item.meta.titles[0]}}</mat-card-title>
+          <mat-card-subtitle>{{item.meta.date | date}}</mat-card-subtitle>
+        </mat-card-header>
+        <div *ngIf="item.meta.picture; else no_image">
+          <img class="entity_image" mat-card-image src="{{item.meta.picture}}" alt="Photo of a Shiba Inu">
+        </div>
+        <ng-template #no_image>
+          <mat-icon>format_align_justify</mat-icon>
+        </ng-template>
+        <mat-card-content>
+          <p>
+            {{item.meta.descriptions[0]}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list> -->
+  </div>
+  <ng-template #list_view>
+    <mat-list>
+      <mat-list-item matTooltip={{item.meta.descriptions[0]}} *ngFor="let item of view_items" class="list_item">
+        <mat-icon mat-list-icon *ngIf="item.type == 'Dataset'; else model_icon">description</mat-icon>
+        <ng-template #model_icon>
+          <mat-icon mat-list-icon>flare</mat-icon>
+        </ng-template>
+        <h4 mat-line> {{item.type}} title: {{item.meta.titles[0]}}</h4>
+        <p mat-line> {{item.meta.date | date}} </p>
+        <ng-container *ngIf="item.organizations">
+          <h4>{{item.type}} shared with:</h4>
+          <p mat-line *ngFor="let org of item.organizations">
+            <span>{{org}}</span>
+          </p>
+        </ng-container>
+        <button mat-icon-button matTooltip="View" class="list_item_button" (click)="goToView(item)">
+            <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Delete" class="list_item_button">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+
+    </mat-list>
+  </ng-template>
+</div>

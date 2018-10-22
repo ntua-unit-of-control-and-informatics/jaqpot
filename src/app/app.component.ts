@@ -76,12 +76,9 @@ export class AppComponent implements OnInit, OnDestroy{
         }else{
           this.loggedIn = false;
         }
-        console.log("loggedin?" + this.loggedIn)
       });
   }
 
-
-  
   ngAfterViewInit(){
     var svg = d3.select("svg");
   }

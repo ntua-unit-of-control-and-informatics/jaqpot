@@ -34,8 +34,6 @@ export interface User {
 
     publicationRatePerWeek?: { [key: string]: number; };
 
-    profilePic?: string;
-
     organizations?: Array<string>;
 
     _id?: string;

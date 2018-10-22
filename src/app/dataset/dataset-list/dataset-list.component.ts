@@ -57,34 +57,34 @@ export class DatasetListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getFeaturedCount();
-    this.data_in = 'Featured';
+    // this.getFeaturedCount();
+    // this.data_in = 'Featured';
   }
 
   ngAfterViewInit() {
     
-        merge(this.data_to_fetch, this.paginator.page)
-          ,startWith(null)
-          ,switchMap(() => {
-            this.isLoadingResults = true;
-            if(this.data_in === 'Featured'){
-              this.getFeaturedCount();
-              return this._dataService.getFeaturedDatasets(
-                this.paginator._pageIndex * this.paginator.pageSize,
-                this.paginator.pageSize);
-            }else{
-              this.getAllCount();
-              return this._dataService.getAllDatasets(
-                this.paginator._pageIndex * this.paginator.pageSize,
-                this.paginator.pageSize);
-            }
+        // merge(this.data_to_fetch, this.paginator.page)
+        //   ,startWith(null)
+        //   ,switchMap(() => {
+        //     this.isLoadingResults = true;
+        //     if(this.data_in === 'Featured'){
+        //       this.getFeaturedCount();
+        //       return this._dataService.getFeaturedDatasets(
+        //         this.paginator._pageIndex * this.paginator.pageSize,
+        //         this.paginator.pageSize);
+        //     }else{
+        //       this.getAllCount();
+        //       return this._dataService.getAllDatasets(
+        //         this.paginator._pageIndex * this.paginator.pageSize,
+        //         this.paginator.pageSize);
+        //     }
             
-            }),map(data => {
-              this.isLoadingResults = false;
-              this.isRateLimitReached = false;
-              this.resultsLength = Number(this._count);
-              return data
-            })
+        //     }),map(data => {
+        //       this.isLoadingResults = false;
+        //       this.isRateLimitReached = false;
+        //       this.resultsLength = Number(this._count);
+        //       return data
+        //     })
             // .catch(() => {
             //   this.isLoadingResults = false;
             //   this.isRateLimitReached = true;
@@ -94,19 +94,19 @@ export class DatasetListComponent implements OnInit {
     
   }
 
-  getFeaturedCount(){
-    this._dataService.getFeaturedDatasetCount()
-    .subscribe(res => {
-      this._count = res.headers.get('total');
-    })    
-  }
+  // getFeaturedCount(){
+  //   this._dataService.getFeaturedDatasetCount()
+  //   .subscribe(res => {
+  //     this._count = res.headers.get('total');
+  //   })    
+  // }
 
-  getAllCount(){
-    this._dataService.getAllDatasetCount()
-      .subscribe(res => {
-        this._count = res.headers.get('total');
-      })
-  }
+  // getAllCount(){
+  //   this._dataService.getAllDatasetCount()
+  //     .subscribe(res => {
+  //       this._count = res.headers.get('total');
+  //     })
+  // }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

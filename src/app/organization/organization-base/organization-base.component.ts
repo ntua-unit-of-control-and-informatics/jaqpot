@@ -51,7 +51,7 @@ export class OrganizationBaseComponent implements OnInit {
             this.edit = true;
             this.canedit = true;
         }
-        if(this.organization.organizationPic == null){
+        if(this.organization.meta.picture == null){
           this.photo_unavail = true;
         }else{
           this.photo_unavail = false;
@@ -67,11 +67,11 @@ export class OrganizationBaseComponent implements OnInit {
   addOrgPicDialog(){
     let dialogRef = this.dialog.open(ProfilepicDialogComponent,{})
     dialogRef.afterClosed().subscribe(result => {
-      this.organization.organizationPic = result;
+      this.organization.meta.picture = result;
       this.organizationService.putWithIdSecured(this.organization._id, this.organization)
       .subscribe(orgGot =>{
         this.organization = orgGot;
-        if(this.organization.organizationPic == null){
+        if(this.organization.meta.picture == null){
           this.photo_unavail = true;
         }else{
           this.photo_unavail = false;
@@ -99,7 +99,7 @@ export class OrganizationBaseComponent implements OnInit {
     this.organizationService.putWithIdSecured(this.organization._id, this.organization)
       .subscribe(orgGot =>{
         this.organization = orgGot;
-        if(this.organization.organizationPic == null){
+        if(this.organization.meta.picture == null){
           this.photo_unavail = true;
         }else{
           this.photo_unavail = false;

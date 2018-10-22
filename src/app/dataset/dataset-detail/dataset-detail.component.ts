@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild} from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, OnChanges} from '@angular/core';
 import { SessionService } from '../../session/session.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { Dataset, FeatureInfo, DataEntry } from '../../jaqpot-client';
@@ -17,17 +17,13 @@ import { Config } from '../../config/config';
 })
 export class DatasetDetailComponent implements OnInit {
 
-
-  server_base:string;
-
-  dataset_uri:string;
-
   displayedColumns:string[] = [];
   columns:object[] = [];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
-  public _dataset:Dataset;
-  dataset_chosen: Dataset;
+  @Input() _dataset:Dataset;
+
   subscription:Subscription;
   isLoading:boolean = true;
 
@@ -40,71 +36,63 @@ export class DatasetDetailComponent implements OnInit {
 
   dataSource = new MatTableDataSource<any>(this.dataRows);
 
-  constructor(private _sessionService:SessionService
-              ,private _dialogsService:DialogsService
-              ,private _dataService:DatasetService
-              ,private _elementRef: ElementRef
-              ,private _router:Router) { 
-                this.server_base = Config.JaqpotBase;
-              }
+  constructor() { }
 
   ngOnInit() {
-
-    this.dataset_chosen = this._sessionService.getDataset();
     
-    this._dataService
-        .getDataset(this.dataset_chosen._id, null)
-        .subscribe(datasetGot =>{
-            this.totalRows = datasetGot.totalRows;
-            let featureMap:Map<string, string> = new Map();
+    // this._dataService
+    //     .getDataset(this.dataset_chosen._id, null)
+    //     .subscribe(datasetGot =>{
+    //         this.totalRows = datasetGot.totalRows;
+    //         let featureMap:Map<string, string> = new Map();
             
-            datasetGot.features.forEach(feat =>{
-              featureMap.set(feat.uri, feat.name)
+    //         datasetGot.features.forEach(feat =>{
+    //           featureMap.set(feat.uri, feat.name)
               
-            })
-            // console.log(featureMap);
-            datasetGot.dataEntry.forEach(dat =>{
-              let dataRow:IDataRow = {};
-              dataRow.values = {['substance']:dat.compound.name};
-              var dict: { [index: string]: string; } = {};
-              dict["Substance"] = dat.compound.name;
+    //         })
+    //         // console.log(featureMap);
+    //         datasetGot.dataEntry.forEach(dat =>{
+    //           let dataRow:IDataRow = {};
+    //           dataRow.values = {['substance']:dat.entryId.name};
+    //           var dict: { [index: string]: string; } = {};
+    //           dict["Substance"] = dat.entryId.name;
               
-              for(let key in dat.values ){
-                let featName = featureMap.get(key);
-                let concat = key.split("/");
-                dict[featName] = dat.values[key];
+    //           for(let key in dat.values ){
+    //             let featName = featureMap.get(key);
+    //             let concat = key.split("/");
+    //             dict[featName] = dat.values[key];
                 
-              }
-              this.dataRows.push(dict);
+    //           }
+    //           this.dataRows.push(dict);
 
-            })
-            let dict = this.dataRows[0];
-            for (let key in dict) {
-              this.displayedColumns.push(key);
-            }
+    //         })
+    //         let dict = this.dataRows[0];
+    //         for (let key in dict) {
+    //           this.displayedColumns.push(key);
+    //         }
 
-            this.isLoading = false;
-            this.rowwidth = this.displayedColumns.length * 140;
+    //         this.isLoading = false;
+    //         this.rowwidth = this.displayedColumns.length * 140;
 
-        }, err=>{ this._dialogsService.onError(err) })
+    //     }, err=>{ this._dialogsService.onError(err) })
     
   }
 
-  ngAfterViewInit(){
-    this.dataset_uri = Config.JaqpotBase +
-    '/dataset/' + this.dataset_chosen._id;
-    this.dataSource.paginator = this.paginator;
-  }
+  // ngOnChanges(){
+
+  // }
+
+  // ngAfterViewInit(){
+  //   this.dataSource.paginator = this.paginator;
+  // }
 
   closeDataset(){
-
     // this._sessionService.clearModelingDataset();
-    this._router.navigate(['/datasets']);
+    // this._router.navigate(['/datasets']);
     
   }
 
   useDataset(){
-    this._sessionService.setModelingDataset(this.dataset_chosen)
   }
 
 }

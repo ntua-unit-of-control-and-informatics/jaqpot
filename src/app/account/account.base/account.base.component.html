@@ -8,7 +8,7 @@
     <ng-template #photo_avail>
       <div class="user-photo">
         <a matTooltip="Update photo" matTooltipPosition="below" (click)="addProfilePicDialog()">
-          <img class="cropped" [src]="user?.profilePic" />
+          <img class="cropped" [src]="user?.meta?.picture" />
         </a>
       </div>
     </ng-template>

@@ -16,7 +16,7 @@ import { DatasetService } from './api/dataset.service';
 // import { EnmService } from './api/enm.service';
 // import { FeatureService } from './api/feature.service';
 // import { InterlabService } from './api/interlab.service';
-// import { ModelService } from './api/model.service';
+import { ModelApiService } from './api/model.service';
 // import { OpenrisknetService } from './api/openrisknet.service';
 // import { PmmlService } from './api/pmml.service';
 // import { ReadacrossService } from './api/readacross.service';
@@ -27,6 +27,11 @@ import { OrganizationService } from './api/organization.service';
 import { NotificationFactoryService } from './factories/notification-factory.service';
 import { NotificationBuilderService } from './builders/notification-builder.service';
 import { NotificationService } from './api/notification.service';
+import { DatasetBuilderService } from './builders/dataset-builder.service';
+import { DatasetFactoryService } from './factories/dataset-factory.service';
+import { FeatureFactoryService } from './factories/feature-factory.service';
+import { FeatureApiService } from './api/feature.service';
+// import { DatasetApiFacadeService } from './facades/dataset-api-facade.service';
 // import { ValidationService } from './api/validation.service';
 
 @NgModule({
@@ -37,6 +42,7 @@ import { NotificationService } from './api/notification.service';
     AaService,
     SessionService,
     AlgorithmService,
+    FeatureApiService, 
     // AlgorithmService, 
     // BibtexService, 
     DatasetService,
@@ -44,7 +50,7 @@ import { NotificationService } from './api/notification.service';
     // EnmService, 
     // FeatureService, 
     // InterlabService, 
-    // ModelService, 
+    ModelApiService, 
     // OpenrisknetService, 
     // PmmlService, 
     // ReadacrossService, 
@@ -55,7 +61,12 @@ import { NotificationService } from './api/notification.service';
     NotificationService,
     // ValidationService 
     NotificationFactoryService,
-    NotificationBuilderService
+    NotificationBuilderService,
+    DatasetBuilderService,
+    DatasetFactoryService,
+    FeatureFactoryService,
+    // DatasetApiFacadeService
+    // Feature
     ]
 })
 export class JaqpotClientModule {

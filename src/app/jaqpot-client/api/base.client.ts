@@ -36,7 +36,7 @@ export abstract class BaseClient <T extends Model>{
 
     public getWithIdSecured<T>(id:string): Observable<T>{
         let params = new URLSearchParams();
-            
+        
         let headers = new Headers({'Content-Type':'application/json'});
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
@@ -46,6 +46,22 @@ export abstract class BaseClient <T extends Model>{
             map((res : Response) => { 
                 return res.json()            
             }),catchError( err => this.dialogsService.onError(err) )
+        );
+    }
+
+    public getList<T>(pars:Map<string, any>){
+        let params: URLSearchParams = new URLSearchParams();
+        pars.forEach((value: any, key: string) => {
+            params.set(key, value)
+        })
+        let headers = new Headers({'Content-Type':'application/json'});
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        headers.set('Authorization', tokenValue);
+        return this.http.get(this._path, {headers: headers, search:params}).pipe(
+            map((res:Response) => {
+                return res.json()
+            }),catchError(err => this.dialogsService.onError(err))
         );
     }
 
@@ -94,7 +110,6 @@ export abstract class BaseClient <T extends Model>{
     }
 
     public postEntity<T>(entity:any): Observable<T>{
-            
         let headers = new Headers({'Content-Type':'application/json'});
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;

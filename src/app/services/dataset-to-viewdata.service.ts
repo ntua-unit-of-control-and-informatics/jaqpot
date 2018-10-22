@@ -1,0 +1,38 @@
+import { Injectable } from '@angular/core';
+import { Dataset, DataEntry, FeatureInfo, EntryId } from '../jaqpot-client';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DatasetToViewdataService {
+
+  data:{ [key: string]: any; } = []
+
+  constructor() { }
+
+  public createViewData(dataset:Dataset, rows:number){
+    let _data_entry:DataEntry[] = dataset.dataEntry
+    let _featureInfo:FeatureInfo[] = dataset.features
+    let uri_name_map:{ [key: string]: any; } = {}
+    let uris = []
+    _featureInfo.forEach(f =>{
+      uri_name_map[f.uri] = f.name
+      uris.push(f.uri)
+    })
+    let data_rows =[]
+    _data_entry.forEach(de=>{
+      let data_row:{ [key: string]: any; } = {}
+      // let data_row:Map<string,any> = new Map()
+      let entryid:EntryId = de.entryId
+      data_row['Id'] = entryid.name
+      let values:{ [key: string]: any; } = de.values
+      uris.forEach(uri =>{
+        let feature_name =  uri_name_map[uri]
+        data_row[feature_name] = values[uri]
+        })
+       data_rows.push(data_row) 
+      })
+    return data_rows
+  }
+
+}

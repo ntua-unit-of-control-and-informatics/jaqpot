@@ -53,10 +53,13 @@ import {
   MatPaginatorModule,
   MatSidenav,
   MatOption,
-  MatBadgeModule
+  MatBadgeModule,
+  MatTreeModule
 } from '@angular/material';
 import {AppComponent} from './app.component';
-import { DialogsModule } from './dialogs/dialogs.module';
+
+// import { DialogsModule } from './dialogs/dialogs.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormControl } from '@angular/forms';
 import { Http , ConnectionBackend, HttpModule} from '@angular/http';
 import { SessionService } from './session/session.service';
@@ -78,7 +81,6 @@ import { RouterLinkWithHref } from '@angular/router/src/directives/router_link';
 import { SessionModule } from './session/session.module';
 import { AlgorithmDetailComponent } from './algorithms/algorithm-detail/algorithm-detail.component';
 import { DatasetDetailComponent } from './dataset/dataset-detail/dataset-detail.component';
-import { AlgorithmsModule } from './algorithms/algorithms-module.module';
 import { AuthModule, OidcSecurityService, OpenIDImplicitFlowConfiguration, AuthWellKnownEndpoints, OidcConfigService, } from 'angular-auth-oidc-client';
 import { HttpClientModule } from '@angular/common/http';
 import { SecurityStorage } from './session/security.storage';
@@ -96,7 +98,12 @@ import { OrganizationDetailsComponent } from './organization/organization-detail
 import { OrganizationUsersComponent } from './organization/organization-users/organization-users.component';
 import { NotificationComponent } from './bar-components/notification/notification.component';
 import { FrontComponent } from './front/front.component';
-
+import { DialogsModule } from './dialogs/dialogs.module';
+import { DatasetApiFacadeService } from './services/facades/dataset-api-facade.service';
+import { DataModelViewComponent } from './home/data-model-view/data-model-view.component';
+import { ModelIdComponent } from './models/model-id/model-id.component';
+import { WorkbenchBaseComponent } from './workbench/workbench-base/workbench-base.component';
+import { DatasetIdComponent } from './dataset/dataset-id/dataset-id.component';
 /**
  * NgModule that includes all Material modules that are required to serve 
  * the Plunker.
@@ -155,8 +162,9 @@ import { FrontComponent } from './front/front.component';
     MatSidenavModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatBadgeModule
-
+    MatBadgeModule,
+    MatTreeModule,
+    MatTableModule
   ],
   declarations: [],
 
@@ -185,10 +193,10 @@ export class MaterialModule {}
     HttpModule,
     AppRoutingModule,
     ModelsModuleModule,
-    AlgorithmsModule,
     RouterModule,
     HttpClientModule,
     ImageCropperModule,
+    FlexLayoutModule,
     // AuthModule.forRoot( { storage:SecurityStorage } ),
     AuthModule.forRoot( ),
     CommonModule,
@@ -196,6 +204,9 @@ export class MaterialModule {}
   exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule],
   declarations: [AppComponent,
     BaseComponent,
+    AlgorithmsComponent,
+    AlgorithmsListComponent,
+    AlgorithmDetailComponent,
     DatasetComponent,
     DatasetListComponent,
     DatasetDetailComponent,
@@ -213,7 +224,12 @@ export class MaterialModule {}
     OrganizationDetailsComponent,
     OrganizationUsersComponent,
     NotificationComponent,
-    FrontComponent
+    FrontComponent,
+    DataModelViewComponent,
+    ModelIdComponent,
+    DatasetIdComponent,
+    WorkbenchBaseComponent
+    
     //
   ],
   bootstrap: [AppComponent],

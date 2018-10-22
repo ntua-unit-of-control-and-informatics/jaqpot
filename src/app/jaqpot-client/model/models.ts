@@ -14,7 +14,7 @@ export * from './model';
 export * from './parameter';
 export * from './pmml';
 export * from './report';
-export * from './substance';
+export * from './entryId';
 export * from './task';
 export * from './user';
 export * from './userQuota';

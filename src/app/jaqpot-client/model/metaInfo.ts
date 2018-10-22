@@ -43,4 +43,8 @@ export interface MetaInfo {
 
     date?: Date;
 
+    picture?: string;
+
+    tags?: Array<string>;
+
 }

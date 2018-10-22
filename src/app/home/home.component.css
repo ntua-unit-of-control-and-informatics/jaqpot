@@ -1,5 +1,99 @@
-.homemenu{
-    float: left;
-    margin-left: 20px;
-    margin-top: 20px;
+
+
+.header {
+  padding-left: 1em;
 }
+
+.home_icon {
+  padding-left: 0.3em;
+}
+
+.list_icon {
+  margin-left: 0.2em;
+}
+
+/* .home_toolbar{
+    height : 6em;
+} */
+
+.home_div {
+  width: 100%
+}
+
+.home_card {
+  width: 74%;
+  float: left;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+a{
+  width: 100%;
+  border-radius:  5px 40px 40px 5px;
+}
+
+a:hover {
+  cursor: pointer;
+  background-color: lightgray;
+  transition: all .2s ease-in-out;
+}
+a:active{
+  cursor: pointer;
+  background-color: lightgray;
+  transition: all .2s ease-in-out;
+}
+
+.query_menu {
+  padding-right: 1em;
+}
+
+.queries{
+  margin: auto;
+}
+
+.view_enabled{
+    margin-left: 100px;
+}
+
+.quick_view{
+  margin-left: 100px;
+}
+
+.add_dataset{
+    padding-right: 1em;
+}
+
+.home_all{
+  width:100%;
+  min-height: calc(100vh - 118px);
+  max-height: calc(100vh - 118px);
+  position: relative;
+}
+
+.home_content{
+  width:80%;
+  min-height:calc(100vh - 118px);
+  max-height:calc(100vh - 118px);
+  display:inline-block;
+  position:absolute;
+  right: 0;
+  bottom: 0;
+  margin-right:5%;
+  z-index:1;
+}
+
+.home_nav {
+  width: 15%;
+  height: 85vh;
+  display:inline-block;
+  position:absolute;
+  left:0px;
+  z-index:2;
+}
+
+/* .test{
+  width:100%;
+  float:right;
+} */

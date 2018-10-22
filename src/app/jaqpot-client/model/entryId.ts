@@ -12,11 +12,13 @@
 
 
 
-export interface Substance {
+export interface EntryId {
+    
     name?: string;
 
     ownerUUID?: string;
 
-    uRI?: string;
+    URI?: string;
 
+    type?: string;
 }

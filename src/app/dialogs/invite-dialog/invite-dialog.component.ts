@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { FormControl, Validators } from '../../../../node_modules/@angular/forms';
-import { User } from '../../jaqpot-client';
+import { User, MetaInfo } from '../../jaqpot-client';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { Notification } from '../../jaqpot-client/model/notification';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
@@ -53,6 +53,10 @@ export class InviteDialogComponent implements OnInit {
           this.usersTemp.forEach(e => {
             let user = <User>{}
             let tempuser = <User>{}
+            let mius:MetaInfo = <MetaInfo>{}
+            let miustemp:MetaInfo = <MetaInfo>{}
+            user.meta = mius
+            user.meta = miustemp
             this.userService.getPropertyWithIdSecured(e._id, "name").subscribe(username => {
               tempuser = username
               user.name = tempuser.name
@@ -66,9 +70,9 @@ export class InviteDialogComponent implements OnInit {
               tempuser = occupatioAt
               user.occupationAt = tempuser.occupationAt
             })
-            this.userService.getPropertyWithIdSecured(e._id, "profilepic").subscribe(profPic => {
+            this.userService.getPropertyWithIdSecured(e._id, "picture").subscribe(profPic => {
               tempuser = profPic
-              user.profilePic = tempuser.profilePic
+              user.meta.picture = tempuser.meta.picture
             })
             this.users.push(user)
           })
@@ -80,7 +84,7 @@ export class InviteDialogComponent implements OnInit {
     let userToInv = <User>{}
     userToInv = this.users.find(users => users.name === this.user)
     if(userToInv == null){
-      console.log("Caanot find user")
+      console.log("Canot find user")
     }
     var userData = JSON.parse(sessionStorage.getItem('userData'))
     this.notification = this.notifFactory.invitationNotification(userData.sub, userToInv._id, this.organization._id)

@@ -32,4 +32,6 @@ export interface Feature {
 
     id?: string;
 
+    _id?: string;
+
 }

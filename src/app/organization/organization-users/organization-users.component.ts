@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Organization } from '../../jaqpot-client/model/organization';
-import { User } from '../../jaqpot-client';
+import { User, MetaInfo } from '../../jaqpot-client';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { OidcDataService } from '../../../../node_modules/angular-auth-oidc-client/src/services/oidc-data.service';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
@@ -41,16 +41,19 @@ export class OrganizationUsersComponent implements OnInit {
       }
 
       this.userIds = this.organization.userIds;
-      console.log(this.userIds)
       let user:User = <User>{}
       
       this.userIds.forEach(id =>{
         let userFormed:User = <User>{}
+        let metaInfo:MetaInfo = <MetaInfo>{}
         userFormed._id = id
-        this.userService.getPropertyWithIdSecured(id, "profilepic")
+        userFormed.meta = metaInfo
+        this.userService.getPropertyWithIdSecured(id, "picture")
           .subscribe(userGot =>{
             user = userGot
-            userFormed.profilePic = user.profilePic
+            if(user.meta != null && user.meta.picture != null){
+              userFormed.meta.picture = user.meta.picture
+            }
         })
         this.userService.getPropertyWithIdSecured(id, "occupation")
         .subscribe(userGot => {
@@ -66,10 +69,8 @@ export class OrganizationUsersComponent implements OnInit {
         .subscribe(userGot => {
           user = userGot
           userFormed.name = user.name
-          console.log(userFormed)
         })
         this.users.push(userFormed)
-        console.log(this.users)
       })
     }
 

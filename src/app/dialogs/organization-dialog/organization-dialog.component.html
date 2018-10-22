@@ -1,6 +1,6 @@
 <div class="all">
-  <div *ngIf="organization.organizationPic">
-    <img class="orgpic" [src]="organization?.organizationPic" />
+  <div *ngIf="organization.meta.picture">
+    <img class="orgpic" [src]="organization?.meta?.picture" />
   </div>
   <div class="basis">
     <h3 mat-dialog-title class="orgtitle">{{organization?._id}}</h3>

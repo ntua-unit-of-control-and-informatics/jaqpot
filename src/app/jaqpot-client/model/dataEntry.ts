@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { Substance } from './substance';
+import { EntryId } from './entryId';
 
 
 export interface DataEntry {
-    compound?: Substance;
+    entryId?: EntryId;
 
     // values?: Map<string,any>;
     values?: { [key: string]: any; };

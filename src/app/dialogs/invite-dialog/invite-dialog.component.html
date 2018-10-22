@@ -6,14 +6,12 @@
       <mat-autocomplete #auto="matAutocomplete">
 
         <mat-option *ngFor="let user of users" [value]="user.name">
-              <img class="userim" *ngIf="user.profilePic" [src]="user.profilePic" />
+              <img class="userim" *ngIf="user?.meta?.picture" [src]="user.meta.picture" />
               <span class="username">{{ user.name }}</span>
               <small *ngIf="user.occupation" class="username">| {{ user.occupation}} at {{user.occupationAt}}</small>
               
         </mat-option>
       </mat-autocomplete>
-
-      
 
     </mat-form-field>
 

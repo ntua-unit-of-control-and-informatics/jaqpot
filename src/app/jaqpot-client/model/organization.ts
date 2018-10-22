@@ -16,8 +16,6 @@ export interface Organization {
 
     capabilities?: { [key: string]: number; };
 
-    organizationPic?: string;
-
     userIds?: Array<string>;
 
     about?: string;

@@ -10,6 +10,7 @@ export class SessionService{
 
     private subjectId = new Subject<any>();
     token: string;
+    userid:string;
     private accessToken: Subject<string> = new BehaviorSubject(this.token);
     private userName = new Subject<any>();
     //private loggedIn = new Subject<any>();
@@ -34,6 +35,12 @@ export class SessionService{
    // getLoggedIn(): Observable<any>{
     //    return this.loggedIn.asObservable();
   //  }
+
+    getUserId(){
+        var userData = JSON.parse(sessionStorage.getItem('userData'))
+        this.userid = userData.sub
+        return this.userid;
+    }
 
     getUserName(): Observable<any>{
         return this.userName.asObservable();

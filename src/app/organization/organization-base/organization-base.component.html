@@ -10,7 +10,7 @@
       <ng-template #photo_avail>
         <div class="org-photo">
           <a matTooltip="Update photo" matTooltipPosition="below" (click)="addOrgPicDialog()">
-            <img class="orgim" [src]="organization?.organizationPic" />
+            <img class="orgim" [src]="organization.meta.picture" />
           </a>
         </div>
       </ng-template>

@@ -40,6 +40,8 @@ export interface Dataset {
 
     descriptors?: Array<Dataset.DescriptorsEnum>;
 
+    existence?: Dataset.ExistenceEnum;
+
     id?: string;
 
     _id?: string;
@@ -53,5 +55,16 @@ export namespace Dataset {
         MOPAC = <any> 'MOPAC',
         CDK = <any> 'CDK',
         PREDICTED = <any> 'PREDICTED'
+    }
+}
+
+export namespace Dataset {
+    export enum ExistenceEnum {
+        EXPERIMENTAL = <any> 'EXPERIMENTAL',
+        UPLOADED = <any> 'UPLOADED',
+        CREATED = <any> 'CREATED',
+        TRANFORMED = <any> "TRANSFORMED",
+        PREDICTED = <any> "PREDICTED",
+        DESCRIPTORSADDED = <any> "DESCRIPTORSADDED",
     }
 }

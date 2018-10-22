@@ -16,8 +16,9 @@ export class ProfilepicDialogComponent implements OnInit {
 
   saveDisactivated = true;
 
-  constructor(@Optional() public dialogRef: MatDialogRef<ProfilepicDialogComponent>,
-  @Inject(MAT_DIALOG_DATA) public profPic: string){
+  constructor(
+    @Optional() public dialogRef: MatDialogRef<ProfilepicDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public profPic: string){
 
   }
 

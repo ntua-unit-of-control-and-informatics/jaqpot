@@ -1,4 +1,3 @@
-
 import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Inject, Injectable, Optional } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
@@ -16,17 +15,20 @@ import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpClient } from '@angular/common/http/src/client';
 import { HttpParams } from '@angular/common/http/src/params';
-import { error } from 'selenium-webdriver';
+import { BaseClient } from './base.client';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 
 
 @Injectable()
-export class DatasetService {
+export class DatasetService extends BaseClient<Dataset>{
 
-    private _basePath : string;
-    private _defaultHeaders: Headers = new Headers();
+    // private _basePath : string;
+    // private _defaultHeaders: Headers = new Headers();
 
-    private _subjectId:string;
+    _privateBasePath:string;
+    private dataset:Dataset;
+    _datasetBase:string = "/dataset/"
 
     private _allDatasetsEndpoint:string;
     private _allFeaturedDatasetsEndpoint:string
@@ -42,122 +44,128 @@ export class DatasetService {
     private _createQPRFEndpoint:string;
 
 
-    constructor(private http: Http,
-        private sessionServise:SessionService,
-        private dialogsService:DialogsService){
-        this._basePath = Config.JaqpotBase;
-        this._subjectId = this.sessionServise.get('subjectId');
-        this._allDatasetsEndpoint = this._basePath + '/dataset';
-        this._createDatasetEndpoint = this._basePath + '/dataset';
-        this._createDatasetFromCsvEndpoint = this._basePath + '/dataset/createDummyDataset';
-        this._createEmptyDatasetEndpoint = this._basePath + '/dataset/empty';
-        this._allFeaturedDatasetsEndpoint = this._basePath + '/dataset/featured';
-        this._mergeDatasetsEndpoint = this._basePath + '/dataset/merge';
-        this._deleteDatasetEndpoint = this._basePath + '/dataset/${id}';
-        this._getDatasetByIdEndpoint = this._basePath + '/dataset/${id}';
-        this._getDatasetFeaturesEndpoint = this._basePath + '/dataset/${id}/features';
-        this._getDatasetMetaEndpoint = this._basePath + '/dataset/${id}/meta';
-        this._createQPRFEndpoint = this._basePath + '/dataset/${id}/qprf';
-    }
-
-    public getFeaturedDatasets(start?: number, max?: number): Observable<Array<Dataset>> {
-        let params = new URLSearchParams();
-        params.set('start', start.toString());
-        params.set('max', max.toString());
-        
-        let headers = new Headers({'Content-Type':'application/json'});
-        headers.set('subjectid', this._subjectId);
-
-        return this.http.get(this._allFeaturedDatasetsEndpoint, { headers: headers, search: params }).pipe(
-            map((res : Response) => {
-                return res.json();
-            }),catchError(this.dialogsService.onError));
-        
-    }
-
-    public getAllDatasets(start?: number, max?: number): Observable<Array<Dataset>> {
-        let params = new URLSearchParams();
-        params.set('start', start.toString());
-        params.set('max', max.toString());
-        
-        let headers = new Headers({'Content-Type':'application/json'});
-        headers.set('subjectid', this._subjectId);
-
-        return this.http.get(this._allDatasetsEndpoint, { headers: headers, search: params }).pipe(
-            map((res : Response) => {
-                return res.json();
-            }),catchError(this.dialogsService.onError));
-        
-    }
-
-    public getFeaturedDatasetCount(): Observable<Response> {
-        let params = new URLSearchParams();
-        params.set('start', '0');
-        params.set('max', '1');
-        
-        let headers = new Headers({'Content-Type':'application/json'});
-        headers.set('subjectid', this._subjectId);
-
-        return this.http.get(this._allFeaturedDatasetsEndpoint, { headers: headers, search: params }).pipe(
-            map((res : Response) => {
-                return res;
-            }), catchError(this.dialogsService.onError));
-        
-    }
-
-    public getAllDatasetCount(): Observable<Response> {
-        let params = new URLSearchParams();
-        params.set('start', '0');
-        params.set('max', '1');
-        
-        let headers = new Headers({'Content-Type':'application/json'});
-        headers.set('subjectid', this._subjectId);
-
-        return this.http.get(this._allDatasetsEndpoint, { headers: headers, search: params }).pipe(
-            map((res : Response) => {
-                return res;
-            }), catchError(this.dialogsService.onError));
-        
-    }
-
-    /**
-     * Finds Dataset by Id
-     * Finds specified Dataset
-     * @param id
-     * @param subjectid Authorization token
-     * @param rowStart: number 
-     * @param rowMax :number
-     * @param colStart :number
-     * @param colMax :number
-     * @param stratify :string
-     * @param seed :number
-     * @param folds :number
-     * @param targetFeature :string
-     */
-    public getDataset(id: string,
-                    queryParams :Map<string, any>): Observable<Dataset> {
-
-        let params = new URLSearchParams();
-        if(queryParams != null){
-            
-            queryParams.forEach((key:string, value:any) =>{
-                params.set(key, value.toString());
-            })
+    constructor(http: Http,
+        public sessionServise:SessionService,
+        public dialogsService:DialogsService,
+        public oidcSecurityService: OidcSecurityService){
+            super(http, dialogsService, oidcSecurityService, "/dataset/")
         }
-        
-        let headers = new Headers({'Content-Type':'application/json'});
-        headers.set('subjectid', this._subjectId);
-        let options = new RequestOptions({ headers: headers, params: params });
-        return this.http.get(this._basePath + `/dataset/${id}`, options).pipe(
-            map((res : Response) => {
-                return res.json();
-            }), catchError((error:any)=>{
-                return observableThrowError(error);
-            }));
 
+    public uploadNewDataset(dataset:Dataset):Observable<Dataset>{
+        dataset.existence = Dataset.ExistenceEnum.UPLOADED
+        let headers = new Headers({'Content-Type':'application/json'});
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        headers.set('Authorization', tokenValue);
+        let pathFormed = Config.JaqpotBase + this._datasetBase
+        return this.http.post(pathFormed, dataset, { headers: headers} ).pipe(
+            map((res : Response) => { 
+                return res.json()            
+            }),catchError( err => this.dialogsService.onError(err) )
+        );
     }
+
+    
 
 }
+    // public getFeaturedDatasets(start?: number, max?: number): Observable<Array<Dataset>> {
+    //     let params = new URLSearchParams();
+    //     params.set('start', start.toString());
+    //     params.set('max', max.toString());
+        
+    //     let headers = new Headers({'Content-Type':'application/json'});
+    //     headers.set('subjectid', this._subjectId);
+
+    //     return this.http.get(this._allFeaturedDatasetsEndpoint, { headers: headers, search: params }).pipe(
+    //         map((res : Response) => {
+    //             return res.json();
+    //         }),catchError(this.dialogsService.onError));
+        
+    // }
+
+    // public getAllDatasets(start?: number, max?: number): Observable<Array<Dataset>> {
+    //     let params = new URLSearchParams();
+    //     params.set('start', start.toString());
+    //     params.set('max', max.toString());
+        
+    //     let headers = new Headers({'Content-Type':'application/json'});
+    //     headers.set('subjectid', this._subjectId);
+
+    //     return this.http.get(this._allDatasetsEndpoint, { headers: headers, search: params }).pipe(
+    //         map((res : Response) => {
+    //             return res.json();
+    //         }),catchError(this.dialogsService.onError));
+        
+    // }
+
+    // public getFeaturedDatasetCount(): Observable<Response> {
+    //     let params = new URLSearchParams();
+    //     params.set('start', '0');
+    //     params.set('max', '1');
+        
+    //     let headers = new Headers({'Content-Type':'application/json'});
+    //     headers.set('subjectid', this._subjectId);
+
+    //     return this.http.get(this._allFeaturedDatasetsEndpoint, { headers: headers, search: params }).pipe(
+    //         map((res : Response) => {
+    //             return res;
+    //         }), catchError(this.dialogsService.onError));
+        
+    // }
+
+    // public getAllDatasetCount(): Observable<Response> {
+    //     let params = new URLSearchParams();
+    //     params.set('start', '0');
+    //     params.set('max', '1');
+        
+    //     let headers = new Headers({'Content-Type':'application/json'});
+    //     headers.set('subjectid', this._subjectId);
+
+    //     return this.http.get(this._allDatasetsEndpoint, { headers: headers, search: params }).pipe(
+    //         map((res : Response) => {
+    //             return res;
+    //         }), catchError(this.dialogsService.onError));
+        
+    // }
+
+    // /**
+    //  * Finds Dataset by Id
+    //  * Finds specified Dataset
+    //  * @param id
+    //  * @param subjectid Authorization token
+    //  * @param rowStart: number 
+    //  * @param rowMax :number
+    //  * @param colStart :number
+    //  * @param colMax :number
+    //  * @param stratify :string
+    //  * @param seed :number
+    //  * @param folds :number
+    //  * @param targetFeature :string
+    //  */
+    // public getDataset(id: string,
+    //                 queryParams :Map<string, any>): Observable<Dataset> {
+
+    //     let params = new URLSearchParams();
+    //     if(queryParams != null){
+            
+    //         queryParams.forEach((key:string, value:any) =>{
+    //             params.set(key, value.toString());
+    //         })
+    //     }
+        
+    //     let headers = new Headers({'Content-Type':'application/json'});
+    //     headers.set('subjectid', this._subjectId);
+    //     let options = new RequestOptions({ headers: headers, params: params });
+    //     return this.http.get(this._basePath + `/dataset/${id}`, options).pipe(
+    //         map((res : Response) => {
+    //             return res.json();
+    //         }), catchError((error:any)=>{
+    //             return observableThrowError(error);
+    //         }));
+
+    // }
+
+
 
 
 //     protected basePath = 'http://dev.jaqpot.org:8081/jaqpot/services';

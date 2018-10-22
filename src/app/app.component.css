@@ -42,8 +42,17 @@ main{
 }
 
 mat-toolbar{
-  min-height: 24px;
-  max-height: 54px;
+  /* min-height: 24px; */
+  max-height: 54px; 
+  /* min-height: 6vh;  */
+  min-height: 54px;
+  /* max-height: 6vh; */
+}
+
+.app_content{
+  /* height: 94vh; */
+  min-height: calc(100vh - 54px);
+  max-height: calc(100vh - 54px);
 }
 
 .side_menu{
@@ -52,9 +61,8 @@ mat-toolbar{
 
 .sidenav_cont{
   z-index: 0;
-  /* position: fixed; */
-  min-height: 93%;
-  max-height: 93%;
+  min-height: calc(100vh - 54px);
+  max-height: calc(100vh - 54px);
   overflow: auto;
 }
 .list_item{
@@ -112,12 +120,9 @@ i{
   height: 90%;  
 }
 
-.app_content{
-  height: 100%;
-}
-.side_nav_a{
+/* .side_nav_a{
 
-}
+} */
 
 .side_nav_a:hover{
   background-color: lightgray;

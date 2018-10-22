@@ -15,14 +15,15 @@ import { UserService } from '../jaqpot-client/api/user.service';
 import { NotificationFactoryService } from '../jaqpot-client/factories/notification-factory.service';
 import { NotificationService } from '../jaqpot-client/api/notification.service';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { Model } from '../jaqpot-client';
 import { InvitationNotifDialogComponent } from './notification-dialogs/invitation-notif-dialog/invitation-notif-dialog.component';
 import { Notification } from '../jaqpot-client/model/notification';
-// import { ErrorReport } from '../jaqpot-'
+import { AddDatasetDialogComponent } from './add-dataset-dialog/add-dataset-dialog.component';
+import { UpdatePhotoComponent } from './update-photo/update-photo.component';
+import { UserQuickComponent } from './user-quick/user-quick.component';
+import { User } from '../jaqpot-client';
 
 @Injectable()
 export class DialogsService {
-
 
     private _errorReport:ErrorReport;
 
@@ -37,6 +38,35 @@ export class DialogsService {
 
     public close(){
         this.dialog.closeAll();
+    }
+
+    public updatePhoto(userApi, datasetApi, modelApi){
+        let dialogRef: MatDialogRef<UpdatePhotoComponent>;
+        dialogRef = this.dialog.open(UpdatePhotoComponent)
+        dialogRef.componentInstance.datasetApi = datasetApi
+        dialogRef.componentInstance.modelApi = modelApi
+        dialogRef.componentInstance.userApi = userApi
+        return dialogRef.afterClosed()
+    }
+
+    public quickUser(userApi, user:User){
+        let dialogRef: MatDialogRef<UserQuickComponent>;
+        dialogRef = this.dialog.open(UserQuickComponent)
+        dialogRef.componentInstance.userApi = userApi
+        dialogRef.componentInstance.user = user
+        return dialogRef.afterClosed()
+    }
+
+    public addDataset(csv, filename, datasetFactory, featureApi, datasetApi)
+    {
+        let dialogRef: MatDialogRef<AddDatasetDialogComponent>;
+        dialogRef = this.dialog.open(AddDatasetDialogComponent);
+        dialogRef.componentInstance.csv = csv
+        dialogRef.componentInstance.file_name = filename
+        dialogRef.componentInstance.datasetFactory = datasetFactory
+        dialogRef.componentInstance.featureApi = featureApi
+        dialogRef.componentInstance.datasetApi = datasetApi
+        return dialogRef.afterClosed()
     }
 
     public confirmDeletion(){
@@ -82,7 +112,6 @@ export class DialogsService {
         return dialogRef.afterClosed();
     }
 
-    
     public onError(error:Response){
         let dialogRef: MatDialogRef<ErrorDialogComponent>;
         dialogRef = this.dialog.open(ErrorDialogComponent);

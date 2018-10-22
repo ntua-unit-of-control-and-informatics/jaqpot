@@ -1,8 +1,8 @@
 <mat-list>
   <mat-divider></mat-divider>
   <mat-list-item class="listItem" *ngFor="let organization of organizations" (click)="onOrgClicked(organization)">
-    <div *ngIf="organization.organizationPic">
-      <img class="orgim" [src]="organization?.organizationPic" />
+    <div *ngIf="organization.meta.picture">
+      <img class="orgim" [src]="organization?.meta?.picture" />
     </div>
     <h4 class="orgtitle" mat-line>{{organization?._id}}</h4>
     <div *ngIf="organization.city">

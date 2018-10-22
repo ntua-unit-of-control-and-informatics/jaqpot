@@ -1,0 +1,51 @@
+<mat-card *ngIf="datasetToSee" class="dataset_card">
+  <div *ngIf="datasetToSee.meta?.picture; else no_image">
+    <div *ngIf="canUpdatePhoto; else cannotUpdate">
+    <a matTooltip="Update photo" matTooltipPosition="below" (click)="updatePhoto()">
+        <img mat-card-image-lg class="entity_image" src="{{datasetToSee.meta.picture}}">
+      </a>
+    </div>
+    <ng-template #cannotUpdate>
+        <img mat-card-image-lg class="entity_image" src="{{datasetToSee.meta.picture}}">
+    </ng-template>
+  </div>
+  <ng-template #no_image>
+
+    <div *ngIf="canUpdatePhoto; else cannotUpdate">
+      <a matTooltip="Update photo" matTooltipPosition="below" (click)="updatePhoto()">
+        <img mat-card-avatar class="entity_image_jaqpots" src="assets/dataset3.png">
+      </a>
+    </div>
+    <ng-template #cannotUpdate>
+        <img mat-card-avatar class="entity_image_jaqpots" src="assets/dataset3.png">
+    </ng-template>
+  </ng-template>
+
+
+  <mat-card-header class="card_header">
+
+    <mat-card-title>Title: {{datasetToSee.meta.titles[0]}}</mat-card-title>
+    <mat-card-subtitle> Owner:  <a class="owner_name" (click)="openUser()">{{datasetOwner.name}}  </a></mat-card-subtitle>
+
+  </mat-card-header>
+</mat-card>
+
+
+
+
+
+
+<span class="dataset-action">
+  <div *ngIf="edit else save_b">
+    <button class="edit" matTooltip="Edit" matTooltipPosition="after" (click)="editForm()" mat-fab>
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  <ng-template #save_b>
+    <div *ngIf="save">
+      <button class="save_b" matTooltip="Save" matTooltipPosition="after" (click)="saveForm()" mat-fab>
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+  </ng-template>
+</span>

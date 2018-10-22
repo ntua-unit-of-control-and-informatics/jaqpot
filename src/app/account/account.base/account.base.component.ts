@@ -77,7 +77,7 @@ export class AccountBaseComponent implements OnInit {
     this.userService.getUserById(this.id)
     .subscribe(userGot =>{
       this.user = userGot;
-      if(this.user.profilePic == null){
+      if(this.user.meta.picture == null){
         this.photo_unavail = true;
       }else{
         this.photo_unavail = false;
@@ -94,11 +94,11 @@ export class AccountBaseComponent implements OnInit {
   addProfilePicDialog(){
     let dialogRef = this.dialog.open(ProfilepicDialogComponent,{})
     dialogRef.afterClosed().subscribe(result => {
-      this.user.profilePic = result;
+      this.user.meta.picture = result;
       this.userService.updateUserById(this.id, this.user)
       .subscribe(userGot =>{
         this.user = userGot;
-        if(this.user.profilePic == null){
+        if(this.user.meta.picture == null){
           this.photo_unavail = true;
         }else{
           this.photo_unavail = false;
@@ -132,7 +132,7 @@ export class AccountBaseComponent implements OnInit {
     this.userService.updateUserById(user.id, user)
     .subscribe(userGot =>{
       this.user = userGot;
-      if(this.user.profilePic == null){
+      if(this.user.meta.picture == null){
         this.photo_unavail = true;
       }else{
         this.photo_unavail = false;
@@ -141,7 +141,7 @@ export class AccountBaseComponent implements OnInit {
   }
 
   onDialogClose(){
-    window.location.reload();
+    // window.location.reload();
   }
 
   createOrganization(){

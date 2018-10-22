@@ -1,0 +1,66 @@
+.dataset_card {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 4em;
+}
+
+.entity_image {
+  float: left;
+  margin-top: -4em;
+  border-radius: 25%;
+  border: lightgray solid 1px;
+}
+
+.entity_image_jaqpots{
+  height: 86px;
+  width: 86px;
+  float: left;
+}
+
+.edit {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: all .2s ease-in-out;
+  /* position: sticky; */
+  /* top: 20px;
+    right: 36px; */
+  color: lightseagreen;
+  opacity: 0.4;
+}
+
+.edit:hover {
+  transition: all .2s ease-in-out;
+  opacity: 1;
+}
+
+.save_b {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  /* transition: all .2s ease-in-out; */
+  /* position: sticky; */
+  /* top: 20px;
+    right: 36px; */
+  color: lightseagreen;
+  /* opacity: 0.4; */
+}
+
+.card_header{
+  min-height:10vh;
+}
+
+.card_header{
+  margin-left: 10em;
+  width:80%;
+}
+
+mat-card-subtitle{
+  padding-top: 1em;
+}
+
+.owner_name{
+  cursor: pointer;
+}

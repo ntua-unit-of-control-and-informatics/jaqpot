@@ -1,3 +1,37 @@
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { Http, Headers, URLSearchParams } from '@angular/http';
+import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
+import { Response, ResponseContentType } from '@angular/http';
+import '../rxjs-operators';
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import { Dataset } from '../model/dataset';
+import { Config } from '../../config/config';
+import { SessionService } from '../../session/session.service';
+import { DialogsService } from '../../dialogs/dialogs.service';
+import { HttpClient } from '@angular/common/http/src/client';
+import { HttpParams } from '@angular/common/http/src/params';
+import { BaseClient } from './base.client';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+
+
+
+@Injectable()
+export class ModelApiService extends BaseClient<Dataset>{
+
+    _privateBasePath:string;
+    private dataset:Dataset;
+    _datasetBase:string = "/model/"
+
+    constructor(http: Http,
+        public sessionServise:SessionService,
+        public dialogsService:DialogsService,
+        public oidcSecurityService: OidcSecurityService){
+            super(http, dialogsService, oidcSecurityService, "/model/")
+        }
+
+}
+
 // /**
 //  * Jaqpot API
 //  * Jaqpot v4 (Quattro) is the 4th version of a YAQP, a RESTful web service which can be used to train machine learning models and use them to obtain toxicological predictions for given chemical compounds or engineered nano materials. The project is written in Java8 and JEE7.
@@ -9,6 +43,8 @@
 //  * https://github.com/swagger-api/swagger-codegen.git
 //  * Do not edit the class manually.
 //  */
+
+
 
 // /* tslint:disable:no-unused-variable member-ordering */
 
