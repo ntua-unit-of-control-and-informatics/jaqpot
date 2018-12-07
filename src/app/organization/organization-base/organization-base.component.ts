@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Organization } from '../../jaqpot-client/model/organization';
 import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
-import { map } from '../../../../node_modules/@types/d3';
 import { MatDialog } from '../../../../node_modules/@angular/material';
 import { ProfilepicDialogComponent } from '../../dialogs/profilepic-dialog/profilepic-dialog.component';
 import { Subject } from '../../../../node_modules/rxjs';

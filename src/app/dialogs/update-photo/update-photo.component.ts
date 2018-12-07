@@ -33,23 +33,23 @@ export class UpdatePhotoComponent implements OnInit {
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
-}
-imageCroppedBase64(image: string) {
-    this.croppedImage = image;
-    this.saveDisactivated = false;
-}
+  }
 
-imageLoaded() {
-  this.cropperReady = true;
-}
+  imageCroppedBase64(image: string) {
+      this.croppedImage = image;
+      this.saveDisactivated = false;
+  }
 
-imageLoadFailed () {
-  console.log('Load failed');
-}
+  imageLoaded() {
+    this.cropperReady = true;
+  }
 
-onCloseConfirm() {
-  
-  this.dialogRef.close(this.croppedImage);
-}
+  imageLoadFailed () {
+    console.log('Load failed');
+  }
+
+  onCloseConfirm() {
+    this.dialogRef.close(this.croppedImage);
+  }
 
 }

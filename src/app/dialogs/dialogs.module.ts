@@ -25,12 +25,12 @@ import { MatFormField,
   MatTableModule,
   MatSpinner,
   MatProgressSpinnerModule,
+  MatChipsModule,
 } from '@angular/material';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { JaqpotClientModule } from '../jaqpot-client/jaqpot-client.module'
 import { UiModelsModule } from '../ui-models/ui-models.module';
 import { Credentials } from '../ui-models/credentials';
-import { AaService } from '../jaqpot-client/api/aa.service';
 import { LogoutDialogComponent } from './login-logout-dialog/logout-dialog.component';
 import { AddAlgorithmDialogComponent } from './add-algorithm-dialog/add-algorithm-dialog.component';
 import { MaterialModule } from '../app.module';
@@ -51,6 +51,10 @@ import { AddDatasetDialogComponent } from './add-dataset-dialog/add-dataset-dial
 import { DatasetDetailComponent } from '../dataset/dataset-detail/dataset-detail.component';
 import { UpdatePhotoComponent } from './update-photo/update-photo.component';
 import { UserQuickComponent } from './user-quick/user-quick.component';
+import { AddImageDatasetDialogComponent } from './add-image-dataset-dialog/add-image-dataset-dialog.component';
+import { ShareDialogComponent } from './share-dialog/share-dialog.component';
+import { NotificationService } from '../jaqpot-client/api/notification.service';
+import { ShareNotifDialogComponent } from './notification-dialogs/share-notif-dialog/share-notif-dialog.component';
 // import { RouterModule } from '@angular/router/src/router_module';
 
 @NgModule({
@@ -84,7 +88,7 @@ import { UserQuickComponent } from './user-quick/user-quick.component';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule,MatProgressSpinnerModule
+    FormsModule,MatProgressSpinnerModule,MatChipsModule
     // DatasetDetailComponent
     // RouterModule
 
@@ -101,7 +105,10 @@ import { UserQuickComponent } from './user-quick/user-quick.component';
     NotificationDialogComponent, 
     ConfirmationDialogComponent, 
     InvitationNotifDialogComponent, 
-    AddDatasetDialogComponent, UpdatePhotoComponent, UserQuickComponent],
+    AddDatasetDialogComponent,
+    UpdatePhotoComponent, 
+    UserQuickComponent, 
+    AddImageDatasetDialogComponent, ShareDialogComponent, ShareNotifDialogComponent],
   exports: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 
@@ -114,7 +121,10 @@ import { UserQuickComponent } from './user-quick/user-quick.component';
     NotificationDialogComponent, 
     ConfirmationDialogComponent, 
     InvitationNotifDialogComponent, 
-    AddDatasetDialogComponent, UpdatePhotoComponent, UserQuickComponent],
+    AddDatasetDialogComponent, 
+    UpdatePhotoComponent, 
+    UserQuickComponent, 
+    AddImageDatasetDialogComponent, ShareDialogComponent, ShareNotifDialogComponent] ,
   entryComponents: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 
@@ -127,9 +137,11 @@ import { UserQuickComponent } from './user-quick/user-quick.component';
     NotificationDialogComponent, 
     ConfirmationDialogComponent, 
     InvitationNotifDialogComponent, 
-    AddDatasetDialogComponent, UpdatePhotoComponent, UserQuickComponent],
+    AddDatasetDialogComponent, 
+    UpdatePhotoComponent, 
+    UserQuickComponent, AddImageDatasetDialogComponent, ShareDialogComponent, ShareNotifDialogComponent],
   providers: [
-    DialogsService, AaService, OrganizationService
+    DialogsService, OrganizationService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 

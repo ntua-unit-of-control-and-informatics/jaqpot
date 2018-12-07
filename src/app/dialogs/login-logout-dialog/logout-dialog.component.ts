@@ -3,7 +3,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatFormFieldControl, MAT_DIALOG_DATA , MatDialogRef} from '@angular/material';
 // import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Credentials } from '../../ui-models/credentials';
-import { AaService } from '../../jaqpot-client/api/aa.service';
 import {NgModel} from '@angular/forms';
 import { AuthToken } from '../../jaqpot-client';
 import { ErrorReport } from '../../ui-models/errorReport'
@@ -25,7 +24,6 @@ export class LogoutDialogComponent  implements OnInit{
 
     constructor(
         @Optional() public dialogRef: MatDialogRef<LogoutDialogComponent>,
-        private aaService:AaService, 
         private sessionService:SessionService,
         private router:Router
         ){   }
@@ -37,11 +35,11 @@ export class LogoutDialogComponent  implements OnInit{
     }
 
     logout(){
-        this.aaService.logout(this.id);
-        this.router.navigate(['/'])
-        this.sessionService.remove('loggedIn');
-        this.sessionService.clear();
-        this.dialogRef.close();
+        // this.aaService.logout(this.id);
+        // this.router.navigate(['/'])
+        // this.sessionService.remove('loggedIn');
+        // this.sessionService.clear();
+        // this.dialogRef.close();
     }
 
 

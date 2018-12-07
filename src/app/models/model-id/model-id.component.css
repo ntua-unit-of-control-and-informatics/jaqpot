@@ -1,0 +1,144 @@
+.base_card{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-top: 4em;
+    min-height: calc(100vh - 236px);
+    max-height: calc(100vh - 236px);
+    /* position: fixed; */
+    /* display: inline-block; */
+    /* width: inherit;  */
+    /* max-width: inherit; */
+    /* min-width: inherit; */
+}
+
+.card_wrap{
+    min-height: calc(100vh - 64px);
+}
+
+.base_tabs{
+    margin-left: 0.5em;
+    margin-top: 1em;
+    /* min-height: calc(100vh - 118px); */
+
+    /* min-height: calc(100vh - 70px);
+    max-height: calc(100vh - 70px);
+    overflow: scroll; */
+
+    /* max-height: calc(100vh - 118px); */
+}
+
+.entity_image {
+    float: left;
+    margin-top: -4em;
+    border-radius: 25%;
+    border: lightgray solid 1px;
+  }
+  
+  .entity_image_jaqpots{
+    height: 86px;
+    width: 86px;
+    float: left;
+  }
+
+.model_pic{
+    margin-left: -18%;
+}
+
+.content{
+    margin-top: 1em;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.edit {
+    display: inline-block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    transition: all .2s ease-in-out;
+    /* position: sticky; */
+    /* top: 20px;
+      right: 36px; */
+    color: lightseagreen;
+    opacity: 0.4;
+    z-index: 2;
+}
+
+.quick_view {
+    display: inline-block;
+    position: fixed;
+    /* width:40px;
+    height:40px; */
+    bottom: 90px;
+    right: 20px;
+    transition: all .2s ease-in-out;
+    /* position: sticky; */
+    /* top: 20px;
+      right: 36px; */
+    color: lightseagreen;
+    opacity: 0.4;
+    z-index: 2;
+  }
+  
+  
+  .share {
+    display: inline-block;
+    position: fixed;
+    /* width:40px;
+    height:40px; */
+    bottom: 20px;
+    right: 90px;
+    transition: all .2s ease-in-out;
+    /* position: sticky; */
+    /* top: 20px;
+      right: 36px; */
+    color: lightseagreen;
+    opacity: 0.4;
+    z-index: 2;
+}
+
+.save_b {
+    display: inline-block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* transition: all .2s ease-in-out; */
+    /* position: sticky; */
+    /* top: 20px;
+      right: 36px; */
+    color: lightseagreen;
+    /* opacity: 0.4; */
+    z-index: 2;
+}
+
+.save_b{
+    transition: all .2s ease-in-out;
+    opacity: 1;
+}
+
+.edit:hover{
+    transition: all .2s ease-in-out;
+    opacity: 1;
+}
+
+.quick_view:hover{
+    transition: all .2s ease-in-out;
+    opacity: 1;
+}
+
+.share:hover{
+    transition: all .2s ease-in-out;
+    opacity: 1;
+}
+
+.markdown{
+    margin-bottom: 0.2em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+}
+
+.inner{
+    margin: 1em;
+}

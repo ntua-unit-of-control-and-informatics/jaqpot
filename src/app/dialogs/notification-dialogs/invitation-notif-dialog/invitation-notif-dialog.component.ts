@@ -28,15 +28,12 @@ export class InvitationNotifDialogComponent implements OnInit {
   constructor(public snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    console.log(this.notification)
     this.userService.getUserById(this.notification.from).subscribe(user =>{
       this.from = user
-      console.log(this.from)
     })
 
     this.organizationService.getWithIdSecured(this.notification.invitationTo).subscribe(organization =>{
       this.organ = organization
-      console.log(this.organ)
     })
 
   }
@@ -52,6 +49,10 @@ export class InvitationNotifDialogComponent implements OnInit {
           this.organizationService.putWithIdSecured(this.organ._id, this.organ).subscribe(organUpdated => {
             this.openSnackBar("You are now a member of the Organization" + this.organ._id, "Congrats!")
           })
+          this.notification.viewed = true;
+          this.notificationService.putEntitySecured(this.notification).subscribe(notif =>{
+            
+          })
         })
       }else{
         this.notification.viewed = true;
@@ -64,7 +65,10 @@ export class InvitationNotifDialogComponent implements OnInit {
   }
 
   declineInvitation(){
-    console.log("decline")
+    this.notification.viewed = true;
+    this.notificationService.putEntitySecured(this.notification).subscribe(notif =>{
+      this.openSnackBar("You have declined invitation", "Notification Resolved")
+    })
   }
 
   resolveNotification(){

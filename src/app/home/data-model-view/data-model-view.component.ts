@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Dataset, Model, MetaInfo } from '../../jaqpot-client';
 import { Router } from '@angular/router';
 
@@ -13,6 +13,8 @@ export class DataModelViewComponent implements OnChanges {
   @Input() models_to_view: Model[];
   @Input() view_type:string;
 
+
+  @Output() itemClicked = new EventEmitter<ViewItem>();
   grid_view:boolean = true
 
   view_items:ViewItem[] = []
@@ -66,6 +68,10 @@ export class DataModelViewComponent implements OnChanges {
         break;
       }
     }
+  }
+
+  clicked(item:ViewItem){
+    this.itemClicked.emit(item);
   }
 
 }

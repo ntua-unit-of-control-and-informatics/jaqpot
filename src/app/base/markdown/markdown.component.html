@@ -1,0 +1,12 @@
+<form>
+  <mat-form-field class="textarea" matNativeControl *ngIf="edit">
+    <textarea matInput
+      placeholder="Edit overview"
+      class="textarea" 
+      [ngModelOptions]="{standalone: true}" 
+      [(ngModel)]="entityMeta.markdown" required (ngModelChange)="markChanged($event)"></textarea>
+  </mat-form-field>
+</form>
+
+
+<markdown *ngIf="view && entityMeta" class="variable-binding" [data]="entityMeta.markdown" class="data"></markdown>

@@ -154,7 +154,7 @@ export class AddDatasetDialogComponent implements OnInit {
               this.datasetUploaded = dataset_posted
               this.dataset_uploaded = true;
             })
-          }          
+          }
         }
       )
     })

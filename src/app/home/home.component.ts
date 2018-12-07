@@ -1,4 +1,4 @@
-import {Component,OnInit,ElementRef} from '@angular/core';
+import {Component,OnInit,ElementRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {OidcSecurityService} from 'angular-auth-oidc-client';
@@ -11,6 +11,12 @@ import { Dataset, Model, User } from '../jaqpot-client';
 import { ModelApiService } from '../jaqpot-client/api/model.service';
 import { UserService } from '../jaqpot-client/api/user.service';
 import { Organization } from '../jaqpot-client/model/organization';
+import { NgxPicaService, NgxPicaResizeOptionsInterface, NgxPicaErrorInterface } from '@digitalascetic/ngx-pica';
+import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
+import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factory.service';
+import { DatasetToViewdataService } from '../services/dataset-to-viewdata.service';
+import { HttpParams } from '@angular/common/http';
+import { ViewItem } from './data-model-view/data-model-view.component';
 
 // export interface Queries{
 //   value: string;
@@ -26,6 +32,9 @@ import { Organization } from '../jaqpot-client/model/organization';
 
 export class HomeComponent implements OnInit {
 
+  @ViewChild('dataInput')
+  dataInput: ElementRef;
+
   listView = true;
   query: string = "Mine"
   queries_enabled: boolean = false;
@@ -38,6 +47,9 @@ export class HomeComponent implements OnInit {
   quick_view:boolean = true;
   organizations:string[];
 
+  organizationActivated:string = "No organanization available";
+  viewItem:ViewItem;
+
   constructor(public oidcSecurityService: OidcSecurityService,
     public sessionService: SessionService,
     public router: Router,
@@ -48,6 +60,9 @@ export class HomeComponent implements OnInit {
     public datasetApi:DatasetService,
     public modelApi:ModelApiService,
     public userApi:UserService,
+    public featFactory:FeatureFactoryService,
+    public datasetToViewService:DatasetToViewdataService,
+    private ngxPicaService: NgxPicaService,
     private elRef: ElementRef) {
 
   }
@@ -57,13 +72,15 @@ export class HomeComponent implements OnInit {
     params.set("min", 0);
     params.set("max", 10);
     params.set("existence", Dataset.ExistenceEnum.UPLOADED)
-    this.datasetApi.getList(params).subscribe((datasets:Dataset[]) => {
+    let pars = new HttpParams().set("min", "0").set("max", "10").set("existence", Dataset.ExistenceEnum.UPLOADED.toString());
+    this.datasetApi.getList(pars).subscribe((datasets:Dataset[]) => {
       this.datasets_to_view = datasets
     })
     let model_params:Map<string, any> = new Map();
     model_params.set("min", 0);
     model_params.set("max", 10);
-    this.modelApi.getList(model_params).subscribe((models:Model[])=>{
+    let model_pars = new HttpParams().set("min", "0").set("max", "10");
+    this.modelApi.getList(model_pars).subscribe((models:Model[])=>{
       this.models_to_view = models
     })
     
@@ -87,48 +104,71 @@ export class HomeComponent implements OnInit {
     this.query = "Shared";
     this.userApi.getPropertyWithIdSecured(this.sessionService.getUserId(), 'organizations').subscribe(
       (user:User) => {
+        let index = user.organizations.indexOf("Jaqpot")
+        user.organizations.splice(index, 1)
         this.organizations = user.organizations
+        if(this.organizations.length > 0){
+          this.organizationActivated = this.organizations[0]
+          if(this.queries_for === 'Datasets'){
+            this.fetchOrgsDatasets(0, 10, this.organizationActivated)
+          }
+          if(this.queries_for === 'Models'){
+            this.fetchOrgsModels(0, 20, this.organizationActivated);
+          }
+        }
       }
     )
+
     // console.log(this.queries_for)
   }
 
   mineChosen() {
     this.query = "Mine"
+    this.organizationActivated = 'No organanization available'
+    delete this.organizations 
+    if(this.queries_for === 'Datasets'){
+      this.fetchDatasets(0, 10, Dataset.ExistenceEnum.UPLOADED)
+    }
+    if(this.queries_for === 'Models'){
+      this.fetchModels(0, 20);
+    }
   }
 
   goToDatasetView() {
     this.models_to_view = []
-    this.fetchDatasets(0, 10, Dataset.ExistenceEnum.UPLOADED)
+    if(this.organizationActivated != 'No organanization available'){
+      this.fetchOrgsDatasets(0,10, this.organizationActivated)
+    }else{
+      this.fetchDatasets(0, 10, Dataset.ExistenceEnum.UPLOADED)
+    }
     this.queries_for = "Datasets"
     this.quick_view = false
     this.queries_enabled = true
     this.add_dataset = true
+    delete this.viewItem
   }
 
   goToModelView() {
     this.queries_for = "Models"
     this.datasets_to_view = []
+    
     this.fetchModels(0, 20);
     this.quick_view = false
     this.queries_enabled = true
     this.add_dataset = false
+    delete this.viewItem
   }
 
-  // addDatasetDialog(){
-  //   this.dialogsService.addDataset();
-  // }
-
   changeListener(files: FileList) {
-    // console.log(files);
-    if (files && files.length > 0) {
-      let file: File = files.item(0);
+    
+    if (files && files.length === 1 && files.item(0).type === 'text/csv') {
       let reader: FileReader = new FileReader();
+      let file: File = files.item(0);
       reader.readAsText(file);
       reader.onload = (e) => {
         var _csv = reader.result;
         _csv = _csv.toString()
-        this.dialogsService.addDataset(_csv, file.name,
+        this.dialogsService.addCsvDataset(_csv, file.name,
           this.datasetFactory,
           this.featureApi,
           this.datasetApi).subscribe(result =>{
@@ -137,13 +177,60 @@ export class HomeComponent implements OnInit {
           })
       }
     }
+    // else if(files && files.length > 1)
+    else {
+      let i = 0;
+      let images_csv: string;
+      images_csv = "id" + "," + "image" + "\n";
+      let images:{ [key: string]: string} = {};
+      let images_num = files.length
+      let files2:File[] = []
+      Array.from(files).forEach((file:File) =>{
+        files2.push(file)
+      })
+      var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
+      let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
+      options.aspectRatio = aspectRatio
+      options.aspectRatio.keepAspectRatio = true;
+      this.ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
+        let reader: FileReader = new FileReader();
+        reader.readAsDataURL(imageResized);
+        reader.onload = (e) =>{
+          let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
+          images_csv += image_to_csv
+          images[imageResized.name] = reader.result.toString();
+          i += 1;
+          if(images_num === i){
+            this.dialogsService.addImageCsvDataset(images_csv, this.datasetFactory, this.datasetToViewService,
+               this.featureApi, this.datasetApi, this.featFactory)
+          }
+        }, (err: NgxPicaErrorInterface) => {
+          throw err.err;
+      }})
+
+      // Array.from(files).forEach((file:File) =>{
+      //   let reader: FileReader = new FileReader();
+      //   reader.readAsDataURL(file);
+      //   reader.onload = (e) =>{
+      //     images[file.name] = reader.result.toString();
+      //     i += 1;
+      //     if(images_num === i){
+      //       this.dialogsService.addImageDataset(images, this.datasetFactory, this.featureApi, this.datasetApi)
+      //     }
+      //   }        
+      // })
+
+
+    }
+    this.dataInput.nativeElement.value = "";
+
   }
 
   fetchDatasets(min:number, max:number, existence:Dataset.ExistenceEnum){
-    let params:Map<string, any> = new Map();
-    params.set("min", min);
-    params.set("max", max);
-    params.set("existence", existence)
+    let params = new HttpParams()
+          .set("min", min.toString())
+          .set("max", max.toString())
+          .set("existence", existence.toString());
     this.datasetApi.getList(params).subscribe((datasets:Dataset[]) => {
       this.datasets_to_view = datasets
     })
@@ -151,13 +238,40 @@ export class HomeComponent implements OnInit {
   }
 
   fetchModels(min:number, max:number){
-    let params:Map<string, any> = new Map();
-    params.set("min", min);
-    params.set("max", max);
+    let params = new HttpParams().set("min", min.toString()).set("max", max.toString());
     this.modelApi.getList(params).subscribe((models:Model[]) => {
       this.models_to_view = models
     })
 
+  }
+
+  fetchOrgsDatasets(min:Number, max:Number, organization:string){
+    let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("organization", organization);
+    this.datasetApi.getList(params).subscribe((datasets:Dataset[]) => {
+      this.datasets_to_view = datasets
+    })
+  }
+
+  fetchOrgsModels(min:Number, max:Number, organization:string){
+    let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("organization", organization);
+    this.modelApi.getList(params).subscribe((datasets:Dataset[]) => {
+      this.datasets_to_view = datasets
+    })
+  }
+
+
+  orgChosen(org){
+    this.organizationActivated = org
+    if(this.queries_for === 'Datasets'){
+      this.fetchOrgsDatasets(0, 10, this.organizationActivated)
+    }
+    if(this.queries_for === 'Models'){
+      this.fetchOrgsModels(0, 20, this.organizationActivated);
+    }
+  }
+
+  onItemClicked(event){
+    this.viewItem = event
   }
 
 }

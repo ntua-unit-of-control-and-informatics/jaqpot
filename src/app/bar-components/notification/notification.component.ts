@@ -6,12 +6,14 @@ import { Notification } from '../../jaqpot-client/model/notification';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
 import { UserService } from '../../jaqpot-client/api/user.service';
+import { DatasetService } from '../../jaqpot-client/api/dataset.service';
+import { ModelApiService } from '../../jaqpot-client/api/model.service';
 
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class NotificationComponent implements OnInit {
 
@@ -22,7 +24,9 @@ export class NotificationComponent implements OnInit {
     private notificationService:NotificationService,
     private organizationService:OrganizationService,
     private userService:UserService,
-    private dialogsService:DialogsService
+    private dialogsService:DialogsService,
+    private datasetService:DatasetService,
+    private modelService:ModelApiService
   ) { }
 
   ngOnInit() {
@@ -39,6 +43,8 @@ export class NotificationComponent implements OnInit {
     this.dialogsService.openActualNotifDialog(notif,
        this.organizationService, 
        this.notificationService, 
+       this.datasetService,
+       this.modelService,
        this.userService);
   }
 

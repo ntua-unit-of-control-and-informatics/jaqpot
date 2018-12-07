@@ -1,0 +1,105 @@
+.input_comment{
+    width: 100%;
+    margin-top: 1em;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.save_button{
+    float: right;
+}
+
+.userim{
+    border-radius: 50%;
+    width: 3em;
+}
+
+
+.list_item{
+    min-height: 5em;
+}
+
+.comments_all{
+    margin-top: 3em;
+    height:60vh;
+    overflow: scroll;
+}
+
+.comments{
+    width:100%;
+    display: flex;
+    margin-top: 1em;
+    overflow: scroll;
+    height:100px;
+}
+
+.actual_comment{
+    margin-left: 1em;
+    margin-top: -1em;
+    width: 100%;
+}
+
+.replies{
+    display: flex;
+}
+
+.details{
+    color: rgba(0, 0, 0, 0.54);
+}
+
+
+.reply{
+    width:100%;
+}
+
+.userimreply{
+    width:2em;
+    border-radius: 50%;
+    margin-top: 1.5em;
+    margin-right: 1em;
+}
+
+.reply_button{
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.scroll{
+    height: calc(100vh - 218px);
+}
+
+.comment{
+    
+    margin-left: 3em;
+    max-height: 6em;
+    overflow: hidden;
+}
+.delete{
+    float:right;
+}
+
+
+.example-viewport {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+  }
+  
+  .example-item {
+    height: 50px;
+  }
+
+.userphoto{
+    width:4em;
+    float: left;
+}
+
+.last{
+    height:100px;
+}
+
+.discussion{
+    margin-top: 2em;
+    min-height: 100px;
+}

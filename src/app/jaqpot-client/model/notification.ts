@@ -25,6 +25,8 @@ export interface Notification{
 
     entityShared?: string
 
+    organizationShared?: string
+    
     resolved?: boolean
     
 }
@@ -33,8 +35,7 @@ export enum TYPE{
     SIMPLE = "SIMPLE",
     INVITATION = "INVITATION",
     FYI = "FYI",
-    SHAREMODEL = "SHAREMODEL",
-    SHAREDATASET = "SHAREDATASET"
+    SHARE = "SHARE"
 }
 
 export enum ANSWER{

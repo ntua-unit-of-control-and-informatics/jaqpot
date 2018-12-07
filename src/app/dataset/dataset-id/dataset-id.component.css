@@ -2,6 +2,7 @@
   width: 70%;
   margin: 0 auto;
   margin-top: 4em;
+  margin-bottom: 2em;
 }
 
 .entity_image {
@@ -29,6 +30,48 @@
   color: lightseagreen;
   opacity: 0.4;
 }
+
+.quick_view {
+  display: inline-block;
+  position: fixed;
+  /* width:40px;
+  height:40px; */
+  bottom: 90px;
+  right: 20px;
+  transition: all .2s ease-in-out;
+  /* position: sticky; */
+  /* top: 20px;
+    right: 36px; */
+  color: lightseagreen;
+  opacity: 0.4;
+}
+
+
+.share {
+  display: inline-block;
+  position: fixed;
+  /* width:40px;
+  height:40px; */
+  bottom: 20px;
+  right: 90px;
+  transition: all .2s ease-in-out;
+  /* position: sticky; */
+  /* top: 20px;
+    right: 36px; */
+  color: lightseagreen;
+  opacity: 0.4;
+}
+
+.quick_view:hover{
+  transition: all .2s ease-in-out;
+  opacity: 1;
+}
+
+.share:hover{
+  transition: all .2s ease-in-out;
+  opacity: 1;
+}
+
 
 .edit:hover {
   transition: all .2s ease-in-out;
@@ -63,4 +106,66 @@ mat-card-subtitle{
 
 .owner_name{
   cursor: pointer;
+}
+
+/* .textarea{
+  background-color: unset;
+  width:40%;
+  height: 100%;
+} */
+
+.markdown {
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.example-large-box {
+  height: 300px;
+  width: 300px;
+}
+
+
+.base_card{
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 4em;
+  min-height: calc(100vh - 236px);
+  max-height: calc(100vh - 236px);
+  /* position: fixed; */
+  /* display: inline-block; */
+  /* width: inherit;  */
+  /* max-width: inherit; */
+  /* min-width: inherit; */
+}
+
+.card_wrap{
+  min-height: calc(100vh - 64px);
+}
+
+
+.base_tabs{
+  margin-left: 0.5em;
+  margin-top: 1em;
+
+}
+
+.entity_image {
+  float: left;
+  margin-top: -4em;
+  border-radius: 25%;
+  border: lightgray solid 1px;
+}
+
+.entity_image_jaqpots{
+  height: 86px;
+  width: 86px;
+  float: left;
+}
+
+.model_pic{
+  margin-left: -18%;
 }

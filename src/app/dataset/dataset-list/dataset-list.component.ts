@@ -1,8 +1,7 @@
 import { Component, OnInit,ViewChild, AfterViewInit } from '@angular/core';
 import { Dataset } from '../../jaqpot-client/model/dataset';
-import { Observable ,  Subscription ,  BehaviorSubject } from 'rxjs';
+import { Observable ,  Subscription ,  BehaviorSubject ,  merge } from 'rxjs';
 import { MatPaginator, MatTableDataSource, MatButton } from '@angular/material';
-import { merge } from 'rxjs';
 import { startWith, scan, switchMap, map, catchError} from 'rxjs/operators';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { SessionService } from '../../session/session.service';

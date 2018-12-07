@@ -1,8 +1,8 @@
 <div class="grid_list">
   <div *ngIf="grid_view; else list_view">
-    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="space-around center">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
       <ng-container *ngFor="let item of view_items">
-        <mat-card matTooltip={{item.meta.descriptions[0]}} fxFlex.xl="12%" fxFlex.lg="18%" fxFlex.md="24%" fxFlex.sm="42%"
+        <mat-card (click)="clicked(item)" matTooltip={{item.meta.descriptions[0]}} fxFlex.xl="12%" fxFlex.lg="18%" fxFlex.md="24%" fxFlex.sm="42%"
           class="card">
           <mat-card-header class="card_header">
             <mat-card-title>Title: {{item.meta.titles[0]}}</mat-card-title>
@@ -64,19 +64,19 @@
   </div>
   <ng-template #list_view>
     <mat-list>
-      <mat-list-item matTooltip={{item.meta.descriptions[0]}} *ngFor="let item of view_items" class="list_item">
+      <mat-list-item matTooltip={{item.meta.descriptions[0]}} *ngFor="let item of view_items" class="list_item" (click)="clicked(item)">
         <mat-icon mat-list-icon *ngIf="item.type == 'Dataset'; else model_icon">description</mat-icon>
         <ng-template #model_icon>
           <mat-icon mat-list-icon>flare</mat-icon>
         </ng-template>
         <h4 mat-line> {{item.type}} title: {{item.meta.titles[0]}}</h4>
         <p mat-line> {{item.meta.date | date}} </p>
-        <ng-container *ngIf="item.organizations">
+        <!-- <ng-container *ngIf="item.meta.read">
           <h4>{{item.type}} shared with:</h4>
-          <p mat-line *ngFor="let org of item.organizations">
+          <p mat-line *ngFor="let org of item.meta.read">
             <span>{{org}}</span>
           </p>
-        </ng-container>
+        </ng-container> -->
         <button mat-icon-button matTooltip="View" class="list_item_button" (click)="goToView(item)">
             <mat-icon>remove_red_eye</mat-icon>
         </button>

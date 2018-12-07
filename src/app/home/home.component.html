@@ -1,55 +1,81 @@
-<mat-toolbar color="primary" class="home_toolbar">
-    <mat-icon class="home_icon">home</mat-icon>
-    <span class="header">
-      Home
-    </span>
-  
-    <span *ngIf="quick_view"><p class="quick_view">Quick view</p></span>
-    <span *ngIf="queries_enabled">
-      <p class="view_enabled">{{queries_for}}</p>
-    </span>
-    <mat-icon *ngIf="queries_enabled">arrow_right</mat-icon>
-    <span *ngIf="queries_enabled">
-      <p class="query_chose">{{query}}</p>
-    </span>
-    <button *ngIf="queries_enabled" mat-icon-button [matMenuTriggerFor]="menu" class="query_menu">
-      <mat-icon *ngIf="queries_enabled">arrow_drop_down</mat-icon>
+<mat-toolbar  class="home_toolbar">
+  <mat-icon class="home_icon">home</mat-icon>
+  <span class="header">
+    Home
+  </span>
+
+  <span *ngIf="quick_view">
+    <p class="quick_view">Quick view</p>
+  </span>
+  <span *ngIf="queries_enabled">
+    <p class="view_enabled">{{queries_for}}</p>
+  </span>
+  <mat-icon *ngIf="queries_enabled">arrow_right</mat-icon>
+  <span *ngIf="queries_enabled">
+    <p class="query_chose">{{query}}</p>
+  </span>
+  <button *ngIf="queries_enabled" mat-icon-button [matMenuTriggerFor]="menu" class="query_menu">
+    <mat-icon *ngIf="query != 'mine'">arrow_right</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="mineChosen()">
+      <mat-icon>folder</mat-icon>
+      <span>Mine</span>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="mineChosen()">
-        <mat-icon>folder</mat-icon>
-        <span>Mine</span>
-      </button>
-      <button mat-menu-item (click)="sharedChosen()">
-        <mat-icon>folder_shared</mat-icon>
-        <span>Shared</span>
-      </button>
-    </mat-menu>
-  
-    <span class="example-spacer"></span>
-    <div class="add_dataset">
-      <!-- <button *ngIf="add_dataset" mat-icon-button matTooltip="Add dataset" (click)="addDatasetDialog()">
+    <button mat-menu-item (click)="sharedChosen()">
+      <mat-icon>folder_shared</mat-icon>
+      <span>Shared</span>
+    </button>
+  </mat-menu>
+
+  <!-- <div *ngIf="organizations"> -->
+
+    <p *ngIf="organizations" class="query_chose">With {{organizationActivated}}</p>
+    <!-- <span> -->
+    <button *ngIf="organizations" mat-icon-button [matMenuTriggerFor]="orgMenu" class="query_menu">
+        <!-- With {{organizationActivated}} -->
+        <mat-icon >arrow_drop_down</mat-icon>
+    </button>
+    <!-- </span> -->
+  <!-- </div> -->
+ 
+
+  <mat-menu #orgMenu="matMenu">
+      <button *ngFor="let org of organizations" mat-menu-item (click)="orgChosen(org)">
+          <mat-icon>business</mat-icon>
+          <span>{{org}}</span>
+        </button>
+  </mat-menu>
+
+
+  <span class="example-spacer"></span>
+  <div class="add_dataset">
+    <!-- <button *ngIf="add_dataset" mat-icon-button matTooltip="Add dataset" (click)="addDatasetDialog()">
         <mat-icon>add</mat-icon>
       </button> -->
-      <button *ngIf="add_dataset" mat-mini-fab type="button" matTooltip="Add dataset" onclick="document.getElementById('fileToUpload').click()">
-        <mat-icon>add</mat-icon>
-      </button>
-      <input id="fileToUpload" type="file" style="display:none;" (change)="changeListener($event.target.files)">
-  
-    </div>
-  
-    <div *ngIf="listView; else gridView">
-      <button mat-icon-button matTooltip="Switch to grid view" (click)="changeToGridView()">
-        <mat-icon>format_list_bulleted</mat-icon>
-      </button>
-    </div>
-    <ng-template #gridView>
-      <button mat-icon-button matTooltip="Switch to list view" (click)="changeToListView()">
-        <mat-icon>view_compact</mat-icon>
-      </button>
-    </ng-template>
-  
+    <button *ngIf="add_dataset" mat-mini-fab type="button" matTooltip="Add dataset" onclick="document.getElementById('fileToUpload').click()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <input #dataInput id="fileToUpload" type="file" style="display:none;" accept="image/*, .csv" multiple="multiple"
+      (change)="changeListener($event.target.files)">
+
+  </div>
+
+  <div *ngIf="listView; else gridView">
+    <button mat-icon-button matTooltip="Switch to grid view" (click)="changeToGridView()">
+      <mat-icon>format_list_bulleted</mat-icon>
+    </button>
+  </div>
+  <ng-template #gridView>
+    <button mat-icon-button matTooltip="Switch to list view" (click)="changeToListView()">
+      <mat-icon>view_compact</mat-icon>
+    </button>
+  </ng-template>
+
 </mat-toolbar>
+
+<mat-divider class="hor_vert"></mat-divider>
 
 <div class="home_all">
 
@@ -69,10 +95,14 @@
   </div>
   <div class="home_content">
     <app-data-model-view *ngIf="datasets_to_view || models_to_view" [datasets_to_view]="datasets_to_view"
-      [models_to_view]="models_to_view" [view_type]="view_type"></app-data-model-view>
+      [models_to_view]="models_to_view" [view_type]="view_type" (itemClicked)="onItemClicked($event)"></app-data-model-view>
   </div>
+  <mat-divider class="vert_divider" [vertical]="true"></mat-divider>
+  <app-quick-view  class="quick_view" [viewItem]="viewItem"></app-quick-view>
 </div>
-  <!-- <div class="test">
+
+
+<!-- <div class="test">
       <table mat-table [dataSource]="data" class="mat-elevation-z8">
           <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns2">
             <th mat-header-cell *matHeaderCellDef> {{column}} </th>
@@ -83,5 +113,3 @@
           <tr mat-row *matRowDef="let row; columns: columnsToDisplay2;"></tr>
         </table>
   </div> -->
-
-

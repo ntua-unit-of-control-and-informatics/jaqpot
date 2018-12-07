@@ -32,4 +32,20 @@ export class NotificationFactoryService {
     return this.notification;
   }
 
+  shareNotification(from:string, to:string, throuOrg:string, entityID:string){
+    let entity:string[] = entityID.split("/")
+    let body =  entity[entity.length - 2] + " shared through organization " + throuOrg;
+    let notifBuilder = new NotificationBuilderService()
+    notifBuilder.setFrom(from);
+    notifBuilder.setBody(body);
+    notifBuilder.setTo(to);
+    notifBuilder.setOwner(to);
+    notifBuilder.setType(TYPE.SHARE);
+    notifBuilder.setViewd(false);
+    notifBuilder.setEntityShared(entityID)
+    notifBuilder.setThroughOrg(throuOrg)
+    this.notification = notifBuilder.build()
+    return this.notification;
+  }
+
 }

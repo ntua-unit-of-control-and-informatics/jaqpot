@@ -15,7 +15,6 @@ export class UserQuickComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.user)
   }
 
 }

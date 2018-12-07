@@ -73,14 +73,14 @@ a:active{
 }
 
 .home_content{
-  width:80%;
+  width:75%;
   min-height:calc(100vh - 118px);
   max-height:calc(100vh - 118px);
   display:inline-block;
   position:absolute;
-  right: 0;
+  right: 10%;
   bottom: 0;
-  margin-right:5%;
+  /* margin-right:5%; */
   z-index:1;
 }
 
@@ -91,6 +91,24 @@ a:active{
   position:absolute;
   left:0px;
   z-index:2;
+}
+
+.vert_divider{
+  float: right;
+  margin-right: 10%;
+  min-height:calc(100vh - 118px);
+  max-height:calc(100vh - 118px);
+  opacity: 0.4;
+}
+
+.hor_vert{
+  opacity: 0.6;
+}
+.quick_view{
+  margin-right: -10%;
+  min-width: 10%;
+  max-width: 10%;
+  float: right;
 }
 
 /* .test{

@@ -28,10 +28,9 @@ import { Task } from '../model/task';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { HttpClient } from '@angular/common/http/src/client';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { User } from '../model/user';
-import { HttpHeaders } from '@angular/common/http';
 import { BaseClient } from './base.client';
 
 
@@ -49,7 +48,7 @@ export class UserService extends BaseClient<User>{
     // private _getUserIdQuota : string;
 
 
-    constructor(public http: Http,
+    constructor(public http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
@@ -59,46 +58,35 @@ export class UserService extends BaseClient<User>{
         }
 
     public getUserById(id:string): Observable<User> {
-        let params = new URLSearchParams();
-            
-        let headers = new Headers({'Content-Type':'application/json'});
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
-        headers.set('Authorization', tokenValue);
-    
-        return this.http.get(this._userBase + id, { headers: headers, search: params }).pipe(
-            
-            map((res : Response) => { 
-                return res.json()            
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams();
+        return this.http.get(this._userBase + id, { headers: headers, params: params }).pipe(
+            tap((res : Response) => {
+                return res         
             }),catchError( err => this.dialogsService.onError(err) ));
     }
     
     public updateUserById(id:string, user:User): Observable<User> {
-        let params = new URLSearchParams();
-            
-        let headers = new Headers({'Content-Type':'application/json'});
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
-        headers.set('Authorization', tokenValue);
-    
-        return this.http.put(this._userBase + id, user ,{ headers: headers, search: params }).pipe(
-            map((res : Response) => {  
-                return res.json()            
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams();
+        return this.http.put(this._userBase + id, user ,{ headers: headers, params: params }).pipe(
+            tap((res : Response) => {  
+                return res           
             }),catchError( err => this.dialogsService.onError(err) ));
     }
 
     public searchUserByName(name:string): Observable<Array<User>> {
-        let params = new URLSearchParams();
-            
-        let headers = new Headers({'Content-Type':'application/json'});
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
-        headers.set('Authorization', tokenValue);
-        params.set('name', name)
-
-        return this.http.get(this._userBase + "ids", { headers: headers, search: params }).pipe(
-            map((res : Response) => {  
-                return res.json()            
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams();
+        return this.http.get(this._userBase + "ids", { headers: headers, params: params }).pipe(
+            tap((res : Response) => {  
+                return res         
             }),catchError( err => this.dialogsService.onError(err) ));
     }
 

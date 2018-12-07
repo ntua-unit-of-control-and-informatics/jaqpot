@@ -3,7 +3,6 @@ import { DialogsService } from './dialogs/dialogs.service';
 import { FormControl, Validators } from '@angular/forms';
 import {OnInit, OnDestroy} from '@angular/core';
 import { Credentials } from './ui-models/credentials';
-import { AaService } from './jaqpot-client/api/aa.service';
 import { LoginDialogComponent } from './dialogs/login-logout-dialog/login-dialog.component'
 import {LogoutDialogComponent} from './dialogs/login-logout-dialog/logout-dialog.component'
 // import { AccountDialogComponent } from './dialogs/account-dialog/account-dialog.component'
@@ -15,7 +14,6 @@ import { Router } from '@angular/router';
 
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
-import * as d3 from 'd3';
 // import { Store } from '@ngrx/store';
 
 @Component({
@@ -36,7 +34,6 @@ export class AppComponent implements OnInit, OnDestroy{
     public oidcSecurityService: OidcSecurityService,
     public dialog: MatDialog,
     public sessionService: SessionService,
-    private aaService:  AaService,
     private router: Router) { 
 
 
@@ -80,7 +77,6 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   ngAfterViewInit(){
-    var svg = d3.select("svg");
   }
 
   ngOnDestroy(): void {

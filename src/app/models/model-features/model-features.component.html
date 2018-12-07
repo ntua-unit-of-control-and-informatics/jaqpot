@@ -1,0 +1,178 @@
+<div class="wrapper  ">
+
+  <h4 class="h1">Dependent feature / Predicted feature</h4>
+
+  <!-- <mat-grid-list cols="3" rowHeight="300px" class="grid">
+    <mat-grid-tile class="grid_tile" *ngFor="let feat of dependendFeatures;" [colspan]="1" [rowspan]="1"> -->
+
+  <div *ngFor="let feat of dependendFeatures;" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px" fxLayoutAlign="flex-start">
+    <mat-card *ngIf="edit;else noEdit" class="feat_edit" fxFlex.xl="96%" fxFlex.lg="96%" fxFlex.md="96%" fxFlex.sm="96%" fxFlex.xs="96%">
+      <mat-card-header>
+        <mat-card-title>{{feat.meta.titles[0]}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form>
+          <mat-form-field class="feat_input">
+            <textarea matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="feat.meta.descriptions[0]"
+              placeholder="Description" (ngModelChange)="featChanged(feat)"></textarea>
+          </mat-form-field>
+          <mat-form-field class="feat_input">
+            <textarea matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="feat.units" placeholder="Units"
+              (ngModelChange)="featChanged(feat)"></textarea>
+          </mat-form-field>
+          <mat-form-field class="feat_input">
+            <textarea matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="feat.ontologicalClasses[0]"
+              placeholder="Ontological Classes" (ngModelChange)="featChanged(feat)"></textarea>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <ng-template #noEdit>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px" fxLayoutAlign="flex-start">
+
+        <mat-card class="feat" fxFlex.xl="96%" fxFlex.lg="96%" fxFlex.md="96%" fxFlex.sm="96%" fxFlex.xs="96%">
+          <mat-card-header>
+            <mat-card-title>{{feat.meta.titles}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div *ngIf="feat.meta.descriptions">
+              <p *ngIf="feat.meta.descriptions[0]"> Description: {{feat.meta.descriptions[0]}} </p>
+            </div>
+            <div *ngIf="feat.units">
+              <p> Units: {{feat.units}} </p>
+            </div>
+            <div *ngIf="feat.ontologicalClasses">
+              <p *ngIf="feat.ontologicalClasses[0]"> Ontological Classes: {{feat.ontologicalClasses[0]}} </p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </ng-template>
+  </div>
+
+
+
+  <!-- <ng-template #noEdit> -->
+
+  <!-- <mat-accordion class="accordion">
+              <mat-expansion-panel class="accordion_tab" *ngFor="let feat of dependendFeatures;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                      {{feat.meta.titles}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Type your name and age
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+            
+                <div *ngIf="feat.meta.descriptions">
+                    <p *ngIf="feat.meta.descriptions[0]"> Description: {{feat.meta.descriptions[0]}} </p>
+                  </div>
+                  <div *ngIf="feat.units">
+                    <p> Units: {{feat.units}} </p>
+                  </div>
+                  <div *ngIf="feat.ontologicalClasses">
+                    <p *ngIf="feat.ontologicalClasses[0]"> Ontological Classes: {{feat.ontologicalClasses[0]}} </p>
+                  </div>
+              </mat-expansion-panel>
+            </mat-accordion> -->
+
+  <!-- <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px" fxLayoutAlign="flex-start">
+
+          <mat-card class="feat" fxFlex.xl="100%" fxFlex.lg="100%" fxFlex.md="100%" fxFlex.sm="68%" fxFlex.xs="96%">
+            <mat-card-header>
+              <mat-card-title>{{feat.meta.titles}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div *ngIf="feat.meta.descriptions">
+                <p *ngIf="feat.meta.descriptions[0]"> Description: {{feat.meta.descriptions[0]}} </p>
+              </div>
+              <div *ngIf="feat.units">
+                <p> Units: {{feat.units}} </p>
+              </div>
+              <div *ngIf="feat.ontologicalClasses">
+                <p *ngIf="feat.ontologicalClasses[0]"> Ontological Classes: {{feat.ontologicalClasses[0]}} </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+        </div>
+
+      </ng-template> -->
+
+  <!-- </mat-grid-tile>
+  </mat-grid-list> -->
+
+  <!-- <div *ngFor="let feat of features" class="mat-elevation-z8">
+        {{feat.meta.titles[0]}}
+      </div> -->
+
+  <!-- </div>
+
+
+
+<div> -->
+
+
+
+
+    <h4 class="h1">Independent features</h4>
+  
+    <div *ngFor="let feat of independentFeatures;" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px" fxLayoutAlign="flex-start">
+      <mat-card *ngIf="edit;else noEdit" class="feat_edit" fxFlex.xl="96%" fxFlex.lg="96%" fxFlex.md="96%" fxFlex.sm="96%" fxFlex.xs="96%">
+        <mat-card-header>
+          <mat-card-title>{{feat.meta.titles[0]}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form>
+            <mat-form-field class="feat_input">
+              <textarea matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="feat.meta.descriptions[0]"
+                placeholder="Description" (ngModelChange)="featChanged(feat)"></textarea>
+            </mat-form-field>
+            <mat-form-field class="feat_input">
+              <textarea matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="feat.units" placeholder="Units"
+                (ngModelChange)="featChanged(feat)"></textarea>
+            </mat-form-field>
+            <mat-form-field class="feat_input">
+              <textarea matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="feat.ontologicalClasses[0]"
+                placeholder="Ontological Classes" (ngModelChange)="featChanged(feat)"></textarea>
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+      </mat-card>
+  
+      <ng-template #noEdit>
+  
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px" fxLayoutAlign="flex-start">
+  
+          <mat-card class="feat" fxFlex.xl="96%" fxFlex.lg="96%" fxFlex.md="96%" fxFlex.sm="96%" fxFlex.xs="96%">
+            <mat-card-header>
+              <mat-card-title>{{feat.meta.titles}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div *ngIf="feat.meta.descriptions">
+                <p *ngIf="feat.meta.descriptions[0]"> Description: {{feat.meta.descriptions[0]}} </p>
+              </div>
+              <div *ngIf="feat.units">
+                <p> Units: {{feat.units}} </p>
+              </div>
+              <div *ngIf="feat.ontologicalClasses">
+                <p *ngIf="feat.ontologicalClasses[0]"> Ontological Classes: {{feat.ontologicalClasses[0]}} </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+  
+        </div>
+  
+      </ng-template>
+    </div>
+  
+
+
+
+
+</div>

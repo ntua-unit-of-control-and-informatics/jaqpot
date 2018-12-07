@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { LoginDialogComponent } from './login-logout-dialog/login-dialog.component';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
@@ -21,13 +21,25 @@ import { AddDatasetDialogComponent } from './add-dataset-dialog/add-dataset-dial
 import { UpdatePhotoComponent } from './update-photo/update-photo.component';
 import { UserQuickComponent } from './user-quick/user-quick.component';
 import { User } from '../jaqpot-client';
+import { AddImageDatasetDialogComponent } from './add-image-dataset-dialog/add-image-dataset-dialog.component';
+import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factory.service';
+import { DatasetBuilderService } from '../jaqpot-client/builders/dataset-builder.service';
+import { DatasetToViewdataService } from '../services/dataset-to-viewdata.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ShareDialogComponent } from './share-dialog/share-dialog.component';
+import { DatasetService } from '../jaqpot-client/api/dataset.service';
+import { ModelApiService } from '../jaqpot-client/api/model.service';
+import { ShareNotifDialogComponent } from './notification-dialogs/share-notif-dialog/share-notif-dialog.component';
 
 @Injectable()
 export class DialogsService {
 
     private _errorReport:ErrorReport;
 
-    constructor(private dialog: MatDialog){}
+    constructor(private dialog: MatDialog,
+        // public notificationFactory:NotificationFactoryService,
+        // public notificationService:NotificationService
+        ){}
 
     public confirm(): Observable<Credentials> {
         let dialogRef: MatDialogRef<LoginDialogComponent>;
@@ -57,7 +69,7 @@ export class DialogsService {
         return dialogRef.afterClosed()
     }
 
-    public addDataset(csv, filename, datasetFactory, featureApi, datasetApi)
+    public addCsvDataset(csv, filename, datasetFactory, featureApi, datasetApi)
     {
         let dialogRef: MatDialogRef<AddDatasetDialogComponent>;
         dialogRef = this.dialog.open(AddDatasetDialogComponent);
@@ -66,6 +78,30 @@ export class DialogsService {
         dialogRef.componentInstance.datasetFactory = datasetFactory
         dialogRef.componentInstance.featureApi = featureApi
         dialogRef.componentInstance.datasetApi = datasetApi
+        return dialogRef.afterClosed()
+    }
+
+    // public addImageDataset(images:{ [key: string]: string}, datasetFactory, featureApi, datasetApi)
+    // {
+    //     let dialogRef: MatDialogRef<AddImageDatasetDialogComponent>;
+    //     dialogRef = this.dialog.open(AddImageDatasetDialogComponent);
+    //     dialogRef.componentInstance.images = images
+    //     dialogRef.componentInstance.datasetFactory = datasetFactory
+    //     dialogRef.componentInstance.featureApi = featureApi
+    //     dialogRef.componentInstance.datasetApi = datasetApi
+    //     return dialogRef.afterClosed()
+    // }
+
+    public addImageCsvDataset(images: string, datasetFactory,datasetViewService:DatasetToViewdataService,  featureApi, datasetApi, featFactory:FeatureFactoryService)
+    {
+        let dialogRef: MatDialogRef<AddImageDatasetDialogComponent>;
+        dialogRef = this.dialog.open(AddImageDatasetDialogComponent);
+        dialogRef.componentInstance.images = images
+        dialogRef.componentInstance.datasetFactory = datasetFactory
+        dialogRef.componentInstance.featureApi = featureApi
+        dialogRef.componentInstance.datasetApi = datasetApi
+        dialogRef.componentInstance.featFactory = featFactory
+        dialogRef.componentInstance.datasetViewService= datasetViewService
         return dialogRef.afterClosed()
     }
 
@@ -78,6 +114,8 @@ export class DialogsService {
     public openActualNotifDialog(notification:Notification, 
         organizationService:OrganizationService,
         notificationService:NotificationService,
+        datasetService:DatasetService,
+        modelService:ModelApiService,
         userService:UserService){
         if(notification.type === "INVITATION"){
             let dialogRef: MatDialogRef<InvitationNotifDialogComponent>;
@@ -86,6 +124,17 @@ export class DialogsService {
             dialogRef.componentInstance.notificationService = notificationService
             dialogRef.componentInstance.userService = userService
             dialogRef.componentInstance.notification = notification
+            return dialogRef.afterClosed();
+        }
+        if(notification.type === "SHARE"){
+            let dialogRef: MatDialogRef<ShareNotifDialogComponent>;
+            dialogRef = this.dialog.open(ShareNotifDialogComponent);
+            dialogRef.componentInstance._organizationApi = organizationService
+            dialogRef.componentInstance._notificationApi = notificationService
+            dialogRef.componentInstance._userApi = userService
+            dialogRef.componentInstance._notification = notification
+            dialogRef.componentInstance._modelApi = modelService
+            dialogRef.componentInstance._datasetApi = datasetService
             return dialogRef.afterClosed();
         }
     }
@@ -112,12 +161,48 @@ export class DialogsService {
         return dialogRef.afterClosed();
     }
 
-    public onError(error:Response){
+
+    public openSharingDialog(entityType:string
+            , entityId:string
+            , modelService:ModelApiService
+            , datasetService:DatasetService
+            , organizationService:OrganizationService
+            , notificationService:NotificationService
+            , notificationFactory: NotificationFactoryService
+            , userService:UserService
+            , userId:string){
+        let dialogRef: MatDialogRef<ShareDialogComponent>;
+        dialogRef = this.dialog.open(ShareDialogComponent);
+        dialogRef.componentInstance._entityType= entityType
+        dialogRef.componentInstance._entityId = entityId
+        dialogRef.componentInstance._modelApi = modelService
+        dialogRef.componentInstance._datasetApi = datasetService
+        dialogRef.componentInstance._organizationApi = organizationService
+        dialogRef.componentInstance._notificationApi = notificationService
+        dialogRef.componentInstance._notificationFactory = notificationFactory
+        dialogRef.componentInstance._userApi = userService
+        dialogRef.componentInstance._userId = userId
+        return dialogRef.afterClosed();
+
+    }
+
+    public onError(error:HttpErrorResponse){
+        let errorReport = error.error
         let dialogRef: MatDialogRef<ErrorDialogComponent>;
         dialogRef = this.dialog.open(ErrorDialogComponent);
-        dialogRef.componentInstance.httpStatus = error.json().httpStatus;
-        dialogRef.componentInstance.details = error.json().details;
-        dialogRef.componentInstance.message = error.json().message;
+        // if (error.error instanceof ErrorEvent) {
+        //     // A client-side or network error occurred. Handle it accordingly.
+        //     console.error('An error occurred:', error.error.message);
+        //   } else {
+        //     // The backend returned an unsuccessful response code.
+        //     // The response body may contain clues as to what went wrong,
+        //     console.error(
+        //       `Backend returned code ${error.status}, ` +
+        //       `body was: ${error.error}`);
+        //   }
+        dialogRef.componentInstance.httpStatus = errorReport.httpStatus;
+        dialogRef.componentInstance.details = errorReport.details;
+        dialogRef.componentInstance.message = errorReport.message;
         return dialogRef.afterClosed();
     }
 

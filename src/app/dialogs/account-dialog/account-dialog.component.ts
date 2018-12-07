@@ -2,7 +2,6 @@ import { Component, Inject , Optional, ViewEncapsulation} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatFormFieldControl, MAT_DIALOG_DATA , MatDialogRef, MatToolbar} from '@angular/material';
 import { Credentials } from '../../ui-models/credentials';
-import { AaService } from '../../jaqpot-client/api/aa.service';
 import { AuthToken } from '../../jaqpot-client';
 import { ErrorReport } from '../../ui-models/errorReport'
 import { SessionService } from '../../session/session.service';
@@ -39,7 +38,6 @@ export class AccountDialogComponent  implements OnInit{
 
     constructor(
         @Optional() public dialogRef: MatDialogRef<AccountDialogComponent>,
-        private aaService:AaService, 
         private sessionService:SessionService,
         private router:Router,
         public oidcSecurityService: OidcSecurityService
@@ -62,13 +60,13 @@ export class AccountDialogComponent  implements OnInit{
 
     }
 
-    logout(){
-        this.aaService.logout(this.id);
-        this.router.navigate(['/'])
-        this.sessionService.remove('loggedIn');
-        this.sessionService.clear();
-        this.dialogRef.close();
-    }
+    // logout(){
+    //     this.aaService.logout(this.id);
+    //     this.router.navigate(['/'])
+    //     this.sessionService.remove('loggedIn');
+    //     this.sessionService.clear();
+    //     this.dialogRef.close();
+    // }
 
     close(){
         this.dialogRef.close();

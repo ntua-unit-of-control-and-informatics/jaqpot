@@ -1,0 +1,49 @@
+.all{
+    width:100%;
+}
+
+.read_list{
+    margin: 1em;
+    float: left;
+}
+
+.write_list{
+    margin: 1em;
+    float: left;
+}
+
+.execute_list{
+    margin: 1em;
+    float: left;
+}
+
+.notes{
+    float: left;
+    width: 100%; 
+    height: 200px;
+    overflow: scroll;
+}
+
+
+.read_notes{
+    float: left;
+
+}
+
+.write_notes{
+    float: left;
+
+}
+
+.execute_notes{
+    float: left;
+
+}
+
+.long{
+    width:80%;
+}
+
+.from-content{
+    width:400px;
+}

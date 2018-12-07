@@ -16,7 +16,7 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Response, ResponseContentType } from '@angular/http';
-import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import '../rxjs-operators';
 
@@ -28,8 +28,8 @@ import { Task } from '../model/task';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { HttpClient } from '@angular/common/http/src/client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { HttpHeaders, HttpParams, HttpClient, HttpResponse } from '@angular/common/http';
 
 
 @Injectable()
@@ -49,7 +49,7 @@ export class AlgorithmService {
 
     private _subjectId:string;
 
-    constructor(private http: Http,
+    constructor(private http: HttpClient,
         private sessionServise:SessionService,
         private dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
@@ -66,34 +66,34 @@ export class AlgorithmService {
 
 
     public getAlgorithms( _class?: string, start?: number, max?: number): Observable<Array<Algorithm>> {
-        let params = new URLSearchParams();
+        let params = new HttpParams();
         params.set('class', _class);
         params.set('start', start.toString());
         params.set('max', max.toString());
-        let headers = new Headers({'Content-Type':'application/json'});
+        let headers = new HttpHeaders({'Content-Type':'application/json'});
         headers.set('subjectid', this._subjectId);
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
         headers.set('Authorization', tokenValue);
-        return this.http.get(this._getAlgorithmsEndpoint, { headers: headers, search: params }).pipe(
-            map((res : Response) => {
+        return this.http.get(this._getAlgorithmsEndpoint, { headers: headers, params: params }).pipe(
+            tap((res : Response) => {
                 return res.json();
             }),catchError( this.dialogsService.onError ));
         
     }
 
     public getAlgorithmsCount( _class?: string, start?: number, max?: number): Observable<Response> {
-        let params = new URLSearchParams();
+        let params = new HttpParams();
         params.set('class', _class);
         params.set('start', "0");
         params.set('max', "1");
         
-        let headers = new Headers({'Content-Type':'application/json'});
+        let headers = new HttpHeaders({'Content-Type':'application/json'});
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
         headers.set('Authorization', tokenValue);
 
-        return this.http.get(this._getAlgorithmsEndpoint, { headers: headers, search: params }).pipe(
+        return this.http.get(this._getAlgorithmsEndpoint, { headers: headers, params: params }).pipe(
             map((res : Response) => {
                 var total = res.headers.get('total');   
                 return res;             
@@ -101,19 +101,15 @@ export class AlgorithmService {
     }
 
     public getAlgorithmById(id:string): Observable<Algorithm> {
-        let params = new URLSearchParams();
-        
-        let headers = new Headers({'Content-Type':'application/json'});
+        let params = new HttpParams();
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
-        headers.set('Authorization', tokenValue);
-
-        return this.http.get(this._getAlgorithmById + id, { headers: headers, search: params }).pipe(
-            map((res : Response) => {  
-                return res.json();             
+        let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
+        return this.http.get(this._getAlgorithmById + id, { headers: headers, params: params }).pipe(
+            tap((res : Response) => {  
+                return res;             
             }),catchError( err => this.dialogsService.onError(err) ));
     }
-
 
 }
 //     protected basePath = 'http://dev.jaqpot.org:8081/jaqpot/services';

@@ -14,10 +14,9 @@ import { Task } from '../model/task';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { HttpClient } from '@angular/common/http/src/client';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { User } from '../model/user';
-import { HttpHeaders } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { Organization } from '../model/organization';
 import { Notification } from '../model/notification';
@@ -30,7 +29,7 @@ export class NotificationService extends BaseClient<Notification>{
     private orgnanization:Organization;
     _notificationBase:string = "/notification/"
 
-    constructor(http: Http,
+    constructor(http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
@@ -39,18 +38,16 @@ export class NotificationService extends BaseClient<Notification>{
         }
 
     public getUnreadNotifications():Observable<Array<Notification>>{
-        let params = new URLSearchParams();
-            
-        let headers = new Headers({'Content-Type':'application/json'});
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
-        headers.set('Authorization', tokenValue);
-        params.set("query", "UNREAD");
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams().set("query", "UNREAD");
         let pathFormed = this._privateBasePath
-        return this.http.get(pathFormed, { headers: headers, search: params } ).pipe(
-            map((res : Response) => { 
-                return res.json()            
-            }),catchError( err => this.dialogsService.onError(err) )
+        return this.http.get(pathFormed, { headers: headers, params: params } ).pipe(
+            tap((res : Response) => { 
+                return res         
+            }),catchError( err => this.dialogsService.onError(err) ) 
+            
         );
 
 

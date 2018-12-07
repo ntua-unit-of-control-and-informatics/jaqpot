@@ -12,10 +12,9 @@ import { Task } from '../model/task';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { HttpClient } from '@angular/common/http/src/client';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { User } from '../model/user';
-import { HttpHeaders } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { Organization } from '../model/organization';
 import { Feature } from '../model/models';
@@ -27,7 +26,7 @@ export class FeatureApiService extends BaseClient<Feature>{
     private feature:Feature;
     _featureBase:string = "/feature/"
 
-    constructor(http: Http,
+    constructor(http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){

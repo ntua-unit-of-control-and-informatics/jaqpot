@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { AaService } from '../../jaqpot-client/api/aa.service';
 import { SessionService } from '../../session/session.service';
 import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -50,16 +49,14 @@ export class AccountBaseComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog ,
-    private aaService:AaService, 
     private sessionService:SessionService,
     private userService:UserService,
-    private router:Router,
     public oidcSecurityService: OidcSecurityService,
     public snackBar: MatSnackBar
   ) {
     this.username = this.sessionService.get('userName');
     var userData = JSON.parse(sessionStorage.getItem('userData'))
-    this.name =userData.name
+    this.name = userData.name
     this.familyName = userData.family_name;
     this.firstName = userData.given_name;
     this.email = userData.email;
@@ -74,6 +71,10 @@ export class AccountBaseComponent implements OnInit {
       title: new FormControl(),
       description: new FormControl()
     })
+
+  }
+
+  ngOnInit() {
     this.userService.getUserById(this.id)
     .subscribe(userGot =>{
       this.user = userGot;
@@ -83,12 +84,6 @@ export class AccountBaseComponent implements OnInit {
         this.photo_unavail = false;
       }
     })
-  }
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit(){
   }
 
   addProfilePicDialog(){

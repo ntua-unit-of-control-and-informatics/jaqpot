@@ -1,0 +1,64 @@
+<div *ngIf="!canExecute; else can_execute" class="cannot">
+  <mat-card class="cannot_card">
+    <h4>Your account does not have Execute rights upon this model</h4>
+  </mat-card>
+</div>
+
+<ng-template #can_execute>
+  <div class="can mat-elevation-z2">
+    <h4>Choose method</h4>
+    <mat-form-field class="method">
+      <mat-select [(value)]="selected" (selectionChange)="methodSelected($event)">
+        <mat-option value="Predict">Predict</mat-option>
+        <mat-option value="Validate">Validate</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</ng-template>
+
+<div *ngIf="selected === 'Predict';  else validate;" class="base mat-elevation-z2">
+
+  <h4>Input values for the independent features</h4>
+
+  <div *ngIf="indepfeatureAndValues" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px" fxLayoutAlign="flex-start">
+    <div *ngFor="let feat of indepfeatureAndValues">
+      <div *ngIf="feat.feature.meta.descriptions[0]; else noDesc;">
+        <form matTooltip={{feat.feature.meta.descriptions[0]}} fxFlex.xl="100%" fxFlex.lg="100%" fxFlex.md="100%" fxFlex.sm="100%"
+          fxFlex.xs="100%" class="input-form mat-elevation-z1">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{feat.feature.meta.titles[0]}}" value="" [(ngModel)]='feat.value'  [ngModelOptions]="{standalone: true}" (ngModelChange)="inputChanged(feat)">
+          </mat-form-field>
+        </form>
+      </div>
+      <ng-template #noDesc>
+        <form fxFlex.xl="100%" fxFlex.lg="100%" fxFlex.md="100%" fxFlex.sm="100%"
+          fxFlex.xs="100%" class="input-form mat-elevation-z1">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{feat.feature.meta.titles[0]}}" value="" [(ngModel)]='feat.value'  [ngModelOptions]="{standalone: true}" (ngModelChange)="inputChanged(feat)">
+          </mat-form-field>
+        </form>
+      </ng-template>
+
+    </div>
+    <div *ngIf="ready" class="input_val_butt">
+      <button class="b1" matTooltip="Start prediction with input values" mat-button color="warn" (click)="startInputPrediction()">
+        Start
+      </button>
+    </div>
+  </div>
+  <h4>Or upload dataset with the required independent features and values</h4>
+
+  <button matTooltip="Download template dataset (csv)" mat-icon-button color="primary" (click)="downloadTemplate()">
+    <mat-icon>arrow_downward</mat-icon>
+  </button>
+  <button  matTooltip="Upload dataset (should at leat contain independent features)" mat-icon-button color="accent">
+    <mat-icon>arrow_upward</mat-icon>
+  </button>
+</div>
+
+
+
+<ng-template #validate>
+  Validation!!
+</ng-template>

@@ -1,109 +1,109 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
-import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
-import { Response, ResponseContentType} from '@angular/http';
-import { HttpHeaders } from '@angular/common/http';
-import { Observable, } from 'rxjs';
-import 'rxjs/operator/map';
-import '../rxjs-operators';
-import 'rxjs/add/operator/map';
-import { AuthToken } from '../model/authToken';
-import { ErrorReport } from '../model/errorReport';
-import 'rxjs/add/operator/map';
-import { map, filter, catchError, mergeMap } from 'rxjs/operators';
-import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
-import { error } from 'util';
-import { Config } from '../../config/config';
-// import { ErrorReport } from '../../ui-models/ErrorReport';
-import { SessionService } from '../../session/session.service';
+// import { Inject, Injectable, Optional } from '@angular/core';
+// import { Http, Headers, URLSearchParams } from '@angular/http';
+// import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
+// import { Response, ResponseContentType} from '@angular/http';
+// import { HttpHeaders } from '@angular/common/http';
+// import { Observable, } from 'rxjs';
+// import 'rxjs/operator/tap';
+// import '../rxjs-operators';
+// import 'rxjs/add/operator/tap';
+// import { AuthToken } from '../model/authToken';
+// import { ErrorReport } from '../model/errorReport';
+// import 'rxjs/add/operator/tap';
+// import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
+// import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
+// import { error } from 'util';
+// import { Config } from '../../config/config';
+// // import { ErrorReport } from '../../ui-models/ErrorReport';
+// import { SessionService } from '../../session/session.service';
 
-@Injectable()
-export class AaService {
+// @Injectable()
+// export class AaService {
 
-    private _basePath : string;
-    private _defaultHeaders: Headers = new Headers();
+//     private _basePath : string;
+//     private _defaultHeaders: Headers = new Headers();
 
-    private _authenticateEndpoint : string;
-    private _authorizeEndpoint : string;
-    private _logoutEndpoint : string;
-    private _validateEndpoint : string;
-    private _errorReport: ErrorReport;
-    private _authToken : AuthToken;
-
-
-    constructor(private http: Http,
-                private sessionService: SessionService) { 
-        this._basePath = Config.JaqpotBase
-        this._authenticateEndpoint = this._basePath + "/aa/login";
-        this._authorizeEndpoint = this._basePath + "/aa/authorize";
-        this._logoutEndpoint = this._basePath + "/aa/logout";
-        this._validateEndpoint = this._basePath + "/aa/validate";
-    }
+//     private _authenticateEndpoint : string;
+//     private _authorizeEndpoint : string;
+//     private _logoutEndpoint : string;
+//     private _validateEndpoint : string;
+//     private _errorReport: ErrorReport;
+//     private _authToken : AuthToken;
 
 
-    public login(username: string, password: string){
-        let body = new URLSearchParams();
-        body.set('username', username);
-        body.set('password', password);
-
-        let options = {
-            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-        };
-
-        return this.http.post(this._authenticateEndpoint, body).pipe(
-            map((res: Response) => {
-                this._authToken = res.json();
-                if(res.status === 200){
-                    this.sessionService.set('subjectId', this._authToken.authToken);
-                    this.sessionService.set('userName', this._authToken.userName);
-                    this.sessionService.set('loggedIn', 'true');
-                }
-                return this._authToken
-            }),catchError(err => this.handleError(err) ))
-    }
+//     constructor(private http: Http,
+//                 private sessionService: SessionService) { 
+//         this._basePath = Config.JaqpotBase
+//         this._authenticateEndpoint = this._basePath + "/aa/login";
+//         this._authorizeEndpoint = this._basePath + "/aa/authorize";
+//         this._logoutEndpoint = this._basePath + "/aa/logout";
+//         this._validateEndpoint = this._basePath + "/aa/validate";
+//     }
 
 
-    public vallidate(subjectId:string){
+//     public login(username: string, password: string){
+//         let body = new URLSearchParams();
+//         body.set('username', username);
+//         body.set('password', password);
 
-        let headers = new Headers({'Content-Type':'application/json'});
-        headers.set('subjectid', subjectId);
-        let options = new RequestOptions({headers: headers})
+//         let options = {
+//             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+//         };
 
-        return this.http.post(this._validateEndpoint, null, options).pipe(
-            map(
-                (res : Response) => {
-                return res.json()
-            }),
-            catchError(err => this.handleError(err))
-        )
-    }
+//         return this.http.post(this._authenticateEndpoint, body).pipe(
+//             tap((res: Response) => {
+//                 this._authToken = res.json();
+//                 if(res.status === 200){
+//                     this.sessionService.set('subjectId', this._authToken.authToken);
+//                     this.sessionService.set('userName', this._authToken.userName);
+//                     this.sessionService.set('loggedIn', 'true');
+//                 }
+//                 return this._authToken
+//             }),catchError(err => this.handleError(err) ))
+//     }
 
-    public logout(subjectId:string){
-        let headers = new Headers({'Content-Type':'application/json'});
-        headers.set('subjectid', subjectId);
-        let options = new RequestOptions({headers: headers})
-        return this.http.post(this._logoutEndpoint, null, options).pipe(
-            map((res : Response) => {
-                return res.json()
-            }),catchError(err => this.handleError(err)) );
-    }
 
-    /**
-     * 
-     * @param error 
-     * 
-     * 
-     * private hanlde error only aplyies at the login module of the application
-     */
-    private handleError(error: Response): Promise<any> {
-        let err: ErrorReport = { 
-            httpStatus: error.json().httpStatus,
-            details: error.json().details,
-            message: error.json().message
-        };
+//     public vallidate(subjectId:string){
+
+//         let headers = new Headers({'Content-Type':'application/json'});
+//         headers.set('subjectid', subjectId);
+//         let options = new RequestOptions({headers: headers})
+
+//         return this.http.post(this._validateEndpoint, null, options).pipe(
+//             tap(
+//                 (res : Response) => {
+//                 return res.json()
+//             }),
+//             catchError(err => this.handleError(err))
+//         )
+//     }
+
+//     public logout(subjectId:string){
+//         let headers = new Headers({'Content-Type':'application/json'});
+//         headers.set('subjectid', subjectId);
+//         let options = new RequestOptions({headers: headers})
+//         return this.http.post(this._logoutEndpoint, null, options).pipe(
+//             tap((res : Response) => {
+//                 return res.json()
+//             }),catchError(err => this.handleError(err)) );
+//     }
+
+//     /**
+//      * 
+//      * @param error 
+//      * 
+//      * 
+//      * private hanlde error only aplyies at the login module of the application
+//      */
+//     private handleError(error: Response): Promise<any> {
+//         let err: ErrorReport = { 
+//             httpStatus: error.json().httpStatus,
+//             details: error.json().details,
+//             message: error.json().message
+//         };
         
-        return Promise.reject(this._errorReport || err);
-    }
+//         return Promise.reject(this._errorReport || err);
+//     }
 
 
     // /**
@@ -144,7 +144,7 @@ export class AaService {
     //  */
     // public authorize(method: string, uri: string, subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
     //     return this.authorizeWithHttpInfo(method, uri, subjectid, extraHttpRequestParams)
-    //         .map((response: Response) => {
+    //         .tap((response: Response) => {
     //             if (response.status === 204) {
     //                 return undefined;
     //             } else {
@@ -161,7 +161,7 @@ export class AaService {
     //  */
     // public login(username: string, password: string, extraHttpRequestParams?: any): Observable<AuthToken> {
     //     return this.loginWithHttpInfo(username, password, extraHttpRequestParams)
-    //         .map((response: Response) => {
+    //         .tap((response: Response) => {
     //             if (response.status === 204) {
     //                 return undefined;
     //             } else {
@@ -177,7 +177,7 @@ export class AaService {
     //  */
     // public logout(subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
     //     return this.logoutWithHttpInfo(subjectid, extraHttpRequestParams)
-    //         .map((response: Response) => {
+    //         .tap((response: Response) => {
     //             if (response.status === 204) {
     //                 return undefined;
     //             } else {
@@ -193,7 +193,7 @@ export class AaService {
     //  */
     // public validate(subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
     //     return this.validateWithHttpInfo(subjectid, extraHttpRequestParams)
-    //         .map((response: Response) => {
+    //         .tap((response: Response) => {
     //             if (response.status === 204) {
     //                 return undefined;
     //             } else {
@@ -401,4 +401,4 @@ export class AaService {
     //     return this.http.request(path, requestOptions);
     // }
 
-}
+// }

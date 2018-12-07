@@ -9,7 +9,7 @@ import {ObserversModule} from '@angular/cdk/observers';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {PlatformModule} from '@angular/cdk/platform';
 import {PortalModule} from '@angular/cdk/portal';
-import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import {ScrollDispatchModule, ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
 import {OverlayContainer} from '@angular/cdk/overlay';
@@ -73,7 +73,7 @@ import { DatasetComponent } from './dataset/dataset-component/dataset.component'
 import { HomeComponent } from './home/home.component';
 // import { AlgorithmsModuleModule } from './algorithms/algorithms-module.module';
 // import { DatasetModuleModule } from './dataset/dataset-module.module';
-import { ModelsModuleModule } from './models/models-module.module';
+// import { ModelsModuleModule } from './models/models-module.module';
 import { AlgorithmsListComponent } from './algorithms/algorithms-list/algorithms-list.component';
 import { DatasetListComponent } from './dataset/dataset-list/dataset-list.component';
 import { Router } from '@angular/router/src/router';
@@ -84,12 +84,14 @@ import { DatasetDetailComponent } from './dataset/dataset-detail/dataset-detail.
 import { AuthModule, OidcSecurityService, OpenIDImplicitFlowConfiguration, AuthWellKnownEndpoints, OidcConfigService, } from 'angular-auth-oidc-client';
 import { HttpClientModule } from '@angular/common/http';
 import { SecurityStorage } from './session/security.storage';
+import { MarkdownModule } from 'ngx-markdown';
 import {  HttkBaseComponent } from './httk/base/httk.base.component';
 import { CreatehttkmodelComponent } from './httk/createhttkmodel/createhttkmodel.component';
 import { ParameterlistComponent } from './base/components/parameterlist/parameterlist.component';
 import { ParameterstepsComponent } from './base/components/parametersteps/parametersteps.component';
 import { AccountBaseComponent } from './account/account.base/account.base.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgxPicaModule } from '@digitalascetic/ngx-pica';
 import { SocialBaseComponent } from './account/social.base/social.base.component';
 import { QuotaComponent } from './account/quota/quota.component';
 import { OrganizationsComponent } from './account/organizations/organizations.component';
@@ -104,6 +106,11 @@ import { DataModelViewComponent } from './home/data-model-view/data-model-view.c
 import { ModelIdComponent } from './models/model-id/model-id.component';
 import { WorkbenchBaseComponent } from './workbench/workbench-base/workbench-base.component';
 import { DatasetIdComponent } from './dataset/dataset-id/dataset-id.component';
+import { MarkdownComponent } from './base/markdown/markdown.component';
+import { CommentsComponent } from './base/comments/comments.component';
+import { QuickViewComponent } from './home/quick-view/quick-view.component';
+import { ModelFeaturesComponent } from './models/model-features/model-features.component';
+import { PredictValidateComponent } from './models/predict-validate/predict-validate.component';
 /**
  * NgModule that includes all Material modules that are required to serve 
  * the Plunker.
@@ -126,10 +133,13 @@ import { DatasetIdComponent } from './dataset/dataset-id/dataset-id.component';
     ScrollDispatchModule,
     CdkStepperModule,
     CdkTableModule,
+    ScrollingModule,
     // Material
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
@@ -190,16 +200,18 @@ export class MaterialModule {}
     ReactiveFormsModule,
     BrowserAnimationsModule,
     DialogsModule,
-    HttpModule,
+    // HttpModule,
     AppRoutingModule,
-    ModelsModuleModule,
     RouterModule,
     HttpClientModule,
     ImageCropperModule,
+    NgxPicaModule,
     FlexLayoutModule,
+    MarkdownModule.forRoot(),
     // AuthModule.forRoot( { storage:SecurityStorage } ),
     AuthModule.forRoot( ),
     CommonModule,
+    
   ],
   exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule],
   declarations: [AppComponent,
@@ -211,6 +223,8 @@ export class MaterialModule {}
     DatasetListComponent,
     DatasetDetailComponent,
     ModelsComponent,
+    ModelFeaturesComponent,
+    PredictValidateComponent,
     HomeComponent,
     HttkBaseComponent,
     CreatehttkmodelComponent,
@@ -228,7 +242,10 @@ export class MaterialModule {}
     DataModelViewComponent,
     ModelIdComponent,
     DatasetIdComponent,
-    WorkbenchBaseComponent
+    WorkbenchBaseComponent,
+    CommentsComponent,
+    QuickViewComponent,
+    MarkdownComponent
     
     //
   ],

@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { AppModule } from '../app.module';
 // import { ConfigService } from '../app.';
 
-import { AaService } from './api/aa.service';
 import { SessionService } from '../session/session.service';
 import { SessionModule } from '../session/session.module';
 import { AlgorithmService } from './api/algorithm.service';
@@ -31,6 +30,7 @@ import { DatasetBuilderService } from './builders/dataset-builder.service';
 import { DatasetFactoryService } from './factories/dataset-factory.service';
 import { FeatureFactoryService } from './factories/feature-factory.service';
 import { FeatureApiService } from './api/feature.service';
+import { DiscussionService } from './api/discussion.service';
 // import { DatasetApiFacadeService } from './facades/dataset-api-facade.service';
 // import { ValidationService } from './api/validation.service';
 
@@ -39,7 +39,7 @@ import { FeatureApiService } from './api/feature.service';
   declarations: [],
   exports:      [],
   providers:    [ 
-    AaService,
+    // AaService,
     SessionService,
     AlgorithmService,
     FeatureApiService, 
@@ -65,6 +65,7 @@ import { FeatureApiService } from './api/feature.service';
     DatasetBuilderService,
     DatasetFactoryService,
     FeatureFactoryService,
+    DiscussionService
     // DatasetApiFacadeService
     // Feature
     ]

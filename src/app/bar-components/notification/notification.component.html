@@ -1,24 +1,30 @@
-<button matTooltip="Notifications"
-        matTooltipPosition="below"
-        mat-icon-button
-        [matMenuTriggerFor]="notsshortmenu">
+<button matTooltip="Notifications" matTooltipPosition="below" mat-icon-button [matMenuTriggerFor]="notsshortmenu">
   <div *ngIf="notifications.length > 0 else without_badge">
-    <mat-icon matBadge="{{notificationCount}}" matBadgeColor="warn" class="notif-icon-b" >notifications</mat-icon> 
+    <mat-icon matBadge="{{notificationCount}}" matBadgeColor="warn" class="notif-icon-b">notifications</mat-icon>
   </div>
   <ng-template #without_badge>
-    <mat-icon matBadgeColor="warn" class="notif-icon" >notifications</mat-icon>
+    <mat-icon matBadgeColor="warn" class="notif-icon">notifications</mat-icon>
   </ng-template>
 </button>
 <mat-menu #notsshortmenu="matMenu" class="notif-menu">
   <div *ngFor="let notif of notifications">
-  <div *ngIf="notif.type=='INVITATION'"> 
-  <button mat-menu-item (click)="openNotifDialog(notif)">
-    <mat-icon>group</mat-icon>
-    <span *ngIf="notif.viewed==false else no_bold">
-       <b> Invitation to join {{notif.invitationTo}} </b>
-    </span>
-    <ng-template #no_bold><span>Invitation to join {{notif.invitationTo}}</span></ng-template>
-  </button>
-</div>
- </div>
+    <div *ngIf="notif.type=='INVITATION'">
+      <button mat-menu-item (click)="openNotifDialog(notif)">
+        <mat-icon>group</mat-icon>
+        <span *ngIf="notif.viewed==false else no_bold">
+          <b> Invitation to join {{notif.invitationTo}} </b>
+        </span>
+        <ng-template #no_bold><span>Invitation to join {{notif.invitationTo}}</span></ng-template>
+      </button>
+    </div>
+    <div *ngIf="notif.type=='SHARE'">
+      <button mat-menu-item (click)="openNotifDialog(notif)">
+        <mat-icon>share</mat-icon>
+        <span *ngIf="notif.viewed==false else no_bold">
+          <b> Shared {{notif.entityShared.split("/")[0]}} through {{notif.organizationShared}} </b>
+        </span>
+        <ng-template #no_bold><span>Shared {{notif.entityShared.split("/")[0]}} through {{notif.organizationShared}} </span></ng-template>
+      </button>
+    </div>
+  </div>
 </mat-menu>

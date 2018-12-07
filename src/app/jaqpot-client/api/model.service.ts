@@ -4,15 +4,15 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Response, ResponseContentType } from '@angular/http';
 import '../rxjs-operators';
-import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { HttpClient } from '@angular/common/http/src/client';
-import { HttpParams } from '@angular/common/http/src/params';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { MetaInfo, Model } from '../model/models';
 
 
 
@@ -21,15 +21,27 @@ export class ModelApiService extends BaseClient<Dataset>{
 
     _privateBasePath:string;
     private dataset:Dataset;
-    _datasetBase:string = "/model/"
+    _modelBase:string = "/model/"
 
-    constructor(http: Http,
+    constructor(http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/model/")
         }
 
+    public putMeta(model:Model):Observable<MetaInfo>{
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams().set("query", "UNREAD");
+        let pathFormed = Config.JaqpotBase + this._modelBase + model._id + "/meta"
+        return this.http.put(pathFormed, model, { headers: headers} ).pipe(
+            tap((res : Response) => { 
+                return res           
+            }),catchError( err => this.dialogsService.onError(err) )
+        );
+    }
 }
 
 // /**

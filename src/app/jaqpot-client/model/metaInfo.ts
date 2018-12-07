@@ -45,6 +45,14 @@ export interface MetaInfo {
 
     picture?: string;
 
+    markdown?: string;
+
     tags?: Array<string>;
 
+    read?: Array<string>;
+
+    write?: Array<string>;
+
+    execute?: Array<string>;
+    
 }

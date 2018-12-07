@@ -4,7 +4,7 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Response, ResponseContentType } from '@angular/http';
 import '../rxjs-operators';
-import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
 import { ErrorReport } from '../model/errorReport';
 import { Task } from '../model/task';
@@ -13,10 +13,10 @@ import { Task } from '../model/task';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { HttpClient } from '@angular/common/http/src/client';
-import { HttpParams } from '@angular/common/http/src/params';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { MetaInfo } from '../model/models';
 
 
 
@@ -44,7 +44,7 @@ export class DatasetService extends BaseClient<Dataset>{
     private _createQPRFEndpoint:string;
 
 
-    constructor(http: Http,
+    constructor(http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
@@ -53,19 +53,42 @@ export class DatasetService extends BaseClient<Dataset>{
 
     public uploadNewDataset(dataset:Dataset):Observable<Dataset>{
         dataset.existence = Dataset.ExistenceEnum.UPLOADED
-        let headers = new Headers({'Content-Type':'application/json'});
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
-        headers.set('Authorization', tokenValue);
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let pathFormed = Config.JaqpotBase + this._datasetBase
         return this.http.post(pathFormed, dataset, { headers: headers} ).pipe(
-            map((res : Response) => { 
-                return res.json()            
+            tap((res : Response) => { 
+                return res           
             }),catchError( err => this.dialogsService.onError(err) )
         );
     }
 
+    public putMeta(dataset:Dataset):Observable<MetaInfo>{
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams().set("query", "UNREAD");
+        let pathFormed = Config.JaqpotBase + this._datasetBase + dataset._id + "/meta"
+        return this.http.put(pathFormed, dataset, { headers: headers} ).pipe(
+            tap((res : Response) => { 
+                return res           
+            }),catchError( err => this.dialogsService.onError(err) )
+        );
+    }
     
+    public getDataEntryPaginated(datasetId:string, start:number, max:number){
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams().set('dataEntries', 'true').set('rowStart', start.toString()).set('rowMax', max.toString());
+        let pathFormed = Config.JaqpotBase + this._datasetBase + datasetId
+        return this.http.get(pathFormed, { headers: headers, params: params} ).pipe(
+            tap((res : Response) => { 
+                return res            
+            }),catchError( err => this.dialogsService.onError(err) )
+        );
+    }
 
 }
     // public getFeaturedDatasets(start?: number, max?: number): Observable<Array<Dataset>> {

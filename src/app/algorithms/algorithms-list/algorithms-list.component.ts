@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Http } from '@angular/http/src/http';
-import { Observable ,  Subscription } from 'rxjs';
+import { Observable ,  Subscription ,  merge } from 'rxjs';
 import { AlgorithmService } from '../../jaqpot-client/api/algorithm.service';
 import { Algorithm } from '../../jaqpot-client';
-import { merge } from 'rxjs';
 import { startWith, scan, switchMap, map, catchError} from 'rxjs/operators';
 import { SessionService } from '../../session/session.service';
 

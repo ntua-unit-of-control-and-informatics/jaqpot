@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Notification, TYPE, ANSWER } from '../model/notification';
+import { MetaInfo } from '../model/models';
 
 
 @Injectable({
@@ -15,6 +16,13 @@ export class NotificationBuilderService {
 
   setOwner(owner:string){
     this.notification.owner = owner
+  }
+
+  setCreator(creator:string){
+    let meta:MetaInfo = <MetaInfo>{}
+    meta.creators = []
+    meta.creators.push(creator)
+    this.notification.meta = meta
   }
 
   setFrom(from:string){
@@ -47,6 +55,10 @@ export class NotificationBuilderService {
 
   setViewd(viewed:boolean){
     this.notification.viewed = viewed
+  }
+
+  setThroughOrg(throughOrg:string){
+    this.notification.organizationShared = throughOrg
   }
 
   build(){
