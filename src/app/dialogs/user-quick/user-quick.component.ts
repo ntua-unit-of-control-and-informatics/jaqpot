@@ -11,10 +11,14 @@ export class UserQuickComponent implements OnInit {
 
   userApi:UserService
   user:User
+  userToSee:User
 
   constructor() { }
 
   ngOnInit() {
+    this.userApi.getUserById(this.user._id).subscribe((user:User)=>{
+      this.userToSee = user;
+    })
   }
 
 }

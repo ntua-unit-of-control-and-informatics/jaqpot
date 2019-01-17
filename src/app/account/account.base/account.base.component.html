@@ -1,6 +1,6 @@
 <mat-toolbar class="user-base" color="primary">
   <div class="user-base-comp">
-    <div class="user-photo" *ngIf="photo_unavail else photo_avail">
+    <div class="user-photo" *ngIf="photo_unavail; else photo_avail">
       <button mat-fab color="warn" class="user-not-pic" matTooltip="Add photo" matTooltipPosition="below" (click)="addProfilePicDialog()">
         <mat-icon>add_a_photo</mat-icon>
       </button>
@@ -84,8 +84,7 @@
       <form *ngIf="user">
         <mat-icon>info</mat-icon>
         <mat-form-field class="simple-meta">
-          <input matInput placeholder="About" [disabled]="edit" [ngModel]="user?.about " (ngModelChange)="user.about = $event" name="about"
-            (keyup)="onEnter()">
+          <input matInput placeholder="About" [disabled]="edit" [ngModel]="user?.about " (ngModelChange)="user.about = $event" name="about">
         </mat-form-field>
 
       </form>

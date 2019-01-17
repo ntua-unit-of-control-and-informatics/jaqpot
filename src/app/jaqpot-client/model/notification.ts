@@ -23,6 +23,8 @@ export interface Notification{
 
     invitationTo?: string
 
+    affiliatedOrg?: string
+
     entityShared?: string
 
     organizationShared?: string
@@ -35,7 +37,9 @@ export enum TYPE{
     SIMPLE = "SIMPLE",
     INVITATION = "INVITATION",
     FYI = "FYI",
-    SHARE = "SHARE"
+    SHARE = "SHARE",
+    AFFILIATION = "AFFILIATION",
+    BROKENAFFILIATION = "BROKENAFFILIATION"
 }
 
 export enum ANSWER{

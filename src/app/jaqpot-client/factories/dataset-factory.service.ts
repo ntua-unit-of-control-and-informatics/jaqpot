@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Dataset, FeatureInfo } from '../model/models';
+import { Dataset, FeatureInfo, MetaInfo, DataEntry, Feature } from '../model/models';
 import { DatasetBuilderService } from '../builders/dataset-builder.service';
 import { SessionService } from '../../session/session.service';
 import { FeatureBuilderService } from '../builders/feature-builder.service';
 import { MetaBuilderService } from '../builders/meta-builder.service';
 import { FeatureInfoBuilderService } from '../builders/feature-info-builder.service';
 import { DataEntryBuilderService } from '../builders/data-entry-builder.service';
+import { FeatureAndValue } from '../../ui-models/featureAndValue';
+import { Config } from '../../config/config';
+import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
 
 @Injectable({
   providedIn: 'root'
@@ -184,6 +187,157 @@ export class DatasetFactoryService {
     return dataset
   }
 
+
+  public createPredictDataset(features:FeatureAndValue[]){
+    let dataset:Dataset = <Dataset>{}
+    let meta:MetaInfo = <MetaInfo>{}
+    meta.creators = []
+    meta.creators.push(this.sessionService.getUserId())
+    meta.titles = []
+    meta.titles.push("Created for prediction")
+    dataset.meta = meta;
+    dataset.dataEntry = []
+    let i = 0
+    let dataEntry:DataEntry = <DataEntry>{};
+    let _dataEntryBuilder = new DataEntryBuilderService();
+    let values:{ [key: string]: any} = {};
+    features.forEach((feat:FeatureAndValue)=>{
+      if(isNaN( Number(feat.value)) ){
+        values[Config.JaqpotBase + "/feature/" + feat.feature._id] = feat.value
+      }else{
+        values[Config.JaqpotBase + "/feature/" + feat.feature._id] = Number(feat.value)
+      }
+    })
+
+    _dataEntryBuilder.setEntryIdName(i.toString())
+    _dataEntryBuilder.setDataEntry(values)
+    dataEntry =  _dataEntryBuilder.build()
+    dataset.dataEntry.push(dataEntry)
+    dataset.existence = Dataset.ExistenceEnum.FORPREDICTION
+    dataset.features = []
+    features.forEach((feat:FeatureAndValue)=>{
+      let featureInfo:FeatureInfo = <FeatureInfo>{}
+      featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
+      featureInfo.name = feat.feature.meta.titles[0]
+      dataset.features.push(featureInfo)
+    })
+    return dataset;
+  }
+
+  public matchPredictDataset(features:FeatureAndValue[], csv, id){
+    let dataset:Dataset = <Dataset>{}
+    let meta:MetaInfo = <MetaInfo>{}
+    meta.creators = []
+    meta.creators.push(this.sessionService.getUserId())
+    meta.titles = []
+    meta.titles.push("Created for prediction")
+    dataset.meta = meta;
+    dataset.dataEntry = []
+    const rows:string[] = csv.split(/\r?\n/)  
+    let ids = rows[0].split(/,|;/);
+    rows.splice(0,1)
+    let i = 0
+    rows.forEach(row => {
+      let data:string[] = this.csvToArray(row)
+      if(data.length > 0){
+        let dataEntry:DataEntry = <DataEntry>{};
+        let _dataEntryBuilder = new DataEntryBuilderService();
+        let values:{ [key: string]: any} = {};
+        if(id === 'None'){
+          _dataEntryBuilder.setEntryIdName(i.toString())
+        }else{
+          let idIndex = ids.indexOf(id)
+          _dataEntryBuilder.setEntryIdName(data[idIndex])
+        }
+        features.forEach((feat:FeatureAndValue) =>{
+          let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
+          if(isNaN( Number(data[valueIndex])) ){
+            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = feat.value
+          }else{
+            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = Number(data[valueIndex])
+          }
+          _dataEntryBuilder.setDataEntry(values)
+        })
+        dataEntry =  _dataEntryBuilder.build()
+        dataset.dataEntry.push(dataEntry)
+        i = i + 1
+      }
+    })
+    dataset.existence = Dataset.ExistenceEnum.FORPREDICTION
+    dataset.features = []
+    features.forEach((feat:FeatureAndValue)=>{
+      let featureInfo:FeatureInfo = <FeatureInfo>{}
+      featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
+      featureInfo.name = feat.feature.meta.titles[0]
+      dataset.features.push(featureInfo)
+    })
+    return dataset;
+  }
+
+  public matchValidateDataset(indepFeatures:FeatureAndValue[],depFeatures:FeatureAndValue[], csv, id){
+    let dataset:Dataset = <Dataset>{}
+    let meta:MetaInfo = <MetaInfo>{}
+    meta.creators = []
+    meta.creators.push(this.sessionService.getUserId())
+    meta.titles = []
+    meta.titles.push("Created for prediction")
+    dataset.meta = meta;
+    dataset.dataEntry = []
+    const rows:string[] = csv.split(/\r?\n/)  
+    let ids = rows[0].split(/,|;/);
+    rows.splice(0,1)
+    let i = 0
+    rows.forEach(row => {
+      let data:string[] = this.csvToArray(row)
+      if(data.length > 0){
+        let dataEntry:DataEntry = <DataEntry>{};
+        let _dataEntryBuilder = new DataEntryBuilderService();
+        let values:{ [key: string]: any} = {};
+        if(id === 'None'){
+          _dataEntryBuilder.setEntryIdName(i.toString())
+        }else{
+          let idIndex = ids.indexOf(id)
+          _dataEntryBuilder.setEntryIdName(data[idIndex])
+        }
+        indepFeatures.forEach((feat:FeatureAndValue) =>{
+          let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
+          if(isNaN( Number(data[valueIndex])) ){
+            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = feat.value
+          }else{
+            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = Number(data[valueIndex])
+          }
+          _dataEntryBuilder.setDataEntry(values)
+        })
+        depFeatures.forEach((feat:FeatureAndValue) =>{
+          let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
+          if(isNaN( Number(data[valueIndex])) ){
+            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = feat.value
+          }else{
+            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = Number(data[valueIndex])
+          }
+          _dataEntryBuilder.setDataEntry(values)
+        })
+        dataEntry =  _dataEntryBuilder.build()
+        dataset.dataEntry.push(dataEntry)
+        i = i + 1
+      }
+    })
+    dataset.existence = Dataset.ExistenceEnum.FORPREDICTION
+    dataset.features = []
+    indepFeatures.forEach((feat:FeatureAndValue)=>{
+      let featureInfo:FeatureInfo = <FeatureInfo>{}
+      featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
+      featureInfo.name = feat.feature.meta.titles[0]
+      dataset.features.push(featureInfo)
+    })
+    depFeatures.forEach((feat:FeatureAndValue)=>{
+      let featureInfo:FeatureInfo = <FeatureInfo>{}
+      featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
+      featureInfo.name = feat.feature.meta.titles[0]
+      dataset.features.push(featureInfo)
+    })
+    return dataset;
+  }
 
   csvToArray(text:string){
     var re_valid = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;

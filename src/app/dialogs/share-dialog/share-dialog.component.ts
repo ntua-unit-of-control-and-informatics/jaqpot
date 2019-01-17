@@ -56,6 +56,8 @@ export class ShareDialogComponent implements OnInit {
 
   success:boolean = false;
 
+  affiliatedOrgs:string[] = []
+
   @ViewChild('readInput') readInput: ElementRef<HTMLInputElement>;
   @ViewChild('writeInput') writeInput: ElementRef<HTMLInputElement>;
   @ViewChild('executeInput') executeInput: ElementRef<HTMLInputElement>;
@@ -70,10 +72,22 @@ export class ShareDialogComponent implements OnInit {
   ngOnInit(){
     this._userApi.getPropertyWithIdSecured(this._userId, 'organizations').subscribe((user:User) =>{
       this.organizationsAll = user.organizations.slice()
+      this.organizationsAll.forEach(orgid => {
+        this._organizationApi.getWithIdSecured(orgid).subscribe((org:Organization)=>{
+          if(typeof org.affiliations != 'undefined'){
+            org.affiliations.forEach(orgid =>{
+              if(!this.affiliatedOrgs.includes(orgid)){
+                this.affiliatedOrgs.push(orgid)
+              }
+            })
+          }
+        })
+      })
       this.organizationsToExecute = user.organizations.slice()
       this.organizationsToWrite = user.organizations.slice()
       this.organizationsToRead = user.organizations.slice()
     })
+
     if(this._entityType === "dataset"){
       this._datasetApi.getWithIdSecured(this._entityId.split("/")[1]).subscribe((data:Dataset)=>{
         if(typeof data.meta.read != 'undefined'){
@@ -138,35 +152,6 @@ export class ShareDialogComponent implements OnInit {
     }
     this.title = "Share " + this._entityType
   }
-
-  // add(event: MatChipInputEvent): void {
-  //   // Add organzation only when MatAutocomplete is not open
-  //   // To make sure this does not conflict with OptionSelected Event
-  //   if (!this.matReadcomplete.isOpen) {
-  //     const input = event.input;
-  //     const value = event.value;
-
-  //     // Add our fruit
-  //     if ((value || '').trim()) {
-  //       this.organizations.push(value.trim());
-  //     }
-
-  //     // Reset the input value
-  //     if (input) {
-  //       input.value = '';
-  //     }
-
-  //     this.readCtrl.setValue(null);
-  //   }
-  // }
-
-  // remove(org: string): void {
-  //   const index = this.organizations.indexOf(org);
-  //   if (index >= 0) {
-  //     this.organizations.splice(index, 1);
-  //   }
-  // }
-
 
   addReadOrg(event: MatChipInputEvent): void {
     // Add organzation only when MatAutocomplete is not open
@@ -439,11 +424,75 @@ export class ShareDialogComponent implements OnInit {
           break; 
         } 
         case "model": { 
-          console.log("model")
+          this._modelApi.getWithIdSecured(this._entityId.split("/")[1]).subscribe((model:Model)=>{
+            if(typeof model.meta.read === 'undefined'){
+              model.meta.read = []
+              model.meta.read = this.organizationsWillRead.slice()
+            }else{
+              model.meta.read = model.meta.read.concat(this.organizationsWillRead)
+            }
+            if(typeof model.meta.write === 'undefined'){
+              model.meta.write = []
+              model.meta.write = this.organizationsWillWrite.slice()
+            }else{
+              model.meta.write = model.meta.write.concat(this.organizationsWillWrite)
+            }
+            if(typeof model.meta.execute === 'undefined'){
+              model.meta.execute = []
+              model.meta.execute = this.organizationsWillExecute.slice()
+            }else{
+              model.meta.execute = model.meta.write.concat(this.organizationsWillExecute)
+            }
+            let uniqueOrgs:string[] = this.organizationsWillRead.slice();
+            let jind = uniqueOrgs.indexOf("Jaqpot")
+            if(jind >= 0 ){
+              uniqueOrgs.splice(jind, 1)
+            }
+            uniqueOrgs.forEach(orgId => {
+              this._organizationApi.getPropertyWithIdSecured(orgId, 'users').subscribe((users:Organization )=>{
+                if(typeof users != 'undefined'){
+                  users.userIds.forEach(id => {
+                    let notific:Notification = this._notificationFactory
+                      .shareNotification(this._userId, id, orgId, this._entityId );
+                      this._notificationApi.postEntity(notific).subscribe(data=>{
+                      })
+                  })
+                }
+              })
+            })
+            this._modelApi.putMeta(model).subscribe(data=>{
+              this.success = true;
+            })
+            
+          })
           break; 
         } default:{
           console.log("default")
         }
+    }
+  }
+
+  toggleChange(event){
+    if(event.checked === false){
+      this.organizationsWillExecute = []
+      this.organizationsWillRead = []
+      this.organizationsWillWrite = []
+      this.organizationsToExecute = this.organizationsAll.slice()
+      this.organizationsToRead = this.organizationsAll.slice()
+      this.organizationsToWrite = this.organizationsAll.slice()
+      this.share = true;
+      this.cancell = true;
+    }else{
+      this.organizationsWillExecute = []
+      this.organizationsWillRead = []
+      this.organizationsWillWrite = []
+      console.log(this.affiliatedOrgs)
+      this.organizationsToExecute = this.affiliatedOrgs.slice()
+      this.organizationsToRead = this.affiliatedOrgs.slice()
+      this.organizationsToWrite = this.affiliatedOrgs.slice()
+      this.share = true;
+      this.cancell = true;
+
     }
   }
 

@@ -153,6 +153,14 @@ mat-card-subtitle{
 
 }
 
+.descr_input{
+  width: 100%;
+  min-height: 8em;
+}
+.descr_text{
+  min-height: 8em;
+}
+
 .entity_image {
   float: left;
   margin-top: -4em;

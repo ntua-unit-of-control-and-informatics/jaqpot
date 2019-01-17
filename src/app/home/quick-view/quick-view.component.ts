@@ -49,7 +49,7 @@ export class QuickViewComponent implements OnChanges {
   }
 
   openOrg(org){
-    this.dialogsServise.onOrganizationView(org, this.orgsApi)
+    this.dialogsServise.onOrganizationView(org, this.orgsApi, true)
   }
 
 }

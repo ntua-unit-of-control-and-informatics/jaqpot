@@ -1,3 +1,26 @@
+import {  Injectable } from '@angular/core';
+import '../rxjs-operators';
+import { SessionService } from '../../session/session.service';
+import { DialogsService } from '../../dialogs/dialogs.service';
+import { HttpClient } from '@angular/common/http';
+import { BaseClient } from './base.client';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { Report } from '../model/models';
+
+@Injectable()
+export class ReportApiService extends BaseClient<Report>{
+
+    _privateBasePath:string;
+    _reportBase:string = "/report/"
+
+    constructor(http: HttpClient,
+        public sessionServise:SessionService,
+        public dialogsService:DialogsService,
+        public oidcSecurityService: OidcSecurityService){
+            super(http, dialogsService, oidcSecurityService, "/report/")
+        }
+
+}
 // /**
 //  * Jaqpot API
 //  * Jaqpot v4 (Quattro) is the 4th version of a YAQP, a RESTful web service which can be used to train machine learning models and use them to obtain toxicological predictions for given chemical compounds or engineered nano materials. The project is written in Java8 and JEE7.

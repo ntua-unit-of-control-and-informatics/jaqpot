@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Subject } from '../../../../node_modules/rxjs';
 import { Organization } from '../../jaqpot-client/model/organization';
 
@@ -7,9 +7,10 @@ import { Organization } from '../../jaqpot-client/model/organization';
   templateUrl: './organization-details.component.html',
   styleUrls: ['./organization-details.component.css']
 })
-export class OrganizationDetailsComponent implements OnInit {
+export class OrganizationDetailsComponent implements OnChanges {
 
-  @Input() editFromP:Subject<boolean>;
+  // @Input() editFromP:Subject<boolean>;
+  @Input() editFromP:boolean;
   @Input() organization: Organization;
 
   descriptions:Array<string>
@@ -19,13 +20,14 @@ export class OrganizationDetailsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.descriptions= new Array();
     this.subjects = new Array();
     this.audiences = new Array();
-    this.editFromP.subscribe(value =>{
-      this.edit = value
-    })
+    // this.editFromP.subscribe(value =>{
+    //   this.edit = value
+    // })
+    this.edit = this.editFromP
     if(this.organization.meta != null)
     {
       if(this.organization.meta.descriptions != null)
@@ -50,10 +52,9 @@ export class OrganizationDetailsComponent implements OnInit {
     
   }
 
-  ngOnDestroy(){
-    this.editFromP.unsubscribe()
-  }
-
+  // ngOnDestroy(){
+  //   this.editFromP.unsubscribe()
+  // }
 
   addDescription(){
     this.descriptions.push("")

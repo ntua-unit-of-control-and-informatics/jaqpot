@@ -90,6 +90,18 @@ export class DatasetService extends BaseClient<Dataset>{
         );
     }
 
+    public updateOnTrash(datasetId:string, dataset:Dataset):Observable<Dataset>{
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let pathFormed = Config.JaqpotBase + this._datasetBase + datasetId + '/ontrash';
+        return this.http.put(pathFormed, dataset, { headers:headers }).pipe(
+            tap((res : Response) =>{
+                return res;
+            }),catchError( err => this.dialogsService.onError(err) )
+        )
+    }
+
 }
     // public getFeaturedDatasets(start?: number, max?: number): Observable<Array<Dataset>> {
     //     let params = new URLSearchParams();

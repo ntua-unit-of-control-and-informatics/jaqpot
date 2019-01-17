@@ -30,6 +30,12 @@ import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 import { DatasetService } from '../jaqpot-client/api/dataset.service';
 import { ModelApiService } from '../jaqpot-client/api/model.service';
 import { ShareNotifDialogComponent } from './notification-dialogs/share-notif-dialog/share-notif-dialog.component';
+import { AskForIdComponent } from './ask-for-id/ask-for-id.component';
+import { AddAdministratorComponent } from './add-administrator/add-administrator.component';
+import { AffiliationsDialogComponent } from './affiliations-dialog/affiliations-dialog.component';
+import { AffiliationNotifComponent } from './notification-dialogs/affiliation-notif/affiliation-notif.component';
+import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.component';
+import { BrokenAffilNotifComponent } from './notification-dialogs/broken-affil-notif/broken-affil-notif.component';
 
 @Injectable()
 export class DialogsService {
@@ -105,9 +111,20 @@ export class DialogsService {
         return dialogRef.afterClosed()
     }
 
-    public confirmDeletion(){
+    public confirmDeletion(confirmationMessage:string, confirmationAction){
         let dialogRef: MatDialogRef<ConfirmationDialogComponent>;
         dialogRef = this.dialog.open(ConfirmationDialogComponent);
+        dialogRef.componentInstance.confirmationAction = confirmationAction
+        dialogRef.componentInstance.confirmationMessage = confirmationMessage
+        return dialogRef.afterClosed();
+    }
+
+    public addAdministrator(userIds:string[], admins:string[], userApi:UserService){
+        let dialogRef: MatDialogRef<AddAdministratorComponent>;
+        dialogRef = this.dialog.open(AddAdministratorComponent);
+        dialogRef.componentInstance.userIds = userIds
+        dialogRef.componentInstance.userApi = userApi
+        dialogRef.componentInstance.admins = admins
         return dialogRef.afterClosed();
     }
 
@@ -137,13 +154,48 @@ export class DialogsService {
             dialogRef.componentInstance._datasetApi = datasetService
             return dialogRef.afterClosed();
         }
+        if(notification.type === "AFFILIATION"){
+            let dialogRef: MatDialogRef<AffiliationNotifComponent>;
+            dialogRef = this.dialog.open(AffiliationNotifComponent);
+            dialogRef.componentInstance._organizationApi = organizationService
+            dialogRef.componentInstance._notificationApi = notificationService
+            dialogRef.componentInstance._userApi = userService
+            dialogRef.componentInstance._notification = notification
+            dialogRef.componentInstance._modelApi = modelService
+            dialogRef.componentInstance._datasetApi = datasetService
+            return dialogRef.afterClosed();
+        }
+        if(notification.type === "FYI"){
+            let dialogRef: MatDialogRef<FyiNotifComponent>;
+            dialogRef = this.dialog.open(FyiNotifComponent);
+            dialogRef.componentInstance._organizationApi = organizationService
+            dialogRef.componentInstance._notificationApi = notificationService
+            dialogRef.componentInstance._userApi = userService
+            dialogRef.componentInstance._notification = notification
+            dialogRef.componentInstance._modelApi = modelService
+            dialogRef.componentInstance._datasetApi = datasetService
+            return dialogRef.afterClosed();
+        }
+        if(notification.type === "BROKENAFFILIATION"){
+            let dialogRef: MatDialogRef<BrokenAffilNotifComponent>;
+            dialogRef = this.dialog.open(BrokenAffilNotifComponent);
+            dialogRef.componentInstance._organizationApi = organizationService
+            dialogRef.componentInstance._notificationApi = notificationService
+            dialogRef.componentInstance._userApi = userService
+            dialogRef.componentInstance._notification = notification
+            dialogRef.componentInstance._modelApi = modelService
+            dialogRef.componentInstance._datasetApi = datasetService
+            return dialogRef.afterClosed();
+        }
+
     }
 
-    public onOrganizationView(organization:Organization, organizationService:OrganizationService){
+    public onOrganizationView(organization:Organization, organizationService:OrganizationService, canGo:boolean){
         let dialogRef: MatDialogRef<OrganizationDialogComponent>;
         dialogRef = this.dialog.open(OrganizationDialogComponent)
         dialogRef.componentInstance.organization = organization
         dialogRef.componentInstance.organizationService = organizationService
+        dialogRef.componentInstance.view = canGo
         return dialogRef.afterClosed();
     }
 
@@ -159,6 +211,13 @@ export class DialogsService {
         dialogRef.componentInstance.organization = organization
         dialogRef.componentInstance.notificationService = notificationService
         return dialogRef.afterClosed();
+    }
+
+    public askForId(ids){
+        let dialogRef: MatDialogRef<AskForIdComponent>;
+        dialogRef = this.dialog.open(AskForIdComponent);
+        dialogRef.componentInstance.ids = ids
+        return dialogRef.afterClosed()
     }
 
 
@@ -184,6 +243,19 @@ export class DialogsService {
         dialogRef.componentInstance._userId = userId
         return dialogRef.afterClosed();
 
+    }
+
+    public openAffiliationRequest(organizationService:OrganizationService
+            , notifApi:NotificationService
+            , notificationFactory:NotificationFactoryService
+            , fromOrg){
+        let dialogRef: MatDialogRef<AffiliationsDialogComponent>;
+        dialogRef = this.dialog.open(AffiliationsDialogComponent)
+        dialogRef.componentInstance.notificationApi = notifApi
+        dialogRef.componentInstance.organizationApi = organizationService
+        dialogRef.componentInstance.notificationFactory = notificationFactory
+        dialogRef.componentInstance.fromOrg = fromOrg
+        return dialogRef.afterClosed();
     }
 
     public onError(error:HttpErrorResponse){

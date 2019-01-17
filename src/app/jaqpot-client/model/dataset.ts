@@ -46,6 +46,8 @@ export interface Dataset {
 
     _id?: string;
 
+    onTrash?: boolean;
+
 }
 export namespace Dataset {
     export enum DescriptorsEnum {
@@ -54,7 +56,8 @@ export namespace Dataset {
         GO = <any> 'GO',
         MOPAC = <any> 'MOPAC',
         CDK = <any> 'CDK',
-        PREDICTED = <any> 'PREDICTED'
+        PREDICTED = <any> 'PREDICTED',
+        FORPREDICTION = <any> 'FORPREDICTION'
     }
 }
 
@@ -66,5 +69,6 @@ export namespace Dataset {
         TRANFORMED = <any> "TRANSFORMED",
         PREDICTED = <any> "PREDICTED",
         DESCRIPTORSADDED = <any> "DESCRIPTORSADDED",
+        FORPREDICTION = <any> "FORPREDICTION"
     }
 }

@@ -61,6 +61,11 @@ export class NotificationBuilderService {
     this.notification.organizationShared = throughOrg
   }
 
+  setAffiliatedOrg(affOrg:string){
+    this.notification.affiliatedOrg = affOrg
+  }
+
+
   build(){
     return this.notification
   }

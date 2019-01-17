@@ -1,19 +1,10 @@
-<mat-card class="orgcard">
-  <mat-card-header>
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px" fxLayoutAlign="flex-start">
 
-    <div class="orgphotoall">
-      <div class="org-photo" *ngIf="photo_unavail else photo_avail">
-        <button mat-fab color="warn" class="org-not-pic" matTooltip="Add photo" matTooltipPosition="below" (click)="addOrgPicDialog()">
-          <mat-icon>add_a_photo</mat-icon>
-        </button>
-      </div>
-      <ng-template #photo_avail>
-        <div class="org-photo">
-          <a matTooltip="Update photo" matTooltipPosition="below" (click)="addOrgPicDialog()">
-            <img class="orgim" [src]="organization.meta.picture" />
-          </a>
-        </div>
-      </ng-template>
+  <div class="card_wrap" fxFlex.xl="14%" fxFlex.lg="16%" fxFlex.md="20%" fxFlex.sm="28%" fxFlex.xs="96%">
+    <mat-card *ngIf="organization" class="base_card">
+      <mat-card-header>
+
+      </mat-card-header>
 
       <div class="orgiddiv">
         <h2 class="orgid">{{organization?._id}}</h2>
@@ -26,97 +17,239 @@
         <ng-template #editlocation>
           <div *ngIf="organization">
             <mat-form-field class="edit-city">
-              <textarea matInput placeholder="Edit City" [(ngModel)]="organization.city"></textarea>
+              <input matInput placeholder="Edit City" [(ngModel)]="organization.city">
             </mat-form-field>
             <mat-form-field class="edit-country">
-              <textarea matInput placeholder="Edit Country" [(ngModel)]="organization.country"></textarea>
+              <input matInput placeholder="Edit Country" [(ngModel)]="organization.country">
             </mat-form-field>
           </div>
 
         </ng-template>
       </div>
+      <mat-card-content *ngIf="organization" class="content">
 
-    </div>
+        <div class="org_pic">
+          <div *ngIf="organization.meta?.picture; else no_image">
+            <div *ngIf="canUpdatePhoto; else cannotUpdate">
+              <a matTooltip="Update photo" matTooltipPosition="below" (click)="updatePhoto()">
+                <img mat-card-image-lg class="entity_image" src="{{organization.meta.picture}}">
+              </a>
+            </div>
+            <ng-template #cannotUpdate>
+              <img mat-card-image-lg class="entity_image" src="{{organization.meta.picture}}">
+            </ng-template>
+          </div>
+          <ng-template #no_image>
 
-  </mat-card-header>
-  <mat-card-content>
+            <div *ngIf="canUpdatePhoto; else cannotUpdate">
+              <a matTooltip="Update photo" matTooltipPosition="below" (click)="updatePhoto()">
+                <img mat-card-avatar class="entity_image_jaqpots" src="assets/organization.png">
+              </a>
+            </div>
+            <ng-template #cannotUpdate>
+              <img mat-card-avatar class="entity_image_jaqpots" src="assets/organization.png">
+            </ng-template>
+          </ng-template>
+        </div>
 
-    <mat-divider style="width: 94%; margin-left: 3%;"></mat-divider>
+        <div class="org_descr" *ngIf="organization.meta.descriptions">
+          <div *ngIf="edit; else noedit">
+            <mat-form-field class="descr_input">
+              <textarea class="descr_org" matInput placeholder="Description" value="{{organization.meta.descriptions[0]}}"
+                [(ngModel)]="organization.meta.descriptions[0]"></textarea>
+            </mat-form-field>
+          </div>
+          <ng-template #noedit>
 
-    <div class="orgbase">
+            <h5 *ngIf="organization.meta.descriptions[0]"> Description: </h5>
+            <span>
+              <p class="descr">{{organization.meta.descriptions[0]}}</p>
+            </span>
+
+          </ng-template>
+        </div>
+        <div class="admins_and_all">
+          <div class="org_creators" *ngIf="creators">
+
+            <h4 class="creator_head" *ngIf="creators"> Creator: </h4>
+            <div class="creator_wrap" *ngFor="let user of creators">
+              <div class="userphoto" *ngIf="user.meta?.picture; else nopic">
+                <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog(user)">
+                  <img class="userim" [src]="user.meta.picture" />
+                </a>
+                <div class="user_name">
+                  {{user.name}}
+                </div>
+              </div>
+              <ng-template #nopic>
+                <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog(user)">
+                  <button *ngIf="user.name" mat-fab color="primary">{{user.name.charAt(0)}}</button>
+                </a>
+              </ng-template>
+            </div>
+
+            <mat-divider class="divid"></mat-divider>
+
+            <h4 class="adm_head" *ngIf="contributors && contributors.length > 0"> Administrators: </h4>
+            <div class="creator_wrap" *ngFor="let user of contributors">
+              <div class="userphoto" *ngIf="user.meta?.picture; else nopic">
+                <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog(user)">
+                  <img class="userim" [src]="user.meta.picture" />
+                </a>
+                <div class="user_name">
+                  {{user.name}}
+                </div>
+              </div>
+              <ng-template #nopic>
+                <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog(user)">
+                  <button class="userb" *ngIf="user.name" mat-fab color="primary">{{user.name.charAt(0)}}</button>
+                </a>
+                <div class="user_name">
+                  {{user.name}}
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="edit">
+          <button class="admins_b" matTooltip="Edit Administrators" mat-icon-button color="primary" (click)="addAdministrator()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card fxFlex.xl="46%" fxFlex.lg="40%" fxFlex.md="47%" fxFlex.sm="65%" fxFlex.xs="96%" class="overview_card">
+    <mat-card-header>
+      <h4>Overview</h4>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content label="Overview" class="mcont">
+      <div class="markdown">
+        <!-- <div class="inner"> -->
+        <app-markdown [viewOrEdit]="viewOrEdit" [entityMeta]="entityMeta" (markdownChanged)="markdownChanged($event)"></app-markdown>
+        <!-- </div> -->
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-grid-list class="grig_org" cols="1" rowHeight="340px" fxFlex.xl="18%" fxFlex.lg="20%" fxFlex.md="28%" fxFlex.sm="100%"
+    fxFlex.xs="100%">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card *ngIf="organization && organization.userIds && organization.userIds.length > 0" class="users_card">
+        <mat-card-content>
+          <div *ngIf="organization">
+            <app-organization-users class="org-users" [organization]="organization"></app-organization-users>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="organization" [colspan]="1" [rowspan]="1">
+      <mat-card *ngIf="edit || organization.meta && organization.meta.subjects && organization.meta.subjects.length > 0 || organization.meta.audiences && organization.meta.audiences.length > 0 "
+        class="users_card">
+        <mat-card-content>
+          <div *ngIf="organization">
+            <app-organization-details [editFromP]="editFromP" [organization]="organization"></app-organization-details>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="orgmodels" [colspan]="1" [rowspan]="1">
+      <mat-card *ngIf="orgmodels" class="card_models" fxFlex.xl="14%" fxFlex.lg="18%" fxFlex.md="20%" fxFlex.sm="96%"
+        fxFlex.xs="96%">
+        <mat-card-header>
+          <h5>Ornanization Models</h5>
+        </mat-card-header>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 
 
-      <div class="orgweb">
+  <mat-grid-list class="grig_org" cols="1" rowHeight="340px" fxFlex.xl="18%" fxFlex.lg="20%" fxFlex.md="20%" fxFlex.sm="98%"
+    fxFlex.xs="96%">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card *ngIf="edit || organization?.website || organization?.contact " class="card_contact">
+        <mat-card-header>
+          <h5>Contact</h5>
+        </mat-card-header>
 
-        <div class="edidsite" *ngIf="!edit_w else editwebsite">
-          <div class="website" *ngIf="organization?.website">
+        <mat-card-content>
+
+          <div class="edidsite" *ngIf="!edit_w else editwebsite">
+            <div class="website" *ngIf="organization?.website">
+              <img matTooltip="Website" class="socialpng" src="assets/internet.png">
+              <a style="text-decoration: none;" class="orgsite" href="{{website}}" target="_blank">{{organization?.website}}</a>
+            </div>
+          </div>
+          <ng-template #editwebsite>
             <img class="socialpng" src="assets/internet.png">
-            <a class="orgsite" href="organization?.website">{{organization?.website}}</a>
+            <div *ngIf="organization">
+              <mat-form-field class="edit-website">
+                <input matInput placeholder="Website" [(ngModel)]="organization.website" />
+              </mat-form-field>
+            </div>
+          </ng-template>
+
+
+          <div class="editcontact" *ngIf="!edit_c else editcontact">
+            <div class="orgcontact">
+              <mat-icon matTooltip="Email contact" *ngIf="organization?.contact" class="contemail">alternate_email</mat-icon>
+              <p class="contact"> {{organization?.contact}}</p>
+            </div>
           </div>
-        </div>
+          <ng-template #editcontact>
+            <div *ngIf="organization">
+              <mat-icon class="contemailedit">alternate_email</mat-icon>
+              <mat-form-field class="edit-contact">
+                <input matInput placeholder="Contact" [(ngModel)]="organization.contact" />
+              </mat-form-field>
+            </div>
+          </ng-template>
 
-        <ng-template #editwebsite>
-          <img class="socialpng" src="assets/internet.png">
-          <div *ngIf="organization">
-            <mat-form-field class="edit-website">
-              <textarea matInput placeholder="Website" [(ngModel)]="organization.website"></textarea>
-            </mat-form-field>
-          </div>
-        </ng-template>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card *ngIf=" affiliations && affiliations.length > 0 || edit" class="affiliations">
+        <mat-card-header>
+          <h4>Affiliations</h4>
+          <button *ngIf="edit" mat-icon-button (click)="addAffiliations()" class="aff_but">
+            <mat-icon matTooltip="Add Affiliations">
+              cast
+            </mat-icon>
+          </button>
+        </mat-card-header>
 
+        <mat-card-content>
+          <mat-divider></mat-divider>
+          <mat-list>
+            <mat-list-item class="listItem" *ngFor="let organization of affiliations">
+              <div (click)="onOrgClicked(organization)">
+                <div *ngIf="organization.meta.picture">
+                  <img class="orgim2" [src]="organization?.meta?.picture" />
+                </div>
+              </div>
+              <h4 >{{organization?._id}}</h4>
+              <button *ngIf="edit" mat-icon-button (click)="removeAffiliation(organization)" class="rem_aff_but">
+                <mat-icon matTooltip="Remove affiliation">
+                  voice_over_off
+                </mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
 
-        <div class="editcontact" *ngIf="!edit_c else editcontact">
+  </mat-grid-list>
+</div>
 
-          <div class="orgcontact">
-            <mat-icon class="contemail">alternate_email</mat-icon>
-            <p class="contact"> {{organization?.contact}}</p>
-          </div>
-
-        </div>
-        <ng-template #editcontact>
-          <div *ngIf="organization">
-            <mat-icon class="contemail">alternate_email</mat-icon>
-            <mat-form-field class="edit-contact">
-              <textarea matInput placeholder="Contact" [(ngModel)]="organization.contact"></textarea>
-            </mat-form-field>
-          </div>
-        </ng-template>
-
-      </div>
-
-    </div>
-
-
-    <div *ngIf="organization">
-      <app-organization-users class="org-users" [organization]="organization"></app-organization-users>
-    </div>
-
-
-    <div *ngIf="editabout else editaboutinp">
-      <div class="about">
-        <h3 class="abouttitle">About {{organization?._id}}</h3>
-      </div>
-      <mat-form-field class="edit-about-unput">
-        <textarea class="about-text" matInput placeholder="Edit About" [(ngModel)]="organization.about"></textarea>
-      </mat-form-field>
-    </div>
-
-    <ng-template #editaboutinp>
-      <div class="about">
-        <h3>About {{organization?._id}}</h3>
-        {{organization?.about}}
-      </div>
-    </ng-template>
-
-    <div *ngIf="organization">
-      <app-organization-details [editFromP]="editFromP" [organization]="organization"></app-organization-details>
-    </div>
-
-  </mat-card-content>
-</mat-card>
 
 <span class="app-action">
-  <div *ngIf="edit else save_b">
+  <div *ngIf="!editing else save_b">
 
     <div *ngIf="canedit">
       <button class="edit" matTooltip="Edit" matTooltipPosition="after" (click)="editForm()" mat-fab>
@@ -124,12 +257,13 @@
       </button>
     </div>
 
-    <button class="delete" matTooltip="Delete" matTooltipPosition="after" (click)="deleteOrg()" mat-fab>
-      <mat-icon>delete</mat-icon>
-    </button>
+    <div *ngIf="canDelete">
+      <button class="delete" matTooltip="Delete" matTooltipPosition="after" (click)="deleteOrg()" mat-fab>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </div>
   <ng-template #save_b>
-
     <div *ngIf="canedit">
       <button class="save_b" matTooltip="Save" matTooltipPosition="after" (click)="saveForm()" mat-fab>
         <mat-icon>save</mat-icon>

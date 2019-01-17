@@ -48,4 +48,22 @@ export class NotificationFactoryService {
     return this.notification;
   }
 
+  affiliationNotification(from:string, to:string, throuOrg:string, affOrg:string, body:string){
+    let notifBuilder = new NotificationBuilderService()
+    notifBuilder.setOwner(to);
+    notifBuilder.setFrom(from);
+    notifBuilder.setTo(to);
+    notifBuilder.setType(TYPE.AFFILIATION)
+    notifBuilder.setViewd(false);
+    notifBuilder.setThroughOrg(throuOrg)
+    notifBuilder.setAffiliatedOrg(affOrg)
+    if(typeof body != 'undefined'){
+      notifBuilder.setBody(body)
+    }else{
+      notifBuilder.setBody("Request to make an affiliation");
+    }
+    this.notification = notifBuilder.build()
+    return this.notification
+  }
+
 }

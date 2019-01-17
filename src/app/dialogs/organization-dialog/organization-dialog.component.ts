@@ -4,6 +4,7 @@ import { MatDialogRef } from '../../../../node_modules/@angular/material';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
 import { Router } from '../../../../node_modules/@angular/router';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
+import { SessionService } from '../../session/session.service';
 
 
 @Component({
@@ -15,23 +16,25 @@ export class OrganizationDialogComponent implements OnInit {
 
   organization:Organization;
   organizationService:OrganizationService;
-  edit = false;
+  edit:boolean = false;
+  view:boolean;
+
 
   constructor(
     public dialogRef: MatDialogRef<OrganizationDialogComponent>,
     public oidcService:OidcSecurityService,
     public router:Router,
+    private sessionService:SessionService
     // public organizationService:OrganizationService
     ) {
     
   }
 
   ngOnInit() {
-
   }
 
   ngAfterViewInit(){
-    var userData = JSON.parse(sessionStorage.getItem('userData'))
+    var userData = this.sessionService.getUserData();
     
     if(userData.groups.includes('/Administrator') && this.organization._id === 'Jaqpot'){
       setTimeout(_ =>this.edit = true);

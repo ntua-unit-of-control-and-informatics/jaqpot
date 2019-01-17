@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
   queries_enabled: boolean = false;
   queries_for: string
   add_dataset: boolean = false;
+  trash_view:boolean = false;
 
   datasets_to_view:Dataset[] = []
   models_to_view:Model[] = []
@@ -135,6 +136,7 @@ export class HomeComponent implements OnInit {
   }
 
   goToDatasetView() {
+    this.trash_view = false;
     this.models_to_view = []
     if(this.organizationActivated != 'No organanization available'){
       this.fetchOrgsDatasets(0,10, this.organizationActivated)
@@ -149,19 +151,36 @@ export class HomeComponent implements OnInit {
   }
 
   goToModelView() {
-    this.queries_for = "Models"
+    this.trash_view = false;
     this.datasets_to_view = []
+    if(this.organizationActivated != 'No organanization available'){
+      this.fetchOrgsModels(0,20, this.organizationActivated)
+    }else{
+      this.fetchModels(0,20)
+    }
+    this.queries_for = "Models"
     
-    this.fetchModels(0, 20);
+    // this.fetchModels(0, 20);
     this.quick_view = false
     this.queries_enabled = true
     this.add_dataset = false
     delete this.viewItem
   }
 
+  goToTrashView(){
+    this.models_to_view = []
+    this.datasets_to_view = []
+    this.quick_view = false;
+    this.queries_enabled = false;
+    this.trash_view = true;
+    this.fetchModelsOnTrash(0, 10);
+    this.fetchDatasetsOnTrash(0, 10);
+    delete this.viewItem
+  }
+
   changeListener(files: FileList) {
     
-    if (files && files.length === 1 && files.item(0).type === 'text/csv') {
+    if (files && files.length === 1 && files.item(0).name.split(".")[1] === 'csv') {
       let reader: FileReader = new FileReader();
       let file: File = files.item(0);
       reader.readAsText(file);
@@ -245,6 +264,20 @@ export class HomeComponent implements OnInit {
 
   }
 
+  fetchModelsOnTrash(min:number, max:number){
+    let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("ontrash", "true");
+    this.modelApi.getList(params).subscribe((models:Model[]) => {
+      this.models_to_view = models
+    })
+  }
+
+  fetchDatasetsOnTrash(min:Number, max:Number){
+    let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("ontrash", "true");
+    this.datasetApi.getList(params).subscribe((datasets:Dataset[]) => {
+      this.datasets_to_view = datasets
+    })
+  }
+
   fetchOrgsDatasets(min:Number, max:Number, organization:string){
     let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("organization", organization);
     this.datasetApi.getList(params).subscribe((datasets:Dataset[]) => {
@@ -254,8 +287,8 @@ export class HomeComponent implements OnInit {
 
   fetchOrgsModels(min:Number, max:Number, organization:string){
     let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("organization", organization);
-    this.modelApi.getList(params).subscribe((datasets:Dataset[]) => {
-      this.datasets_to_view = datasets
+    this.modelApi.getList(params).subscribe((models:Model[]) => {
+      this.models_to_view = models
     })
   }
 

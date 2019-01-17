@@ -83,8 +83,19 @@ export class UserService extends BaseClient<User>{
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-        let params = new HttpParams();
-        return this.http.get(this._userBase + "ids", { headers: headers, params: params }).pipe(
+        let params = new HttpParams().set('name', name);
+        return this.http.get(this._userBase + "search/and/found", { headers: headers, params: params }).pipe(
+            tap((res : Response) => {  
+                return res         
+            }),catchError( err => this.dialogsService.onError(err) ));
+    }
+
+    public searchUserEmail(email:string): Observable<Array<User>> {
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams().set('mail', email);
+        return this.http.get(this._userBase + "search/and/found", { headers: headers, params: params }).pipe(
             tap((res : Response) => {  
                 return res         
             }),catchError( err => this.dialogsService.onError(err) ));

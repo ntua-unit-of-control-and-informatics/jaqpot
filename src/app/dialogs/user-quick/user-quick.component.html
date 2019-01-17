@@ -1,6 +1,6 @@
-<div class="all">
-  <div *ngIf="user.meta.picture; else no_pic" class="left">
-    <img mat-card-image-lg class="user_image" src="{{user.meta.picture}}">
+<div class="all" *ngIf="userToSee">
+  <div *ngIf="userToSee?.meta?.picture; else no_pic" class="left">
+    <img mat-card-image-lg class="user_image" src="{{userToSee.meta.picture}}">
   </div>
   <ng-template #no_pic>
     <div class="left">
@@ -9,38 +9,38 @@
   </ng-template>
 
   <div class="right">
-    <h4>{{user.name}}</h4>
-    <p>{{user.about}}</p>
+    <h4>{{userToSee.name}}</h4>
+    <p class="about">{{userToSee.about}}</p>
     <div class="user_occup">
-      <div *ngIf="user.occupation" class="occup">
-        <p class="occupa">Occupation: {{user.occupation}}</p>
-        <div *ngIf="user.occupationAt" class="occup_at">
-          <p>at: {{user.occupationAt}}</p>
+      <div *ngIf="userToSee.occupation" class="occup">
+        <p class="occupa">Occupation: {{userToSee.occupation}}</p>
+        <div *ngIf="userToSee.occupationAt" class="occup_at">
+          <p>at: {{userToSee.occupationAt}}</p>
         </div>
       </div>
     </div>
 
     <div class="social" >
-      <div *ngIf="user.github">
-        <a target="_blank" rel="noopener noreferrer"  href="{{user.github}}">
+      <div *ngIf="userToSee.github">
+        <a target="_blank" rel="noopener noreferrer"  href="{{userToSee.github}}">
           <img class="social_img" matTooltip="Github account" src="assets/github.png">
         </a>
       </div>
 
-      <div *ngIf="user.twitter" >
-        <a target="_blank" rel="noopener noreferrer"  href="{{user.twitter}}">
+      <div *ngIf="userToSee.twitter" >
+        <a target="_blank" rel="noopener noreferrer"  href="{{userToSee.twitter}}">
           <img class="social_img" matTooltip="Twitter account" src="assets/twitter.png">
         </a>
       </div>
 
-      <div *ngIf="user.website" >
-        <a target="_blank" rel="noopener noreferrer"   href="{{user.website}}">
+      <div *ngIf="userToSee.website" >
+        <a target="_blank" rel="noopener noreferrer"   href="{{userToSee.website}}">
           <img class="social_img" matTooltip="Website account" src="assets/internet.png">
         </a>
       </div>
 
-      <div *ngIf="user.linkedin" >
-        <a target="_blank" rel="noopener noreferrer"  href="{{user.linkedin}}">
+      <div *ngIf="userToSee.linkedin" >
+        <a target="_blank" rel="noopener noreferrer"  href="{{userToSee.linkedin}}">
           <img class="social_img" matTooltip="Linkedin account" src="assets/linkedin.png">
         </a>
       </div>

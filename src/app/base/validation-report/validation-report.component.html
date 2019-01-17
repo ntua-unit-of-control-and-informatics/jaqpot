@@ -1,0 +1,19 @@
+<div class="empty">
+  <h4>Validation of the model</h4>
+</div>
+
+<mat-divider></mat-divider>
+
+<div *ngFor="let item of report.singleCalculations | keyvalue" class="base_report">
+    <p> <b>{{item.key}}: </b> {{item.value}}</p>
+</div>
+
+
+<div *ngFor="let item of report.figures | keyvalue" >
+    <mat-divider></mat-divider>
+    <h5>{{item.key }}</h5> 
+    <img class="image" [src]="'data:image/jpg;base64,'+item.value" />
+</div>
+
+
+

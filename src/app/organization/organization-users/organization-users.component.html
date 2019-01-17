@@ -12,15 +12,15 @@
   </div>
 
   <mat-divider style="width:90%; margin-left: 5%; position: relative; margin-top: 1em; margin-bottom: 1em;"></mat-divider>
-  <mat-grid-list class="user-grid" cols="3" rowHeight="60px">
+  <mat-grid-list class="user-grid" cols="3" rowHeight="72px">
     <mat-grid-tile *ngFor="let user of users">
       <div class="userphoto" *ngIf="user.meta?.picture; else nopic">
-        <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog()">
+        <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog(user)">
           <img class="userim" [src]="user.meta.picture" />
         </a>
       </div>
       <ng-template #nopic>
-        <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog()">
+        <a matTooltip="{{user.name}}" matTooltipPosition="below" (click)="openUserDialog(user)">
           <button *ngIf="user.name" mat-fab color="primary">{{user.name.charAt(0)}}</button>
         </a>
       </ng-template>

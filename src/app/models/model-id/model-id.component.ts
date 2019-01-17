@@ -133,7 +133,11 @@ export class ModelIdComponent implements OnInit, OnDestroy {
         , this.notificationService
         , this.notificationFactory
         , this.userApi
-        , this.sessionService.getUserId());
+        , this.sessionService.getUserId()).subscribe(resp =>{
+          this.modelApi.getWithIdSecured(this.id).subscribe((model:Model)=>{
+            this.modelToSee = model;
+          })
+        });
   }
 
   editAll(){
@@ -174,7 +178,6 @@ export class ModelIdComponent implements OnInit, OnDestroy {
   modelChanged($event){
 
   }
-
 
 
 }

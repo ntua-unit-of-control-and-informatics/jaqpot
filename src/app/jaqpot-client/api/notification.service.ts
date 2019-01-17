@@ -14,7 +14,7 @@ import { Task } from '../model/task';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { User } from '../model/user';
 import { BaseClient } from './base.client';
@@ -49,8 +49,20 @@ export class NotificationService extends BaseClient<Notification>{
             }),catchError( err => this.dialogsService.onError(err) ) 
             
         );
+    }
 
-
+    public countUnreadNotifications():Observable<any>{
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let params = new HttpParams().set("query", "UNREAD").set("min", "0").set("max", "1");
+        let pathFormed = this._privateBasePath
+        return this.http.get(pathFormed, { headers: headers, params: params, observe:'response' } ).pipe(
+            tap(resp => { 
+                return resp.headers.get('total');   
+            }),catchError( err => this.dialogsService.onError(err) ) 
+            
+        );
     }
 
 }

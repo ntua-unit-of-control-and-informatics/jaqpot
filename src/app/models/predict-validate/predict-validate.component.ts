@@ -1,12 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
-import { Model, User, Feature } from '../../jaqpot-client';
+import { Model, User, Feature, Dataset, Task } from '../../jaqpot-client';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { SessionService } from '../../session/session.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { FeatureAndValue } from '../../ui-models/featureAndValue';
+import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service';
+import { DatasetService } from '../../jaqpot-client/api/dataset.service';
+import { Config } from '../../config/config';
+import { TaskApiService } from '../../jaqpot-client/api/task.service';
+import { interval, Observable, of, Observer, Subject, throwError } from 'rxjs';
+import { startWith, switchMap, retry, tap, retryWhen, delay, catchError } from 'rxjs/operators';
 // import { FeatureAndValue } from '../../ui-models/featureAndValue';
-
+import { concatMap, repeat }  from 'rxjs/operators';
+import { DialogsService } from '../../dialogs/dialogs.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../../environments/environment.prod';
+import { NgxPicaResizeOptionsInterface, NgxPicaErrorInterface, NgxPicaService } from '@digitalascetic/ngx-pica';
+import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
+import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
+import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-factory.service';
 
 @Component({
   selector: 'app-predict-validate',
@@ -15,11 +28,27 @@ import { FeatureAndValue } from '../../ui-models/featureAndValue';
 })
 export class PredictValidateComponent implements OnInit {
 
+  @ViewChild('dataInput')
+  dataInput: ElementRef;
+
+  viewError:boolean = false;
+  taskStarted:boolean = false;
   ready:boolean = false;
 
+  datasetForPrediction:Dataset;
+  datasetFormated:boolean = false;
+
+  taskFinished:boolean = true;
+  taskCompletedSuccesfully:boolean = false;
+  viewPrediction:boolean = false;
+  actualPredicted:Dataset;
+  predictedDataset:string = ''
+  taskGot:Task
+  taskHasError:boolean = false;
   value:string
   selected:string = 'Predict'
 
+  progressValue:number = 0
   @Input() entityId:string;
 
   indepFeatures:Feature[] = [];
@@ -34,16 +63,34 @@ export class PredictValidateComponent implements OnInit {
   canExecute:boolean = false;
   model:Model;
   userNow:User
+  observe: Subject<Task> = new Subject();
+
+  _canSeeDetails:boolean = false;
 
   constructor( 
     private _modelApi:ModelApiService,
     private _userApi:UserService,
     private _sessionService:SessionService,
-    private _featureApi:FeatureApiService
-  ) { }
+    private _featureApi:FeatureApiService,
+    private _datasetFactory:DatasetFactoryService,
+    private _datasetToViewService:DatasetToViewdataService,
+    private _datasetApi:DatasetService,
+    private _taskApi:TaskApiService,
+    private _dialogsService:DialogsService,
+    private _ngxPicaService:NgxPicaService,
+    private _featFactory:FeatureFactoryService
+  ) { 
+    if(environment.production === true){
+      this._canSeeDetails = false;
+    }else{
+      this._canSeeDetails = true;
+    }
+
+  }
 
   ngOnInit(  ) {
     this._modelApi.getWithIdSecured(this.entityId.split("/")[1]).subscribe((model:Model)=>{
+      this.model = model
       if(typeof model.meta.execute != 'undefined' && model.meta.execute.includes("Jaqpot")){
         this.canExecute = true;
       }
@@ -75,6 +122,9 @@ export class PredictValidateComponent implements OnInit {
       })
     })
 
+    this.observe.subscribe((task:Task) =>{
+      this.getTask(task._id)      
+    })
   }
 
   methodSelected(event){
@@ -94,12 +144,12 @@ export class PredictValidateComponent implements OnInit {
     var csvData:string = "";
     if(this.selected === 'Predict'){
       let i = 0;
-      this.indepFeatures.forEach((feat:Feature)=>{
+      this.indepfeatureAndValues.forEach((feat:FeatureAndValue)=>{
         if(i != 0){
-          csvData = csvData.concat("," + feat.meta.titles[0].toString())
+          csvData = csvData.concat("," + feat.feature.meta.titles[0].toString())
         }
         else{
-          csvData = csvData.concat(feat.meta.titles[0].toString())
+          csvData = csvData.concat(feat.feature.meta.titles[0].toString())
         }
        i += 1;
       })
@@ -120,12 +170,153 @@ export class PredictValidateComponent implements OnInit {
   }
  
   
-  startInputPrediction(){
-    console.log(this.indepfeatureAndValues)
+  viewTheError(){
+    this.viewError = true
+
+  }
+
+  viewTheResult(){
+    this.viewPrediction = true;
+    this._datasetApi.getDataEntryPaginated(this.predictedDataset.split("/")[1], 0 ,40).subscribe((dataset:Dataset)=>{
+      this.actualPredicted = dataset
+    })
 
   }
 
 
+  startInputPrediction(){
+    let dataset:Dataset = this._datasetFactory.createPredictDataset(this.indepfeatureAndValues)
+    this.taskStarted = true;
+    this._datasetApi.postEntity(dataset).subscribe((dataset:Dataset)=>{
+      let datasetUri = Config.JaqpotBase + "/dataset/" + dataset._id
+      
+      this._modelApi.predict(this.model._id, datasetUri, "true").subscribe((task:Task)=>{
+        this.progressValue = 5  
+        this.getTask(task._id)
+
+      }) 
+    })
+  }
+
+  startDatasetPrediction(){
+    this.taskStarted = true;
+    this._datasetApi.postEntity(this.datasetForPrediction).subscribe((dataset:Dataset)=>{
+      let datasetUri = Config.JaqpotBase + "/dataset/" + dataset._id
+      this._modelApi.predict(this.model._id, datasetUri, "true").subscribe((task:Task)=>{
+        this.progressValue = 5  
+        this.getTask(task._id)
+
+      }) 
+    })
+  }
+
+  getTask(taskId){
+    this._taskApi.getTask(taskId)
+          .pipe(delay(800)).subscribe((taskGot:Task) => {
+            this.taskGot = taskGot
+            if(typeof taskGot != 'undefined'){
+              if(taskGot.status.toString() === 'QUEUED' || taskGot.status.toString() === 'RUNNING' && taskGot.percentageCompleted < 100){
+                if(typeof taskGot.percentageCompleted != 'undefined'){
+                  this.progressValue = taskGot.percentageCompleted + 5
+                }
+                this.observe.next(taskGot);
+              }else{
+                if(typeof taskGot.percentageCompleted != 'undefined'){
+                  this.progressValue = taskGot.percentageCompleted + 5
+                  if(taskGot.percentageCompleted === 100){
+                    this.taskCompletedSuccesfully = true;
+                    this.predictedDataset= taskGot.result;
+                  }
+                }
+                this.taskCompletedSuccesfully = true;
+                this.taskGot = taskGot
+                this.observe.unsubscribe();
+              }
+            }
+            
+          },error => this.handleTaskError(error, taskId))
+  }
+
+  private handleTaskError(error: HttpErrorResponse, taskId) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      this.observe.unsubscribe()
+      this.taskGot = error.error;
+      this.taskHasError = true;
+      if(typeof this.taskGot.percentageCompleted != 'undefined'){
+        this.progressValue = this.taskGot.percentageCompleted + 5
+      }
+      console.error(error.error);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+  
+
+  changeListener(files: FileList) {
+    
+    if (files && files.length === 1 && files.item(0).type === 'text/csv') {
+      let reader: FileReader = new FileReader();
+      let file: File = files.item(0);
+      reader.readAsText(file);
+      reader.onload = (e) => {
+        var _csv = reader.result;
+        _csv = _csv.toString()
+        const rows = _csv.split(/\r?\n/)  
+        let ids = rows[0].split(/,|;/);
+        this._dialogsService.askForId(ids).subscribe(result =>{
+            reader.abort()
+            if(typeof result != 'undefined'){
+              this.datasetForPrediction = this._datasetFactory.matchPredictDataset(this.indepfeatureAndValues, _csv, result)
+              this.datasetFormated = true
+            }
+          })
+      }
+    }
+    else {
+      let i = 0;
+      let images_csv: string;
+      images_csv = "id" + "," + "image" + "\n";
+      let images:{ [key: string]: string} = {};
+      let images_num = files.length
+      let files2:File[] = []
+      Array.from(files).forEach((file:File) =>{
+        files2.push(file)
+      })
+      var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
+      let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
+      options.aspectRatio = aspectRatio
+      options.aspectRatio.keepAspectRatio = true;
+      this._ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
+        let reader: FileReader = new FileReader();
+        reader.readAsDataURL(imageResized);
+        reader.onload = (e) =>{
+          let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
+          images_csv += image_to_csv
+          images[imageResized.name] = reader.result.toString();
+          i += 1;
+          if(images_num === i){
+            this.datasetForPrediction = this._datasetFactory.matchPredictDataset(this.indepfeatureAndValues, images_csv, "None")
+            this.datasetFormated = true
+          }
+        }, (err: NgxPicaErrorInterface) => {
+          throw err.err;
+      }})
+
+    }
+    this.dataInput.nativeElement.value = "";
+
+  }
+
+
+
+  eraseDataset(){
+      delete this.datasetForPrediction 
+      this.datasetFormated = false
+  }
 }
 
 

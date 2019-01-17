@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Request affiliation</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field class="inputorganization">
+      <input matInput placeholder="Organization" [(ngModel)]="orgsearch" (keypress)="inputChanged($event.target.value)" [matAutocomplete]="auto" [ngModelOptions]="{standalone: true}">
+      <mat-autocomplete #auto="matAutocomplete">
+
+        <mat-option *ngFor="let org of organizations" [value]="org._id">
+              <img class="orgim" *ngIf="org?.meta?.picture" [src]="org.meta.picture" />
+              <span class="organizationname">{{ org._id }}</span>
+              <small *ngIf="org.city" class="organizationcity"> | {{ org.city }} {{ org.country}}</small>
+        </mat-option>
+      </mat-autocomplete>
+
+    </mat-form-field>
+
+    <div *ngIf="addBodyB; else noBody">
+        <mat-form-field class="invite-message">
+            <textarea matInput placeholder="Affiliation Message" [(ngModel)]="requestMessage"[ngModelOptions]="{standalone: true}" >{{inviteMessage}}</textarea>
+          </mat-form-field>
+      <button mat-button  (click)="cancelBody()">Cancel Message</button>
+    </div>
+    <ng-template #noBody>
+      <button mat-button  (click)="addBody()">Add Message</button>
+    </ng-template>
+    
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true" (click)="request()">Request</button>
+</mat-dialog-actions>

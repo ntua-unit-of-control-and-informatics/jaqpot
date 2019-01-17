@@ -1,6 +1,10 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Dataset, Model, MetaInfo } from '../../jaqpot-client';
 import { Router } from '@angular/router';
+import { DialogsService } from '../../dialogs/dialogs.service';
+import { ModelApiService } from '../../jaqpot-client/api/model.service';
+import { DatasetService } from '../../jaqpot-client/api/dataset.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-data-model-view',
@@ -12,7 +16,7 @@ export class DataModelViewComponent implements OnChanges {
   @Input() datasets_to_view: Dataset[];
   @Input() models_to_view: Model[];
   @Input() view_type:string;
-
+  @Input() onTrash:boolean;
 
   @Output() itemClicked = new EventEmitter<ViewItem>();
   grid_view:boolean = true
@@ -20,7 +24,11 @@ export class DataModelViewComponent implements OnChanges {
   view_items:ViewItem[] = []
 
   constructor(
-    private router:Router
+    public snackBar: MatSnackBar,
+    private router:Router,
+    private dialogsService:DialogsService,
+    private modelApi:ModelApiService,
+    private datasetApi:DatasetService
   ) { }
 
   ngOnChanges() {
@@ -52,6 +60,11 @@ export class DataModelViewComponent implements OnChanges {
       _view_item.rows = 1
       this.view_items.push(_view_item)
     })
+    this.view_items.sort((a, b )=> {
+      if (a.meta.date > b.meta.date) return -1;
+      if (a.meta.date < b.meta.date) return 1;
+      return 0;
+    })
     // console.log(this.view_items)
   }
   
@@ -69,6 +82,111 @@ export class DataModelViewComponent implements OnChanges {
       }
     }
   }
+
+  moveToTrash(item:ViewItem){
+    this.dialogsService.confirmDeletion("Item will be moved to trash", "Move").subscribe(
+      result=>{
+        if(result === true){
+          if(item.type === 'Model'){
+            let modelToUpdate = <Model>{}
+            modelToUpdate.onTrash = true;
+            modelToUpdate.meta = item.meta;
+            this.modelApi.updateOnTrash(item._id, modelToUpdate).subscribe(resp=>{
+              if(typeof resp != 'undefined')
+              {
+                let ind = this.view_items.indexOf(item);
+                this.view_items.splice(ind, 1);
+                this.openSnackBar("Model moved to trash", "Ok")
+              }
+            })
+          }
+          if(item.type === 'Dataset'){
+            let datasetToUpdate = <Dataset>{}
+            datasetToUpdate.onTrash = true;
+            datasetToUpdate.meta = item.meta;
+            this.datasetApi.updateOnTrash(item._id, datasetToUpdate).subscribe(resp=>{
+              if(typeof resp != 'undefined')
+              {
+                let ind = this.view_items.indexOf(item);
+                this.view_items.splice(ind, 1);
+                this.openSnackBar("Model moved to trash", "Ok") 
+              }
+            })
+          }
+        }
+      }
+    )
+  }
+
+  deleteForever(item:ViewItem){
+    this.dialogsService.confirmDeletion("Item will be deleted forever", "Ok").subscribe(result=>{
+      if(result === true){
+        if(item.type === "Dataset")
+        {
+          this.datasetApi.deleteEntity(item._id).subscribe(resp=>{
+            if(typeof resp != "undefined")
+            {
+              let ind = this.view_items.indexOf(item)
+              this.view_items.splice(ind, 1);
+              this.openSnackBar("Item deleted", "Ok");
+            }
+          })
+        }
+        if(item.type === "Model")
+        {
+          this.modelApi.deleteEntity(item._id).subscribe(resp=>{
+            if(typeof resp != "undefined")
+            {
+              let ind = this.view_items.indexOf(item)
+              this.view_items.splice(ind, 1);
+              this.openSnackBar("Item deleted", "Ok")
+            }
+          })
+        }
+      }
+    })
+  }
+
+  restoreFromTrash(item:ViewItem){
+    this.dialogsService.confirmDeletion("Are you sure you want to restore this item?", "Ok").subscribe(result =>{
+      if(result === true)
+      {
+        if(item.type === "Dataset")
+        {
+          let dataset = <Dataset>{}
+          dataset.onTrash = false;
+          this.datasetApi.updateOnTrash(item._id, dataset).subscribe(resp =>{
+            if(typeof resp != "undefined")
+            {
+              this.openSnackBar("Dataset restored","")
+              let ind = this.view_items.indexOf(item);
+              this.view_items.splice(ind, 1)
+            }
+          })
+        }
+        if(item.type === "Model")
+        {
+          let model = <Model>{}
+          model.onTrash = false;
+          this.modelApi.updateOnTrash(item._id, model).subscribe(resp =>{
+            if(typeof resp != "undefined")
+            {
+              this.openSnackBar("Model restored","")
+              let ind = this.view_items.indexOf(item);
+              this.view_items.splice(ind, 1)
+            }
+          })
+        }
+      }
+    })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3200,
+    });
+  }
+
 
   clicked(item:ViewItem){
     this.itemClicked.emit(item);

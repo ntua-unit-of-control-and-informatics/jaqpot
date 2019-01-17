@@ -8,6 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '../../../../node_modules/@angular
 })
 export class ConfirmationDialogComponent implements OnInit {
 
+  confirmationMessage:string;
+  confirmationAction:string;
+
   constructor(public thisDialogRef: MatDialogRef<ConfirmationDialogComponent>) { }
   ngOnInit() {
   }

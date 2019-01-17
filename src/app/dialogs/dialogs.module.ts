@@ -26,6 +26,7 @@ import { MatFormField,
   MatSpinner,
   MatProgressSpinnerModule,
   MatChipsModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { JaqpotClientModule } from '../jaqpot-client/jaqpot-client.module'
@@ -55,6 +56,13 @@ import { AddImageDatasetDialogComponent } from './add-image-dataset-dialog/add-i
 import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 import { NotificationService } from '../jaqpot-client/api/notification.service';
 import { ShareNotifDialogComponent } from './notification-dialogs/share-notif-dialog/share-notif-dialog.component';
+import { AskForIdComponent } from './ask-for-id/ask-for-id.component';
+import { AddAdministratorComponent } from './add-administrator/add-administrator.component';
+import { CdkDrag, DragDropModule } from '@angular/cdk/drag-drop';
+import { AffiliationsDialogComponent } from './affiliations-dialog/affiliations-dialog.component';
+import { AffiliationNotifComponent } from './notification-dialogs/affiliation-notif/affiliation-notif.component';
+import { BrokenAffilNotifComponent } from './notification-dialogs/broken-affil-notif/broken-affil-notif.component';
+import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.component';
 // import { RouterModule } from '@angular/router/src/router_module';
 
 @NgModule({
@@ -88,7 +96,10 @@ import { ShareNotifDialogComponent } from './notification-dialogs/share-notif-di
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule,MatProgressSpinnerModule,MatChipsModule
+    FormsModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    DragDropModule,MatSlideToggleModule
     // DatasetDetailComponent
     // RouterModule
 
@@ -108,7 +119,9 @@ import { ShareNotifDialogComponent } from './notification-dialogs/share-notif-di
     AddDatasetDialogComponent,
     UpdatePhotoComponent, 
     UserQuickComponent, 
-    AddImageDatasetDialogComponent, ShareDialogComponent, ShareNotifDialogComponent],
+    AddImageDatasetDialogComponent, ShareDialogComponent, 
+    ShareNotifDialogComponent, AskForIdComponent, AddAdministratorComponent, 
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent],
   exports: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 
@@ -124,7 +137,10 @@ import { ShareNotifDialogComponent } from './notification-dialogs/share-notif-di
     AddDatasetDialogComponent, 
     UpdatePhotoComponent, 
     UserQuickComponent, 
-    AddImageDatasetDialogComponent, ShareDialogComponent, ShareNotifDialogComponent] ,
+    AddImageDatasetDialogComponent, 
+    ShareDialogComponent, ShareNotifDialogComponent, 
+    AskForIdComponent, AddAdministratorComponent, 
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent] ,
   entryComponents: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 
@@ -139,7 +155,12 @@ import { ShareNotifDialogComponent } from './notification-dialogs/share-notif-di
     InvitationNotifDialogComponent, 
     AddDatasetDialogComponent, 
     UpdatePhotoComponent, 
-    UserQuickComponent, AddImageDatasetDialogComponent, ShareDialogComponent, ShareNotifDialogComponent],
+    UserQuickComponent, 
+    AddImageDatasetDialogComponent, 
+    ShareDialogComponent, 
+    ShareNotifDialogComponent, 
+    AskForIdComponent, AddAdministratorComponent, 
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent],
   providers: [
     DialogsService, OrganizationService
   ],

@@ -11,6 +11,14 @@
     /* min-width: inherit; */
 }
 
+.descr_input{
+    width: 100%;
+    min-height: 8em;
+}
+.descr_text{
+    min-height: 8em;
+}
+
 .card_wrap{
     min-height: calc(100vh - 64px);
 }

@@ -18,7 +18,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 import { Model } from '../model/model';
 import { ErrorReport } from '../../ui-models/errorReport';
 
-@Injectable()
+// @Injectable()
 export abstract class BaseClient <T extends Model>{
 
     private _basePath : string;

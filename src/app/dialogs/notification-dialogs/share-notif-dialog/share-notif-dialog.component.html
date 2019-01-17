@@ -33,8 +33,8 @@
             </mat-expansion-panel-header>
     
             <div class="cont-all">
-              <div class="user-photo" *ngIf="from.meta.picture">
-                <img class="from-im" [src]="from.meta.picture" />
+              <div class="user-photo" *ngIf="from?.meta?.picture">
+                <img class="from-im" [src]="from?.meta?.picture" />
               </div>
     
               <div class="user-cont">
@@ -56,8 +56,8 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="cont-all">
-            <div class="organ-photo" *ngIf="organ.meta.picture">
-              <img class="organ-im" [src]="organ.meta.picture" />
+            <div class="organ-photo" *ngIf="organ?.meta?.picture">
+              <img class="organ-im" [src]="organ?.meta?.picture" />
             </div>
     
             <div class="organ-cont">
@@ -78,8 +78,8 @@
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <div class="cont-all">
-                <div class="organ-photo" *ngIf="entityMeta.picture">
-                  <img class="organ-im" [src]="entityMeta.picture" />
+                <div class="organ-photo" *ngIf="entityMeta?.picture">
+                  <img class="organ-im" [src]="entityMeta?.picture" />
                 </div>
       
                 <div class="organ-cont">

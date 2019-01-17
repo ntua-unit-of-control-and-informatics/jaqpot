@@ -7,6 +7,7 @@ import { Notification } from '../../jaqpot-client/model/notification';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
 import { Organization } from '../../jaqpot-client/model/organization';
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
+import { SessionService } from '../../session/session.service';
 
 @Component({
   selector: 'app-invite-dialog',
@@ -26,7 +27,7 @@ export class InviteDialogComponent implements OnInit {
 
   username: string;
   usersTemp: Array<User> = new Array();
-  users: Array<User> = new Array();
+  users:User[] = [];
   user: User
 
   addBodyB:boolean=false;
@@ -35,6 +36,7 @@ export class InviteDialogComponent implements OnInit {
 
   constructor(
     oidcService:OidcSecurityService,
+    private sessionService:SessionService
   ) {
 
     this.userInputCtrl = new FormControl({ value: '', disabled: false }, Validators.required)
@@ -45,12 +47,16 @@ export class InviteDialogComponent implements OnInit {
 
   inputChanged(username: string) {
     if (username.length > 1) {
-
+      let ids:User[] = []
+      this.users = [];
       this.userService.searchUserByName(username)
-        .subscribe(idsGot => {
-          this.users = new Array();
-          this.usersTemp = idsGot
-          this.usersTemp.forEach(e => {
+        .subscribe((idsGot:User[]) => {
+          let ids:string[] = []
+          idsGot.forEach((u:User)=>{
+            ids.push(u._id)
+          })
+          this.searchByEmail(username, ids)
+          idsGot.forEach(e => {
             let user = <User>{}
             let tempuser = <User>{}
             let mius:MetaInfo = <MetaInfo>{}
@@ -72,13 +78,53 @@ export class InviteDialogComponent implements OnInit {
             })
             this.userService.getPropertyWithIdSecured(e._id, "picture").subscribe(profPic => {
               tempuser = profPic
-              user.meta.picture = tempuser.meta.picture
+              if(typeof tempuser.meta != "undefined"){
+                user.meta.picture = tempuser.meta.picture
+              }
             })
             this.users.push(user)
           })
-        })
+        })        
     }
   }
+
+  searchByEmail(email:string, idsAllready:string[]){
+    this.userService.searchUserEmail(email)
+    .subscribe((idsGotbyem:User[]) => {
+      idsGotbyem.forEach((e:User) => {
+        if(!idsAllready.includes(e._id)){
+          let user = <User>{}
+          let tempuser = <User>{}
+          let mius:MetaInfo = <MetaInfo>{}
+          let miustemp:MetaInfo = <MetaInfo>{}
+          user.meta = mius
+          user.meta = miustemp
+
+          this.userService.getPropertyWithIdSecured(e._id, "name").subscribe(username => {
+            tempuser = username
+            user.name = tempuser.name
+            user._id = tempuser._id
+          })
+          this.userService.getPropertyWithIdSecured(e._id, "occupation").subscribe(occupation => {
+            tempuser = occupation
+            user.occupation = tempuser.occupation
+          })
+          this.userService.getPropertyWithIdSecured(e._id, "occupationat").subscribe(occupatioAt => {
+            tempuser = occupatioAt
+            user.occupationAt = tempuser.occupationAt
+          })
+          this.userService.getPropertyWithIdSecured(e._id, "picture").subscribe(profPic => {
+            tempuser = profPic
+            if(typeof tempuser.meta != "undefined"){
+              user.meta.picture = tempuser.meta.picture
+            }
+          })
+          this.users.push(user)
+        }
+      })
+    })
+  }
+
 
   invite() {
     let userToInv = <User>{}
@@ -86,14 +132,14 @@ export class InviteDialogComponent implements OnInit {
     if(userToInv == null){
       console.log("Canot find user")
     }
-    var userData = JSON.parse(sessionStorage.getItem('userData'))
+    var userData = this.sessionService.getUserData()
+    // var userData = JSON.parse(sessionStorage.getItem('userData'))
     this.notification = this.notifFactory.invitationNotification(userData.sub, userToInv._id, this.organization._id)
     
     if(this.addBodyB === true && this.inviteMessage != null){
       this.notification.body = this.inviteMessage
     }
     
-    console.log(this.notification)
     this.notificationService.postEntity(this.notification)
       .subscribe(notifGot =>{
         this.notification = notifGot

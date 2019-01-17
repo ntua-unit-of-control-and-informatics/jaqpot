@@ -54,7 +54,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
   itemSize:number;
   inited:boolean = false;
   viewDisc:boolean = false;
-
+  scrollTo:number = 0;
+  
   constructor(
     private _discussionApi:DiscussionService,
     private _discussionBuilder:DiscussionBuilderService,
@@ -329,6 +330,15 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
     // console.log(this.viewPort.measureRenderedContentSize())
     // console.log(this.viewPort.measureScrollOffset())
+    // console.log(this.viewPort.)
+    if( e > this.scrollTo){
+      this.viewPort.scrollToIndex(e)
+      this.scrollTo = e
+    }else{
+      this.viewPort.scrollToIndex(this.scrollTo)
+      this.scrollTo = e
+    }
+    
 
     if (this.discussionsAll.length === this.totalFound || this.discussionsAll.length > this.totalFound ) {
       return;
@@ -337,15 +347,25 @@ export class CommentsComponent implements OnInit, OnDestroy {
     const end = this.viewPort.getRenderedRange().end;
     const total = this.viewPort.getDataLength();
     this.inited = true;
+
+    if( e > this.scrollTo){
+      this.viewPort.scrollToIndex(e)
+      this.scrollTo = e
+    }else{
+      this.viewPort.scrollToIndex(this.scrollTo)
+      this.scrollTo = e
+    }
+    
     // if(this.viewPort.measureRenderedContentSize() - this.viewPort.measureScrollOffset() < 800 
     //   && this.viewPort.measureRenderedContentSize() - this.viewPort.measureScrollOffset() > 300)
 
-    if(this.viewPort.getRenderedRange().end - e < 5)  
+    if(this.viewPort.getRenderedRange().end - e < 8)  
     {
       let start = this.viewPort.getDataLength();
       let max = start + this.batch;
       this.viewDisc = false
       let params = new HttpParams().set('entityid', this.entityId).set("min", start.toString()).set("max", max.toString());
+      this.scrollTo = e;
       this._discussionApi.getList(params).subscribe((resp:Discussion[]) =>{
         resp.forEach(disc =>{
           let discussionAll = <DiscussionAll>{}
@@ -377,17 +397,21 @@ export class CommentsComponent implements OnInit, OnDestroy {
         })
         this.discussions = resp
       })
-      this.viewPort.scrollToOffset(e);
+      this.viewPort.scrollToIndex(this.scrollTo)
     }
     
+    this.viewPort.scrollToIndex(this.scrollTo)
+
     if (end === this.totalFound) {
       this.offset.next(offset);
     }
+
+    this.viewPort.scrollToIndex(this.scrollTo)
   }
 
   delete(disc:DiscussionAll){
     let updateit = this.discussionsAll.indexOf(disc);
-    this._dialogsService.confirmDeletion().subscribe(resp =>{
+    this._dialogsService.confirmDeletion("Are you sure you want to delete?", "DELETE").subscribe(resp =>{
       if(resp === true){
         this._discussionApi.deleteEntity(disc.discussion._id).subscribe(resp =>{
           this.totalFound =  Number(this.totalFound) - 1

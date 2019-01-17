@@ -28,4 +28,6 @@ export interface Organization {
     
     country?: string;
 
+    affiliations?: Array<string>; 
+
 }

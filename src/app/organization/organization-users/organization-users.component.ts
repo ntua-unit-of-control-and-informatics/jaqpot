@@ -7,6 +7,7 @@ import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
+import { SessionService } from '../../session/session.service';
 
 @Component({
   selector: 'app-organization-users',
@@ -27,6 +28,7 @@ export class OrganizationUsersComponent implements OnInit {
     public notifFactory:NotificationFactoryService,
     public notificationService:NotificationService,
     public dialogsService:DialogsService,
+    private sessionService:SessionService,
     public oidcService:OidcSecurityService
   ) { }
 
@@ -34,7 +36,7 @@ export class OrganizationUsersComponent implements OnInit {
 
     if(this.organization._id != "Jaqpot")
     {
-      var userData = JSON.parse(sessionStorage.getItem('userData'))
+      var userData = this.sessionService.getUserData()
       
       if(this.organization.meta.creators.includes(userData.sub)){
         this.caninvite = true;
@@ -81,6 +83,10 @@ export class OrganizationUsersComponent implements OnInit {
       , this.notifFactory
       , this.organization
       , this.notificationService);
+  }
+
+  openUserDialog(user){
+    this.dialogsService.quickUser(this.userService, user)
   }
 
 }

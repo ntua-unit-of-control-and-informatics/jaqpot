@@ -42,6 +42,11 @@ export class SessionService{
         return this.userid;
     }
 
+    getUserData(){
+        var userData = JSON.parse(sessionStorage.getItem('userData'))
+        return userData
+    }
+
     getUserName(): Observable<any>{
         return this.userName.asObservable();
     }

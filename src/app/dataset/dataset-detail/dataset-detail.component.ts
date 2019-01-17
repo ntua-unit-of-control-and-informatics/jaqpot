@@ -12,6 +12,7 @@ import { Config } from '../../config/config';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
+import { type } from 'os';
 
 
 @Component({
@@ -82,6 +83,9 @@ export class DatasetDetailComponent implements OnChanges, AfterViewInit {
       let _stringSplitted = _uri.split("/")
       let featId = _stringSplitted[_stringSplitted.length - 1]
       this.featureApi.getWithIdSecured(featId).subscribe((feat:Feature)=>{
+        if(typeof feat.ontologicalClasses === 'undefined'){
+          feat.ontologicalClasses = []
+        }
         this.features.push(feat)
       })
     })

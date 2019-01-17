@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { ErrorReport } from '../../ui-models/errorReport';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { User } from '../../jaqpot-client';
+import { User, MetaInfo } from '../../jaqpot-client';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { ProfilepicDialogComponent } from '../../dialogs/profilepic-dialog/profilepic-dialog.component';
@@ -39,7 +39,7 @@ export class AccountBaseComponent implements OnInit {
   public edit_firstyname_is_disabled:boolean;
   public edit_preferedname_is_disabled:boolean;
 
-  public photo_unavail:boolean;
+  public photo_unavail:boolean = true;
 
   public edit:boolean=true;
 
@@ -48,14 +48,13 @@ export class AccountBaseComponent implements OnInit {
   @ViewChild(SocialBaseComponent) userForS;
 
   constructor(
-    public dialog: MatDialog ,
+    private dialog: MatDialog ,
     private sessionService:SessionService,
     private userService:UserService,
-    public oidcSecurityService: OidcSecurityService,
-    public snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) {
     this.username = this.sessionService.get('userName');
-    var userData = JSON.parse(sessionStorage.getItem('userData'))
+    var userData = this.sessionService.getUserData();
     this.name = userData.name
     this.familyName = userData.family_name;
     this.firstName = userData.given_name;
@@ -76,12 +75,14 @@ export class AccountBaseComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUserById(this.id)
-    .subscribe(userGot =>{
+    .subscribe((userGot:User) =>{
       this.user = userGot;
-      if(this.user.meta.picture == null){
-        this.photo_unavail = true;
-      }else{
-        this.photo_unavail = false;
+      if(typeof userGot.meta != 'undefined'){
+        if(userGot.meta.picture == null){
+          this.photo_unavail = true;
+        }else{
+          this.photo_unavail = false;
+        }
       }
     })
   }
@@ -89,18 +90,22 @@ export class AccountBaseComponent implements OnInit {
   addProfilePicDialog(){
     let dialogRef = this.dialog.open(ProfilepicDialogComponent,{})
     dialogRef.afterClosed().subscribe(result => {
-      this.user.meta.picture = result;
-      this.userService.updateUserById(this.id, this.user)
-      .subscribe(userGot =>{
-        this.user = userGot;
-        if(this.user.meta.picture == null){
-          this.photo_unavail = true;
-        }else{
-          this.photo_unavail = false;
-        }
+      if(typeof result != 'undefined'){
+        this.user.meta = <MetaInfo>{};
+        this.user.meta.picture = result;
+        this.userService.updateUserById(this.id, this.user)
+        .subscribe(userGot =>{
+          this.user = userGot;
+          if(this.user.meta.picture == null){
+            this.photo_unavail = true;
+          }else{
+            this.photo_unavail = false;
+          }
+        })
+      }});
+      this.userService.getUserById(this.sessionService.getUserId()).subscribe((userGot:User)=>{
+        this.user = userGot
       })
-    });
-
   }
 
   editForm(){

@@ -58,7 +58,11 @@ a:active{
 }
 
 .quick_view{
-  margin-left: 100px;
+  margin-left: 15px;
+}
+
+.trash_view{
+  margin-left: 105px;
 }
 
 .add_dataset{

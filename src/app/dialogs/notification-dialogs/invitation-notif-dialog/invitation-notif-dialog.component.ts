@@ -46,7 +46,7 @@ export class InvitationNotifDialogComponent implements OnInit {
         this.userService.putWithIdSecured(this.me._id, this.me).subscribe(userUpdated => {
           this.me = userUpdated
           this.organ.userIds.push(this.me._id)
-          this.organizationService.putWithIdSecured(this.organ._id, this.organ).subscribe(organUpdated => {
+          this.organizationService.putEntitySecured(this.organ).subscribe(organUpdated => {
             this.openSnackBar("You are now a member of the Organization" + this.organ._id, "Congrats!")
           })
           this.notification.viewed = true;

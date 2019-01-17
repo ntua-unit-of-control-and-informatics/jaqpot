@@ -68,6 +68,10 @@ export class DatasetIdComponent implements OnInit, OnDestroy {
     this.entityId = "dataset/" + this.id
     this.datasetApi.getWithIdSecured(this.id).subscribe((dataset:Dataset) =>{
       this.datasetToSee = dataset
+      if(typeof this.datasetToSee.meta.descriptions === 'undefined'){
+        this.datasetToSee.meta.descriptions = []
+      }
+
       this.entityMeta = dataset.meta
       this.userApi.getUserById(dataset.meta.creators[0]).subscribe((owned) =>{
         this.datasetOwner = owned
@@ -162,7 +166,11 @@ export class DatasetIdComponent implements OnInit, OnDestroy {
         , this.notificationService
         , this.notificationFactory
         , this.userApi
-        , this.sessionService.getUserId());
+        , this.sessionService.getUserId()).subscribe(res => {
+          this.datasetApi.getWithIdSecured(this.id).subscribe((dataset:Dataset)=>{
+            this.datasetToSee = dataset
+          })
+        });
   }
 
   markdownChanged(meta){

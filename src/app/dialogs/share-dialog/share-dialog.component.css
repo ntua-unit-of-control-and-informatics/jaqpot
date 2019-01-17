@@ -47,3 +47,16 @@
 .from-content{
     width:400px;
 }
+
+.radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+  
+.radio-button {
+    margin: 5px;
+}
+  
+.toggle{
+    margin:1em;
+}

@@ -34,11 +34,17 @@
         <mat-card-subtitle> Owner: <a class="owner_name" (click)="openUser()">{{modelOwner.name}} </a></mat-card-subtitle>
 
         <div class="model_descr" *ngIf="modelToSee">
-          <h5>Description: </h5>
-          <span>
-            <p>{{modelToSee.meta.descriptions[0]}}</p>
-          </span>
-
+          <div *ngIf="edit; else editit;">
+              <h5>Description: </h5>
+              <span>
+                <p>{{modelToSee.meta.descriptions[0]}}</p>
+              </span>
+          </div>
+          <ng-template #editit>
+              <mat-form-field class="descr_input">
+                  <textarea class="descr_text" matInput placeholder="Description" value="{{modelToSee.meta.descriptions[0]}}" [(ngModel)]="modelToSee.meta.descriptions[0]"></textarea>
+              </mat-form-field>
+          </ng-template>
         </div>
       </mat-card-content>
     </mat-card>

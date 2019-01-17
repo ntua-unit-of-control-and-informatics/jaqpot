@@ -7,6 +7,9 @@
   <span *ngIf="quick_view">
     <p class="quick_view">Quick view</p>
   </span>
+  <span *ngIf="trash_view">
+    <p class="trash_view">Trash</p>
+  </span>
   <span *ngIf="queries_enabled">
     <p class="view_enabled">{{queries_for}}</p>
   </span>
@@ -15,7 +18,7 @@
     <p class="query_chose">{{query}}</p>
   </span>
   <button *ngIf="queries_enabled" mat-icon-button [matMenuTriggerFor]="menu" class="query_menu">
-    <mat-icon *ngIf="query != 'mine'">arrow_right</mat-icon>
+    <mat-icon *ngIf="query != 'mine' && !trash_view">arrow_right</mat-icon>
   </button>
 
   <mat-menu #menu="matMenu">
@@ -31,9 +34,9 @@
 
   <!-- <div *ngIf="organizations"> -->
 
-    <p *ngIf="organizations" class="query_chose">With {{organizationActivated}}</p>
+    <p *ngIf="organizations && !trash_view" class="query_chose">With {{organizationActivated}}</p>
     <!-- <span> -->
-    <button *ngIf="organizations" mat-icon-button [matMenuTriggerFor]="orgMenu" class="query_menu">
+    <button *ngIf="organizations && !trash_view" mat-icon-button [matMenuTriggerFor]="orgMenu" class="query_menu">
         <!-- With {{organizationActivated}} -->
         <mat-icon >arrow_drop_down</mat-icon>
     </button>
@@ -91,11 +94,15 @@
         <h4 mat-line>Models</h4>
         <p mat-line> Shared / Private </p>
       </a>
+      <a mat-list-item role="listitem" (click)="goToTrashView()">
+        <mat-icon mat-list-icon class="list_icon">delete</mat-icon>
+        <h4 mat-line>Trash</h4>
+      </a>
     </mat-list>
   </div>
   <div class="home_content">
     <app-data-model-view *ngIf="datasets_to_view || models_to_view" [datasets_to_view]="datasets_to_view"
-      [models_to_view]="models_to_view" [view_type]="view_type" (itemClicked)="onItemClicked($event)"></app-data-model-view>
+      [models_to_view]="models_to_view" [view_type]="view_type" [onTrash]="trash_view" (itemClicked)="onItemClicked($event)"></app-data-model-view>
   </div>
   <mat-divider class="vert_divider" [vertical]="true"></mat-divider>
   <app-quick-view  class="quick_view" [viewItem]="viewItem"></app-quick-view>

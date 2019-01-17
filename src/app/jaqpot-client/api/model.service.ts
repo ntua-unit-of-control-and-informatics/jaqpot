@@ -12,7 +12,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { MetaInfo, Model } from '../model/models';
+import { MetaInfo, Model, Task } from '../model/models';
 
 
 
@@ -20,7 +20,6 @@ import { MetaInfo, Model } from '../model/models';
 export class ModelApiService extends BaseClient<Dataset>{
 
     _privateBasePath:string;
-    private dataset:Dataset;
     _modelBase:string = "/model/"
 
     constructor(http: HttpClient,
@@ -42,6 +41,35 @@ export class ModelApiService extends BaseClient<Dataset>{
             }),catchError( err => this.dialogsService.onError(err) )
         );
     }
+
+    public predict(modelId:string, datasetUri:string, visible):Observable<Task>{
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization', tokenValue);
+        let pathFormed = Config.JaqpotBase + this._modelBase + modelId 
+        let body = new HttpParams();
+        body = body.set('dataset_uri', datasetUri);
+        body = body.set('visible', visible);
+        return this.http.post(pathFormed, body.toString(), { headers:headers }).pipe(
+            tap((res : Response) =>{
+                return res;
+            }),catchError( err => this.dialogsService.onError(err) )
+        )
+    }
+
+    public updateOnTrash(modelId:string, model:Model):Observable<Model>{
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+        let pathFormed = Config.JaqpotBase + this._modelBase + modelId + '/ontrash';
+        return this.http.put(pathFormed, model, { headers:headers }).pipe(
+            tap((res : Response) =>{
+                return res;
+            }),catchError( err => this.dialogsService.onError(err) )
+        )
+
+    }
+
 }
 
 // /**
@@ -721,32 +749,32 @@ export class ModelApiService extends BaseClient<Dataset>{
 //         ];
 //         let canConsumeForm = this.canConsumeForm(consumes);
 //         let useForm = false;
-//         let formParams = new (useForm ? FormData : URLSearchParams as any)() as {
-//           set(param: string, value: any): void;
-//         };
+    //     let formParams = new (useForm ? FormData : URLSearchParams as any)() as {
+    //       set(param: string, value: any): void;
+    //     };
 
-//         // to determine the Accept header
-//         let produces: string[] = [
-//             'application/json'
-//         ];
+    //     // to determine the Accept header
+    //     let produces: string[] = [
+    //         'application/json'
+    //     ];
 
-//       headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    //   headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
-//       if (datasetUri !== undefined) {
-//             formParams.set('dataset_uri', <any>datasetUri);
-//         }
+    //   if (datasetUri !== undefined) {
+    //         formParams.set('dataset_uri', <any>datasetUri);
+    //     }
 
-//         if (visible !== undefined) {
-//             formParams.set('visible', <any>visible);
-//         }
+    //     if (visible !== undefined) {
+    //         formParams.set('visible', <any>visible);
+    //     }
 
-//         let requestOptions: RequestOptionsArgs = new RequestOptions({
-//             method: RequestMethod.Post,
-//             headers: headers,
-//             body: formParams.toString(),
-//             search: queryParameters,
-//             withCredentials:this.configuration.withCredentials
-//         });
+    //     let requestOptions: RequestOptionsArgs = new RequestOptions({
+    //         method: RequestMethod.Post,
+    //         headers: headers,
+    //         body: formParams.toString(),
+    //         search: queryParameters,
+    //         withCredentials:this.configuration.withCredentials
+    //     });
 //         // https://github.com/swagger-api/swagger-codegen/issues/4037
 //         if (extraHttpRequestParams) {
 //             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);

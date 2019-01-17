@@ -35,7 +35,9 @@ export class NotificationComponent implements OnInit {
       switchMap(() => this.notificationService.getUnreadNotifications())
     ).subscribe(notifsGot => {
       this.notifications = notifsGot
-      this.notificationCount = this.notifications.length
+      this.notificationService.countUnreadNotifications().subscribe(res =>{
+        this.notificationCount = res.headers.get("total")
+      })
     })
   }
 

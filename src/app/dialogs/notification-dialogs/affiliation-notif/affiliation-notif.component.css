@@ -1,0 +1,65 @@
+h2{
+    float: left;
+    width:100%;
+}
+
+.base-content{
+    float: left;
+    /* width: 20%; */
+}
+
+.from-content{
+    /* width:30%; */
+    margin-top: 4em;
+    padding-bottom: 2em;
+}
+
+.organ-content{
+    float:left;
+    /* width:40%; */
+}
+
+.cont-all{
+    width: 100%;
+    display: flex;
+}
+
+/* .cont-all > div {
+    flex: 1; 
+  } */
+
+.user-photo{
+    width:20%;
+    float: left;
+}
+
+.from-im{
+    margin-top: 1em;
+    border-radius: 25%;
+    height: 4em;
+    border: 1px solid lightgray;
+}
+
+.user-cont{
+    margin-left: 1em;
+}
+
+.organ-photo{
+    width:20%;
+    float: left;
+}
+
+.organ-im{
+    margin-top: 1em;
+    border-radius: 25%;
+    height: 4em;
+    border: 1px solid lightgray;
+}
+
+.resolve-button{
+    margin-right: 25%;
+}
+
+.organ-cont{
+    margin-left: 1em;
+}

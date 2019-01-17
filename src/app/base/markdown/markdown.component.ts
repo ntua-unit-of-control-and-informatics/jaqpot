@@ -21,7 +21,7 @@ export class MarkdownComponent implements OnChanges {
   edit:boolean = false;
 
   constructor() { 
-    
+
   }
 
   ngOnChanges() {
@@ -32,7 +32,6 @@ export class MarkdownComponent implements OnChanges {
       this.edit = false;
       this.view = true;
     }
-
   }
 
   markChanged(){

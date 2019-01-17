@@ -111,6 +111,10 @@ import { CommentsComponent } from './base/comments/comments.component';
 import { QuickViewComponent } from './home/quick-view/quick-view.component';
 import { ModelFeaturesComponent } from './models/model-features/model-features.component';
 import { PredictValidateComponent } from './models/predict-validate/predict-validate.component';
+import { PredictedComponent } from './base/predicted/predicted.component';
+import { SimpleDatasetComponent } from './base/simple-dataset/simple-dataset.component';
+import { ValidateComponent } from './models/validate/validate.component';
+import { ValidationReportComponent } from './base/validation-report/validation-report.component';
 /**
  * NgModule that includes all Material modules that are required to serve 
  * the Plunker.
@@ -245,7 +249,11 @@ export class MaterialModule {}
     WorkbenchBaseComponent,
     CommentsComponent,
     QuickViewComponent,
-    MarkdownComponent
+    MarkdownComponent,
+    PredictedComponent,
+    SimpleDatasetComponent,
+    ValidateComponent,
+    ValidationReportComponent
     
     //
   ],
@@ -289,7 +297,8 @@ export class AppModule {
     let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
 
     openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
-    openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
+    // openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
+    openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';
     openIDImplicitFlowConfiguration.client_id = 'jaqpot-ui';
     openIDImplicitFlowConfiguration.response_type = 'id_token token';
     openIDImplicitFlowConfiguration.scope = 'openid email profile';

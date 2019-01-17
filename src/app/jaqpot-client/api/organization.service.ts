@@ -39,16 +39,39 @@ export class OrganizationService extends BaseClient<Organization>{
     
     _privateBasePath:string;
     private orgnanization:Organization;
-    _organizationBase:string = "/organization/"
+    _organizationBase:string
 
     constructor(http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/organization/")
+            this._privateBasePath = Config.JaqpotBase;
+            this._organizationBase = this._privateBasePath + "/organization/";
         }
 
-    
+        public searchOrgById(id:string): Observable<Array<Organization>> {
+            const token = this.oidcSecurityService.getToken();
+            const tokenValue = 'Bearer ' + token;
+            let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+            let params = new HttpParams().set('orgname', id);
+            return this.http.get(this._organizationBase + "search/and/found", { headers: headers, params: params }).pipe(
+                tap((res : Response) => {  
+                    return res      
+                }),catchError( err => this.dialogsService.onError(err) ));
+        }
+
+        public removeAffiliation(orgs:Organization[]):Observable<Response>{
+            const token = this.oidcSecurityService.getToken();
+            const tokenValue = 'Bearer ' + token;
+            let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+            return this.http.put(this._organizationBase + "affiliations", orgs, { headers: headers }).pipe(
+                tap((res : Response) => {  
+                    return res      
+                }),catchError( err => this.dialogsService.onError(err) ));
+        }
+
+
     // public updateOrganizationById(id:string, user:User): Observable<User> {
     //     let params = new URLSearchParams();
             

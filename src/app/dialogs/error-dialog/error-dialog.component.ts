@@ -30,4 +30,8 @@ export class ErrorDialogComponent{
        }
     }
 
+    onClose(){
+      this.dialogRef.close(true);
+    }
+
 }

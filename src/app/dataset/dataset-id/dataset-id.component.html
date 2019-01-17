@@ -19,11 +19,11 @@
 
             <div *ngIf="canUpdatePhoto; else cannotUpdate">
               <a matTooltip="Update photo" matTooltipPosition="below" (click)="updatePhoto()">
-                <img mat-card-avatar class="entity_image_jaqpots" src="assets/dataset.jpg">
+                <img mat-card-avatar class="entity_image_jaqpots" src="assets/dataset3.png">
               </a>
             </div>
             <ng-template #cannotUpdate>
-              <img mat-card-avatar class="entity_image_jaqpots" src="assets/dataser.jpg">
+              <img mat-card-avatar class="entity_image_jaqpots" src="assets/dataser3.png">
             </ng-template>
           </ng-template>
         </div>
@@ -35,10 +35,19 @@
         <mat-card-subtitle> Owner: <a class="owner_name" (click)="openUser()">{{datasetOwner.name}} </a></mat-card-subtitle>
 
         <div class="model_descr" *ngIf="datasetToSee">
-          <h5>Description: </h5>
-          <span>
-            <p>{{datasetToSee.meta.descriptions[0]}}</p>
-          </span>
+            <div *ngIf="edit; else editit;">
+              <div *ngIf="datasetToSee?.meta?.descriptions.length > 0">
+                <h5>Description: </h5>
+                <span>
+                  <p>{{datasetToSee.meta.descriptions[0]}}</p>
+                </span>
+              </div>
+            </div>
+            <ng-template #editit>
+                <mat-form-field class="descr_input">
+                    <textarea class="descr_text" matInput placeholder="Description" value="{{datasetToSee.meta.descriptions[0]}}" [(ngModel)]="datasetToSee.meta.descriptions[0]"></textarea>
+                </mat-form-field>
+            </ng-template>
 
         </div>
       </mat-card-content>

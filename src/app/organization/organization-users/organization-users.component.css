@@ -1,12 +1,13 @@
-.users{
+/* .users{
     border: 1px solid lightgray;
     border-radius: 20px;
-}
+} */
 
 .userhead{
     width: 100%;
     position: relative;
     height: 3em;
+    margin-bottom: 2em;
 }
 
 .users-header{
@@ -22,7 +23,7 @@
 }
 
 .user-grid{
-    padding-bottom: 2em;
+    /* padding-bottom: 2em; */
 }
 
 .invite{

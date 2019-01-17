@@ -36,7 +36,7 @@ export class OrganizationsComponent implements OnInit {
   }
 
   onOrgClicked(organization: Organization){
-    this.dialogService.onOrganizationView(organization, this.organizationService).subscribe(
+    this.dialogService.onOrganizationView(organization, this.organizationService, true).subscribe(
       result =>{
         this.dialogClosed.emit(true)
       }

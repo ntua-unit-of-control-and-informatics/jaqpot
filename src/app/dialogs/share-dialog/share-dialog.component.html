@@ -80,7 +80,7 @@
     <p>Users will be able to view and edit and share the resource</p>
     <h5>Notes about Execute</h5>
     <p class="long">Users will be able to view the resource, execute tasks with the resource
-       (train, predict, validate etc) and share the resource</p>
+      (train, predict, validate etc) and share the resource</p>
     <!-- <p>Users will be able to execute tasks with the resource <span><p>(train, predict, validate etc)</p> </span></p> -->
     <!-- <p>Users shared with will be able to share the resource </p> -->
     <!-- <div class="read_notes">
@@ -106,23 +106,22 @@
     </div> -->
   </div>
 
+  <mat-slide-toggle class="toggle" (change)="toggleChange($event)">
+    Affiliated Orgs
+  </mat-slide-toggle>
 
-<div *ngIf="success">
-  <mat-icon>check_circle_outline</mat-icon>
-  <h5>Dataset succesfully shared</h5>
-</div>
-
+  <div *ngIf="success">
+    <mat-icon>check_circle_outline</mat-icon>
+    <h5>Succesfully shared</h5>
+  </div>
 </mat-dialog-content>
 
 
 <mat-dialog-actions>
-    <button mat-raised-button [disabled]="share" (click)="reset()">
-        <mat-icon matTooltip="Cancell">cancel_presentation</mat-icon>
-    </button>
-    <button mat-raised-button color="primary" [disabled]="share" (click)="startSharing()">
-        <mat-icon matTooltip="Share">send</mat-icon>
-    </button>
-
-
-    
+  <button mat-raised-button [disabled]="share" (click)="reset()">
+    <mat-icon matTooltip="Cancell">cancel_presentation</mat-icon>
+  </button>
+  <button mat-raised-button color="primary" [disabled]="share" (click)="startSharing()">
+    <mat-icon matTooltip="Share">send</mat-icon>
+  </button>
 </mat-dialog-actions>

@@ -19,7 +19,6 @@ import { ModelApiService } from './api/model.service';
 // import { OpenrisknetService } from './api/openrisknet.service';
 // import { PmmlService } from './api/pmml.service';
 // import { ReadacrossService } from './api/readacross.service';
-// import { ReportService } from './api/report.service';
 // import { TaskService } from './api/task.service';
 import { UserService } from './api/user.service';
 import { OrganizationService } from './api/organization.service';
@@ -31,6 +30,9 @@ import { DatasetFactoryService } from './factories/dataset-factory.service';
 import { FeatureFactoryService } from './factories/feature-factory.service';
 import { FeatureApiService } from './api/feature.service';
 import { DiscussionService } from './api/discussion.service';
+import { TaskApiService } from './api/task.service';
+import { ValidationApiService } from './api/validation.service';
+import { ReportApiService } from './api/report.service';
 // import { DatasetApiFacadeService } from './facades/dataset-api-facade.service';
 // import { ValidationService } from './api/validation.service';
 
@@ -65,7 +67,10 @@ import { DiscussionService } from './api/discussion.service';
     DatasetBuilderService,
     DatasetFactoryService,
     FeatureFactoryService,
-    DiscussionService
+    DiscussionService,
+    TaskApiService,
+    ValidationApiService,
+    ReportApiService
     // DatasetApiFacadeService
     // Feature
     ]

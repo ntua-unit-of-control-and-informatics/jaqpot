@@ -14,13 +14,12 @@
 </div>
 
 <mat-dialog-content class="orgcont">
-  <h3 class="about">About</h3>
-  {{organization?.about}}
+  <h3 *ngIf="organization?.meta?.descriptions" class="about">About</h3>
+  {{organization?.meta?.descriptions}}
 </mat-dialog-content>
 
-<button mat-button class="vieworg" (click)="goToOrganization()">View</button>
+<button *ngIf="view" mat-button class="vieworg" (click)="goToOrganization()">View</button>
 
 <mat-dialog-actions *ngIf="edit">
   <button mat-button (click)="goToOrganization()">Edit</button>
-  <!-- <button mat-button color="warn" (click)="deleteOrganization()">Delete</button> -->
 </mat-dialog-actions>
