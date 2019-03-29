@@ -13,6 +13,9 @@
 
 
 export interface FeatureInfo {
+
+    key?: string;
+
     name?: string;
 
     units?: string;

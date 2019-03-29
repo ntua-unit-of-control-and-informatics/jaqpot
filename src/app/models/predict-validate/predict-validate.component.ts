@@ -67,6 +67,8 @@ export class PredictValidateComponent implements OnInit {
 
   _canSeeDetails:boolean = false;
 
+  canValidate:boolean = true;
+
   constructor( 
     private _modelApi:ModelApiService,
     private _userApi:UserService,
@@ -91,6 +93,11 @@ export class PredictValidateComponent implements OnInit {
   ngOnInit(  ) {
     this._modelApi.getWithIdSecured(this.entityId.split("/")[1]).subscribe((model:Model)=>{
       this.model = model
+      if(typeof this.model.algorithm != 'undefined' 
+          && typeof this.model.algorithm.ontologicalClasses != 'undefined'
+          && this.model.algorithm.ontologicalClasses.includes("ot:PBPK")){
+            this.canValidate = false;
+          }
       if(typeof model.meta.execute != 'undefined' && model.meta.execute.includes("Jaqpot")){
         this.canExecute = true;
       }
@@ -172,7 +179,6 @@ export class PredictValidateComponent implements OnInit {
   
   viewTheError(){
     this.viewError = true
-
   }
 
   viewTheResult(){
@@ -187,6 +193,7 @@ export class PredictValidateComponent implements OnInit {
   startInputPrediction(){
     let dataset:Dataset = this._datasetFactory.createPredictDataset(this.indepfeatureAndValues)
     this.taskStarted = true;
+    // console.log(dataset)
     this._datasetApi.postEntity(dataset).subscribe((dataset:Dataset)=>{
       let datasetUri = Config.JaqpotBase + "/dataset/" + dataset._id
       
@@ -200,6 +207,7 @@ export class PredictValidateComponent implements OnInit {
 
   startDatasetPrediction(){
     this.taskStarted = true;
+    // console.log(this.datasetForPrediction)
     this._datasetApi.postEntity(this.datasetForPrediction).subscribe((dataset:Dataset)=>{
       let datasetUri = Config.JaqpotBase + "/dataset/" + dataset._id
       this._modelApi.predict(this.model._id, datasetUri, "true").subscribe((task:Task)=>{
@@ -258,7 +266,7 @@ export class PredictValidateComponent implements OnInit {
 
   changeListener(files: FileList) {
     
-    if (files && files.length === 1 && files.item(0).type === 'text/csv') {
+    if (files && files.length === 1 && files.item(0).name.split(".")[1] === 'csv') {
       let reader: FileReader = new FileReader();
       let file: File = files.item(0);
       reader.readAsText(file);

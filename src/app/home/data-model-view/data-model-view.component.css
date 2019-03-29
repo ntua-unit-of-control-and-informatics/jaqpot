@@ -6,7 +6,7 @@
   position: absolute;
   min-height: calc(100vh - 118px);
   max-height: calc(100vh - 118px);
-  overflow-y: scroll;
+  overflow-y: auto;
   /* overflow: auto; */
   /* float: left; */
   width: 100%;

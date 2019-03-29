@@ -14,10 +14,10 @@ export class DatasetToViewdataService {
     let _data_entry:DataEntry[] = dataset.dataEntry
     let _featureInfo:FeatureInfo[] = dataset.features
     let uri_name_map:{ [key: string]: any; } = {}
-    let uris = []
+    let keys = []
     _featureInfo.forEach(f =>{
-      uri_name_map[f.uri] = f.name
-      uris.push(f.uri)
+      uri_name_map[f.key] = f.name
+      keys.push(f.key)
     })
     let data_rows =[]
     _data_entry.forEach(de=>{
@@ -26,12 +26,13 @@ export class DatasetToViewdataService {
       let entryid:EntryId = de.entryId
       data_row['Id'] = entryid.name
       let values:{ [key: string]: any; } = de.values
-      uris.forEach(uri =>{
-        let feature_name =  uri_name_map[uri]
-        data_row[feature_name] = values[uri]
+      keys.forEach(key =>{
+        let feature_name =  uri_name_map[key]
+        data_row[feature_name] = values[key]
         })
        data_rows.push(data_row) 
       })
+      // console.log(data_rows)
     return data_rows
   }
 

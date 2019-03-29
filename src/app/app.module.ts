@@ -115,6 +115,9 @@ import { PredictedComponent } from './base/predicted/predicted.component';
 import { SimpleDatasetComponent } from './base/simple-dataset/simple-dataset.component';
 import { ValidateComponent } from './models/validate/validate.component';
 import { ValidationReportComponent } from './base/validation-report/validation-report.component';
+import { SearchAllComponentComponent } from './bar-components/search-all-component/search-all-component.component';
+import { SearchBaseComponent } from './search/search-base/search-base.component';
+import { SearchQuickViewComponent } from './search/search-quick-view/search-quick-view.component';
 /**
  * NgModule that includes all Material modules that are required to serve 
  * the Plunker.
@@ -178,7 +181,7 @@ import { ValidationReportComponent } from './base/validation-report/validation-r
     MatAutocompleteModule,
     MatBadgeModule,
     MatTreeModule,
-    MatTableModule
+    MatTableModule,MatFormFieldModule
   ],
   declarations: [],
 
@@ -253,7 +256,7 @@ export class MaterialModule {}
     PredictedComponent,
     SimpleDatasetComponent,
     ValidateComponent,
-    ValidationReportComponent
+    ValidationReportComponent,SearchAllComponentComponent,SearchBaseComponent, SearchQuickViewComponent
     
     //
   ],
@@ -297,8 +300,8 @@ export class AppModule {
     let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
 
     openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
-    // openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
-    openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';
+    openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
+    // openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';
     openIDImplicitFlowConfiguration.client_id = 'jaqpot-ui';
     openIDImplicitFlowConfiguration.response_type = 'id_token token';
     openIDImplicitFlowConfiguration.scope = 'openid email profile';
@@ -315,7 +318,7 @@ export class AppModule {
     openIDImplicitFlowConfiguration.max_id_token_iat_offset_allowed_in_seconds = 10;
     // openIDImplicitFlowConfiguration.override_well_known_configuration = false;
     // openIDImplicitFlowConfiguration.override_well_known_configuration_url = 'http://147.102.86.129:30008/auth/realms/Jaqpan/.well-known/openid-configuration';
-    // openIDImplicitFlowConfiguration.storage = localStorage;
+    openIDImplicitFlowConfiguration.storage = localStorage;
           
     const authWellKnownEndpoints = new AuthWellKnownEndpoints();
     authWellKnownEndpoints.issuer = 'https://login.jaqpot.org/auth/realms/jaqpot'; 

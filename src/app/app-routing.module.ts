@@ -17,6 +17,7 @@ import {FrontComponent} from './front/front.component';
 import { ModelIdComponent } from './models/model-id/model-id.component';
 import { WorkbenchBaseComponent } from './workbench/workbench-base/workbench-base.component';
 import { DatasetIdComponent } from './dataset/dataset-id/dataset-id.component';
+import { SearchBaseComponent } from './search/search-base/search-base.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'model/:id', component: ModelIdComponent},
   {path: 'dataset/:id', component:DatasetIdComponent},
   {path: 'workbench', component: WorkbenchBaseComponent, canActivate: [AuthGuard]},
+  {path: 'search', component: SearchBaseComponent, canActivate: [AuthGuard]},
   {path: '', component:  FrontComponent}
 
 ];

@@ -8,6 +8,7 @@ import { OrganizationService } from '../../jaqpot-client/api/organization.servic
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
+import { Config } from '../../config/config';
 
 @Component({
   selector: 'app-notification',
@@ -30,15 +31,17 @@ export class NotificationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    interval(10000).pipe(
-      startWith(0),
-      switchMap(() => this.notificationService.getUnreadNotifications())
-    ).subscribe(notifsGot => {
-      this.notifications = notifsGot
-      this.notificationService.countUnreadNotifications().subscribe(res =>{
-        this.notificationCount = res.headers.get("total")
+    if(Config.notif_poll === true){
+      interval(10000).pipe(
+        startWith(0),
+        switchMap(() => this.notificationService.getUnreadNotifications())
+      ).subscribe(notifsGot => {
+        this.notifications = notifsGot
+        this.notificationService.countUnreadNotifications().subscribe(res =>{
+          this.notificationCount = res.headers.get("total")
+        })
       })
-    })
+    }
   }
 
   openNotifDialog(notif){

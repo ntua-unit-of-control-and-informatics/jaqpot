@@ -1,0 +1,190 @@
+.search_header{
+    width:100%;
+    height:60px;
+    /* margin-top: 20px; */
+    /* margin-left: 20px; */
+}
+
+.searchh{
+    width:110px;
+    float:left;
+    margin-left: 20px;
+}
+
+.searchf{
+    width:20px;
+    float: left;
+    /* margin-left: calc(20% + 110px); */
+}
+
+.searcht{
+    width:20px;
+    float: left;
+    /* margin-left: calc(30% + 110px); */
+}
+
+.searchht{
+    width:18%;
+    margin-top: 6px;
+    /* margin-left: 20px; */
+    /* margin-left: 20px; */
+    max-height: 40px;
+    float:left;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.searchhf{
+    width:8%;
+    margin-top: 6px;
+    margin-left: 40px;
+    /* margin-left: 20px; */
+    max-height: 40px;
+    float:left;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.searchhd{
+    width:8%;
+    margin-left: 4px;
+    margin-top: 6px;
+    max-height: 40px;
+    float:left;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+
+/* .divh{
+    width: 80%; 
+    margin-left: 20px;
+} */
+
+
+.loading{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    width: 100%;
+    height: calc(100vh - 112px);
+    background-color: lightgray;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.spinner{
+    display: block;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+}
+
+
+.foundentity{
+    width: 100%;
+    float: left;
+    margin: 1em;
+    padding-top: 0.1em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+}  
+
+.foundentity:hover{
+    background-color: lightgray;
+    transition: 0.2s;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+
+.title{
+    width:20%;
+    float: left;
+    margin-bottom: 0;
+}
+
+.foundtype{
+    padding-top: 5px;
+    margin-bottom: 0;
+    width: 40%;
+}
+
+.discription{
+    max-height: 40px;
+    overflow-wrap: break-word;
+    margin-top: 6px;
+    width: 80%;
+}
+
+.read{
+    width:80%;
+}
+
+.read p{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.s{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.org{
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 4px;
+}
+
+.gobutton{
+    float: right;
+    margin-top: -4.5em;
+    margin-right: 1em;
+}
+
+.date{
+    width: 80%;
+}
+
+.empty_space{
+    height: 100px;
+    width: 100%;
+    /* bottom: 0;
+    position: fix; */
+}
+
+.paginator{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 48px;
+    z-index: -1;
+}
+
+.quick-view{
+    /* position:absolute;
+    top:120;
+    right:0; */
+    float: left;
+    height: 400px;
+    width:20%;
+    margin-left: 10%;
+    position: fixed;
+}
+
+.found-list{
+    width:58%;
+    float: left;
+    padding-bottom: 100px;
+}
+
+
+.search-all{
+    position: relative;
+    width:100%;
+    padding: 2px;
+}

@@ -125,6 +125,13 @@
 
       </form>
 
+      <form *ngIf="user">
+          <mat-icon>vpn_key</mat-icon>
+          <mat-form-field class="simple-meta">
+            <input matInput placeholder="Api key" [disabled]="true" [ngModel]="apiKey" name="api key">
+          </mat-form-field>
+  
+        </form>
 
     </div>
 

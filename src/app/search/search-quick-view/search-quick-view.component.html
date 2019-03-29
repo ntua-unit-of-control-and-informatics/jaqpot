@@ -1,0 +1,48 @@
+<div *ngIf="modelView">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Model</mat-card-title>
+      <mat-card-subtitle *ngIf="modelView?.meta?.titles[0]">{{modelView.meta.titles[0]}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <div *ngIf="modelView?.meta?.picture; else jpicture;">
+      <img mat-card-image-lg class="entity_image" src="{{modelView.meta.picture}}">
+    </div>
+    <ng-template #jpicture>
+      <img mat-card-avatar class="entity_image_jaqpots" src="assets/model.png">
+    </ng-template>
+
+    <mat-card-content class="cont">
+      <p *ngIf="modelView?.meta?.descriptions[0]">
+        {{modelView.meta.descriptions[0]}}
+      </p>
+
+      <div *ngIf="creator">
+        <p> Creator: <a class="owner_name" (click)="openUser()">{{creator.name}} </a></p>
+      </div>
+
+
+      <div *ngIf="modelView?.meta?.read" class="read">
+        <p class="s">Shared with: </p>
+        <p class="org" *ngFor="let org of modelView?.meta?.read"> {{ org }}</p>
+      </div>
+      <div *ngIf="modelView?.meta?.date" class="date">
+        Created: {{modelView.meta.date | date}}
+      </div>
+
+      <div *ngIf="predicts" class="read">
+        <p class="s">Predicts : </p>
+        <p class="org" *ngFor="let feat of predicts">{{feat.meta.titles[0]}}</p>
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>
+<div *ngIf="datasetView">
+
+</div>
+<div *ngIf="organizationView">
+
+</div>

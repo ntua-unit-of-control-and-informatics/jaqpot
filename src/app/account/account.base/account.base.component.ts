@@ -32,7 +32,7 @@ export class AccountBaseComponent implements OnInit {
   public email:string;
   public preferedUserName:string;
   public name:string;
-
+  private apiKey:string;
 
   public edit_name_is_disabled:boolean;
   public edit_familyname_is_disabled:boolean;
@@ -51,11 +51,13 @@ export class AccountBaseComponent implements OnInit {
     private dialog: MatDialog ,
     private sessionService:SessionService,
     private userService:UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private oidcSecurityService: OidcSecurityService
   ) {
     this.username = this.sessionService.get('userName');
     var userData = this.sessionService.getUserData();
     this.name = userData.name
+    this.apiKey = this.oidcSecurityService.getToken();
     this.familyName = userData.family_name;
     this.firstName = userData.given_name;
     this.email = userData.email;

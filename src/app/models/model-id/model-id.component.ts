@@ -32,6 +32,7 @@ export class ModelIdComponent implements OnInit, OnDestroy {
 
   edit:boolean = false;
   canEdit:boolean = false;
+  edit_descr:boolean=false;
   save:boolean = false;
   viewOrEdit:string = "view"
 
@@ -141,6 +142,7 @@ export class ModelIdComponent implements OnInit, OnDestroy {
   }
 
   editAll(){
+    this.edit_descr = true;
     this.edit = false;
     this.save = true;
     this.viewOrEdit = "edit";
@@ -160,6 +162,7 @@ export class ModelIdComponent implements OnInit, OnDestroy {
   }
 
   saveAll(){
+    this.edit_descr = false;
     this.save = false;
     this.edit = true;
     this.viewOrEdit = "view";

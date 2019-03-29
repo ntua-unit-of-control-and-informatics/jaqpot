@@ -5,21 +5,25 @@
 </div>
 
 <ng-template #can_execute>
-  <div class="can mat-elevation-z2">
+  <div *ngIf="model" class="can mat-elevation-z2">
     <h4>Choose method</h4>
     <mat-form-field class="method">
       <mat-select [(value)]="selected" (selectionChange)="methodSelected($event)">
         <mat-option value="Predict">Predict</mat-option>
-        <mat-option value="Validate">Validate</mat-option>
+        <mat-option *ngIf="canValidate" value="Validate">Validate</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
 </ng-template>
 
-<div *ngIf="!taskStarted; else task">
+<div *ngIf="!taskStarted; else task" class="first_card">
 
 
+  <div *ngIf="canExecute">
+
+
+  
   <div *ngIf="selected === 'Predict';  else validate;" class="base mat-elevation-z2">
     <h4>Upload dataset with the required independent features and values</h4>
 
@@ -54,7 +58,7 @@
 
 
 
-    <h4 class="input_vals_h">Or input values for the independent features</h4>
+    <h4 class="input_vals_h">Input values for the independent features</h4>
 
     <div *ngIf="indepfeatureAndValues" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px" fxLayoutAlign="flex-start">
       <div *ngFor="let feat of indepfeatureAndValues">
@@ -96,6 +100,7 @@
     </div>
   </ng-template>
 </div>
+</div>
 
 <ng-template #task>
   <div class="task mat-elevation-z2">
@@ -131,7 +136,6 @@
       </div>
 
     </div>
-
     <div *ngIf="taskCompletedSuccesfully">
       <button matTooltip="View Prediction" mat-icon-button (click)="viewTheResult()">
         <mat-icon>done_all</mat-icon>
@@ -144,4 +148,5 @@
     </div>
 
   </div>
+
 </ng-template>

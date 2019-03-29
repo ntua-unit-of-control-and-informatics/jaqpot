@@ -18,6 +18,11 @@
       </span>
       <span class="example-spacer"></span>
 
+      <span>
+        <div *ngIf="loggedIn">
+          <app-search-all-component></app-search-all-component>
+        </div>
+      </span>
 
       <span class="notifications">
         <div *ngIf="loggedIn">

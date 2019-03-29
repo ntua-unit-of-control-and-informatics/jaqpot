@@ -1,0 +1,44 @@
+.entity_image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    border-radius: 5px;
+    margin-bottom: 2em;
+    border: 5px;
+}
+
+.entity_image_jaqpots{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 70%;
+    margin-bottom: 2em;
+}
+
+.cont{
+    padding-left:4em;
+    padding-right: 4em;
+    margin-bottom: 2em;
+}
+
+.read{
+    width:80%;
+}
+
+.read p{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.s{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.org{
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 4px;
+}

@@ -34,7 +34,7 @@
         <mat-card-subtitle> Owner: <a class="owner_name" (click)="openUser()">{{modelOwner.name}} </a></mat-card-subtitle>
 
         <div class="model_descr" *ngIf="modelToSee">
-          <div *ngIf="edit; else editit;">
+          <div *ngIf="!edit_descr; else editit;">
               <h5>Description: </h5>
               <span>
                 <p>{{modelToSee.meta.descriptions[0]}}</p>

@@ -33,6 +33,7 @@ import { DiscussionService } from './api/discussion.service';
 import { TaskApiService } from './api/task.service';
 import { ValidationApiService } from './api/validation.service';
 import { ReportApiService } from './api/report.service';
+import { SearchApiService } from './api/search.service';
 // import { DatasetApiFacadeService } from './facades/dataset-api-facade.service';
 // import { ValidationService } from './api/validation.service';
 
@@ -70,7 +71,8 @@ import { ReportApiService } from './api/report.service';
     DiscussionService,
     TaskApiService,
     ValidationApiService,
-    ReportApiService
+    ReportApiService,
+    SearchApiService
     // DatasetApiFacadeService
     // Feature
     ]

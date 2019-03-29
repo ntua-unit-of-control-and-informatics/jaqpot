@@ -37,13 +37,13 @@ export class SessionService{
   //  }
 
     getUserId(){
-        var userData = JSON.parse(sessionStorage.getItem('userData'))
+        var userData = JSON.parse(localStorage.getItem('userData'))
         this.userid = userData.sub
         return this.userid;
     }
 
     getUserData(){
-        var userData = JSON.parse(sessionStorage.getItem('userData'))
+        var userData = JSON.parse(localStorage.getItem('userData'))
         return userData
     }
 
@@ -104,7 +104,6 @@ export class SessionService{
     }
 
     setAccessToken(key:string, value:any){
-        console.log(value)
         localStorage.setItem(key, value)
     }
 
@@ -113,7 +112,7 @@ export class SessionService{
     // }
 
     get(key: any){
-        return sessionStorage.getItem(key);
+        return localStorage.getItem(key);
     }
 
     remove(key:any){
@@ -133,7 +132,7 @@ export class SessionService{
             }
 
         }
-        return sessionStorage.removeItem(key);
+        return localStorage.removeItem(key);
     }
 
     clear(){
@@ -141,12 +140,12 @@ export class SessionService{
         this.subjectId.next({ nul });
      //   this.loggedIn.next({ nul });
         this.userName.next({ nul });
-        return sessionStorage.clear();
+        return localStorage.clear();
     }
 
     clearUsername(){
         this.userName.next();
-        return sessionStorage.clear();
+        return localStorage.clear();
     }
 
     clearSubject(){
@@ -169,7 +168,7 @@ export class SessionService{
                 break;
             }
         }
-        return sessionStorage.setItem(key, data);
+        return localStorage.setItem(key, data);
     }
 
 

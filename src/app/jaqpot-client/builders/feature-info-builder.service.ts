@@ -16,6 +16,10 @@ export class FeatureInfoBuilderService {
     this.feature_info.name = name
   }
 
+  public setKey(key:string){
+    this.feature_info.key = key;
+  }
+
   public setUnits(units:string){
     this.feature_info.units = units
   }

@@ -66,7 +66,7 @@ export class ValidateComponent implements OnInit {
 
   changeListener(files: FileList) {
     
-    if (files && files.length === 1 && files.item(0).type === 'text/csv') {
+    if (files && files.length === 1 && files.item(0).name.split(".")[1] === 'csv') {
       let reader: FileReader = new FileReader();
       let file: File = files.item(0);
       reader.readAsText(file);

@@ -40,6 +40,11 @@
 .input_val_butt{
     width:100%;
     margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.first_card{
+    margin-bottom: 2em;
 }
 
 .b1{

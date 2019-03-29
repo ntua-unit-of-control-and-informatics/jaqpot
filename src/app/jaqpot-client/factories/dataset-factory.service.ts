@@ -50,13 +50,16 @@ export class DatasetFactoryService {
     let meta = _metaBuilder.build()
     _datasetBuilder.setMeta(meta)
     let featureInfos = []
+    let k = 0;
     ids.forEach(id =>{
       let _featureInfoBuilder = new FeatureInfoBuilderService();
+      _featureInfoBuilder.setKey(k.toString())
       _featureInfoBuilder.setName(id)
       _featureInfoBuilder.setUri('temporary/'+id)
       let featInfo = _featureInfoBuilder.build()
       _datasetBuilder.appendfeatureInfo(featInfo)
       featureInfos.push(featInfo)
+      k += 1;
     })
     let i = 1
     rows.forEach(r =>{
@@ -71,9 +74,9 @@ export class DatasetFactoryService {
         for(var _i = 0; _i < data_to_enter.length; _i++){
           let featInfo:FeatureInfo = featureInfos[_i]
           if(isNaN( Number(data_to_enter[_i]))){
-            values[ featInfo.uri ] = data_to_enter[_i]
+            values[ featInfo.key.toString() ] = data_to_enter[_i]
           }else{
-            values[ featInfo.uri ] = Number(data_to_enter[_i])
+            values[ featInfo.key.toString() ] = Number(data_to_enter[_i])
           }
         }
         _dataEntryBuilder.setDataEntry(values)
@@ -88,9 +91,9 @@ export class DatasetFactoryService {
         for(var _i = 0; _i < data_to_enter.length; _i++){
           let featInfo:FeatureInfo = featureInfos[_i]
           if(isNaN( Number(data_to_enter[_i]))){
-            values[ featInfo.uri ] = data_to_enter[_i]
+            values[ featInfo.key.toString() ] = data_to_enter[_i]
           }else{
-            values[ featInfo.uri ] = Number(data_to_enter[_i])
+            values[ featInfo.key.toString() ] = Number(data_to_enter[_i])
           }
         }
         _dataEntryBuilder.setDataEntry(values)
@@ -101,6 +104,7 @@ export class DatasetFactoryService {
     })
     
     let dataset = _datasetBuilder.build()
+
     return dataset
   }
 
@@ -135,13 +139,16 @@ export class DatasetFactoryService {
     let meta = _metaBuilder.build()
     _datasetBuilder.setMeta(meta)
     let featureInfos = []
+    let k = 0;
     ids.forEach(id =>{
       let _featureInfoBuilder = new FeatureInfoBuilderService();
       _featureInfoBuilder.setName(id)
+      _featureInfoBuilder.setKey(k.toString())
       _featureInfoBuilder.setUri('temporary/'+id)
       let featInfo = _featureInfoBuilder.build()
       _datasetBuilder.appendfeatureInfo(featInfo)
       featureInfos.push(featInfo)
+      k += 1;
     })
     let i = 1
     rows.forEach(r =>{
@@ -158,9 +165,9 @@ export class DatasetFactoryService {
         for(var _i = 0; _i < data_to_enter.length; _i++){
           let featInfo:FeatureInfo = featureInfos[_i]
           if(isNaN( Number(data_to_enter[_i]))){
-            values[ featInfo.uri ] = data_to_enter[_i]
+            values[ featInfo.key.toString() ] = data_to_enter[_i]
           }else{
-            values[ featInfo.uri ] = Number(data_to_enter[_i])
+            values[ featInfo.key.toString() ] = Number(data_to_enter[_i])
           }
         }
         _dataEntryBuilder.setDataEntry(values)
@@ -174,7 +181,7 @@ export class DatasetFactoryService {
         let values : { [key: string]: any} = {};
         for(var _i = 0; _i < data_to_enter.length; _i++){
           let featInfo:FeatureInfo = featureInfos[_i]
-          values[ featInfo.uri ] = data_to_enter[_i]
+          values[ featInfo.key.toString() ] = data_to_enter[_i]
         }
         _dataEntryBuilder.setDataEntry(values)
         let _dataEntry = _dataEntryBuilder.build()
@@ -201,12 +208,20 @@ export class DatasetFactoryService {
     let dataEntry:DataEntry = <DataEntry>{};
     let _dataEntryBuilder = new DataEntryBuilderService();
     let values:{ [key: string]: any} = {};
+    let k = 0;
+    dataset.features = []
     features.forEach((feat:FeatureAndValue)=>{
       if(isNaN( Number(feat.value)) ){
-        values[Config.JaqpotBase + "/feature/" + feat.feature._id] = feat.value
+        values[k.toString()] = feat.value
       }else{
-        values[Config.JaqpotBase + "/feature/" + feat.feature._id] = Number(feat.value)
+        values[k.toString()] = Number(feat.value)
       }
+      let featureInfo:FeatureInfo = <FeatureInfo>{}
+      featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
+      featureInfo.name = feat.feature.meta.titles[0]
+      featureInfo.key = k.toString()
+      dataset.features.push(featureInfo)
+      k += 1;
     })
 
     _dataEntryBuilder.setEntryIdName(i.toString())
@@ -214,13 +229,7 @@ export class DatasetFactoryService {
     dataEntry =  _dataEntryBuilder.build()
     dataset.dataEntry.push(dataEntry)
     dataset.existence = Dataset.ExistenceEnum.FORPREDICTION
-    dataset.features = []
-    features.forEach((feat:FeatureAndValue)=>{
-      let featureInfo:FeatureInfo = <FeatureInfo>{}
-      featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
-      featureInfo.name = feat.feature.meta.titles[0]
-      dataset.features.push(featureInfo)
-    })
+    
     return dataset;
   }
 
@@ -234,7 +243,11 @@ export class DatasetFactoryService {
     dataset.meta = meta;
     dataset.dataEntry = []
     const rows:string[] = csv.split(/\r?\n/)  
-    let ids = rows[0].split(/,|;/);
+    let ids = []
+    rows[0].split(/,|;/).forEach(id => {
+      let cleanedid = id.replace(/^"|"$/g, '')
+      ids.push(cleanedid)
+    });
     rows.splice(0,1)
     let i = 0
     rows.forEach(row => {
@@ -249,14 +262,16 @@ export class DatasetFactoryService {
           let idIndex = ids.indexOf(id)
           _dataEntryBuilder.setEntryIdName(data[idIndex])
         }
+        let k = 0
         features.forEach((feat:FeatureAndValue) =>{
           let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
           if(isNaN( Number(data[valueIndex])) ){
-            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = feat.value
+            values[k.toString()] = feat.value
           }else{
-            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = Number(data[valueIndex])
+            values[k.toString()] = Number(data[valueIndex])
           }
           _dataEntryBuilder.setDataEntry(values)
+          k += 1;
         })
         dataEntry =  _dataEntryBuilder.build()
         dataset.dataEntry.push(dataEntry)
@@ -265,12 +280,16 @@ export class DatasetFactoryService {
     })
     dataset.existence = Dataset.ExistenceEnum.FORPREDICTION
     dataset.features = []
+    let k2 = 0
     features.forEach((feat:FeatureAndValue)=>{
       let featureInfo:FeatureInfo = <FeatureInfo>{}
       featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
+      featureInfo.key = k2.toString()
       featureInfo.name = feat.feature.meta.titles[0]
       dataset.features.push(featureInfo)
+      k2 += 1;
     })
+    // console.log(dataset)
     return dataset;
   }
 
@@ -284,7 +303,11 @@ export class DatasetFactoryService {
     dataset.meta = meta;
     dataset.dataEntry = []
     const rows:string[] = csv.split(/\r?\n/)  
-    let ids = rows[0].split(/,|;/);
+    let ids = []
+    rows[0].split(/,|;/).forEach(id => {
+      let cleanedid = id.replace(/^"|"$/g, '')
+      ids.push(cleanedid)
+    });
     rows.splice(0,1)
     let i = 0
     rows.forEach(row => {
@@ -299,23 +322,26 @@ export class DatasetFactoryService {
           let idIndex = ids.indexOf(id)
           _dataEntryBuilder.setEntryIdName(data[idIndex])
         }
+        let k = 0;
         indepFeatures.forEach((feat:FeatureAndValue) =>{
           let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
           if(isNaN( Number(data[valueIndex])) ){
-            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = feat.value
+            values[k.toString()] = feat.value
           }else{
-            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = Number(data[valueIndex])
+            values[k.toString()] = Number(data[valueIndex])
           }
           _dataEntryBuilder.setDataEntry(values)
+          k += 1;
         })
         depFeatures.forEach((feat:FeatureAndValue) =>{
           let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
           if(isNaN( Number(data[valueIndex])) ){
-            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = feat.value
+            values[k.toString()] = feat.value
           }else{
-            values[Config.JaqpotBase + "/feature/" + feat.feature._id] = Number(data[valueIndex])
+            values[k.toString()] = Number(data[valueIndex])
           }
           _dataEntryBuilder.setDataEntry(values)
+          k += 1;
         })
         dataEntry =  _dataEntryBuilder.build()
         dataset.dataEntry.push(dataEntry)
@@ -324,17 +350,22 @@ export class DatasetFactoryService {
     })
     dataset.existence = Dataset.ExistenceEnum.FORPREDICTION
     dataset.features = []
+    let k2 = 0;
     indepFeatures.forEach((feat:FeatureAndValue)=>{
       let featureInfo:FeatureInfo = <FeatureInfo>{}
       featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
       featureInfo.name = feat.feature.meta.titles[0]
+      featureInfo.key = k2.toString()
       dataset.features.push(featureInfo)
+      k2 += 1;
     })
     depFeatures.forEach((feat:FeatureAndValue)=>{
       let featureInfo:FeatureInfo = <FeatureInfo>{}
       featureInfo.uri = Config.JaqpotBase + "/feature/" + feat.feature._id
       featureInfo.name = feat.feature.meta.titles[0]
+      featureInfo.key = k2.toString()
       dataset.features.push(featureInfo)
+      k2 += 1;
     })
     return dataset;
   }

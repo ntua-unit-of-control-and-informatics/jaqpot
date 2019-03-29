@@ -24,6 +24,7 @@ export class SimpleDatasetComponent implements OnInit {
     this.datasetToSee.features.forEach((feInf:FeatureInfo) =>{
       this.displayedColumns.push(feInf.name)
     })
+    // console.log(this.datasetToSee)
     this.dataSource = this._seeDataset.createViewData(this.datasetToSee, 1);
     this.data_available = true;
   }
