@@ -89,5 +89,8 @@
   <mat-dialog-actions>
     <button mat-raised-button color="accent" matTooltip="Accept invitation" [mat-dialog-close]="true" (click)="acceptInvitation()">Accept</button>
     <button mat-raised-button color="warn" matTooltip="Decline invitation" [mat-dialog-close]="true" (click)="declineInvitation()">Decline</button>
-    <button mat-button matTooltip="Notification won't appear" [mat-dialog-close]="true" (click)="resolveNotification()">Ignore</button>
-  </mat-dialog-actions>
+    <div *ngIf="openedFrom === 'menu'">
+        <button mat-button matTooltip="Notification won't appear" [mat-dialog-close]="true" (click)="resolveNotification()">remove</button>
+    </div>
+    <div *ngIf="openedFrom === 'viewAll'"><button mat-button matTooltip="Notification will be deleted" [mat-dialog-close]="true" (click)="deleteNotification()">Delete</button></div> 
+   </mat-dialog-actions>

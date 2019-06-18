@@ -61,7 +61,7 @@
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="Data">
+    <mat-tab label="Features">
       <ng-template matTabContent>
           <app-model-features  [viewOrEdit]="viewOrEdit" [modelToSee]="modelToSee" (modelChanged)="modelChanged($event)" (featsChangedArray)="featsUpdated($event)"></app-model-features>
         
@@ -75,6 +75,11 @@
     <mat-tab label="Discussion">
       <ng-template matTabContent>
           <app-comments [entityId]="entityId"></app-comments>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Archive">
+      <ng-template matTabContent>
+          <app-pred-archive [modelId]="modelId"></app-pred-archive>
       </ng-template>
     </mat-tab>
   </mat-tab-group>

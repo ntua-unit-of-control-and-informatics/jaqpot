@@ -23,6 +23,8 @@ export class BrokenAffilNotifComponent implements OnInit {
   _modelApi:ModelApiService
   _datasetApi:DatasetService
 
+  openedFrom:string
+
   from:User
   brokeWith:Organization
 

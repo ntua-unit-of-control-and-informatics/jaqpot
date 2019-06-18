@@ -115,6 +115,10 @@ a:active{
   float: right;
 }
 
+.paginator{
+  background-color: inherit;
+}
+
 /* .test{
   width:100%;
   float:right;

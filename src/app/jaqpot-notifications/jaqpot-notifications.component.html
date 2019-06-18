@@ -1,0 +1,24 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened class="notif_sidenav">
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <h4>History</h4>
+      </mat-list-item>
+      <mat-list-item role="listitem"><button mat-button (click)="openInvitations($event)">Invitations</button>
+      </mat-list-item>
+      <mat-list-item role="listitem"><button mat-button (click)="openAffiliations($event)">Affiliations</button>
+      </mat-list-item>
+      <mat-list-item role="listitem"><button mat-button (click)="openShares($event)">Shares</button></mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <app-view-notifs [notifications_to_view]="notifications_to_view" [category]='category' [loading]='loading'></app-view-notifs>
+
+<mat-divider></mat-divider>
+
+    <mat-paginator class="notif-pagin" [length]="total" [pageSize]="20" [pageSizeOptions]="[20]" (page)="onPaginateChange($event)">
+      </mat-paginator>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

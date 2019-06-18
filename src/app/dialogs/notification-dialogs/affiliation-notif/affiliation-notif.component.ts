@@ -7,7 +7,7 @@ import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
 import { Notification } from '../../../jaqpot-client/model/notification';
 import { User } from '../../../jaqpot-client';
 import { Organization } from '../../../jaqpot-client/model/organization';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-affiliation-notif',
@@ -23,11 +23,15 @@ export class AffiliationNotifComponent implements OnInit {
   _modelApi:ModelApiService
   _datasetApi:DatasetService
 
+
+  openedFrom:string
+
+  
   from:User
   organToAffiliate:Organization
   yourOrgan:Organization
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar,private dialogRef: MatDialogRef<AffiliationNotifComponent>) { }
 
   ngOnInit() {
     this._userApi.getUserById(this._notification.from).subscribe(user =>{
@@ -103,6 +107,13 @@ export class AffiliationNotifComponent implements OnInit {
     this._notification.viewed = true;
     this._notificationApi.putEntitySecured(this._notification).subscribe(notifNew=>{
       this.openSnackBar("Notification won't appear any more", "")
+    })
+  }
+
+  deleteNotification(){
+    this._notificationApi.deleteEntityWithID(this._notification._id).subscribe(notifNew=>{
+      this.dialogRef.close('deleted')
+      this.openSnackBar("Notification deleted", "")
     })
   }
 

@@ -1,0 +1,6257 @@
+{
+	"SearchResultWithReports": {
+		"totalCount": 16,
+		"objectReports": [{
+			"objectURL": "Experiment:Hackathon:HA_NP00262",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00262"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Si"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "aminoacid"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "neutral"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Spherical"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 20
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 28.9
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 25.19
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.11
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.005
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -21.8
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.11
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.0879
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.0072
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 19.6
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 7.1
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00262:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1206.874234
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00266",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00266"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Si"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "aminoalkyl"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "positive"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Spherical"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 20
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 23.48
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.08185
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.172
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.015
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 25.9
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.5
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.03
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.2
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 19.6
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.1
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00266:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1206.874234
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00269",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00269"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Si"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "aminoacid"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "negative"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Spherical"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 20
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 25.24
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.7713
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.174
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.041
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -31.7
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.59
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -2.484
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.126
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 19.6
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 7.1
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00269:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1206.874234
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00255",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00255"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ti"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Spherical"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 10
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1325
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 74.47
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.277
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.079
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 20.5
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.471
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.605
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.03687
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 29
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 8
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.9
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 8.99
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.32
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00255:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 180.2717452
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00256",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00256"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ti"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "PVP"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "neutral"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Square/Spherical/Rods"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 10
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3185
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 181.6
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.24
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.097
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 17.3
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.572
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.361
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.0444
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3.27
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 11.86
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3.27
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 5.1
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3.3
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00256:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 224.5413752
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00257",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00257"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ti"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "F127"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "neutral"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Square"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 10
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 4391
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 287.4
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.172
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.115
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 5.3
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.21
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.4158
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.01638
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 10.4
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 13.4
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 10.4
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 5.1
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3.2
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00257:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 325.38
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00258",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00258"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ti"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "AA4040"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "neutral"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Square"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 10
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3109
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 140.5
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.177
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.106
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 17.1
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.497
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.344
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.03858
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 13.9
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 9.9
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 13.9
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 9.9
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00258:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1159.26
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00259",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00259"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ti"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "hydrophobic rutile"
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Nanorods"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 20
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1609
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 917.8
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.895
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.128
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 23
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.387
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.804
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.02936
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 14.8
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 18.1
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 6.7
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 40.7
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 14.8
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 52.5
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.3
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00259:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2828.925645
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00260",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00260"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ti"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "hydrophilic rutile"
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Nanorods"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 20
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 403
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 51.32
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.81
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.107
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 25.3
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.991
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.981
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.07723
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 15.3
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 25.4
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 8.4
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 42.5
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 15.3
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00260:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 4404.764228
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00254",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00254"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ti"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Spherical/ Square"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 70
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 172.4
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.212
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.183
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.009
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 41
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.433
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3.217
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.03407
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 9.2
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 27.8
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 9.2
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 61.2
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.7
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00254:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3532.494233
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00193",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00193"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ce"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Spherical"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 20
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 269.5
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 8.979
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.291
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.024
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 32.9
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.25
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.381
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.08965
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 7.28
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.63
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 5.2
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.3
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 3.221
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00193:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 84.94866535
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00192",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00192"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ce"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Cubic"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 33
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 257.7
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 14.32
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.51
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.082
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 56.4
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1.25
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 4.085
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.08997
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 19.3
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 12.73
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 17.1
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 10.9
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 28.79
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.22
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.685
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00192:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1754.46
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00282",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00282"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Zn"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Various shapes"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 150
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 411.8
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 7.112
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.239
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.021
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -20.3
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.844
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -1.594
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.00669
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 56.6
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 87.7
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 56.6
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 12.131
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.236
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00282:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 35155.32008
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00283",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00283"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Zn"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "triethoxycaprilysilane"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "neutral"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Various Shapes"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 140
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00283:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 6891.62905
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00214a",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00214"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ag"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Spherical"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 15
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 27.36
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.1148
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.471
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.004
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -5.52
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.02352
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -0.3994
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.02352
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 21.0966
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 7.4106
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.506
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214a:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1398.217746
+					}
+				}
+			}]
+		}, {
+			"objectURL": "Experiment:Hackathon:HA_NP00214b",
+			"attributes": [{
+				"name": "Particle",
+				"type": "object",
+				"error": false,
+				"forbidden": false,
+				"values": "NP00214"
+			}, {
+				"name": "..Type",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0022}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Ag"
+					}
+				}
+			}, {
+				"name": "..Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0023}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Type of Coating",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0024}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "uncoated"
+					}
+				}
+			}, {
+				"name": "..Surface Modification",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0025}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "..Shape",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0020}",
+					"attributes": {
+						"name": "_",
+						"type": "text",
+						"error": false,
+						"forbidden": false,
+						"values": "Spherical"
+					}
+				}
+			}, {
+				"name": "_.Nominal Size (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0026}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 15
+					}
+				}
+			}, {
+				"name": "_.DLS (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0001}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 27.36
+					}
+				}
+			}, {
+				"name": "_.DLS SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0002}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.1148
+					}
+				}
+			}, {
+				"name": "_.PDI",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0003}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.471
+					}
+				}
+			}, {
+				"name": "_.PDI SD",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0004}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.004
+					}
+				}
+			}, {
+				"name": "_.Zeta (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0005}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -5.52
+					}
+				}
+			}, {
+				"name": "_.Zeta SD (mV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0006}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.02352
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0007}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": -0.3994
+					}
+				}
+			}, {
+				"name": "_.Electrophoretic mobiliy SD (µmcm/Vs)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0008}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 0.02352
+					}
+				}
+			}, {
+				"name": "_.TEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0009}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 21.0966
+					}
+				}
+			}, {
+				"name": "_.TEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0010}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 7.4106
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0011}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Shortest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0012}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0013}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.TEM Longest SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0014}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0015}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.STEM SD (nm)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0016}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET (m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0017}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.BET SD(m^2/g)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0018}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false
+					}
+				}
+			}, {
+				"name": "_.Energy Band Gap (eV)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0019}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 2.506
+					}
+				}
+			}, {
+				"name": "_.Geometric Surface Area (nm2)",
+				"type": "report",
+				"error": false,
+				"forbidden": false,
+				"nestedReports": {
+					"objectURL": "ExperimentDataEntry:Hackathon:HA_NP00214b:{Element:Variable:VeN0021}",
+					"attributes": {
+						"name": "_",
+						"type": "numeric",
+						"error": false,
+						"forbidden": false,
+						"values": 1398.217746
+					}
+				}
+			}]
+		}]
+	}
+}

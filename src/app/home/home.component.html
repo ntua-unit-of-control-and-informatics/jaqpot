@@ -65,6 +65,11 @@
 
   </div>
 
+
+  <span><mat-paginator  *ngIf="paginEnabled" class="paginator" [length]="totalEntities"
+    [pageSize]="20" (page)="onPaginateChange($event)">
+      </mat-paginator></span>
+
   <div *ngIf="listView; else gridView">
     <button mat-icon-button matTooltip="Switch to grid view" (click)="changeToGridView()">
       <mat-icon>format_list_bulleted</mat-icon>

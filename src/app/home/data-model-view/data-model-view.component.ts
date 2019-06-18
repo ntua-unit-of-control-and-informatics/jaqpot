@@ -123,7 +123,7 @@ export class DataModelViewComponent implements OnChanges {
       if(result === true){
         if(item.type === "Dataset")
         {
-          this.datasetApi.deleteEntity(item._id).subscribe(resp=>{
+          this.datasetApi.deleteEntityWithID(item._id).subscribe(resp=>{
             if(typeof resp != "undefined")
             {
               let ind = this.view_items.indexOf(item)
@@ -134,7 +134,7 @@ export class DataModelViewComponent implements OnChanges {
         }
         if(item.type === "Model")
         {
-          this.modelApi.deleteEntity(item._id).subscribe(resp=>{
+          this.modelApi.deleteEntityWithID(item._id).subscribe(resp=>{
             if(typeof resp != "undefined")
             {
               let ind = this.view_items.indexOf(item)

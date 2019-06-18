@@ -67,7 +67,7 @@ export class SearchBaseComponent implements OnInit, OnDestroy {
     this.searchApi.searchSession(sessionId, 0, 19).pipe(delay(800)).subscribe(resp =>{
       if(typeof resp != 'undefined'){
         this._fountEntitties = resp;
-        if(resp.entityId.length === 20){
+        if(typeof(resp.entityId) != 'undefined' && resp.entityId.length === 20){
           this.createSearchViewItems(resp.entityId)
         }
         if(this._fountEntitties.finished != 'true'){

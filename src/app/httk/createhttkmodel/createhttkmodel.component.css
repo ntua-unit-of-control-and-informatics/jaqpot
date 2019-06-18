@@ -28,14 +28,32 @@
     /* height: 82vh; */
     /* margin-left: 5%; */
     overflow: auto;
-    width: 80%;
+    width: 100%;
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
     /* display: table; */
 }
 
+.coms{
+    width:100%;
+    min-height: 400px;
+    max-height: 400px;
+    overflow: auto;
+}
 
+.httk-progress{
+    margin-top: 2em;
+}
 
+.taskGot{
+    width:40%;
+    float: left;
+}
+
+.predTask{
+    width:40%;
+    float:right;
+}
 .titl{
     margin-left: 4%;
 }
@@ -54,8 +72,7 @@
 }
 
 .car-list{
-    
-    width: 60%;
+    width: 100%;
     overflow: auto;
     height: 1800px;
 }
@@ -70,13 +87,13 @@
 .container{
     position: fixed;
     float: left; 
-    width: 90%;
+    width: 75%;
     /* margin-left: 5.5em; */
-    margin-top: 1em;
-    min-height: 86%;
+    /* margin-top: 1em; */
+    min-height: calc(100vh - 120px);
     margin-left: 4.2em;
     margin-bottom: 4em;
-    overflow: hidden;
+    overflow: auto;
     display: flex;
     flex-direction: column;
 }
@@ -84,7 +101,8 @@
 
 .paramlist{
     float: right;
-    min-height: 100%;
+    height: calc(100vh - 120px);
+    /* min-height: 100%; */
     width: 20%;
 }
 
@@ -107,4 +125,5 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
+    /* margin: 1em; */
 }

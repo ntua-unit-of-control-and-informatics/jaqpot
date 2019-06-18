@@ -51,6 +51,7 @@ export class ShareDialogComponent implements OnInit {
   organizationsToRead:string[] = [];
   organizationsToWrite:string[] = [];
   organizationsToExecute:string[] = [];
+  organizationsToNotify:string[] = [];
   share:boolean =  true;
   cancell:boolean =  true;
 
@@ -165,6 +166,7 @@ export class ShareDialogComponent implements OnInit {
       && !this.organizationsWillRead.includes(event.value)
       && !this.organizationsToRead.includes(event.value)) {
         this.organizationsWillRead.push(value.trim());
+        this.organizationsToNotify.push(value.trim());
       }
 
       // Reset the input value
@@ -206,6 +208,7 @@ export class ShareDialogComponent implements OnInit {
       && !this.organizationsWillRead.includes(event.option.viewValue)
       && !this.organizationsToRead.includes(event.option.viewValue)){
       this.organizationsWillRead.push(event.option.viewValue);
+      this.organizationsToNotify.push(event.option.viewValue);
       this.readInput.nativeElement.value = '';
       this.readCtrl.setValue(null);
     }
@@ -309,6 +312,7 @@ export class ShareDialogComponent implements OnInit {
           this.organizationsAll.splice(index, 1);
         }
         this.organizationsWillExecute.push(value.trim());
+       
       }
 
       // Reset the input value
@@ -352,6 +356,7 @@ export class ShareDialogComponent implements OnInit {
       }
     }
     this.organizationsWillExecute.push(event.option.viewValue);
+    this.organizationsToNotify.push(event.option.viewValue);
     this.executeInput.nativeElement.value = '';
     this.executeCtrl.setValue(null);
     if(this.organizationsWillExecute.length 
@@ -399,7 +404,9 @@ export class ShareDialogComponent implements OnInit {
             }else{
               dataset.meta.execute = dataset.meta.write.concat(this.organizationsWillExecute)
             }
-            let uniqueOrgs:string[] = this.organizationsWillRead.slice();
+            // let uniqueOrgs:string[] = this.organizationsWillRead.slice();
+            // let uniqueOrgs:string[] = this.organizationsToNotify.slice();
+            let uniqueOrgs:string[] = Array.from(new Set(this.organizationsToNotify));
             let jind = uniqueOrgs.indexOf("Jaqpot")
             if(jind >= 0 ){
               uniqueOrgs.splice(jind, 1)
@@ -443,7 +450,8 @@ export class ShareDialogComponent implements OnInit {
             }else{
               model.meta.execute = model.meta.write.concat(this.organizationsWillExecute)
             }
-            let uniqueOrgs:string[] = this.organizationsWillRead.slice();
+            // let uniqueOrgs:string[] = this.organizationsWillRead.slice();
+            let uniqueOrgs:string[] = Array.from(new Set(this.organizationsToNotify));
             let jind = uniqueOrgs.indexOf("Jaqpot")
             if(jind >= 0 ){
               uniqueOrgs.splice(jind, 1)
@@ -474,22 +482,31 @@ export class ShareDialogComponent implements OnInit {
 
   toggleChange(event){
     if(event.checked === false){
-      this.organizationsWillExecute = []
-      this.organizationsWillRead = []
-      this.organizationsWillWrite = []
-      this.organizationsToExecute = this.organizationsAll.slice()
-      this.organizationsToRead = this.organizationsAll.slice()
-      this.organizationsToWrite = this.organizationsAll.slice()
+      // this.organizationsWillExecute = []
+      // this.organizationsWillRead = []
+      // this.organizationsWillWrite = []
+      this.affiliatedOrgs.forEach(o =>{
+        this.organizationsToExecute.push(o)
+        this.organizationsToRead.push(o)
+        this.organizationsToWrite.push(o)
+      })
+      // this.organizationsToExecute = this.organizationsAll.slice()
+      // this.organizationsToRead = this.organizationsAll.slice()
+      // this.organizationsToWrite = this.organizationsAll.slice()
       this.share = true;
       this.cancell = true;
     }else{
-      this.organizationsWillExecute = []
-      this.organizationsWillRead = []
-      this.organizationsWillWrite = []
-      console.log(this.affiliatedOrgs)
-      this.organizationsToExecute = this.affiliatedOrgs.slice()
-      this.organizationsToRead = this.affiliatedOrgs.slice()
-      this.organizationsToWrite = this.affiliatedOrgs.slice()
+      // this.organizationsWillExecute = []
+      // this.organizationsWillRead = []
+      // this.organizationsWillWrite = []
+      this.affiliatedOrgs.forEach(o =>{
+        this.organizationsToExecute.push(o)
+        this.organizationsToRead.push(o)
+        this.organizationsToWrite.push(o)
+      })
+      // this.organizationsToExecute = this.affiliatedOrgs.slice()
+      // this.organizationsToRead = this.affiliatedOrgs.slice()
+      // this.organizationsToWrite = this.affiliatedOrgs.slice()
       this.share = true;
       this.cancell = true;
 

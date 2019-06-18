@@ -133,7 +133,8 @@ export class DialogsService {
         notificationService:NotificationService,
         datasetService:DatasetService,
         modelService:ModelApiService,
-        userService:UserService){
+        userService:UserService,
+        openedFrom:string){
         if(notification.type === "INVITATION"){
             let dialogRef: MatDialogRef<InvitationNotifDialogComponent>;
             dialogRef = this.dialog.open(InvitationNotifDialogComponent);
@@ -141,6 +142,7 @@ export class DialogsService {
             dialogRef.componentInstance.notificationService = notificationService
             dialogRef.componentInstance.userService = userService
             dialogRef.componentInstance.notification = notification
+            dialogRef.componentInstance.openedFrom = openedFrom
             return dialogRef.afterClosed();
         }
         if(notification.type === "SHARE"){
@@ -152,6 +154,7 @@ export class DialogsService {
             dialogRef.componentInstance._notification = notification
             dialogRef.componentInstance._modelApi = modelService
             dialogRef.componentInstance._datasetApi = datasetService
+            dialogRef.componentInstance.openedFrom = openedFrom
             return dialogRef.afterClosed();
         }
         if(notification.type === "AFFILIATION"){
@@ -163,6 +166,7 @@ export class DialogsService {
             dialogRef.componentInstance._notification = notification
             dialogRef.componentInstance._modelApi = modelService
             dialogRef.componentInstance._datasetApi = datasetService
+            dialogRef.componentInstance.openedFrom = openedFrom
             return dialogRef.afterClosed();
         }
         if(notification.type === "FYI"){
@@ -174,6 +178,7 @@ export class DialogsService {
             dialogRef.componentInstance._notification = notification
             dialogRef.componentInstance._modelApi = modelService
             dialogRef.componentInstance._datasetApi = datasetService
+            dialogRef.componentInstance.openedFrom = openedFrom
             return dialogRef.afterClosed();
         }
         if(notification.type === "BROKENAFFILIATION"){
@@ -185,6 +190,7 @@ export class DialogsService {
             dialogRef.componentInstance._notification = notification
             dialogRef.componentInstance._modelApi = modelService
             dialogRef.componentInstance._datasetApi = datasetService
+            dialogRef.componentInstance.openedFrom = openedFrom
             return dialogRef.afterClosed();
         }
 

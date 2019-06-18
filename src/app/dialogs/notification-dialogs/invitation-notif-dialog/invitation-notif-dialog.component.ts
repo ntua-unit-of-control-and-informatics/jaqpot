@@ -5,7 +5,7 @@ import { UserService } from '../../../jaqpot-client/api/user.service';
 import { Notification } from '../../../jaqpot-client/model/notification';
 import { User } from '../../../jaqpot-client';
 import { Organization } from '../../../jaqpot-client/model/organization';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-invitation-notif-dialog',
@@ -20,12 +20,14 @@ export class InvitationNotifDialogComponent implements OnInit {
   organizationService:OrganizationService
   userService:UserService
 
+  openedFrom:string
+
   from: User
   me: User
 
   organ: Organization
 
-  constructor(public snackBar: MatSnackBar) { }
+  constructor(public snackBar: MatSnackBar, private dialogRef: MatDialogRef<InvitationNotifDialogComponent>) { }
 
   ngOnInit() {
     this.userService.getUserById(this.notification.from).subscribe(user =>{
@@ -75,6 +77,13 @@ export class InvitationNotifDialogComponent implements OnInit {
     this.notification.viewed = true;
     this.notificationService.putEntitySecured(this.notification).subscribe(notifNew=>{
       this.openSnackBar("Notification won't appear any more", "")
+    })
+  }
+
+  deleteNotification(){
+    this.notificationService.deleteEntityWithID(this.notification._id).subscribe(notifNew=>{
+      this.dialogRef.close('deleted')
+      this.openSnackBar("Notification deleted", "")
     })
   }
 

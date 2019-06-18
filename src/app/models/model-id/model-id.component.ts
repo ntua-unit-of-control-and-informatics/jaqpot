@@ -23,6 +23,7 @@ export class ModelIdComponent implements OnInit, OnDestroy {
 
   id:string;
   entityId:string;
+  modelId:string;
 
   user:User;
   modelToSee:Model;
@@ -64,6 +65,7 @@ export class ModelIdComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.id = this.route.snapshot.params.id
     this.entityId = "model/" + this.id
+    this.modelId = this.id
     this.modelApi.getWithIdSecured(this.id).subscribe((model:Model) =>{
       this.modelToSee = model;
       this.entityMeta = model.meta;

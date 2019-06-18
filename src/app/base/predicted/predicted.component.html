@@ -1,8 +1,8 @@
-<button *ngIf="viewPredOnly" mat-button color="primary" class="only_pred" (click)="viewOnlyPred()">
+<button *ngIf="viewPredOnly" mat-raised-button color="primary" class="only_pred" (click)="viewOnlyPred()">
   View predicted value only
 </button>
 
-<button *ngIf="viewAll" mat-button color="primary" class="only_pred" (click)="viewAllB()">
+<button *ngIf="viewAll" mat-raised-button color="primary" class="only_pred" (click)="viewAllB()">
   View all values
 </button>
 
@@ -31,7 +31,11 @@
 </div>
 
 <div>
-  <button mat-button color="primary" class="only_pred" (click)="downloadB()">
-    Download
+  <button matTooltip="Downloads only the visible entries" mat-raised-button color="primary" class="only_pred" (click)="downloadB()">
+    Download 
+  </button>
+
+  <button matTooltip="Holds the predicted dataset archived" mat-raised-button color="warn" >
+    Archive
   </button>
 </div>

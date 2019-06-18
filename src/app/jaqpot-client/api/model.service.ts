@@ -13,6 +13,7 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo, Model, Task } from '../model/models';
+import { Domain } from 'domain';
 
 
 
@@ -42,7 +43,7 @@ export class ModelApiService extends BaseClient<Dataset>{
         );
     }
 
-    public predict(modelId:string, datasetUri:string, visible):Observable<Task>{
+    public predict(modelId:string, datasetUri:string, visible, doa:boolean):Observable<Task>{
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization', tokenValue);
@@ -50,6 +51,7 @@ export class ModelApiService extends BaseClient<Dataset>{
         let body = new HttpParams();
         body = body.set('dataset_uri', datasetUri);
         body = body.set('visible', visible);
+        body = body.set('doa', doa.toString())
         return this.http.post(pathFormed, body.toString(), { headers:headers }).pipe(
             tap((res : Response) =>{
                 return res;

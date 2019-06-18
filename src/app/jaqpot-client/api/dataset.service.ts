@@ -51,6 +51,20 @@ export class DatasetService extends BaseClient<Dataset>{
             super(http, dialogsService, oidcSecurityService, "/dataset/")
         }
 
+    public uploadNewDatasetForPrediction(dataset:Dataset):Observable<Dataset>{
+            dataset.existence = Dataset.ExistenceEnum.FORPREDICTION
+            const token = this.oidcSecurityService.getToken();
+            const tokenValue = 'Bearer ' + token;
+            let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+            let pathFormed = Config.JaqpotBase + this._datasetBase
+            return this.http.post(pathFormed, dataset, { headers: headers} ).pipe(
+                tap((res : Response) => { 
+                    return res           
+                }),catchError( err => this.dialogsService.onError(err) )
+            );
+    }
+
+
     public uploadNewDataset(dataset:Dataset):Observable<Dataset>{
         dataset.existence = Dataset.ExistenceEnum.UPLOADED
         const token = this.oidcSecurityService.getToken();
@@ -101,6 +115,7 @@ export class DatasetService extends BaseClient<Dataset>{
             }),catchError( err => this.dialogsService.onError(err) )
         )
     }
+
 
 }
     // public getFeaturedDatasets(start?: number, max?: number): Observable<Array<Dataset>> {

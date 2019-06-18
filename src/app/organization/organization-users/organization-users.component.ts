@@ -38,7 +38,7 @@ export class OrganizationUsersComponent implements OnInit {
     {
       var userData = this.sessionService.getUserData()
       
-      if(this.organization.meta.creators.includes(userData.sub)){
+      if(this.organization.meta.creators.includes(userData.sub) || this.organization.meta.contributors.includes(userData.sub)){
         this.caninvite = true;
       }
 

@@ -118,6 +118,9 @@ import { ValidationReportComponent } from './base/validation-report/validation-r
 import { SearchAllComponentComponent } from './bar-components/search-all-component/search-all-component.component';
 import { SearchBaseComponent } from './search/search-base/search-base.component';
 import { SearchQuickViewComponent } from './search/search-quick-view/search-quick-view.component';
+import { PredArchiveComponent } from './models/pred-archive/pred-archive.component';
+import { JaqpotNotificationsComponent } from './jaqpot-notifications/jaqpot-notifications.component';
+import { ViewNotifsComponent } from './jaqpot-notifications/view-notifs/view-notifs.component';
 /**
  * NgModule that includes all Material modules that are required to serve 
  * the Plunker.
@@ -256,7 +259,8 @@ export class MaterialModule {}
     PredictedComponent,
     SimpleDatasetComponent,
     ValidateComponent,
-    ValidationReportComponent,SearchAllComponentComponent,SearchBaseComponent, SearchQuickViewComponent
+    ValidationReportComponent,SearchAllComponentComponent,SearchBaseComponent, SearchQuickViewComponent,
+    PredArchiveComponent, JaqpotNotificationsComponent, ViewNotifsComponent
     
     //
   ],
@@ -298,7 +302,7 @@ export class AppModule {
   )
 
     let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
-
+    
     openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
     openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
     // openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';

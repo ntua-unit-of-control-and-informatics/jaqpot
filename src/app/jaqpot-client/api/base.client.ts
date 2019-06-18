@@ -108,12 +108,29 @@ export abstract class BaseClient <T extends Model>{
         );
     }
 
-    public deleteEntity<T>(id:string): Observable<T>{
+    public deleteEntityWithID<T>(id:string): Observable<T>{
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
         let pathFormed = this._path + id
         return this.http.delete(pathFormed, { headers: headers} ).pipe(
+            tap((res : Response) => { 
+                return res          
+            }),catchError( err => this.dialogsService.onError(err) )
+        );
+    }
+
+    public deleteEntity<T>(entity): Observable<T>{
+        const token = this.oidcSecurityService.getToken();
+        const tokenValue = 'Bearer ' + token;
+        let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
+        let pathFormed = this._path
+        const httpOptions = {
+            headers: headers,
+            body: { entity }
+        };
+        console.log(httpOptions)
+        return this.http.delete(pathFormed, httpOptions ).pipe(
             tap((res : Response) => { 
                 return res          
             }),catchError( err => this.dialogsService.onError(err) )

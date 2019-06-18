@@ -34,6 +34,8 @@ import { TaskApiService } from './api/task.service';
 import { ValidationApiService } from './api/validation.service';
 import { ReportApiService } from './api/report.service';
 import { SearchApiService } from './api/search.service';
+import { DoaApiService } from './api/doa.service';
+import { HttkApiService } from './api/httk.service';
 // import { DatasetApiFacadeService } from './facades/dataset-api-facade.service';
 // import { ValidationService } from './api/validation.service';
 
@@ -72,7 +74,9 @@ import { SearchApiService } from './api/search.service';
     TaskApiService,
     ValidationApiService,
     ReportApiService,
-    SearchApiService
+    SearchApiService,
+    DoaApiService,
+    HttkApiService
     // DatasetApiFacadeService
     // Feature
     ]

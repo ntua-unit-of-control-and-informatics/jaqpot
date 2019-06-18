@@ -84,3 +84,7 @@ table {
 .mat-column-created {
   max-width: 124px;
 }
+
+.only_pred{
+  margin-right: 2em; 
+}

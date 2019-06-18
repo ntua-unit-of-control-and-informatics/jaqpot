@@ -97,5 +97,8 @@
     
     <mat-dialog-actions>
         <button mat-raised-button color="accent" matTooltip="View" [mat-dialog-close]="true" (click)="goToEntity()">View</button>
-        <button mat-button matTooltip="Notification won't appear" [mat-dialog-close]="true" (click)="resolveNotification()">remove</button>
+        <div *ngIf="openedFrom === 'menu'">
+            <button mat-button matTooltip="Notification won't appear" [mat-dialog-close]="true" (click)="resolveNotification()">remove</button>
+        </div>
+        <div *ngIf="openedFrom === 'viewAll'"><button mat-button matTooltip="Notification will be deleted" [mat-dialog-close]="true" (click)="deleteNotification()">Delete</button></div>
     </mat-dialog-actions>

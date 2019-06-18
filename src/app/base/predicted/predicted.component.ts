@@ -64,9 +64,11 @@ export class PredictedComponent implements OnChanges {
       let _uri:string = fi.uri
       let _stringSplitted = _uri.split("/")
       let featId = _stringSplitted[_stringSplitted.length - 1]
-      this.featureApi.getWithIdSecured(featId).subscribe((feat:Feature)=>{
-        this.features.push(feat)
-      })
+      if(featId != 'doa'){
+        this.featureApi.getWithIdSecured(featId).subscribe((feat:Feature)=>{
+          this.features.push(feat)
+        })
+      }
     })
 
   }
@@ -101,6 +103,7 @@ export class PredictedComponent implements OnChanges {
       this.dataSource = this.datasetViewService.createViewData(data , 10);
       this.data_available = true;
       this.isLoadingResults = false;
+      
     })
   }
 

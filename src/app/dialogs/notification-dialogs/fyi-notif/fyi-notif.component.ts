@@ -21,6 +21,8 @@ export class FyiNotifComponent implements OnInit {
   _modelApi:ModelApiService
   _datasetApi:DatasetService
 
+  openedFrom:string
+
   constructor(public snackBar: MatSnackBar) { }
 
   ngOnInit() {

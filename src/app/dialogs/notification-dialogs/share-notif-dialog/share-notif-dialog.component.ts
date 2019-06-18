@@ -7,7 +7,7 @@ import { ModelApiService } from '../../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
 import { User, MetaInfo, Dataset, Model } from '../../../jaqpot-client';
 import { Organization } from '../../../jaqpot-client/model/organization';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,12 +24,14 @@ export class ShareNotifDialogComponent implements OnInit {
   _modelApi:ModelApiService
   _datasetApi:DatasetService
 
+  openedFrom:string
 
   from:User
   organ:Organization
   entityMeta:MetaInfo
 
-  constructor(public snackBar: MatSnackBar, private _router:Router) { }
+  constructor(public snackBar: MatSnackBar, private _router:Router
+    ,public dialogRef: MatDialogRef<ShareNotifDialogComponent>,) { }
 
   ngOnInit() {
     this._userApi.getUserById(this._notification.from).subscribe((user:User)=>{
@@ -58,6 +60,13 @@ export class ShareNotifDialogComponent implements OnInit {
     this._notification.viewed = true;
     this._notificationApi.putEntitySecured(this._notification).subscribe(notifNew=>{
       this.openSnackBar("Notification won't appear any more", "")
+    })
+  }
+
+  deleteNotification(){
+    this._notificationApi.deleteEntityWithID(this._notification._id).subscribe(notifNew=>{
+      this.dialogRef.close('deleted')
+      this.openSnackBar("Notification deleted", "")
     })
   }
 

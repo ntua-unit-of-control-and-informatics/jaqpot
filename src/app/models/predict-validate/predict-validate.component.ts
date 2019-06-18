@@ -20,6 +20,8 @@ import { NgxPicaResizeOptionsInterface, NgxPicaErrorInterface, NgxPicaService } 
 import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
 import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-factory.service';
+import { DoaApiService } from '../../jaqpot-client/api/doa.service';
+import { Doa } from '../../jaqpot-client/model/doa';
 
 @Component({
   selector: 'app-predict-validate',
@@ -69,9 +71,14 @@ export class PredictValidateComponent implements OnInit {
 
   canValidate:boolean = true;
 
+  addDoa:string = 'false';
+  doaEnabled:boolean = false;
+  actualDoa:Doa;
+
   constructor( 
     private _modelApi:ModelApiService,
     private _userApi:UserService,
+    private _doaApi:DoaApiService,
     private _sessionService:SessionService,
     private _featureApi:FeatureApiService,
     private _datasetFactory:DatasetFactoryService,
@@ -87,7 +94,6 @@ export class PredictValidateComponent implements OnInit {
     }else{
       this._canSeeDetails = true;
     }
-
   }
 
   ngOnInit(  ) {
@@ -132,6 +138,16 @@ export class PredictValidateComponent implements OnInit {
     this.observe.subscribe((task:Task) =>{
       this.getTask(task._id)      
     })
+
+    this._doaApi.checkIfDoaExists("model/" + this.entityId.split("/")[1]).pipe(
+        tap((res : Response) => { 
+          return res            
+        }),catchError( err => this.handleErrorIn(err)
+      )).subscribe((doaFromResp:Response)=>{
+        this.actualDoa = <Doa> doaFromResp
+        this.doaEnabled = true
+    })
+  
   }
 
   methodSelected(event){
@@ -197,7 +213,7 @@ export class PredictValidateComponent implements OnInit {
     this._datasetApi.postEntity(dataset).subscribe((dataset:Dataset)=>{
       let datasetUri = Config.JaqpotBase + "/dataset/" + dataset._id
       
-      this._modelApi.predict(this.model._id, datasetUri, "true").subscribe((task:Task)=>{
+      this._modelApi.predict(this.model._id, datasetUri, "true", (this.addDoa === 'true')).subscribe((task:Task)=>{
         this.progressValue = 5  
         this.getTask(task._id)
 
@@ -208,9 +224,9 @@ export class PredictValidateComponent implements OnInit {
   startDatasetPrediction(){
     this.taskStarted = true;
     // console.log(this.datasetForPrediction)
-    this._datasetApi.postEntity(this.datasetForPrediction).subscribe((dataset:Dataset)=>{
+    this._datasetApi.uploadNewDatasetForPrediction(this.datasetForPrediction).subscribe((dataset:Dataset)=>{
       let datasetUri = Config.JaqpotBase + "/dataset/" + dataset._id
-      this._modelApi.predict(this.model._id, datasetUri, "true").subscribe((task:Task)=>{
+      this._modelApi.predict(this.model._id, datasetUri, "true", (this.addDoa === 'true')).subscribe((task:Task)=>{
         this.progressValue = 5  
         this.getTask(task._id)
 
@@ -319,12 +335,33 @@ export class PredictValidateComponent implements OnInit {
 
   }
 
-
+  onDoaChange(value){
+    this.addDoa = value
+  }
 
   eraseDataset(){
       delete this.datasetForPrediction 
       this.datasetFormated = false
   }
+
+
+  handleErrorIn(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
+
 }
 
 

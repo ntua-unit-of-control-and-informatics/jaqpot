@@ -49,6 +49,21 @@
 
 .b1{
     float: right;
+    margin-top: 8px;
+}
+
+.b2{
+    margin-top: 8px;
+}
+
+
+.doa{
+    float:right;
+    margin-right: 1em;
+}
+
+.aValue{
+    margin-top:1em;
 }
 
 .task{

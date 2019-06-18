@@ -17,6 +17,7 @@ import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factor
 import { DatasetToViewdataService } from '../services/dataset-to-viewdata.service';
 import { HttpParams } from '@angular/common/http';
 import { ViewItem } from './data-model-view/data-model-view.component';
+import { PageEvent, MatPaginator } from '@angular/material';
 
 // export interface Queries{
 //   value: string;
@@ -50,6 +51,14 @@ export class HomeComponent implements OnInit {
 
   organizationActivated:string = "No organanization available";
   viewItem:ViewItem;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  pageEvent: PageEvent;
+
+  paginEnabled:boolean = false;
+  totalEntities:number;
+
 
   constructor(public oidcSecurityService: OidcSecurityService,
     public sessionService: SessionService,
@@ -127,6 +136,7 @@ export class HomeComponent implements OnInit {
     this.query = "Mine"
     this.organizationActivated = 'No organanization available'
     delete this.organizations 
+    this.paginator.firstPage()
     if(this.queries_for === 'Datasets'){
       this.fetchDatasets(0, 10, Dataset.ExistenceEnum.UPLOADED)
     }
@@ -137,7 +147,9 @@ export class HomeComponent implements OnInit {
 
   goToDatasetView() {
     this.trash_view = false;
+    this.paginEnabled = true;
     this.models_to_view = []
+    
     if(this.organizationActivated != 'No organanization available'){
       this.fetchOrgsDatasets(0,10, this.organizationActivated)
     }else{
@@ -148,11 +160,16 @@ export class HomeComponent implements OnInit {
     this.queries_enabled = true
     this.add_dataset = true
     delete this.viewItem
+    if(typeof this.paginator != 'undefined'){
+      this.paginator.firstPage()
+    }
   }
 
   goToModelView() {
+    this.paginEnabled = true;
     this.trash_view = false;
     this.datasets_to_view = []
+    
     if(this.organizationActivated != 'No organanization available'){
       this.fetchOrgsModels(0,20, this.organizationActivated)
     }else{
@@ -165,6 +182,10 @@ export class HomeComponent implements OnInit {
     this.queries_enabled = true
     this.add_dataset = false
     delete this.viewItem
+    if(typeof this.paginator != 'undefined'){
+      this.paginator.firstPage()
+    }
+    
   }
 
   goToTrashView(){
@@ -175,6 +196,9 @@ export class HomeComponent implements OnInit {
     this.trash_view = true;
     this.fetchModelsOnTrash(0, 10);
     this.fetchDatasetsOnTrash(0, 10);
+    if(typeof this.paginator != 'undefined'){
+      this.paginator.firstPage()
+    }
     delete this.viewItem
   }
 
@@ -245,48 +269,99 @@ export class HomeComponent implements OnInit {
 
   }
 
+  onPaginateChange(event){
+    if(this.queries_for === 'Datasets'){
+      let start:number = event.pageIndex * event.pageSize
+      let max:number = event.pageIndex * event.pageSize + event.pageSize
+      this.models_to_view = []
+      if(this.organizationActivated != 'No organanization available'){
+        this.fetchOrgsDatasets(start,max, this.organizationActivated)
+      }else{
+        this.fetchDatasets(start, max, Dataset.ExistenceEnum.UPLOADED)
+      }
+    }
+    if(this.queries_for === 'Models'){
+      let start:number = event.pageIndex * event.pageSize
+      let max:number = event.pageIndex * event.pageSize + event.pageSize
+      
+      if(this.organizationActivated != 'No organanization available'){
+        this.fetchOrgsModels(start, max, this.organizationActivated)
+      }else{
+        this.fetchModels(start,max)
+      }
+      if(this.trash_view === true){
+        let start:number = event.pageIndex * event.pageSize
+        let max:number = event.pageIndex * event.pageSize + event.pageSize
+        this.totalEntities = 0
+        this.fetchDatasetsOnTrash(start, max)
+        this.fetchModelsOnTrash(start, max)
+      }
+      // this.fetchModels(0, 20);
+    }
+
+
+  }
+
   fetchDatasets(min:number, max:number, existence:Dataset.ExistenceEnum){
+    this.datasets_to_view = []
     let params = new HttpParams()
-          .set("min", min.toString())
+          .set("start", min.toString())
           .set("max", max.toString())
           .set("existence", existence.toString());
     this.datasetApi.getList(params).subscribe((datasets:Dataset[]) => {
       this.datasets_to_view = datasets
     })
+    this.datasetApi.count(params).subscribe((counted:Response)=>{
+      this.totalEntities = Number(counted.headers.get('total'))
+    })
 
   }
 
   fetchModels(min:number, max:number){
-    let params = new HttpParams().set("min", min.toString()).set("max", max.toString());
+    this.models_to_view = []
+    let params = new HttpParams().set("start", min.toString()).set("max", max.toString());
     this.modelApi.getList(params).subscribe((models:Model[]) => {
       this.models_to_view = models
     })
-
+    this.modelApi.count(params).subscribe((counted:Response)=>{
+      this.totalEntities = Number(counted.headers.get('total'))
+    })
   }
 
   fetchModelsOnTrash(min:number, max:number){
-    let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("ontrash", "true");
+    let params = new HttpParams().set("start", min.toString()).set("max", max.toString()).set("ontrash", "true");
     this.modelApi.getList(params).subscribe((models:Model[]) => {
       this.models_to_view = models
+    })
+    this.modelApi.count(params).subscribe((counted:Response)=>{
+      this.totalEntities = Number(counted.headers.get('total'))
     })
   }
 
   fetchDatasetsOnTrash(min:Number, max:Number){
-    let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("ontrash", "true");
+    let params = new HttpParams().set("start", min.toString()).set("max", max.toString()).set("ontrash", "true");
     this.datasetApi.getList(params).subscribe((datasets:Dataset[]) => {
       this.datasets_to_view = datasets
+    })
+    this.datasetApi.count(params).subscribe((counted:Response)=>{
+      this.totalEntities += Number(counted.headers.get('total'))
     })
   }
 
   fetchOrgsDatasets(min:Number, max:Number, organization:string){
-    let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("organization", organization);
+    this.datasets_to_view = []
+    let params = new HttpParams().set("start", min.toString()).set("max", max.toString()).set("organization", organization);
     this.datasetApi.getList(params).subscribe((datasets:Dataset[]) => {
       this.datasets_to_view = datasets
+    })
+    this.datasetApi.count(params).subscribe((counted:Response)=>{
+      this.totalEntities  += Number(counted.headers.get('total'))
     })
   }
 
   fetchOrgsModels(min:Number, max:Number, organization:string){
-    let params = new HttpParams().set("min", min.toString()).set("max", max.toString()).set("organization", organization);
+    this.models_to_view = []
+    let params = new HttpParams().set("start", min.toString()).set("max", max.toString()).set("organization", organization);
     this.modelApi.getList(params).subscribe((models:Model[]) => {
       this.models_to_view = models
     })
