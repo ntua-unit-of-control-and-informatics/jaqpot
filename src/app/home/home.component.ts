@@ -11,8 +11,8 @@ import { Dataset, Model, User } from '../jaqpot-client';
 import { ModelApiService } from '../jaqpot-client/api/model.service';
 import { UserService } from '../jaqpot-client/api/user.service';
 import { Organization } from '../jaqpot-client/model/organization';
-import { NgxPicaService, NgxPicaResizeOptionsInterface, NgxPicaErrorInterface } from '@digitalascetic/ngx-pica';
-import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
+// import { NgxPicaService, NgxPicaResizeOptionsInterface, NgxPicaErrorInterface } from '@digitalascetic/ngx-pica';
+// import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
 import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factory.service';
 import { DatasetToViewdataService } from '../services/dataset-to-viewdata.service';
 import { HttpParams } from '@angular/common/http';
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     public userApi:UserService,
     public featFactory:FeatureFactoryService,
     public datasetToViewService:DatasetToViewdataService,
-    private ngxPicaService: NgxPicaService,
+    // private ngxPicaService: NgxPicaService,
     private elRef: ElementRef) {
 
   }
@@ -231,25 +231,25 @@ export class HomeComponent implements OnInit {
       Array.from(files).forEach((file:File) =>{
         files2.push(file)
       })
-      var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
-      let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
-      options.aspectRatio = aspectRatio
-      options.aspectRatio.keepAspectRatio = true;
-      this.ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
-        let reader: FileReader = new FileReader();
-        reader.readAsDataURL(imageResized);
-        reader.onload = (e) =>{
-          let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
-          images_csv += image_to_csv
-          images[imageResized.name] = reader.result.toString();
-          i += 1;
-          if(images_num === i){
-            this.dialogsService.addImageCsvDataset(images_csv, this.datasetFactory, this.datasetToViewService,
-               this.featureApi, this.datasetApi, this.featFactory)
-          }
-        }, (err: NgxPicaErrorInterface) => {
-          throw err.err;
-      }})
+      // var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
+      // let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
+      // options.aspectRatio = aspectRatio
+      // options.aspectRatio.keepAspectRatio = true;
+      // this.ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
+      //   let reader: FileReader = new FileReader();
+      //   reader.readAsDataURL(imageResized);
+      //   reader.onload = (e) =>{
+      //     let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
+      //     images_csv += image_to_csv
+      //     images[imageResized.name] = reader.result.toString();
+      //     i += 1;
+      //     if(images_num === i){
+      //       this.dialogsService.addImageCsvDataset(images_csv, this.datasetFactory, this.datasetToViewService,
+      //          this.featureApi, this.datasetApi, this.featFactory)
+      //     }
+      //   }, (err: NgxPicaErrorInterface) => {
+      //     throw err.err;
+      // }})
 
       // Array.from(files).forEach((file:File) =>{
       //   let reader: FileReader = new FileReader();

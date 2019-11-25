@@ -1,13 +1,47 @@
 <div class="header">
-  <h1>Train. Deploy. Share.</h1>  
+  <h1>Train. Deploy. Share.</h1>
 </div>
 <div class="header_f">
   <p>Jaqpot offers a new way to share your models</p>
 </div>
 
 
+<div class="main">
+  <div class="sk-learn mat-elevation-z2">
+    <img class="sk-learn-image" src="assets/sklearn.png">
+    <div>
+      <div>
+        <h4 class="h4packages">Deploy and share your scikit-learn models </h4>
+      </div>
+      <div>
+        <a href="https://jaqpotpy.readthedocs.io/" target="_blank">Read the documentation</a>
+      </div>
+    </div>
+  </div>
 
-<div class="sk-learn mat-elevation-z2">
-  <img class="sk-learn-image" src="assets/sklearn.png">
-  <h4>Deploy and share your scikit-learn models</h4>
+  <div class="Rmain mat-elevation-z2">
+    <img class="r-image" src="assets/R.png">
+    <div>
+      <div>
+        <h4 class="h4packages">Deploy and share your R models </h4>
+      </div>
+      <div>
+        <h5>Soon to come</h5>
+        <!-- <a href="https://jaqpotpy.readthedocs.io/" target="_blank">Read the documentation</a> -->
+      </div>
+    </div>
+  </div>
 </div>
+
+
+<button class="edit" matTooltip="Login!!" matTooltipPosition="after" (click)="login()" mat-fab>
+    <mat-icon>play_arrow</mat-icon>
+</button>
+
+<button class="powered" matTooltip="Jaqpot is developed and maintained by UPCI lab at NTUA (click to visit)" matTooltipPosition="above" (click)="gotolab()" mat-icon-button>
+  <mat-icon>info</mat-icon>
+</button>
+
+<button class="tut" matTooltip="View tutorials" matTooltipPosition="above" (click)="viewtut()" mat-icon-button>
+  <mat-icon>attachment</mat-icon>
+</button>

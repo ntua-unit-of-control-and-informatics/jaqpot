@@ -3,8 +3,8 @@ import { FeatureAndValue } from '../../ui-models/featureAndValue';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service';
 import { Dataset, Task, Model, Report } from '../../jaqpot-client';
-import { NgxPicaResizeOptionsInterface, NgxPicaErrorInterface, NgxPicaService } from '@digitalascetic/ngx-pica';
-import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
+// import { NgxPicaResizeOptionsInterface, NgxPicaErrorInterface, NgxPicaService } from '@digitalascetic/ngx-pica';
+// import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
 import { Config } from '../../config/config';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { throwError, Subject } from 'rxjs';
@@ -51,7 +51,7 @@ export class ValidateComponent implements OnInit {
   constructor(
     private _dialogsService:DialogsService,
     private _datasetFactory:DatasetFactoryService,
-    private _ngxPicaService:NgxPicaService,
+    // private _ngxPicaService:NgxPicaService,
     private _datasetApi:DatasetService,
     private _taskApi:TaskApiService,
     private _validateApi:ValidationApiService,
@@ -94,25 +94,25 @@ export class ValidateComponent implements OnInit {
       Array.from(files).forEach((file:File) =>{
         files2.push(file)
       })
-      var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
-      let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
-      options.aspectRatio = aspectRatio
-      options.aspectRatio.keepAspectRatio = true;
-      this._ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
-        let reader: FileReader = new FileReader();
-        reader.readAsDataURL(imageResized);
-        reader.onload = (e) =>{
-          let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
-          images_csv += image_to_csv
-          images[imageResized.name] = reader.result.toString();
-          i += 1;
-          if(images_num === i){
-            this.datasetForValidation = this._datasetFactory.matchValidateDataset(this.indepFeats,this.depFeats, images_csv, "None")
-            this.datasetFormated = true
-          }
-        }, (err: NgxPicaErrorInterface) => {
-          throw err.err;
-      }})
+      // var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
+      // let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
+      // options.aspectRatio = aspectRatio
+      // options.aspectRatio.keepAspectRatio = true;
+      // this._ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
+      //   let reader: FileReader = new FileReader();
+      //   reader.readAsDataURL(imageResized);
+      //   reader.onload = (e) =>{
+      //     let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
+      //     images_csv += image_to_csv
+      //     images[imageResized.name] = reader.result.toString();
+      //     i += 1;
+      //     if(images_num === i){
+      //       this.datasetForValidation = this._datasetFactory.matchValidateDataset(this.indepFeats,this.depFeats, images_csv, "None")
+      //       this.datasetFormated = true
+      //     }
+      //   }, (err: NgxPicaErrorInterface) => {
+      //     throw err.err;
+      // }})
 
     }
     this.dataInput.nativeElement.value = "";

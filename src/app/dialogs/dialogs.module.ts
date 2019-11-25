@@ -63,6 +63,7 @@ import { AffiliationsDialogComponent } from './affiliations-dialog/affiliations-
 import { AffiliationNotifComponent } from './notification-dialogs/affiliation-notif/affiliation-notif.component';
 import { BrokenAffilNotifComponent } from './notification-dialogs/broken-affil-notif/broken-affil-notif.component';
 import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.component';
+import { ChooseXYComponent } from './choose-x-y/choose-x-y.component';
 // import { RouterModule } from '@angular/router/src/router_module';
 
 @NgModule({
@@ -121,7 +122,7 @@ import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.co
     UserQuickComponent, 
     AddImageDatasetDialogComponent, ShareDialogComponent, 
     ShareNotifDialogComponent, AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent],
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent],
   exports: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 
@@ -140,7 +141,7 @@ import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.co
     AddImageDatasetDialogComponent, 
     ShareDialogComponent, ShareNotifDialogComponent, 
     AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent] ,
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent] ,
   entryComponents: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 
@@ -160,7 +161,7 @@ import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.co
     ShareDialogComponent, 
     ShareNotifDialogComponent, 
     AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent],
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent],
   providers: [
     DialogsService, OrganizationService
   ],

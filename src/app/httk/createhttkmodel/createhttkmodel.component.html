@@ -48,7 +48,7 @@
                 <input type="text" placeholder="Pick chem" aria-label="Number" matInput [formControl]="chemControl"
                   [matAutocomplete]="auto" [(ngModel)]="chemname">
                 <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of chemoptions | async" [value]="option" >
+                  <mat-option *ngFor="let option of chemoptions | async" [value]="option">
                     {{option}}
                   </mat-option>
                 </mat-autocomplete>
@@ -124,60 +124,56 @@
         </mat-vertical-stepper>
 
 
-        <section >
-          <mat-progress-bar
-              class="httk-progress"
-              [color]="prmary"
-              [mode]="determinate"
-              [value]="progressValue">
+        <section *ngIf="taskGot">
+          <mat-progress-bar class="httk-progress" [color]="prmary" [mode]="determinate" [value]="progressValue">
           </mat-progress-bar>
+
+          <div class="coms">
+            <div *ngIf="taskGot" class="taskGot">
+              <div *ngFor="let com of taskGot.meta.comments">
+                <h6>
+                  {{com}}
+                </h6>
+              </div>
+            </div>
+
+            <div *ngIf="predTask" class="predTask">
+              <div *ngFor="let com of predTask.meta.comments">
+                <h6>
+                  {{com}}
+                </h6>
+              </div>
+            </div>
+          </div>
         </section>
-        <div class="coms">
-          <div *ngIf="taskGot" class="taskGot">
-            <div *ngFor="let com of taskGot.meta.comments">
-              <h6>
-                {{com}}
-              </h6>
-            </div>
-          </div>
-      
-          <div *ngIf="predTask" class="predTask">
-            <div *ngFor="let com of predTask.meta.comments">
-              <h6>
-                {{com}}
-              </h6>
+        <div *ngIf="taskHasError">
+          <mat-icon color="warn">warning</mat-icon>
+          <h5 class="error_header">Task finished with error</h5>
+
+          <button matTooltip="View error" mat-mini-fab color="primary" (click)="viewTheError()">
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+
+          <div *ngIf="viewError">
+            <h5>Error: {{taskGot.errorReport.code}}</h5>
+            <h5>Message: {{taskGot.errorReport.message}}</h5>
+
+            <div *ngIf="_canSeeDetails">
+              <h6>Details : {{taskGot.errorReport.details}}</h6>
             </div>
           </div>
         </div>
 
-    <div *ngIf="taskHasError">
-      <mat-icon color="warn">warning</mat-icon>
-      <h5 class="error_header">Task finished with error</h5>
+        <div *ngIf="predictionCompletedSuccesfully">
+          <button matTooltip="View Prediction" mat-mini-fab color="primary" (click)="viewTheResult()">
+            <mat-icon>done_all</mat-icon>
+          </button>
 
-      <button matTooltip="View error" mat-mini-fab color="primary" (click)="viewTheError()">
-        <mat-icon>arrow_drop_down</mat-icon>
-      </button>
+          <div *ngIf="viewPrediction && actualPredicted" class="predicted">
+            <app-predicted [predictedDataset]="actualPredicted"></app-predicted>
+          </div>
 
-      <div *ngIf="viewError">
-        <h5>Error: {{taskGot.errorReport.code}}</h5>
-        <h5>Message: {{taskGot.errorReport.message}}</h5>
-
-        <div *ngIf="_canSeeDetails">
-          <h6>Details : {{taskGot.errorReport.details}}</h6>
         </div>
-      </div>
-    </div>
-
-    <div *ngIf="predictionCompletedSuccesfully">
-      <button matTooltip="View Prediction" mat-mini-fab color="primary" (click)="viewTheResult()">
-        <mat-icon>done_all</mat-icon>
-      </button>
-
-      <div *ngIf="viewPrediction && actualPredicted" class="predicted">
-        <app-predicted [predictedDataset]="actualPredicted"></app-predicted>
-      </div>
-
-    </div>
 
 
       </mat-card-content>

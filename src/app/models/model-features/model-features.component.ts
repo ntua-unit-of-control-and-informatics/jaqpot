@@ -43,23 +43,49 @@ export class ModelFeaturesComponent implements OnChanges {
   }
 
   ngAfterViewInit(){
-    this.modelToSee.dependentFeatures.forEach(feat => {
-      let featId = feat.split("/")[feat.split("/").length - 1]
-      this.featureApi.getWithIdSecured(featId).subscribe((featGot:Feature)=>{
-        if(typeof featGot.ontologicalClasses == 'undefined'){
-          featGot.ontologicalClasses = []
-        }
-        this.dependendFeatures.push(featGot)
-      })
-    })
+      // this.modelToSee.dependentFeatures.forEach(feat => {
+      //   if(feat){
+      //     let featId = feat.split("/")[feat.split("/").length - 1]
+      //     this.featureApi.getWithIdSecured(featId).subscribe((featGot:Feature)=>{
+      //       if(typeof featGot.ontologicalClasses == 'undefined'){
+      //         featGot.ontologicalClasses = []
+      //       }
+      //       if(typeof featGot.meta.descriptions == 'undefined'){
+      //         featGot.meta.descriptions = []
+      //       }
+      //       this.dependendFeatures.push(featGot)
+      //     })
+      //   }
+      // })
     this.modelToSee.independentFeatures.forEach(feat => {
-      let featId = feat.split("/")[feat.split("/").length - 1]
-      this.featureApi.getWithIdSecured(featId).subscribe((featGot:Feature)=>{
-        if(typeof featGot.ontologicalClasses == 'undefined'){
-          featGot.ontologicalClasses = []
+      if(feat){
+        let featId = feat.split("/")[feat.split("/").length - 1]
+        this.featureApi.getWithIdSecured(featId).subscribe((featGot:Feature)=>{
+          if(typeof featGot.ontologicalClasses == 'undefined'){
+            featGot.ontologicalClasses = []
+          }
+          if(typeof featGot.meta.descriptions == 'undefined'){
+            featGot.meta.descriptions = []
+          }
+          this.independentFeatures.push(featGot)
+        })
+      }
+    })
+    this.modelToSee.predictedFeatures.forEach(feat => {
+      if(feat){
+        if(!this.modelToSee.dependentFeatures.includes(feat)){
+          let featId = feat.split("/")[feat.split("/").length - 1]
+          this.featureApi.getWithIdSecured(featId).subscribe((featGot:Feature)=>{
+            if(typeof featGot.ontologicalClasses == 'undefined'){
+              featGot.ontologicalClasses = []
+            }
+            if(typeof featGot.meta.descriptions == 'undefined'){
+              featGot.meta.descriptions = []
+            }
+            this.dependendFeatures.push(featGot)
+          })
         }
-        this.independentFeatures.push(featGot)
-      })
+      }
     })
   }
 

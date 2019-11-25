@@ -151,7 +151,7 @@ export class CreatehttkmodelComponent implements OnInit {
     let dose = Number(this.thirdFormGroup.get('thirdCtrl').value)
     let days = Number(this.secondFormGroup.get('secCtrl').value)
     let title = this.fourthFormGroup.get('fourthCtrl').value
-    let description = this.fifthFormGroup.get('fifthCtrl').value
+    let description = this.sixthFormGroup.get('sixthCtrl').value
     let parameters = new Map()
     parameters['dose'] = [dose]
     parameters['days'] = [days]

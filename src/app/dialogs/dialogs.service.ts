@@ -36,6 +36,7 @@ import { AffiliationsDialogComponent } from './affiliations-dialog/affiliations-
 import { AffiliationNotifComponent } from './notification-dialogs/affiliation-notif/affiliation-notif.component';
 import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.component';
 import { BrokenAffilNotifComponent } from './notification-dialogs/broken-affil-notif/broken-affil-notif.component';
+import { ChooseXYComponent } from './choose-x-y/choose-x-y.component';
 
 @Injectable()
 export class DialogsService {
@@ -224,6 +225,14 @@ export class DialogsService {
         dialogRef = this.dialog.open(AskForIdComponent);
         dialogRef.componentInstance.ids = ids
         return dialogRef.afterClosed()
+    }
+
+    public chooseXY(data)
+    {
+        let dialogRef: MatDialogRef<ChooseXYComponent>;
+        dialogRef = this.dialog.open(ChooseXYComponent);
+        dialogRef.componentInstance.data = data
+        return dialogRef.afterClosed();
     }
 
 

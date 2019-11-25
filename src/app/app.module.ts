@@ -91,7 +91,7 @@ import { ParameterlistComponent } from './base/components/parameterlist/paramete
 import { ParameterstepsComponent } from './base/components/parametersteps/parametersteps.component';
 import { AccountBaseComponent } from './account/account.base/account.base.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { NgxPicaModule } from '@digitalascetic/ngx-pica';
+// import { NgxPicaModule } from '@digitalascetic/ngx-pica';
 import { SocialBaseComponent } from './account/social.base/social.base.component';
 import { QuotaComponent } from './account/quota/quota.component';
 import { OrganizationsComponent } from './account/organizations/organizations.component';
@@ -121,6 +121,9 @@ import { SearchQuickViewComponent } from './search/search-quick-view/search-quic
 import { PredArchiveComponent } from './models/pred-archive/pred-archive.component';
 import { JaqpotNotificationsComponent } from './jaqpot-notifications/jaqpot-notifications.component';
 import { ViewNotifsComponent } from './jaqpot-notifications/view-notifs/view-notifs.component';
+import { HttkmodelsComponent } from './httk/httkmodels/httkmodels.component';
+import { PbpkPredictedComponent } from './base/pbpk-predicted/pbpk-predicted.component';
+import { MultiLineComponent } from './d3/multi-line/multi-line.component';
 /**
  * NgModule that includes all Material modules that are required to serve 
  * the Plunker.
@@ -184,7 +187,8 @@ import { ViewNotifsComponent } from './jaqpot-notifications/view-notifs/view-not
     MatAutocompleteModule,
     MatBadgeModule,
     MatTreeModule,
-    MatTableModule,MatFormFieldModule
+    MatTableModule,
+    MatFormFieldModule
   ],
   declarations: [],
 
@@ -215,7 +219,7 @@ export class MaterialModule {}
     RouterModule,
     HttpClientModule,
     ImageCropperModule,
-    NgxPicaModule,
+    // NgxPicaModule,
     FlexLayoutModule,
     MarkdownModule.forRoot(),
     // AuthModule.forRoot( { storage:SecurityStorage } ),
@@ -237,6 +241,7 @@ export class MaterialModule {}
     PredictValidateComponent,
     HomeComponent,
     HttkBaseComponent,
+    HttkmodelsComponent,
     CreatehttkmodelComponent,
     ParameterlistComponent,
     ParameterstepsComponent,
@@ -260,9 +265,7 @@ export class MaterialModule {}
     SimpleDatasetComponent,
     ValidateComponent,
     ValidationReportComponent,SearchAllComponentComponent,SearchBaseComponent, SearchQuickViewComponent,
-    PredArchiveComponent, JaqpotNotificationsComponent, ViewNotifsComponent
-    
-    //
+    PredArchiveComponent, JaqpotNotificationsComponent, ViewNotifsComponent ,PbpkPredictedComponent,MultiLineComponent
   ],
   bootstrap: [AppComponent],
   providers: [SessionService],
@@ -303,8 +306,10 @@ export class AppModule {
 
     let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
     
-    openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
+    // openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
+    openIDImplicitFlowConfiguration.stsServer = 'https://sso.prod.openrisknet.org/auth/realms/openrisknet';
     openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
+    // openIDImplicitFlowConfiguration.redirect_url = 'https://ui-jaqpot.prod.openrisknet.org/home';
     // openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';
     openIDImplicitFlowConfiguration.client_id = 'jaqpot-ui';
     openIDImplicitFlowConfiguration.response_type = 'id_token token';
@@ -319,21 +324,29 @@ export class AppModule {
     openIDImplicitFlowConfiguration.auto_userinfo = true;
     openIDImplicitFlowConfiguration.log_console_warning_active = true;
     openIDImplicitFlowConfiguration.log_console_debug_active = false;
-    openIDImplicitFlowConfiguration.max_id_token_iat_offset_allowed_in_seconds = 10;
+    openIDImplicitFlowConfiguration.max_id_token_iat_offset_allowed_in_seconds = 20;
     // openIDImplicitFlowConfiguration.override_well_known_configuration = false;
     // openIDImplicitFlowConfiguration.override_well_known_configuration_url = 'http://147.102.86.129:30008/auth/realms/Jaqpan/.well-known/openid-configuration';
     openIDImplicitFlowConfiguration.storage = localStorage;
           
     const authWellKnownEndpoints = new AuthWellKnownEndpoints();
-    authWellKnownEndpoints.issuer = 'https://login.jaqpot.org/auth/realms/jaqpot'; 
-    authWellKnownEndpoints.jwks_uri = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/certs';
-    authWellKnownEndpoints.authorization_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/auth';
-    authWellKnownEndpoints.token_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/token';
-    authWellKnownEndpoints.userinfo_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/userinfo';
-    authWellKnownEndpoints.end_session_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/logout';
-    authWellKnownEndpoints.check_session_iframe = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/login-status-iframe.html';
+    // authWellKnownEndpoints.issuer = 'https://login.jaqpot.org/auth/realms/jaqpot'; 
+    authWellKnownEndpoints.issuer = openIDImplicitFlowConfiguration.stsServer;
+    authWellKnownEndpoints.jwks_uri = openIDImplicitFlowConfiguration.stsServer + '/protocol/openid-connect/certs'
+    // authWellKnownEndpoints.jwks_uri = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/certs';
+    authWellKnownEndpoints.authorization_endpoint = openIDImplicitFlowConfiguration.stsServer + '/protocol/openid-connect/auth'
+    // authWellKnownEndpoints.authorization_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/auth';
+    authWellKnownEndpoints.token_endpoint = openIDImplicitFlowConfiguration.stsServer + '/protocol/openid-connect/token';
+    // authWellKnownEndpoints.token_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/token';
+    authWellKnownEndpoints.userinfo_endpoint = openIDImplicitFlowConfiguration.stsServer + '/protocol/openid-connect/userinfo';
+    // authWellKnownEndpoints.userinfo_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/userinfo';
+    authWellKnownEndpoints.end_session_endpoint = openIDImplicitFlowConfiguration.stsServer + '/protocol/openid-connect/logout';
+    // authWellKnownEndpoints.end_session_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/logout';
+    authWellKnownEndpoints.check_session_iframe = openIDImplicitFlowConfiguration.stsServer + '/protocol/openid-connect/login-status-iframe.html';
+    // authWellKnownEndpoints.check_session_iframe = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/login-status-iframe.html';
     // authWellKnownEndpoints.revocation_endpoint = 'http://147.102.86.129:30008/auth/realms/Jaqpan/.well-known/openid-configuration/revocation';
-    authWellKnownEndpoints.introspection_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/token/introspect';
+    authWellKnownEndpoints.introspection_endpoint = openIDImplicitFlowConfiguration.stsServer + '/protocol/openid-connect/token/introspect';
+    // authWellKnownEndpoints.introspection_endpoint = 'https://login.jaqpot.org/auth/realms/jaqpot/protocol/openid-connect/token/introspect';
     this.oidcSecurityService.setupModule(openIDImplicitFlowConfiguration, authWellKnownEndpoints);
 
   }

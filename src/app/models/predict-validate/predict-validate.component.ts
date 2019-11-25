@@ -16,8 +16,8 @@ import { concatMap, repeat }  from 'rxjs/operators';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
-import { NgxPicaResizeOptionsInterface, NgxPicaErrorInterface, NgxPicaService } from '@digitalascetic/ngx-pica';
-import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
+// import { NgxPicaResizeOptionsInterface, NgxPicaErrorInterface, NgxPicaService } from '@digitalascetic/ngx-pica';
+// import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
 import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-factory.service';
 import { DoaApiService } from '../../jaqpot-client/api/doa.service';
@@ -64,6 +64,7 @@ export class PredictValidateComponent implements OnInit {
 
   canExecute:boolean = false;
   model:Model;
+  simplepred:boolean = true;
   userNow:User
   observe: Subject<Task> = new Subject();
 
@@ -86,7 +87,7 @@ export class PredictValidateComponent implements OnInit {
     private _datasetApi:DatasetService,
     private _taskApi:TaskApiService,
     private _dialogsService:DialogsService,
-    private _ngxPicaService:NgxPicaService,
+    // private _ngxPicaService:NgxPicaService,
     private _featFactory:FeatureFactoryService
   ) { 
     if(environment.production === true){
@@ -99,6 +100,9 @@ export class PredictValidateComponent implements OnInit {
   ngOnInit(  ) {
     this._modelApi.getWithIdSecured(this.entityId.split("/")[1]).subscribe((model:Model)=>{
       this.model = model
+      if(this.model.algorithm.ontologicalClasses.includes("ot:PBPK")){
+        this.simplepred = false
+      }
       if(typeof this.model.algorithm != 'undefined' 
           && typeof this.model.algorithm.ontologicalClasses != 'undefined'
           && this.model.algorithm.ontologicalClasses.includes("ot:PBPK")){
@@ -107,7 +111,6 @@ export class PredictValidateComponent implements OnInit {
       if(typeof model.meta.execute != 'undefined' && model.meta.execute.includes("Jaqpot")){
         this.canExecute = true;
       }
-
       if(model.meta.creators.includes(this._sessionService.getUserId())){
         this.canExecute = true;
       }
@@ -120,18 +123,22 @@ export class PredictValidateComponent implements OnInit {
         })
       })
       model.dependentFeatures.forEach(feat =>{
-        this._featureApi.getWithIdSecured(feat.split("/")[feat.split("/").length - 1]).subscribe((feat:Feature)=>{
-          let featureAndValue:FeatureAndValue = <FeatureAndValue>{};
-          featureAndValue.feature = feat
-          this.depFeatureAndValues.push(featureAndValue)
-        })
+        if(feat){
+          this._featureApi.getWithIdSecured(feat.split("/")[feat.split("/").length - 1]).subscribe((feat:Feature)=>{
+            let featureAndValue:FeatureAndValue = <FeatureAndValue>{};
+            featureAndValue.feature = feat
+            this.depFeatureAndValues.push(featureAndValue)
+          })
+        }
       })
       model.independentFeatures.forEach(feat =>{
-        this._featureApi.getWithIdSecured(feat.split("/")[feat.split("/").length - 1]).subscribe((feat:Feature)=>{
-          let featureAndValue:FeatureAndValue = <FeatureAndValue>{};
-          featureAndValue.feature = feat
-          this.indepfeatureAndValues.push(featureAndValue)
-        })
+        if(feat){
+          this._featureApi.getWithIdSecured(feat.split("/")[feat.split("/").length - 1]).subscribe((feat:Feature)=>{
+            let featureAndValue:FeatureAndValue = <FeatureAndValue>{};
+            featureAndValue.feature = feat
+            this.indepfeatureAndValues.push(featureAndValue)
+          })
+        }
       })
     })
 
@@ -310,25 +317,25 @@ export class PredictValidateComponent implements OnInit {
       Array.from(files).forEach((file:File) =>{
         files2.push(file)
       })
-      var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
-      let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
-      options.aspectRatio = aspectRatio
-      options.aspectRatio.keepAspectRatio = true;
-      this._ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
-        let reader: FileReader = new FileReader();
-        reader.readAsDataURL(imageResized);
-        reader.onload = (e) =>{
-          let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
-          images_csv += image_to_csv
-          images[imageResized.name] = reader.result.toString();
-          i += 1;
-          if(images_num === i){
-            this.datasetForPrediction = this._datasetFactory.matchPredictDataset(this.indepfeatureAndValues, images_csv, "None")
-            this.datasetFormated = true
-          }
-        }, (err: NgxPicaErrorInterface) => {
-          throw err.err;
-      }})
+      // var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
+      // let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
+      // options.aspectRatio = aspectRatio
+      // options.aspectRatio.keepAspectRatio = true;
+      // this._ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
+      //   let reader: FileReader = new FileReader();
+      //   reader.readAsDataURL(imageResized);
+      //   reader.onload = (e) =>{
+      //     let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
+      //     images_csv += image_to_csv
+      //     images[imageResized.name] = reader.result.toString();
+      //     i += 1;
+      //     if(images_num === i){
+      //       this.datasetForPrediction = this._datasetFactory.matchPredictDataset(this.indepfeatureAndValues, images_csv, "None")
+      //       this.datasetFormated = true
+      //     }
+      //   }, (err: NgxPicaErrorInterface) => {
+      //     throw err.err;
+      // }})
 
     }
     this.dataInput.nativeElement.value = "";

@@ -211,9 +211,22 @@ export class DatasetFactoryService {
     let k = 0;
     dataset.features = []
     features.forEach((feat:FeatureAndValue)=>{
-      if(isNaN( Number(feat.value)) ){
+      if(isNaN( Number(feat.value)) && feat.value.substr(0,1) != "["){
         values[k.toString()] = feat.value
-      }else{
+      }
+      else if(feat.value.substr(0,1) === "["){
+        let arVal = []
+        let subStrVal = feat.value.substr(1, feat.value.length - 2)
+        subStrVal.split(",").forEach(v=>{
+          if(isNaN( Number(v))){
+            arVal.push(v.substr(1, v.length - 2))
+          }else{
+            arVal.push(Number(v))
+          }
+        })
+        values[k.toString()] = arVal
+      }
+      else{
         values[k.toString()] = Number(feat.value)
       }
       let featureInfo:FeatureInfo = <FeatureInfo>{}
@@ -266,8 +279,21 @@ export class DatasetFactoryService {
         features.forEach((feat:FeatureAndValue) =>{
           let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
           if(isNaN( Number(data[valueIndex])) ){
-            values[k.toString()] = feat.value
-          }else{
+            values[k.toString()] = data[valueIndex]
+          }
+          // else if(data[valueIndex].substr(0,1).match(/\p{L}/g)){
+          //   let arVal = []
+          //   let subStrVal = data[valueIndex].substr(1, data[valueIndex].length - 2)
+          //   subStrVal.split(",").forEach(v=>{
+          //     if(isNaN( Number(v))){
+          //       arVal.push(v)
+          //     }else{
+          //       arVal.push(Number(v))
+          //     }
+          //   })
+          //   values[k.toString()] = arVal
+          // }
+          else{
             values[k.toString()] = Number(data[valueIndex])
           }
           _dataEntryBuilder.setDataEntry(values)
@@ -299,7 +325,7 @@ export class DatasetFactoryService {
     meta.creators = []
     meta.creators.push(this.sessionService.getUserId())
     meta.titles = []
-    meta.titles.push("Created for prediction")
+    meta.titles.push("Created for validation")
     dataset.meta = meta;
     dataset.dataEntry = []
     const rows:string[] = csv.split(/\r?\n/)  
@@ -325,9 +351,22 @@ export class DatasetFactoryService {
         let k = 0;
         indepFeatures.forEach((feat:FeatureAndValue) =>{
           let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
-          if(isNaN( Number(data[valueIndex])) ){
-            values[k.toString()] = feat.value
-          }else{
+          if(isNaN( Number(data[valueIndex]))){
+            values[k.toString()] = data[valueIndex]
+          }
+          // else if(data[valueIndex].substr(0,1) === "["){
+          //   let arVal = []
+          //   let subStrVal = data[valueIndex].substr(1, data[valueIndex].length - 2)
+          //   subStrVal.split(",").forEach(v=>{
+          //     if(isNaN( Number(v))){
+          //       arVal.push(v)
+          //     }else{
+          //       arVal.push(Number(v))
+          //     }
+          //   })
+          //   values[k.toString()] = arVal
+          // }
+          else{
             values[k.toString()] = Number(data[valueIndex])
           }
           _dataEntryBuilder.setDataEntry(values)
@@ -337,7 +376,20 @@ export class DatasetFactoryService {
           let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
           if(isNaN( Number(data[valueIndex])) ){
             values[k.toString()] = feat.value
-          }else{
+          }
+          // if(data[valueIndex].substr(0,1) === "["){
+          //   let arVal = []
+          //   let subStrVal = data[valueIndex].substr(1, data[valueIndex].length - 2)
+          //   subStrVal.split(",").forEach(v=>{
+          //     if(isNaN( Number(v))){
+          //       arVal.push(v)
+          //     }else{
+          //       arVal.push(Number(v))
+          //     }
+          //   })
+          //   values[k.toString()] = arVal
+          // }
+          else{
             values[k.toString()] = Number(data[valueIndex])
           }
           _dataEntryBuilder.setDataEntry(values)

@@ -94,7 +94,7 @@ i{
 .login {
   transition: all .2s ease-in-out;
   margin-right: 4px;
-  }
+}
 
 .login:hover {
   transform: scale(1.2);
@@ -111,13 +111,6 @@ i{
 
 .notif-icon{
   color: lightrey;
-}
-
-.d3intro{
-  display: block;
-  margin: auto;
-  width: 100%;
-  height: 90%;  
 }
 
 /* .side_nav_a{

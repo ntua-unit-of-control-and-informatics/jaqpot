@@ -30,4 +30,25 @@ export class FrontComponent implements OnInit {
 
   }
 
+  login(){
+    this.oidcSecurityService.authorize();
+  }
+
+  gotolab(){
+    location.href='https://www.chemeng.ntua.gr/labs/control_lab/'
+  }
+
+  viewtut(){
+    location.href = window.location + 'assets/JPQ5_TUTORIAL_NTUA.pdf'
+    // this.router.navigate([window.location + '/assets/JPQ5_TUTORIAL_NTUA.pdf'])
+    // const link = document.createElement('a');
+    // link.setAttribute('target', '_blank');
+    // link.setAttribute('href', 'abc.net/files/test.ino');
+    // link.setAttribute('download', `products.csv`);
+    // document.body.appendChild(link);
+    // link.click();
+    // link.remove();
+  }
+
+
 }

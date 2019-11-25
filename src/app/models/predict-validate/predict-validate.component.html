@@ -170,10 +170,15 @@
         <mat-icon>done_all</mat-icon>
       </button>
 
-      <div *ngIf="viewPrediction && actualPredicted" class="predicted">
+      <div *ngIf="viewPrediction && actualPredicted && simplepred" class="predicted">
           <div *ngIf="actualDoa" class = "aValue"><h5>The predicted DOA value should be less than {{ actualDoa.aValue}}</h5></div>
         <app-predicted [predictedDataset]="actualPredicted"></app-predicted>
       </div>
+
+      <div *ngIf="viewPrediction && actualPredicted && !simplepred" class="predicted">
+        <app-pbpk-predicted [predictedDataset]="actualPredicted"></app-pbpk-predicted>
+
+    </div>
 
     </div>
 

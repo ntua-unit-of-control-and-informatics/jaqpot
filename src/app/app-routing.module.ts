@@ -19,6 +19,7 @@ import { WorkbenchBaseComponent } from './workbench/workbench-base/workbench-bas
 import { DatasetIdComponent } from './dataset/dataset-id/dataset-id.component';
 import { SearchBaseComponent } from './search/search-base/search-base.component';
 import { JaqpotNotificationsComponent } from './jaqpot-notifications/jaqpot-notifications.component';
+import { HttkmodelsComponent } from './httk/httkmodels/httkmodels.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'dataset/detail', component: DatasetDetailComponent, data : {dataset : 'some value'}},
   {path: 'httk', component:  HttkBaseComponent, canActivate: [AuthGuard]},
   {path: 'httk/createmodel', component:  CreatehttkmodelComponent, canActivate: [AuthGuard]},
+  {path: 'httk/models', component:  HttkmodelsComponent, canActivate: [AuthGuard]},
   {path: 'organization/:id', component:  OrganizationBaseComponent, canActivate: [AuthGuard]},
   {path: 'model/:id', component: ModelIdComponent},
   {path: 'dataset/:id', component:DatasetIdComponent},
