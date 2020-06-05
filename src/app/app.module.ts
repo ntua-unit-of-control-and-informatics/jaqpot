@@ -306,8 +306,8 @@ export class AppModule {
 
     let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
     
-    // openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
-    openIDImplicitFlowConfiguration.stsServer = 'https://sso.prod.openrisknet.org/auth/realms/openrisknet';
+    openIDImplicitFlowConfiguration.stsServer = 'https://login.jaqpot.org/auth/realms/jaqpot';
+    // openIDImplicitFlowConfiguration.stsServer = 'https://sso.prod.openrisknet.org/auth/realms/openrisknet';
     openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200/home';
     // openIDImplicitFlowConfiguration.redirect_url = 'https://ui-jaqpot.prod.openrisknet.org/home';
     // openIDImplicitFlowConfiguration.redirect_url = 'https://app.jaqpot.org/home';
