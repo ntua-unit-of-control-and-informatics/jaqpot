@@ -1,11 +1,7 @@
-import { Component, Inject , Optional, ViewEncapsulation} from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { MatFormFieldControl, MAT_DIALOG_DATA , MatDialogRef, MatToolbar} from '@angular/material';
-import { Credentials } from '../../ui-models/credentials';
-import { AuthToken } from '../../jaqpot-client';
+import { Component, Optional, ViewEncapsulation, OnInit} from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ErrorReport } from '../../ui-models/errorReport'
 import { SessionService } from '../../session/session.service';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Router} from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Subscription } from 'rxjs';

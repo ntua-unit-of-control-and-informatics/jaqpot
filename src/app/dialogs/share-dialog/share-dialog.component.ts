@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
-import { MatAutocompleteSelectedEvent, MatAutocomplete, MatChipInputEvent } from '@angular/material';
-import { startWith, map } from 'rxjs/operators';
+import { MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete'
+
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
@@ -13,7 +13,7 @@ import { NotificationFactoryService } from '../../jaqpot-client/factories/notifi
 import { Notification } from '../../jaqpot-client/model/notification';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
 import { Organization } from '../../jaqpot-client/model/organization';
-import { ThrowStmt } from '@angular/compiler';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-share-dialog',

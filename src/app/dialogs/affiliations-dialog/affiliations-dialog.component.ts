@@ -6,7 +6,7 @@ import { User } from '../../jaqpot-client';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { ActivatedRoute } from '@angular/router';
 import { SessionService } from '../../session/session.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-affiliations-dialog',

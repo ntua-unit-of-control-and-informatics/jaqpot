@@ -6,13 +6,13 @@ import { Credentials } from './ui-models/credentials';
 import { LoginDialogComponent } from './dialogs/login-logout-dialog/login-dialog.component'
 import {LogoutDialogComponent} from './dialogs/login-logout-dialog/logout-dialog.component'
 // import { AccountDialogComponent } from './dialogs/account-dialog/account-dialog.component'
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { SessionService } from './session/session.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
 
-import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { OidcSecurityService, PublicConfiguration, OidcClientNotification } from 'angular-auth-oidc-client';
 
 // import { Store } from '@ngrx/store';
 
@@ -29,6 +29,13 @@ export class AppComponent implements OnInit, OnDestroy{
   subscription:Subscription;
   isAuthorizedSubscription: Subscription;
   isAuthorized: boolean;
+
+  configuration: PublicConfiguration;
+  userDataChanged$: Observable<OidcClientNotification<any>>;
+  userData$: Observable<any>;
+  isAuthenticated$: Observable<boolean>;
+  checkSessionChanged$: Observable<boolean>;
+  checkSessionChanged: any;
 
   constructor(
     public oidcSecurityService: OidcSecurityService,
@@ -54,29 +61,34 @@ export class AppComponent implements OnInit, OnDestroy{
           this.isDarkTheme = true;
         }
       })
-
-      if (this.oidcSecurityService.moduleSetup) {
-      this.doCallbackLogicIfRequired();
-    } else {
-      this.oidcSecurityService.onModuleSetup.subscribe(() => {
-        this.doCallbackLogicIfRequired();
-      });
-    }
-
     }
 
   ngOnInit(){
-    this.isAuthorizedSubscription = this.oidcSecurityService.getIsAuthorized().subscribe(
+    this.isAuthorizedSubscription = this.oidcSecurityService.isAuthenticated$.subscribe(
       (isAuthorized: boolean) => {
         if(isAuthorized === true){
+          this.isAuthorized = true
           this.loggedIn = true;
+          this.userData$.subscribe(d =>{
+            if(d){
+              this.sessionService.setUserData(d)
+            }
+            // console.log(d)
+              // this.sessionService.setUserData(d)
+            })
         }else{
+          this.isAuthorized = false
           this.loggedIn = false;
         }
       });
-  }
+      this.configuration = this.oidcSecurityService.configuration;
+      this.userData$ = this.oidcSecurityService.userData$;
+      this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$;
+      this.checkSessionChanged$ = this.oidcSecurityService.checkSessionChanged$;
 
-  ngAfterViewInit(){
+      this.oidcSecurityService.checkAuth().subscribe((isAuthenticated) => console.log('app authenticated', isAuthenticated));
+
+
   }
 
   ngOnDestroy(): void {
@@ -116,11 +128,11 @@ export class AppComponent implements OnInit, OnDestroy{
     this.oidcSecurityService.authorize();
   }
 
-  private doCallbackLogicIfRequired() {
-    if (window.location.hash) {
-      this.oidcSecurityService.authorizedCallback();
-    }
-  }
+  // private doCallbackLogicIfRequired() {
+  //   if (window.location.hash) {
+  //     this.oidcSecurityService.authorizedCallback();
+  //   }
+  // }
 
 }
 

@@ -1,8 +1,5 @@
 import {throwError as observableThrowError,  Observable, interval } from 'rxjs';
 import { Inject, Injectable, Optional } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
-import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
-import { Response, ResponseContentType } from '@angular/http';
 import '../rxjs-operators';
 import { map, filter, catchError, mergeMap, tap, retryWhen } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';

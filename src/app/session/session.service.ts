@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject,  BehaviorSubject } from 'rxjs';
-import {Http} from '@angular/http';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { Algorithm } from '../jaqpot-client/model/algorithm';
 import { Dataset } from '../jaqpot-client/model/dataset';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Injectable()
 export class SessionService{
@@ -11,6 +10,7 @@ export class SessionService{
     private subjectId = new Subject<any>();
     token: string;
     userid:string;
+    userEmail:string;
     private accessToken: Subject<string> = new BehaviorSubject(this.token);
     private userName = new Subject<any>();
     //private loggedIn = new Subject<any>();
@@ -21,30 +21,40 @@ export class SessionService{
     modelingAlgorithm$: Subject<Algorithm> = new BehaviorSubject(this.modelingAlgorithm);
     private dataset: Dataset;
     
-    private modelingDataset = new Subject<Dataset>();
-    private datasetForDisplay = new Subject<Dataset>();
 
-    constructor(){
 
+    userData$: Observable<any>;
+
+    _userData:any
+
+    constructor(
+        private _oidc:OidcSecurityService
+    ){
+        // this.userData$ = this._oidc.userData$
+        // this.userData$.subscribe(d=>{
+        //     this._userData = d
+        //     this.userid = d.sub
+        //     this.userEmail = d.email
+        // })
     }
 
     getSubjectId(): Observable<any>{
         return this.subjectId.asObservable();
     }
 
-   // getLoggedIn(): Observable<any>{
-    //    return this.loggedIn.asObservable();
-  //  }
 
-    getUserId(){
-        var userData = JSON.parse(localStorage.getItem('userData'))
-        this.userid = userData.sub
+    getUserId(){        
         return this.userid;
     }
 
     getUserData(){
-        var userData = JSON.parse(localStorage.getItem('userData'))
-        return userData
+        return this._userData
+    }
+
+    setUserData(userData:any){
+        this._userData = userData
+        this.userEmail = userData.email
+        this.userid = userData.sub
     }
 
     getUserName(): Observable<any>{
@@ -91,17 +101,17 @@ export class SessionService{
         return this.modelingAlgorithm$.asObservable();
     }
 
-    clearModelingDataset(){
-        this.modelingDataset.next();
-    }
+    // clearModelingDataset(){
+    //     this.modelingDataset.next();
+    // }
 
-    setModelingDataset(dataset:Dataset){
-        this.modelingDataset.next( dataset )
-    }
+    // setModelingDataset(dataset:Dataset){
+    //     this.modelingDataset.next( dataset )
+    // }
 
-    getModelingDataset(){
-        return this.modelingDataset.asObservable();
-    }
+    // getModelingDataset(){
+    //     return this.modelingDataset.asObservable();
+    // }
 
     setAccessToken(key:string, value:any){
         localStorage.setItem(key, value)

@@ -1,6 +1,5 @@
 import { Component, OnInit, OnChanges, Input, ContentChild, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MetaInfo } from '../../jaqpot-client';
-import { MatFormFieldControl, MatFormField } from '@angular/material';
 import { FormControl } from '@angular/forms';
 
 @Component({

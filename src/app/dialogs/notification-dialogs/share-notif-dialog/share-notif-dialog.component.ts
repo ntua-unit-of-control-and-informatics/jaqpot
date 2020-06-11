@@ -7,7 +7,8 @@ import { ModelApiService } from '../../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
 import { User, MetaInfo, Dataset, Model } from '../../../jaqpot-client';
 import { Organization } from '../../../jaqpot-client/model/organization';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog'
 import { Router } from '@angular/router';
 
 @Component({

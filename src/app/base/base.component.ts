@@ -26,24 +26,24 @@ export class BaseComponent implements OnInit {
 
   ngOnInit() {
 
-    this.subscription = this._sessionService
-    .getModelingAlgorithm().subscribe( algo => {
-      if(algo){
-        this.algoIsNotChosen = false;
-      }else{
-        this.algoIsNotChosen = true;
-      }
-      this.algoForModel = algo;
-    })  
-    this.subscription = this._sessionService
-    .getModelingDataset().subscribe( dataset =>{ 
-      if(dataset){
-        this.datasetIsNotChosen = false;
-      }else{
-        this.datasetIsNotChosen = true;
-      }
-      this.datasetForModel = dataset;
-    })
+    // this.subscription = this._sessionService
+    // .getModelingAlgorithm().subscribe( algo => {
+    //   if(algo){
+    //     this.algoIsNotChosen = false;
+    //   }else{
+    //     this.algoIsNotChosen = true;
+    //   }
+    //   this.algoForModel = algo;
+    // })  
+    // this.subscription = this._sessionService
+    // .getModelingDataset().subscribe( dataset =>{ 
+    //   if(dataset){
+    //     this.datasetIsNotChosen = false;
+    //   }else{
+    //     this.datasetIsNotChosen = true;
+    //   }
+    //   this.datasetForModel = dataset;
+    // })
 
   }
 

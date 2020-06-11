@@ -5,7 +5,7 @@ import { UserService } from '../../../jaqpot-client/api/user.service';
 import { ModelApiService } from '../../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
 import { Notification } from '../../../jaqpot-client/model/notification';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-fyi-notif',

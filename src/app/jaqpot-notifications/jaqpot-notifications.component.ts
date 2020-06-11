@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Notification } from '../jaqpot-client/model/notification';
 import { NotificationService } from '../jaqpot-client/api/notification.service';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-jaqpot-notifications',

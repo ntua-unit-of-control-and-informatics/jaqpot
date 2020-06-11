@@ -4,8 +4,6 @@ import { SessionService } from '../../session/session.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { Dataset, User, MetaInfo, Feature } from '../../jaqpot-client';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { runInThisContext } from 'vm';
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';

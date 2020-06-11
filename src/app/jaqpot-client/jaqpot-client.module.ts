@@ -1,7 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
-
 import { AppModule } from '../app.module';
 // import { ConfigService } from '../app.';
 
@@ -40,7 +38,7 @@ import { HttkApiService } from './api/httk.service';
 // import { ValidationService } from './api/validation.service';
 
 @NgModule({
-  imports:      [ HttpModule , SessionModule],
+  imports:      [SessionModule],
   declarations: [],
   exports:      [],
   providers:    [ 

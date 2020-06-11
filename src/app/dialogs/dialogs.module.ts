@@ -3,31 +3,33 @@ import { CommonModule } from '@angular/common';
 import { LoginDialogComponent } from './login-logout-dialog/login-dialog.component';
 import { DialogsService } from './dialogs.service';
 import { FormsModule, FormControlDirective, FormGroupDirective, ReactiveFormsModule } from '@angular/forms'
-import { MatFormField,
-  MatFormFieldModule,
-  MatInputModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatDialogModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
-  MatTooltipModule,
-  MatListModule,
-  MatToolbar,
-  MatToolbarModule,
-  MatCard,
-  MatCardModule,
-  MatOptionModule,
-  MatOption,
-  MatAutocompleteModule,
-  MatSelectModule,
-  MatTableModule,
-  MatSpinner,
-  MatProgressSpinnerModule,
-  MatChipsModule,
-  MatSlideToggleModule,
-} from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar'
+import {MatButtonToggleModule} from '@angular/material/button-toggle'
+import {MatChipsModule} from '@angular/material/chips'
+import {MatDialogModule} from '@angular/material//dialog'
+import {MatGridListModule} from '@angular/material/grid-list'
+import {MatProgressBarModule} from '@angular/material/progress-bar'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import {MatRadioModule} from '@angular/material/radio'
+import {MatSelectModule} from '@angular/material/select'
+import {MatSlideToggleModule, _MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle'
+import {MatStepperModule} from '@angular/material/stepper'
+import {MatTabsModule} from '@angular/material/tabs'
+import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import {MatTableModule} from '@angular/material/table'
+import {MatIconModule} from '@angular/material/icon'
+import {MatButtonModule} from '@angular/material/button'
+import {MatCardModule} from '@angular/material/card'
+import {MatSidenavModule} from '@angular/material/sidenav'
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatInputModule} from '@angular/material/input'
+import {MatExpansionModule} from '@angular/material/expansion'
+import {MatTooltipModule} from '@angular/material/tooltip'
+import {MatListModule} from '@angular/material/list'
+import {MatPaginatorModule} from '@angular/material/paginator'
+import {MatSnackBarModule} from '@angular/material/snack-bar'
+import {MatBadgeModule} from '@angular/material/badge'
+import {MatMenuModule} from '@angular/material/menu'
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { JaqpotClientModule } from '../jaqpot-client/jaqpot-client.module'
 import { UiModelsModule } from '../ui-models/ui-models.module';
@@ -36,7 +38,6 @@ import { LogoutDialogComponent } from './login-logout-dialog/logout-dialog.compo
 import { AddAlgorithmDialogComponent } from './add-algorithm-dialog/add-algorithm-dialog.component';
 import { MaterialModule } from '../app.module';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
-import { RouterModule } from '@angular/router/src/router_module';
 import {  AccountDialogComponent } from './account-dialog/account-dialog.component';
 import { ProfilepicDialogComponent } from './profilepic-dialog/profilepic-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -64,6 +65,7 @@ import { AffiliationNotifComponent } from './notification-dialogs/affiliation-no
 import { BrokenAffilNotifComponent } from './notification-dialogs/broken-affil-notif/broken-affil-notif.component';
 import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.component';
 import { ChooseXYComponent } from './choose-x-y/choose-x-y.component';
+import { MatOptionModule } from '@angular/material/core';
 // import { RouterModule } from '@angular/router/src/router_module';
 
 @NgModule({

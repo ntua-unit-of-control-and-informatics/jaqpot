@@ -21,7 +21,7 @@ export class FrontComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isAuthorizedSubscription = this.oidcSecurityService.getIsAuthorized().subscribe(
+    this.isAuthorizedSubscription = this.oidcSecurityService.isAuthenticated$.subscribe(
       (isAuthorized: boolean) => {
         if(isAuthorized === true){
           this.router.navigate(['/home']);

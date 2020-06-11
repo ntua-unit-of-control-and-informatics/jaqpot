@@ -1,10 +1,7 @@
 import { Component, Inject , Optional} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatFormFieldControl, MAT_DIALOG_DATA , MatDialogRef} from '@angular/material';
-// import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Credentials } from '../../ui-models/credentials';
-import {NgModel} from '@angular/forms';
-import { AuthToken } from '../../jaqpot-client';
 import { ErrorReport } from '../../ui-models/errorReport'
 import { Router } from '@angular/router';
 

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '../../../../node_modules/@angular/material';
-import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
+import { MatDialogRef } from '@angular/material/dialog';import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
 import { Organization } from '../../jaqpot-client/model/organization';
-import { Config } from '../../config/config';
 import {PlatformLocation } from '@angular/common';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
 import { Router } from '../../../../node_modules/@angular/router';

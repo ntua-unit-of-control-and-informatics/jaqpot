@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Dataset, Feature, DataEntry, FeatureInfo } from '../../jaqpot-client';
 import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service'
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
 import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-factory.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DatasetApiFacadeService } from '../../services/facades/dataset-api-facade.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { Config } from '../../config/config';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-dataset-dialog',

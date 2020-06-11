@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { Http } from '@angular/http/src/http';
-import { Observable ,  Subscription ,  merge } from 'rxjs';
 import { AlgorithmService } from '../../jaqpot-client/api/algorithm.service';
 import { Algorithm } from '../../jaqpot-client';
 import { startWith, scan, switchMap, map, catchError} from 'rxjs/operators';
 import { SessionService } from '../../session/session.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-algorithms-list',
@@ -60,7 +60,7 @@ export class AlgorithmsListComponent implements AfterViewInit {
         this.isLoadingResults = true;
         return this._algoService.getAlgorithms(
           null,
-          this.paginator._pageIndex * this.paginator.pageSize,
+          this.paginator.pageIndex * this.paginator.pageSize,
           this.paginator.pageSize);
         }),map(data => {
           this.isLoadingResults = false;
@@ -94,7 +94,7 @@ export class AlgorithmsListComponent implements AfterViewInit {
 
   private getAlgos(){
     this._algoService
-      .getAlgorithms(null, this.paginator._pageIndex, this.paginator.pageSize)
+      .getAlgorithms(null, this.paginator.pageIndex, this.paginator.pageSize)
       .subscribe(algos => {
         this._algorithms = algos;
       })

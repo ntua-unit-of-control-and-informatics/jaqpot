@@ -1,17 +1,14 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { SessionService } from '../../session/session.service';
-import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { ErrorReport } from '../../ui-models/errorReport';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { User, MetaInfo } from '../../jaqpot-client';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { ProfilepicDialogComponent } from '../../dialogs/profilepic-dialog/profilepic-dialog.component';
-import { Observable } from 'rxjs';
+import {MatDialog} from '@angular/material/dialog'
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { SocialBaseComponent } from '../social.base/social.base.component';
-import {  QuotaComponent } from '../quota/quota.component';
 import { CreateOrganizationComponent } from '../../dialogs/create-organization/create-organization.component';
 
 @Component({
@@ -48,7 +45,8 @@ export class AccountBaseComponent implements OnInit {
   @ViewChild(SocialBaseComponent) userForS;
 
   constructor(
-    private dialog: MatDialog ,
+    public dialog: MatDialog,
+    // private dialog: MatDialog ,
     private sessionService:SessionService,
     private userService:UserService,
     private snackBar: MatSnackBar,

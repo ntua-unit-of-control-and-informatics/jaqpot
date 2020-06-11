@@ -3,8 +3,6 @@ import { FeatureAndValue } from '../../ui-models/featureAndValue';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service';
 import { Dataset, Task, Model, Report } from '../../jaqpot-client';
-// import { NgxPicaResizeOptionsInterface, NgxPicaErrorInterface, NgxPicaService } from '@digitalascetic/ngx-pica';
-// import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
 import { Config } from '../../config/config';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { throwError, Subject } from 'rxjs';

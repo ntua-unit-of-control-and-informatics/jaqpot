@@ -1,13 +1,12 @@
 import { Component, OnInit,ViewChild, AfterViewInit } from '@angular/core';
 import { Dataset } from '../../jaqpot-client/model/dataset';
-import { Observable ,  Subscription ,  BehaviorSubject ,  merge } from 'rxjs';
-import { MatPaginator, MatTableDataSource, MatButton } from '@angular/material';
-import { startWith, scan, switchMap, map, catchError} from 'rxjs/operators';
+import { Subscription ,  BehaviorSubject ,  merge } from 'rxjs';
+import { MatPaginator} from '@angular/material/paginator';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { SessionService } from '../../session/session.service';
-import { error } from 'selenium-webdriver';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-dataset-list',

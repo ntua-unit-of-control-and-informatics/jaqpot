@@ -1,10 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { MatFormFieldControl, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import {NgModel} from '@angular/forms';
-import { environment } from '../../../environments/environment';
-
+import { Component} from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-error-dialog',

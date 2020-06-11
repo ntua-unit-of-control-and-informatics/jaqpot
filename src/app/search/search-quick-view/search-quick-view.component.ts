@@ -1,6 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { SearchViewItem } from '../../ui-models/searchViewItem';
-import { type } from 'os';
 import { Model, Dataset, User, Feature } from '../../jaqpot-client';
 import { Organization } from '../../jaqpot-client/model/organization';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';

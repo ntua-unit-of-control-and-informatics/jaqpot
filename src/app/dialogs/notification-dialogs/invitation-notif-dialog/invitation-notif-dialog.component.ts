@@ -5,7 +5,8 @@ import { UserService } from '../../../jaqpot-client/api/user.service';
 import { Notification } from '../../../jaqpot-client/model/notification';
 import { User } from '../../../jaqpot-client';
 import { Organization } from '../../../jaqpot-client/model/organization';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
+import {MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-invitation-notif-dialog',

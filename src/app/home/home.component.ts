@@ -17,7 +17,7 @@ import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factor
 import { DatasetToViewdataService } from '../services/dataset-to-viewdata.service';
 import { HttpParams } from '@angular/common/http';
 import { ViewItem } from './data-model-view/data-model-view.component';
-import { PageEvent, MatPaginator } from '@angular/material';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
 
 // export interface Queries{
 //   value: string;

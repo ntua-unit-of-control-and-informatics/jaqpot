@@ -12,7 +12,7 @@ import { HttpParams, HttpResponse} from '@angular/common/http';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { BehaviorSubject, Observable, of, merge } from 'rxjs';
 import { map, startWith, switchMap, catchError, distinctUntilKeyChanged} from 'rxjs/operators';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-comments',

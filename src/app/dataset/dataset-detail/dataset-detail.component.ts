@@ -1,19 +1,12 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, OnChanges, Output, EventEmitter, AfterViewInit} from '@angular/core';
-import { SessionService } from '../../session/session.service';
-import { DatasetService } from '../../jaqpot-client/api/dataset.service';
-import { Dataset, FeatureInfo, DataEntry } from '../../jaqpot-client';
-import { Subscription , merge, Observable, of as observableOf} from 'rxjs';
-import { DialogsService } from '../../dialogs/dialogs.service';
-import { Router } from '@angular/router';
-import { MatTableDataSource, MatPaginator} from '@angular/material';
+import { Component, Input, ViewChild, OnChanges, Output, EventEmitter, AfterViewInit} from '@angular/core';
+import { Dataset, FeatureInfo,  } from '../../jaqpot-client';
+import { Subscription , merge, of as observableOf} from 'rxjs';
+import { MatPaginator} from '@angular/material/paginator';
 import { Feature } from '../../jaqpot-client/model/feature';
-import { DatasetView } from '../../ui-models/datasetView';
-import { Config } from '../../config/config';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
-import { type } from 'os';
-
+import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 
 @Component({
   selector: 'app-dataset-detail',

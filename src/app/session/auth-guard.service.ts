@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate {
     // console.log(route + '' + state);
     // console.log('AuthorizationGuard, canActivate');
 
-    return this.oidcSecurityService.getIsAuthorized().pipe(
+    return this.oidcSecurityService.isAuthenticated$.pipe(
         map((isAuthorized: boolean) => {
             if (isAuthorized) {
                 return true;

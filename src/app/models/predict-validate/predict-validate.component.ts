@@ -9,15 +9,12 @@ import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-fac
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { Config } from '../../config/config';
 import { TaskApiService } from '../../jaqpot-client/api/task.service';
-import { interval, Observable, of, Observer, Subject, throwError } from 'rxjs';
-import { startWith, switchMap, retry, tap, retryWhen, delay, catchError } from 'rxjs/operators';
-// import { FeatureAndValue } from '../../ui-models/featureAndValue';
+import { Subject, throwError } from 'rxjs';
+import { tap, delay, catchError } from 'rxjs/operators';
 import { concatMap, repeat }  from 'rxjs/operators';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
-// import { NgxPicaResizeOptionsInterface, NgxPicaErrorInterface, NgxPicaService } from '@digitalascetic/ngx-pica';
-// import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
 import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-factory.service';
 import { DoaApiService } from '../../jaqpot-client/api/doa.service';

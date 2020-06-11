@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BaseClient } from "./base.client";
 import { Discussion } from "../model/discussion";
-import { Http } from "@angular/http";
 import { SessionService } from "../../session/session.service";
 import { DialogsService } from "../../dialogs/dialogs.service";
 import { OidcSecurityService } from "angular-auth-oidc-client";

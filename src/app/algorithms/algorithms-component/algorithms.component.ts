@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlgorithmsListComponent } from '../algorithms-list/algorithms-list.component';
 import { Algorithm } from '../../jaqpot-client/model/algorithm';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddAlgorithmDialogComponent } from '../../dialogs/add-algorithm-dialog/add-algorithm-dialog.component';
 
 @Component({

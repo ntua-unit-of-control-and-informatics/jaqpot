@@ -1,8 +1,5 @@
 import {throwError as observableThrowError,  Observable, interval } from 'rxjs';
-import { Inject, Injectable, Optional } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
-import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
-import { Response, ResponseContentType } from '@angular/http';
+import { Injectable } from '@angular/core';
 import '../rxjs-operators';
 import { map, filter, catchError, mergeMap, tap, retryWhen } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
@@ -10,10 +7,7 @@ import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
-import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { MetaInfo, Model, Task } from '../model/models';
-import { FoundAndSession } from '../model/fountAndSession';
 import { SearchSession } from '../model/searchSession';
 import { FountEntities } from '../model/fountEntities';
 

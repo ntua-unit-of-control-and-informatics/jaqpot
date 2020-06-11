@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ErrorReport } from './errorReport';
+// import { ErrorReport } from './errorReport';
 import { MetaInfo } from './metaInfo';
 
 

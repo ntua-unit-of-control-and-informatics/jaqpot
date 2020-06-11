@@ -1,25 +1,23 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
-import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
-import { Response, ResponseContentType} from '@angular/http';
-import { HttpHeaders, HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import {
+    HttpBackend,
+    HttpParams,
+    HttpHeaders,
+    HttpClient
+  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import '../rxjs-operators';
-
-import { AuthToken } from '../model/authToken';
-import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
-import { error } from 'util';
 import { Config } from '../../config/config';
-// import { ErrorReport } from '../../ui-models/ErrorReport';
-import { SessionService } from '../../session/session.service';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
 import { tap, catchError, map } from '../../../../node_modules/rxjs/operators';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { Model } from '../model/model';
-import { ErrorReport } from '../../ui-models/errorReport';
+import { Injectable } from '@angular/core';
 
-// @Injectable()
-export abstract class BaseClient <T extends Model>{
+
+@Injectable({
+    providedIn: 'root'
+})
+export abstract class BaseClient < T >{
 
     private _basePath : string;
     private _defaultHeaders: Headers = new Headers();
@@ -46,6 +44,7 @@ export abstract class BaseClient <T extends Model>{
         );
     }
 
+
     public getList<T>(params:HttpParams){
         const token = this.oidcSecurityService.getToken();
         const tokenValue = 'Bearer ' + token;
@@ -64,9 +63,11 @@ export abstract class BaseClient <T extends Model>{
         let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
         let pathFormed = this._path + id + "/" + property
         return this.http.get(pathFormed, { headers: headers, params: params } ).pipe(
-            tap((res : Response) => { 
-                return res           
-            }),catchError( err=> this.dialogsService.onError(err) )
+            tap(res  => { 
+                return res          
+            })
+            ,catchError( err=> this.dialogsService.onError(err)
+             )
         );
     }
 

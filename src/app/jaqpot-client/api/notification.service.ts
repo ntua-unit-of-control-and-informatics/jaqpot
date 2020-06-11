@@ -1,7 +1,4 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
-import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
-import { Response, ResponseContentType } from '@angular/http';
 import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
 import { Observable , of, throwError} from 'rxjs';
 import '../rxjs-operators';

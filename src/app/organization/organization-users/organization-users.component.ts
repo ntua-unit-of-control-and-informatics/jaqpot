@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Organization } from '../../jaqpot-client/model/organization';
 import { User, MetaInfo } from '../../jaqpot-client';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { OidcDataService } from '../../../../node_modules/angular-auth-oidc-client/src/services/oidc-data.service';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
