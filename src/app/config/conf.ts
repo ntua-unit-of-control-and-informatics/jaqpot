@@ -1,5 +1,6 @@
 export interface configf{
-    jaqpotApi?:string
+    jaqpotApi?:string;
+    accountsApi?:string
     stsServer?:string;
     redirect_url?:string;
     client_id?:string

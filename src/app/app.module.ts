@@ -295,6 +295,7 @@ export function configureAuth(oidcConfigService: OidcConfigService, httpClient: 
   const setupAction$ = httpClient.get<any>(`/assets/conf.json`).pipe(
       map((customConfig:configf) => {
         Config.JaqpotBase = customConfig.jaqpotApi
+        Config.AccountsApi = customConfig.accountsApi
           return {
               stsServer: customConfig.stsServer,
               redirectUrl: customConfig.redirect_url,
