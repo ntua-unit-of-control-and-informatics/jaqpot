@@ -1,13 +1,14 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { SearchViewItem } from '../../ui-models/searchViewItem';
-import { Model, Dataset, User, Feature } from '../../jaqpot-client';
-import { Organization } from '../../jaqpot-client/model/organization';
+import { Model, Dataset,Feature } from '../../jaqpot-client';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-search-quick-view',
@@ -42,7 +43,7 @@ export class SearchQuickViewComponent implements OnChanges {
       {
         this.modelApi.getWithIdSecured(this.searchViewItem._id).subscribe(model =>{
           this.modelView = model
-          this.userApi.getWithIdSecured(this.modelView.meta.creators[0]).subscribe(resp =>{
+          this.userApi.getUserById(this.modelView.meta.creators[0]).then(resp =>{
             this.creator = resp
           })
           this.modelView.dependentFeatures.forEach(depf =>{
@@ -64,15 +65,12 @@ export class SearchQuickViewComponent implements OnChanges {
       }
       if(this.searchViewItem.type === 'organization')
       {
-        this.organizationApi.getWithIdSecured(this.searchViewItem._id).subscribe(resp =>{
+        this.organizationApi.getOrgById(this.searchViewItem._id).then(resp =>{
           this.organizationView = resp
         })
       }
-
-
     }
   }
-
 
   openUser(){
     this.dialogService.quickUser(this.userApi, this.creator)

@@ -5,11 +5,12 @@ import { NotificationService } from '../../../jaqpot-client/api/notification.ser
 import { UserService } from '../../../jaqpot-client/api/user.service';
 import { ModelApiService } from '../../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
-import { User, MetaInfo, Dataset, Model } from '../../../jaqpot-client';
-import { Organization } from '../../../jaqpot-client/model/organization';
+import { MetaInfo, Dataset, Model } from '../../../jaqpot-client';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialogRef} from '@angular/material/dialog'
 import { Router } from '@angular/router';
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-share-notif-dialog',
@@ -35,10 +36,10 @@ export class ShareNotifDialogComponent implements OnInit {
     ,public dialogRef: MatDialogRef<ShareNotifDialogComponent>,) { }
 
   ngOnInit() {
-    this._userApi.getUserById(this._notification.from).subscribe((user:User)=>{
+    this._userApi.getUserById(this._notification.from).then((user:User)=>{
       this.from = user
     })
-    this._organizationApi.getWithIdSecured(this._notification.organizationShared).subscribe((org:Organization) =>{
+    this._organizationApi.getOrgById(this._notification.organizationShared).then((org:Organization) =>{
       this.organ = org
     })
     if(this._notification.entityShared.split("/")[0] === "dataset"){

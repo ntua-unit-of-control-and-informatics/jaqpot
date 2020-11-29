@@ -104,6 +104,8 @@ import { map, switchMap } from 'rxjs/operators';
 import { configf } from './config/conf';
 import { Config } from './config/config';
 import { MatPseudoCheckboxModule, MatRippleModule } from '@angular/material/core';
+
+// import { EucliaAccounts } from '@euclia/accounts-client';
 /**
  * NgModule that includes all Material modules that are required to serve 
  * the Plunker.
@@ -162,6 +164,7 @@ import { MatPseudoCheckboxModule, MatRippleModule } from '@angular/material/core
     MatAutocompleteModule,
     MatTableModule,
     MatBadgeModule,
+    MatFormFieldModule, MatInputModule,
     MatFormFieldModule
   ],
   declarations: [],
@@ -182,6 +185,7 @@ export class MaterialModule {}
 
   imports: [
     BrowserModule,
+    // EucliaAccounts,
     CommonModule,
     MaterialModule,
     FormsModule,
@@ -201,7 +205,7 @@ export class MaterialModule {}
     CommonModule,
     
   ],
-  exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule],
+  exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule, MatFormFieldModule, MatInputModule],
   declarations: [AppComponent,
     BaseComponent,
     AlgorithmsComponent,
@@ -295,7 +299,9 @@ export function configureAuth(oidcConfigService: OidcConfigService, httpClient: 
   const setupAction$ = httpClient.get<any>(`/assets/conf.json`).pipe(
       map((customConfig:configf) => {
         Config.JaqpotBase = customConfig.jaqpotApi
-        Config.AccountsApi = customConfig.accountsApi
+        // Config.AccountsApi = customConfig.accountsApi
+        // console.log("Accounts api at:")
+        // console.log(Config.AccountsApi)
           return {
               stsServer: customConfig.stsServer,
               redirectUrl: customConfig.redirect_url,
@@ -306,6 +312,7 @@ export function configureAuth(oidcConfigService: OidcConfigService, httpClient: 
               // startCheckSession: customConfig.start_checksession,
               // silentRenew: customConfig.silent_renew,
               silentRenewUrl: customConfig.silent_redirect_url,
+              postLogoutRedirectUri: window.location.origin,
               // postLoginRoute: customConfig.baseurl,
               // forbiddenRoute: customConfig.baseurl,
               // unauthorizedRoute: customConfig.baseurl,

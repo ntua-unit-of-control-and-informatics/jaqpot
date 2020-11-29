@@ -26,11 +26,6 @@ import {MatInputModule} from '@angular/material/input'
 import {MatExpansionModule} from '@angular/material/expansion'
 import {MatTooltipModule} from '@angular/material/tooltip'
 import {MatListModule} from '@angular/material/list'
-import {MatPaginatorModule} from '@angular/material/paginator'
-import {MatSnackBarModule} from '@angular/material/snack-bar'
-import {MatBadgeModule} from '@angular/material/badge'
-import {MatMenuModule} from '@angular/material/menu'
-import { FormControl, NgForm, Validators } from '@angular/forms';
 import { JaqpotClientModule } from '../jaqpot-client/jaqpot-client.module'
 import { UiModelsModule } from '../ui-models/ui-models.module';
 import { Credentials } from '../ui-models/credentials';
@@ -66,6 +61,7 @@ import { BrokenAffilNotifComponent } from './notification-dialogs/broken-affil-n
 import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.component';
 import { ChooseXYComponent } from './choose-x-y/choose-x-y.component';
 import { MatOptionModule } from '@angular/material/core';
+import { ManageAccountsDialogComponent } from './manage-accounts-dialog/manage-accounts-dialog.component';
 // import { RouterModule } from '@angular/router/src/router_module';
 
 @NgModule({
@@ -124,7 +120,7 @@ import { MatOptionModule } from '@angular/material/core';
     UserQuickComponent, 
     AddImageDatasetDialogComponent, ShareDialogComponent, 
     ShareNotifDialogComponent, AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent],
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent, ManageAccountsDialogComponent],
   exports: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 
@@ -143,7 +139,7 @@ import { MatOptionModule } from '@angular/material/core';
     AddImageDatasetDialogComponent, 
     ShareDialogComponent, ShareNotifDialogComponent, 
     AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent] ,
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent, ManageAccountsDialogComponent] ,
   entryComponents: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 
@@ -163,7 +159,7 @@ import { MatOptionModule } from '@angular/material/core';
     ShareDialogComponent, 
     ShareNotifDialogComponent, 
     AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent],
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent, ManageAccountsDialogComponent],
   providers: [
     DialogsService, OrganizationService
   ],

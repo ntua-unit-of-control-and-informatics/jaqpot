@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { LoginDialogComponent } from './login-logout-dialog/login-dialog.component';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { FormControl, Validators } from '@angular/forms';
 import { Credentials } from '../ui-models/credentials';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { ErrorReport } from '../ui-models/errorReport';
-import { Organization } from '../jaqpot-client/model/organization';
 import { OrganizationDialogComponent } from './organization-dialog/organization-dialog.component';
 import { OrganizationService } from '../jaqpot-client/api/organization.service';
 import { InviteDialogComponent } from './invite-dialog/invite-dialog.component';
@@ -19,7 +17,6 @@ import { Notification } from '../jaqpot-client/model/notification';
 import { AddDatasetDialogComponent } from './add-dataset-dialog/add-dataset-dialog.component';
 import { UpdatePhotoComponent } from './update-photo/update-photo.component';
 import { UserQuickComponent } from './user-quick/user-quick.component';
-import { User } from '../jaqpot-client';
 import { AddImageDatasetDialogComponent } from './add-image-dataset-dialog/add-image-dataset-dialog.component';
 import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factory.service';
 import { DatasetToViewdataService } from '../services/dataset-to-viewdata.service';
@@ -35,6 +32,9 @@ import { AffiliationNotifComponent } from './notification-dialogs/affiliation-no
 import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.component';
 import { BrokenAffilNotifComponent } from './notification-dialogs/broken-affil-notif/broken-affil-notif.component';
 import { ChooseXYComponent } from './choose-x-y/choose-x-y.component';
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { ManageAccountsDialogComponent } from './manage-accounts-dialog/manage-accounts-dialog.component';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Injectable()
 export class DialogsService {
@@ -288,6 +288,12 @@ export class DialogsService {
         dialogRef.componentInstance.httpStatus = errorReport.httpStatus;
         dialogRef.componentInstance.details = errorReport.details;
         dialogRef.componentInstance.message = errorReport.message;
+        return dialogRef.afterClosed();
+    }
+
+    public manageAccounts(){
+        let dialogRef: MatDialogRef<ManageAccountsDialogComponent>;
+        dialogRef = this.dialog.open(ManageAccountsDialogComponent);
         return dialogRef.afterClosed();
     }
 

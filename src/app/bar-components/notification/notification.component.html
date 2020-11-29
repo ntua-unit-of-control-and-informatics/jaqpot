@@ -12,16 +12,16 @@
       <button mat-menu-item (click)="openNotifDialog(notif)">
         <mat-icon>group</mat-icon>
         <span *ngIf="notif.viewed==false else no_bold">
-          <b> Invitation to join {{notif.invitationTo}} </b>
+          <b> Invitation to join organization  </b> <!--{{notif.invitationTo}}-->
         </span>
-        <ng-template #no_bold><span>Invitation to join {{notif.invitationTo}}</span></ng-template>
+        <ng-template #no_bold><span>Invitation to join organization</span></ng-template> <!--{{notif.invitationTo}}-->
       </button>
     </div>
     <div *ngIf="notif.type=='SHARE'">
       <button mat-menu-item (click)="openNotifDialog(notif)">
         <mat-icon>share</mat-icon>
         <span *ngIf="notif.viewed==false else no_bold">
-          <b> Shared {{notif.entityShared.split("/")[0]}} through {{notif.organizationShared}} </b>
+          <b> Shared {{notif.entityShared.split("/")[0]}}  </b> <!-- through {{notif.organizationShared}} -->
         </span>
         <ng-template #no_bold><span>Shared {{notif.entityShared.split("/")[0]}} through {{notif.organizationShared}}
           </span></ng-template>

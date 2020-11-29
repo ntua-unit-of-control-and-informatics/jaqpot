@@ -127,9 +127,8 @@
     <mat-divider></mat-divider>
     <mat-card-content label="Overview" class="mcont">
       <div class="markdown">
-        <!-- <div class="inner"> -->
         <app-markdown [viewOrEdit]="viewOrEdit" [entityMeta]="entityMeta" (markdownChanged)="markdownChanged($event)"></app-markdown>
-        <!-- </div> -->
+
       </div>
     </mat-card-content>
   </mat-card>
@@ -137,7 +136,7 @@
   <mat-grid-list class="grig_org" cols="1" rowHeight="340px" fxFlex.xl="18%" fxFlex.lg="20%" fxFlex.md="28%" fxFlex.sm="100%"
     fxFlex.xs="100%">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <mat-card *ngIf="organization && organization.userIds && organization.userIds.length > 0" class="users_card">
+      <mat-card *ngIf="organization && organization.users && organization.users.length > 0" class="users_card">
         <mat-card-content>
           <div *ngIf="organization">
             <app-organization-users class="org-users" [organization]="organization"></app-organization-users>
@@ -171,7 +170,7 @@
   <mat-grid-list class="grig_org" cols="1" rowHeight="340px" fxFlex.xl="18%" fxFlex.lg="20%" fxFlex.md="20%" fxFlex.sm="98%"
     fxFlex.xs="96%">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <mat-card *ngIf="edit || organization?.website || organization?.contact " class="card_contact">
+      <mat-card *ngIf="edit || organization?.contact " class="card_contact">
         <mat-card-header>
           <h5>Contact</h5>
         </mat-card-header>

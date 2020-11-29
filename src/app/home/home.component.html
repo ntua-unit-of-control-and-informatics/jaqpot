@@ -34,7 +34,7 @@
 
   <!-- <div *ngIf="organizations"> -->
 
-    <p *ngIf="organizations && !trash_view" class="query_chose">With {{organizationActivated}}</p>
+    <p *ngIf="organizations && !trash_view" class="query_chose">With {{organizationActivated.title}}</p>
     <!-- <span> -->
     <button *ngIf="organizations && !trash_view" mat-icon-button [matMenuTriggerFor]="orgMenu" class="query_menu">
         <!-- With {{organizationActivated}} -->
@@ -47,7 +47,7 @@
   <mat-menu #orgMenu="matMenu">
       <button *ngFor="let org of organizations" mat-menu-item (click)="orgChosen(org)">
           <mat-icon>business</mat-icon>
-          <span>{{org}}</span>
+          <span>{{org.title}}</span>
         </button>
   </mat-menu>
 

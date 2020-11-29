@@ -5,9 +5,9 @@ import { User, MetaInfo } from '../../jaqpot-client';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { Notification } from '../../jaqpot-client/model/notification';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
-import { Organization } from '../../jaqpot-client/model/organization';
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
 import { SessionService } from '../../session/session.service';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-invite-dialog',
@@ -35,7 +35,6 @@ export class InviteDialogComponent implements OnInit {
   public userInputCtrl: FormControl;
 
   constructor(
-    oidcService:OidcSecurityService,
     private sessionService:SessionService
   ) {
 
@@ -49,80 +48,82 @@ export class InviteDialogComponent implements OnInit {
     if (username.length > 1) {
       let ids:User[] = []
       this.users = [];
-      this.userService.searchUserByName(username)
-        .subscribe((idsGot:User[]) => {
-          let ids:string[] = []
-          idsGot.forEach((u:User)=>{
-            ids.push(u._id)
-          })
-          this.searchByEmail(username, ids)
-          idsGot.forEach(e => {
-            let user = <User>{}
-            let tempuser = <User>{}
-            let mius:MetaInfo = <MetaInfo>{}
-            let miustemp:MetaInfo = <MetaInfo>{}
-            user.meta = mius
-            user.meta = miustemp
-            this.userService.getPropertyWithIdSecured(e._id, "name").subscribe(username => {
-              tempuser = username
-              user.name = tempuser.name
-              user._id = tempuser._id
-            })
-            this.userService.getPropertyWithIdSecured(e._id, "occupation").subscribe(occupation => {
-              tempuser = occupation
-              user.occupation = tempuser.occupation
-            })
-            this.userService.getPropertyWithIdSecured(e._id, "occupationat").subscribe(occupatioAt => {
-              tempuser = occupatioAt
-              user.occupationAt = tempuser.occupationAt
-            })
-            this.userService.getPropertyWithIdSecured(e._id, "picture").subscribe(profPic => {
-              tempuser = profPic
-              if(typeof tempuser.meta != "undefined"){
-                user.meta.picture = tempuser.meta.picture
-              }
-            })
-            this.users.push(user)
-          })
-        })        
+      // this.userService.searchUserByName(username)
+      //   .subscribe((idsGot:User[]) => {
+      //     let ids:string[] = []
+      //     idsGot.forEach((u:User)=>{
+      //       ids.push(u._id)
+      //     })
+      //     this.searchByEmail(username, ids)
+      //     idsGot.forEach(e => {
+      //       let user = <User>{}
+      //       let tempuser = <User>{}
+      //       let mius:MetaInfo = <MetaInfo>{}
+      //       let miustemp:MetaInfo = <MetaInfo>{}
+      //       user.meta = mius
+      //       user.meta = miustemp
+      //       this.userService.getPropertyWithIdSecured(e._id, "name").subscribe(username => {
+      //         tempuser = username
+      //         user.name = tempuser.name
+      //         user._id = tempuser._id
+      //       })
+      //       this.userService.getPropertyWithIdSecured(e._id, "occupation").subscribe(occupation => {
+      //         tempuser = occupation
+      //         user.occupation = tempuser.occupation
+      //       })
+      //       this.userService.getPropertyWithIdSecured(e._id, "occupationat").subscribe(occupatioAt => {
+      //         tempuser = occupatioAt
+      //         user.occupationAt = tempuser.occupationAt
+      //       })
+      //       this.userService.getPropertyWithIdSecured(e._id, "picture").subscribe(profPic => {
+      //         tempuser = profPic
+      //         if(typeof tempuser.meta != "undefined"){
+      //           user.meta.picture = tempuser.meta.picture
+      //         }
+      //       })
+      //       this.users.push(user)
+      //     })
+      //   })        
     }
   }
 
   searchByEmail(email:string, idsAllready:string[]){
-    this.userService.searchUserEmail(email)
-    .subscribe((idsGotbyem:User[]) => {
-      idsGotbyem.forEach((e:User) => {
-        if(!idsAllready.includes(e._id)){
-          let user = <User>{}
-          let tempuser = <User>{}
-          let mius:MetaInfo = <MetaInfo>{}
-          let miustemp:MetaInfo = <MetaInfo>{}
-          user.meta = mius
-          user.meta = miustemp
 
-          this.userService.getPropertyWithIdSecured(e._id, "name").subscribe(username => {
-            tempuser = username
-            user.name = tempuser.name
-            user._id = tempuser._id
-          })
-          this.userService.getPropertyWithIdSecured(e._id, "occupation").subscribe(occupation => {
-            tempuser = occupation
-            user.occupation = tempuser.occupation
-          })
-          this.userService.getPropertyWithIdSecured(e._id, "occupationat").subscribe(occupatioAt => {
-            tempuser = occupatioAt
-            user.occupationAt = tempuser.occupationAt
-          })
-          this.userService.getPropertyWithIdSecured(e._id, "picture").subscribe(profPic => {
-            tempuser = profPic
-            if(typeof tempuser.meta != "undefined"){
-              user.meta.picture = tempuser.meta.picture
-            }
-          })
-          this.users.push(user)
-        }
-      })
-    })
+    // this.userService.searchUserEmail(email)
+    // .subscribe((idsGotbyem:User[]) => {
+    //   idsGotbyem.forEach((e:User) => {
+    //     if(!idsAllready.includes(e._id)){
+    //       let user = <User>{}
+    //       let tempuser = <User>{}
+    //       let mius:MetaInfo = <MetaInfo>{}
+    //       let miustemp:MetaInfo = <MetaInfo>{}
+    //       user.meta = mius
+    //       user.meta = miustemp
+
+    //       this.userService.getPropertyWithIdSecured(e._id, "name").subscribe(username => {
+    //         tempuser = username
+    //         user.name = tempuser.name
+    //         user._id = tempuser._id
+    //       })
+    //       this.userService.getPropertyWithIdSecured(e._id, "occupation").subscribe(occupation => {
+    //         tempuser = occupation
+    //         user.occupation = tempuser.occupation
+    //       })
+    //       this.userService.getPropertyWithIdSecured(e._id, "occupationat").subscribe(occupatioAt => {
+    //         tempuser = occupatioAt
+    //         user.occupationAt = tempuser.occupationAt
+    //       })
+    //       this.userService.getPropertyWithIdSecured(e._id, "picture").subscribe(profPic => {
+    //         tempuser = profPic
+    //         if(typeof tempuser.meta != "undefined"){
+    //           user.meta.picture = tempuser.meta.picture
+    //         }
+    //       })
+    //       this.users.push(user)
+    //     }
+    //   })
+    // })
+
   }
 
 

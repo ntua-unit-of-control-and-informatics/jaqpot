@@ -22,7 +22,7 @@
       <div *ngIf="orgs.length > 0" class="shared">
         <h5>Shared with</h5>
         <div *ngFor="let org of orgs" class="org_shared">
-            <a class="orgs" (click)="openOrg(org)"> {{org._id}}</a>
+            <a class="orgs" (click)="openOrg(org)"> {{org.title}}</a>
         </div>
 
         <!-- <ul class="ul">

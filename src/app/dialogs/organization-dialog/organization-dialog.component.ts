@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Organization } from '../../jaqpot-client/model/organization';
 import { MatDialogRef } from '@angular/material/dialog';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
 import { Router } from '../../../../node_modules/@angular/router';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
 import { SessionService } from '../../session/session.service';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 
 @Component({
@@ -35,13 +35,13 @@ export class OrganizationDialogComponent implements OnInit {
 
   ngAfterViewInit(){
     var userData = this.sessionService.getUserData();
-    
+    // console.log(this.organization)
     if(userData.groups.includes('/Administrator') && this.organization._id === 'Jaqpot'){
       setTimeout(_ =>this.edit = true);
     }
     if(this.organization.meta
-       && this.organization.meta.creators
-       && this.organization.meta.creators.includes(userData.sub)){
+       && this.organization.creator
+       && this.organization.creator === userData.sub){
         setTimeout(_ =>this.edit = true);
     }
   }
@@ -53,10 +53,10 @@ export class OrganizationDialogComponent implements OnInit {
   }
 
   deleteOrganization(){
-    this.organizationService.deleteEntity(this.organization._id).subscribe(resp =>{
-        this.dialogRef.close()
-      }
-    )
+    // this.organizationService.deleteEntity(this.organization._id).subscribe(resp =>{
+    //     this.dialogRef.close()
+    //   }
+    // )
   }
 
 }

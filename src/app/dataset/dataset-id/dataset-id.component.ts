@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { SessionService } from '../../session/session.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
-import { Dataset, User, MetaInfo, Feature } from '../../jaqpot-client';
+import { Dataset, MetaInfo, Feature } from '../../jaqpot-client';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
@@ -11,6 +11,7 @@ import { NotificationService } from '../../jaqpot-client/api/notification.servic
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
 import { DatasetComponent } from '../dataset-component/dataset.component';
+import { User } from '@euclia/accounts-client/dist/models/user';
 
 @Component({
   selector: 'app-dataset-id',
@@ -71,10 +72,10 @@ export class DatasetIdComponent implements OnInit, OnDestroy {
       }
 
       this.entityMeta = dataset.meta
-      this.userApi.getUserById(dataset.meta.creators[0]).subscribe((owned) =>{
+      this.userApi.getUserById(dataset.meta.creators[0]).then((owned) =>{
         this.datasetOwner = owned
       })
-      this.userApi.getUserById(this.sessionService.getUserId()).subscribe((user:User)=>{
+      this.userApi.getUserById(this.sessionService.getUserId()).then((user:User)=>{
         if(dataset.meta.creators.includes(this.sessionService.getUserId())){
           this.canEdit = true
           this.edit = true;
@@ -117,7 +118,7 @@ export class DatasetIdComponent implements OnInit, OnDestroy {
         this.edit = true;
         this.canUpdatePhoto = true;
       }
-      this.userApi.getUserById(dataset.meta.creators[0]).subscribe((owned) =>{
+      this.userApi.getUserById(dataset.meta.creators[0]).then((owned) =>{
         this.datasetOwner = owned
       })
     })

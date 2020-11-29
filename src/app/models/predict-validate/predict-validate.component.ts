@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit, AfterContentInit, AfterContentChecked,   } from '@angular/core';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
-import { Model, User, Feature, Dataset, Task } from '../../jaqpot-client';
+import { Model, Feature, Dataset, Task, MetaInfo } from '../../jaqpot-client';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { SessionService } from '../../session/session.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
@@ -11,7 +11,6 @@ import { Config } from '../../config/config';
 import { TaskApiService } from '../../jaqpot-client/api/task.service';
 import { Subject, throwError } from 'rxjs';
 import { tap, delay, catchError } from 'rxjs/operators';
-import { concatMap, repeat }  from 'rxjs/operators';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
@@ -19,6 +18,7 @@ import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.ser
 import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-factory.service';
 import { DoaApiService } from '../../jaqpot-client/api/doa.service';
 import { Doa } from '../../jaqpot-client/model/doa';
+import { User } from '@euclia/accounts-client/dist/models/user';
 
 @Component({
   selector: 'app-predict-validate',
@@ -111,7 +111,7 @@ export class PredictValidateComponent implements OnInit {
       if(model.meta.creators.includes(this._sessionService.getUserId())){
         this.canExecute = true;
       }
-      this._userApi.getUserById(this._sessionService.getUserId()).subscribe((user:User)=>{
+      this._userApi.getUserById(this._sessionService.getUserId()).then((user:User)=>{
         this.userNow = user
         user.organizations.forEach(org=>{
           if(typeof model.meta.execute != 'undefined' && model.meta.execute.includes(org)){
@@ -119,6 +119,7 @@ export class PredictValidateComponent implements OnInit {
           }
         })
       })
+
       model.dependentFeatures.forEach(feat =>{
         if(feat){
           this._featureApi.getWithIdSecured(feat.split("/")[feat.split("/").length - 1]).subscribe((feat:Feature)=>{
@@ -128,15 +129,30 @@ export class PredictValidateComponent implements OnInit {
           })
         }
       })
-      model.independentFeatures.forEach(feat =>{
-        if(feat){
-          this._featureApi.getWithIdSecured(feat.split("/")[feat.split("/").length - 1]).subscribe((feat:Feature)=>{
-            let featureAndValue:FeatureAndValue = <FeatureAndValue>{};
-            featureAndValue.feature = feat
-            this.indepfeatureAndValues.push(featureAndValue)
-          })
+
+      if(this.model.independentFeatures.length < 100){
+        this.model.independentFeatures.forEach(feat =>{
+          if(feat){
+            this._featureApi.getWithIdSecured(feat.split("/")[feat.split("/").length - 1]).subscribe((feat:Feature)=>{
+              let featureAndValue:FeatureAndValue = <FeatureAndValue>{};
+              featureAndValue.feature = feat
+              this.indepfeatureAndValues.push(featureAndValue)
+            })
+          }
+        })
+      }else{
+        let indF:Map<string,string> = this.model.additionalInfo['independentFeatures'];
+        for (let [key, value] of Object.entries(indF)){
+          let featureAndValue:FeatureAndValue = <FeatureAndValue>{};
+          let feature:Feature = {}
+          let meta:MetaInfo = {}
+          meta.titles = [value]
+          meta.descriptions = []
+          feature.meta = meta
+          featureAndValue.feature = feature
+          this.indepfeatureAndValues.push(featureAndValue)
         }
-      })
+      }
     })
 
     this.observe.subscribe((task:Task) =>{
@@ -155,7 +171,7 @@ export class PredictValidateComponent implements OnInit {
   }
 
   methodSelected(event){
-    
+    this.taskStarted = false
   }
 
   inputChanged(feat:FeatureAndValue){
@@ -171,15 +187,26 @@ export class PredictValidateComponent implements OnInit {
     var csvData:string = "";
     if(this.selected === 'Predict'){
       let i = 0;
-      this.indepfeatureAndValues.forEach((feat:FeatureAndValue)=>{
+      let indFeats: Map<string,string> = this.model.additionalInfo['independentFeatures'];
+      for (let [key, value] of Object.entries(indFeats)){
         if(i != 0){
-          csvData = csvData.concat("," + feat.feature.meta.titles[0].toString())
+          csvData = csvData.concat("," + value)
         }
         else{
-          csvData = csvData.concat(feat.feature.meta.titles[0].toString())
+          csvData = csvData.concat(value)
         }
        i += 1;
-      })
+      }
+
+      //   this.indepfeatureAndValues.forEach((feat:FeatureAndValue)=>{
+      //   if(i != 0){
+      //     csvData = csvData.concat("," + feat.feature.meta.titles[0].toString())
+      //   }
+      //   else{
+      //     csvData = csvData.concat(feat.feature.meta.titles[0].toString())
+      //   }
+      //  i += 1;
+      // })
     }
     var blob = new Blob([csvData], { type: 'text/csv' });
     var url = window.URL.createObjectURL(blob);
@@ -216,11 +243,9 @@ export class PredictValidateComponent implements OnInit {
     // console.log(dataset)
     this._datasetApi.postEntity(dataset).subscribe((dataset:Dataset)=>{
       let datasetUri = Config.JaqpotBase + "/dataset/" + dataset._id
-      
       this._modelApi.predict(this.model._id, datasetUri, "true", (this.addDoa === 'true')).subscribe((task:Task)=>{
         this.progressValue = 5  
         this.getTask(task._id)
-
       }) 
     })
   }
@@ -364,6 +389,10 @@ export class PredictValidateComponent implements OnInit {
     return throwError(
       'Something bad happened; please try again later.');
   };
+
+  sortFeatures(){
+    this.indepfeatureAndValues.sort((a, b) => (a.feature.meta.titles[0] > b.feature.meta.titles[0]) ? 1 : -1)
+  }
 
 
 }

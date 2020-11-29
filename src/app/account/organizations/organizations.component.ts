@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../jaqpot-client';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
-import { Organization } from '../../jaqpot-client/model/organization';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { UserService } from '../../jaqpot-client/api/user.service';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-organizations',
@@ -27,8 +27,8 @@ export class OrganizationsComponent implements OnInit {
 
   ngOnInit() {
     this.user.organizations.forEach(org =>{
-      this.organizationService.getWithIdSecured(org)
-          .subscribe((organ) =>{
+      this.organizationService.getOrgById(org)
+          .then((organ) =>{
             this.organizations.push(organ)
           }
       )

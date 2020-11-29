@@ -375,7 +375,7 @@ export class DatasetFactoryService {
         depFeatures.forEach((feat:FeatureAndValue) =>{
           let valueIndex = ids.indexOf(feat.feature.meta.titles[0])
           if(isNaN( Number(data[valueIndex])) ){
-            values[k.toString()] = feat.value
+            values[k.toString()] = data[valueIndex]
           }
           // if(data[valueIndex].substr(0,1) === "["){
           //   let arVal = []

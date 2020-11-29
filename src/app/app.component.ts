@@ -40,6 +40,7 @@ export class AppComponent implements OnInit, OnDestroy{
   constructor(
     public oidcSecurityService: OidcSecurityService,
     public dialog: MatDialog,
+    public dialogsService:DialogsService,
     public sessionService: SessionService,
     private router: Router) { 
 
@@ -126,6 +127,14 @@ export class AppComponent implements OnInit, OnDestroy{
 
   trySSO(): void{
     this.oidcSecurityService.authorize();
+  }
+
+  openAccounts():void{
+    this.dialogsService.manageAccounts().subscribe(res=>{
+      if(res === 'LOGOUT'){
+        this.oidcSecurityService.logoff()
+      }
+    })
   }
 
   // private doCallbackLogicIfRequired() {

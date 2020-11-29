@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '@euclia/accounts-client/dist/models/user';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { User } from '../../jaqpot-client';
 
 @Component({
   selector: 'app-user-quick',
@@ -16,7 +16,7 @@ export class UserQuickComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.userApi.getUserById(this.user._id).subscribe((user:User)=>{
+    this.userApi.getUserById(this.user._id).then((user:User)=>{
       this.userToSee = user;
     })
   }

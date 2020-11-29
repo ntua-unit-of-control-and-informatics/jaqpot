@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete'
-
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { User, MetaInfo, Dataset, Model } from '../../jaqpot-client';
+import { Dataset, Model } from '../../jaqpot-client';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { Notification } from '../../jaqpot-client/model/notification';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
-import { Organization } from '../../jaqpot-client/model/organization';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-share-dialog',
@@ -43,6 +43,7 @@ export class ShareDialogComponent implements OnInit {
   writeCtrl = new FormControl();
   executeCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
+
   organizations: string[] = [];
   organizationsAll: string[] = [];
   organizationsWillRead: string[] = [];
@@ -52,6 +53,20 @@ export class ShareDialogComponent implements OnInit {
   organizationsToWrite:string[] = [];
   organizationsToExecute:string[] = [];
   organizationsToNotify:string[] = [];
+
+  organizationsFull:Organization[] = [];
+
+  // organizations: Organization[] = [];
+  // organizationsAll: Organization[] = [];
+  // organizationsWillRead: Organization[] = [];
+  // organizationsWillWrite: Organization[] = [];
+  // organizationsWillExecute: Organization[] = [];
+  // organizationsToRead: Organization[] = [];
+  // organizationsToWrite: Organization[] = [];
+  // organizationsToExecute: Organization[] = [];
+  // organizationsToNotify: Organization[] = [];
+
+
   share:boolean =  true;
   cancell:boolean =  true;
 
@@ -71,51 +86,81 @@ export class ShareDialogComponent implements OnInit {
   }
 
   ngOnInit(){
-    this._userApi.getPropertyWithIdSecured(this._userId, 'organizations').subscribe((user:User) =>{
+    this._userApi.getUserById(this._userId).then((user:User) =>{
       this.organizationsAll = user.organizations.slice()
       this.organizationsAll.forEach(orgid => {
-        this._organizationApi.getWithIdSecured(orgid).subscribe((org:Organization)=>{
-          if(typeof org.affiliations != 'undefined'){
-            org.affiliations.forEach(orgid =>{
-              if(!this.affiliatedOrgs.includes(orgid)){
-                this.affiliatedOrgs.push(orgid)
-              }
-            })
-          }
+        this._organizationApi.getOrgById(orgid).then((org:Organization)=>{
+          this.organizationsFull.push(org)
+          this.organizationsToExecute.push(org.title)
+          this.organizationsToWrite.push(org.title)
+          this.organizationsToRead.push(org.title)
         })
+        // this._organizationApi.getOrgById(orgid).then((org:Organization)=>{
+        //   if(typeof org. != 'undefined'){
+        //     org.affiliations.forEach(orgid =>{
+        //       if(!this.affiliatedOrgs.includes(orgid)){
+        //         this.affiliatedOrgs.push(orgid)
+        //       }
+        //     })
+        //   }
+        // })
       })
-      this.organizationsToExecute = user.organizations.slice()
-      this.organizationsToWrite = user.organizations.slice()
-      this.organizationsToRead = user.organizations.slice()
+      // this.organizationsToExecute = user.organizations.slice()
+      // this.organizationsToWrite = user.organizations.slice()
+      // this.organizationsToRead = user.organizations.slice()
     })
 
     if(this._entityType === "dataset"){
       this._datasetApi.getWithIdSecured(this._entityId.split("/")[1]).subscribe((data:Dataset)=>{
         if(typeof data.meta.read != 'undefined'){
           data.meta.read.forEach(org => {
-            this.organizationsWillRead.push(org)
-            let index1 = this.organizationsToRead.indexOf(org)
-            if(index1 >= 0){
-              this.organizationsToRead.splice(index1, 1)
-            }
+            this._organizationApi.getOrgById(org).then((o:Organization)=>{
+              this.organizationsWillRead.push(o.title)
+              let index1 = this.organizationsToRead.indexOf(o.title)
+              if(index1 >= 0){
+                this.organizationsToRead.splice(index1, 1)
+              }
+            }).catch(er =>{
+              this.organizationsWillRead.push(org)
+              let index3 = this.organizationsWillRead.indexOf(org)
+              if(index3 >= 0){
+                this.organizationsWillRead.splice(index3, 1)
+              }
+            })
           })
         }
         if(typeof data.meta.write != 'undefined'){
           data.meta.write.forEach(org => {
-            this.organizationsWillWrite.push(org)
-            let index2 = this.organizationsToWrite.indexOf(org)
-            if(index2 >= 0){
-              this.organizationsToWrite.splice(index2, 1)
-            }
-          })
+            this._organizationApi.getOrgById(org).then((o:Organization)=>{
+              this.organizationsWillWrite.push(o.title)
+              let index1 = this.organizationsToWrite.indexOf(o.title)
+              if(index1 >= 0){
+                this.organizationsToWrite.splice(index1, 1)
+              }
+            }).catch(er =>{
+              this.organizationsWillWrite.push(org)
+              let index3 = this.organizationsWillWrite.indexOf(org)
+              if(index3 >= 0){
+                this.organizationsWillWrite.splice(index3, 1)
+              }
+            })
+         })
         }
         if(typeof data.meta.execute != 'undefined'){
           data.meta.execute.forEach(org => {
-            this.organizationsWillExecute.push(org)
-            let index3 = this.organizationsToExecute.indexOf(org)
-            if(index3 >= 0){
-              this.organizationsToExecute.splice(index3, 1)
-            }
+            this._organizationApi.getOrgById(org).then((o:Organization)=>{
+              this.organizationsWillExecute.push(o.title)
+              let index1 = this.organizationsToExecute.indexOf(o.title)
+              if(index1 >= 0){
+                this.organizationsToExecute.splice(index1, 1)
+              }
+            }).catch(er =>{
+              this.organizationsWillExecute.push(org)
+              let index3 = this.organizationsWillExecute.indexOf(org)
+              if(index3 >= 0){
+                this.organizationsWillExecute.splice(index3, 1)
+              }
+            })
           })
         }
       })
@@ -124,29 +169,53 @@ export class ShareDialogComponent implements OnInit {
       this._modelApi.getWithIdSecured(this._entityId.split("/")[1]).subscribe((model:Model) =>{
         if(typeof model.meta.read != 'undefined'){
           model.meta.read.forEach(org => {
-            this.organizationsWillRead.push(org)
-            let index1 = this.organizationsToRead.indexOf(org)
-            if(index1 >= 0){
-              this.organizationsToRead.splice(index1, 1)
-            }
+            this._organizationApi.getOrgById(org).then((o:Organization)=>{
+              this.organizationsWillRead.push(o.title)
+              let index1 = this.organizationsToRead.indexOf(o.title)
+              if(index1 >= 0){
+                this.organizationsToRead.splice(index1, 1)
+              }
+            }).catch(er =>{
+              this.organizationsWillRead.push(org)
+              let index3 = this.organizationsWillRead.indexOf(org)
+              if(index3 >= 0){
+                this.organizationsWillRead.splice(index3, 1)
+              }
+            })
           })
         }
         if(typeof model.meta.write != 'undefined'){
           model.meta.write.forEach(org => {
-            this.organizationsWillWrite.push(org)
-            let index2 = this.organizationsToWrite.indexOf(org)
-            if(index2 >= 0){
-              this.organizationsToWrite.splice(index2, 1)
-            }
+            this._organizationApi.getOrgById(org).then((o:Organization)=>{
+              this.organizationsWillWrite.push(o.title)
+              let index1 = this.organizationsToWrite.indexOf(o.title)
+              if(index1 >= 0){
+                this.organizationsToRead.splice(index1, 1)
+              }
+            }).catch(er =>{
+              this.organizationsWillWrite.push(org)
+              let index3 = this.organizationsToWrite.indexOf(org)
+              if(index3 >= 0){
+                this.organizationsToWrite.splice(index3, 1)
+              }
+            })
           })
         }
         if(typeof model.meta.execute != 'undefined'){
            model.meta.execute.forEach(org => {
-            this.organizationsWillExecute.push(org)
-            let index3 = this.organizationsToExecute.indexOf(org)
-            if(index3 >= 0){
-              this.organizationsToExecute.splice(index3, 1)
-            }
+            this._organizationApi.getOrgById(org).then((o:Organization)=>{
+              this.organizationsWillExecute.push(o.title)
+              let index1 = this.organizationsToExecute.indexOf(o.title)
+              if(index1 >= 0){
+                this.organizationsToExecute.splice(index1, 1)
+              }
+            }).catch(er =>{
+              this.organizationsWillExecute.push(org)
+              let index3 = this.organizationsToExecute.indexOf(org)
+              if(index3 >= 0){
+                this.organizationsToExecute.splice(index3, 1)
+              }
+            })
           })
         }
       })
@@ -388,21 +457,63 @@ export class ShareDialogComponent implements OnInit {
           this._datasetApi.getWithIdSecured(this._entityId.split("/")[1]).subscribe((dataset:Dataset)=>{
             if(typeof dataset.meta.read === 'undefined'){
               dataset.meta.read = []
-              dataset.meta.read = this.organizationsWillRead.slice()
+              this.organizationsWillRead.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    dataset.meta.read.push(o._id) 
+                  }
+                })
+              })
+              // dataset.meta.read = this.organizationsWillRead.slice()
             }else{
-              dataset.meta.read = dataset.meta.read.concat(this.organizationsWillRead)
+              this.organizationsWillRead.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    dataset.meta.read.push(o._id) 
+                  }
+                })
+              })
+              // dataset.meta.read = dataset.meta.read.concat(this.organizationsWillRead)
             }
             if(typeof dataset.meta.write === 'undefined'){
               dataset.meta.write = []
-              dataset.meta.write = this.organizationsWillWrite.slice()
+              this.organizationsWillWrite.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    dataset.meta.write.push(o._id) 
+                  }
+                })
+              })
+              // dataset.meta.write = this.organizationsWillWrite.slice()
             }else{
-              dataset.meta.write = dataset.meta.write.concat(this.organizationsWillWrite)
+              this.organizationsWillWrite.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    dataset.meta.write.push(o._id) 
+                  }
+                })
+              })
+              // dataset.meta.write = dataset.meta.write.concat(this.organizationsWillWrite)
             }
             if(typeof dataset.meta.execute === 'undefined'){
               dataset.meta.execute = []
-              dataset.meta.execute = this.organizationsWillExecute.slice()
+              this.organizationsWillExecute.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    dataset.meta.execute.push(o._id) 
+                  }
+                })
+              })
+              // dataset.meta.execute = this.organizationsWillExecute.slice()
             }else{
-              dataset.meta.execute = dataset.meta.write.concat(this.organizationsWillExecute)
+              this.organizationsWillWrite.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    dataset.meta.execute.push(o._id) 
+                  }
+                })
+              })
+              // dataset.meta.execute = dataset.meta.write.concat(this.organizationsWillExecute)
             }
             // let uniqueOrgs:string[] = this.organizationsWillRead.slice();
             // let uniqueOrgs:string[] = this.organizationsToNotify.slice();
@@ -411,12 +522,13 @@ export class ShareDialogComponent implements OnInit {
             if(jind >= 0 ){
               uniqueOrgs.splice(jind, 1)
             }
-            uniqueOrgs.forEach(orgId => {
-              this._organizationApi.getPropertyWithIdSecured(orgId, 'users').subscribe((users:Organization )=>{
+            uniqueOrgs.forEach(orgTitle => {
+              var orgIdF = this.organizationsFull.find(obj =>{return obj.title === orgTitle})
+              this._organizationApi.getOrgById(orgIdF._id).then((users:Organization )=>{
                 if(typeof users != 'undefined'){
-                  users.userIds.forEach(id => {
+                  users.users.forEach(id => {
                     let notific:Notification = this._notificationFactory
-                      .shareNotification(this._userId, id, orgId, this._entityId );
+                      .shareNotification(this._userId, id, orgIdF._id, this._entityId );
                       this._notificationApi.postEntity(notific).subscribe(data=>{
                       })
                   })
@@ -434,21 +546,63 @@ export class ShareDialogComponent implements OnInit {
           this._modelApi.getWithIdSecured(this._entityId.split("/")[1]).subscribe((model:Model)=>{
             if(typeof model.meta.read === 'undefined'){
               model.meta.read = []
-              model.meta.read = this.organizationsWillRead.slice()
+              this.organizationsWillRead.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    model.meta.read.push(o._id) 
+                  }
+                })
+              })
+              // model.meta.read = this.organizationsWillRead.slice()
             }else{
-              model.meta.read = model.meta.read.concat(this.organizationsWillRead)
+              this.organizationsWillRead.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    model.meta.read.push(o._id) 
+                  }
+                })
+              })
+              // model.meta.read = model.meta.read.concat(this.organizationsWillRead)
             }
             if(typeof model.meta.write === 'undefined'){
               model.meta.write = []
-              model.meta.write = this.organizationsWillWrite.slice()
+              this.organizationsWillWrite.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    model.meta.write.push(o._id) 
+                  }
+                })
+              })
+              // model.meta.write = this.organizationsWillWrite.slice()
             }else{
-              model.meta.write = model.meta.write.concat(this.organizationsWillWrite)
+              this.organizationsWillWrite.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    model.meta.write.push(o._id) 
+                  }
+                })
+              })
+              // model.meta.write = model.meta.write.concat(this.organizationsWillWrite)
             }
             if(typeof model.meta.execute === 'undefined'){
               model.meta.execute = []
-              model.meta.execute = this.organizationsWillExecute.slice()
+              this.organizationsWillExecute.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    model.meta.execute.push(o._id) 
+                  }
+                })
+              })
+              // model.meta.execute = this.organizationsWillExecute.slice()
             }else{
-              model.meta.execute = model.meta.write.concat(this.organizationsWillExecute)
+              this.organizationsWillExecute.forEach(orgTitle=>{
+                this.organizationsFull.forEach((o:Organization)=>{
+                  if(o.title === orgTitle){
+                    model.meta.execute.push(o._id) 
+                  }
+                })
+              })
+              // model.meta.execute = model.meta.write.concat(this.organizationsWillExecute)
             }
             // let uniqueOrgs:string[] = this.organizationsWillRead.slice();
             let uniqueOrgs:string[] = Array.from(new Set(this.organizationsToNotify));
@@ -456,12 +610,13 @@ export class ShareDialogComponent implements OnInit {
             if(jind >= 0 ){
               uniqueOrgs.splice(jind, 1)
             }
-            uniqueOrgs.forEach(orgId => {
-              this._organizationApi.getPropertyWithIdSecured(orgId, 'users').subscribe((users:Organization )=>{
+            uniqueOrgs.forEach(orgTitle => {
+              var orgIdF = this.organizationsFull.find(obj =>{return obj.title === orgTitle})
+              this._organizationApi.getOrgById(orgIdF._id).then((users:Organization)=>{
                 if(typeof users != 'undefined'){
-                  users.userIds.forEach(id => {
+                  users.users.forEach(id => {
                     let notific:Notification = this._notificationFactory
-                      .shareNotification(this._userId, id, orgId, this._entityId );
+                      .shareNotification(this._userId, id, orgIdF._id, this._entityId );
                       this._notificationApi.postEntity(notific).subscribe(data=>{
                       })
                   })

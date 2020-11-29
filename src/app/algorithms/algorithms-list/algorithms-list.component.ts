@@ -22,7 +22,7 @@ export class AlgorithmsListComponent implements AfterViewInit {
 
 
   displayedColumns = ['Id', 'Descriptions', 'Titles', 'Subjects'];
-  dataSource = new MatTableDataSource<Algorithm>(this._algorithms);
+  // dataSource = new MatTableDataSource<Algorithm>(this._algorithms);
 
   resultsLength = 0;
   isLoadingResults = false;
@@ -85,7 +85,7 @@ export class AlgorithmsListComponent implements AfterViewInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    // this.dataSource.filter = filterValue;
   }
 
   private clearMem(){
@@ -101,7 +101,7 @@ export class AlgorithmsListComponent implements AfterViewInit {
   }
 
   private onSelect(algorithm:Algorithm){
-    this.sessionService.setAlgorithm(algorithm);
+    // this.sessionService.setAlgorithm(algorithm);
   }
 
 

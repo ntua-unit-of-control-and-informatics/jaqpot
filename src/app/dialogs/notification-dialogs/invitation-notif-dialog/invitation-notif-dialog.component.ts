@@ -3,10 +3,10 @@ import { NotificationService } from '../../../jaqpot-client/api/notification.ser
 import { OrganizationService } from '../../../jaqpot-client/api/organization.service';
 import { UserService } from '../../../jaqpot-client/api/user.service';
 import { Notification } from '../../../jaqpot-client/model/notification';
-import { User } from '../../../jaqpot-client';
-import { Organization } from '../../../jaqpot-client/model/organization';
 import { MatDialogRef } from '@angular/material/dialog';
 import {MatSnackBar } from '@angular/material/snack-bar'
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-invitation-notif-dialog',
@@ -31,39 +31,39 @@ export class InvitationNotifDialogComponent implements OnInit {
   constructor(public snackBar: MatSnackBar, private dialogRef: MatDialogRef<InvitationNotifDialogComponent>) { }
 
   ngOnInit() {
-    this.userService.getUserById(this.notification.from).subscribe(user =>{
+    this.userService.getUserById(this.notification.from).then(user =>{
       this.from = user
     })
 
-    this.organizationService.getWithIdSecured(this.notification.invitationTo).subscribe(organization =>{
+    this.organizationService.getOrgById(this.notification.invitationTo).then(organization =>{
       this.organ = organization
     })
 
   }
 
   acceptInvitation(){
-    this.userService.getUserById(this.notification.owner).subscribe(user => {
-      this.me = user
-      if(!this.me.organizations.some(c => c === this.organ._id)){
-        this.me.organizations.push(this.organ._id)
-        this.userService.putWithIdSecured(this.me._id, this.me).subscribe(userUpdated => {
-          this.me = userUpdated
-          this.organ.userIds.push(this.me._id)
-          this.organizationService.putEntitySecured(this.organ).subscribe(organUpdated => {
-            this.openSnackBar("You are now a member of the Organization" + this.organ._id, "Congrats!")
-          })
-          this.notification.viewed = true;
-          this.notificationService.putEntitySecured(this.notification).subscribe(notif =>{
+    // this.userService.getUserById(this.notification.owner).then(user => {
+    //   this.me = user
+    //   if(!this.me.organizations.some(c => c === this.organ._id)){
+    //     this.me.organizations.push(this.organ._id)
+    //     this.userService.putWithIdSecured(this.me._id, this.me).subscribe(userUpdated => {
+    //       this.me = userUpdated
+    //       this.organ.userIds.push(this.me._id)
+    //       this.organizationService.putEntitySecured(this.organ).subscribe(organUpdated => {
+    //         this.openSnackBar("You are now a member of the Organization" + this.organ._id, "Congrats!")
+    //       })
+    //       this.notification.viewed = true;
+    //       this.notificationService.putEntitySecured(this.notification).subscribe(notif =>{
             
-          })
-        })
-      }else{
-        this.notification.viewed = true;
-        this.notificationService.putEntitySecured(this.notification).subscribe(notif =>{
-          this.openSnackBar("Seems to be allready a member of this organization", "Notification Resolved")
-        })
-      }
-    })
+    //       })
+    //     })
+    //   }else{
+    //     this.notification.viewed = true;
+    //     this.notificationService.putEntitySecured(this.notification).subscribe(notif =>{
+    //       this.openSnackBar("Seems to be allready a member of this organization", "Notification Resolved")
+    //     })
+    //   }
+    // })
 
   }
 

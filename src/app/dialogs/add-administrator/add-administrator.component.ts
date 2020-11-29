@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { User } from '../../jaqpot-client';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { MatDialogRef } from '@angular/material/dialog';
+import { User } from '@euclia/accounts-client/dist/models/user';
 
 
 @Component({
@@ -24,14 +24,14 @@ export class AddAdministratorComponent implements OnInit {
   ngOnInit() {
     if(typeof this.userIds != 'undefined'){
       this.userIds.forEach(id =>{
-        this.userApi.getUserById(id).subscribe((user:User) =>{
+        this.userApi.getUserById(id).then((user:User) =>{
           this.users.push(user)
         })
       })
     }
     if(typeof this.admins != 'undefined'){
       this.admins.forEach(id =>{
-        this.userApi.getUserById(id).subscribe((user:User) =>{
+        this.userApi.getUserById(id).then((user:User) =>{
           this.adminUsers.push(user)
         })
       })

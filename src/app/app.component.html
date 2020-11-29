@@ -37,7 +37,7 @@
 
 
       <div *ngIf="loggedIn; else logout">
-        <a routerLink="/account" matTooltip="Account" matTooltipPosition="below">
+        <a (click)="openAccounts()" matTooltip="Manage account" matTooltipPosition="below">
           <mat-icon class="account">
             <i class="material-icons">account_circle</i>
           </mat-icon>

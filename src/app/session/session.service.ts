@@ -11,15 +11,15 @@ export class SessionService{
     token: string;
     userid:string;
     userEmail:string;
-    private accessToken: Subject<string> = new BehaviorSubject(this.token);
+    private accessToken: Subject<string>;
     private userName = new Subject<any>();
     //private loggedIn = new Subject<any>();
     private theme = new Subject<any>();
-    algo:Algorithm
-    algorithm$: Subject<Algorithm> = new BehaviorSubject(this.algo);
-    modelingAlgorithm:Algorithm
-    modelingAlgorithm$: Subject<Algorithm> = new BehaviorSubject(this.modelingAlgorithm);
-    private dataset: Dataset;
+    // algo:Algorithm
+    // algorithm$: Subject<Algorithm> = new BehaviorSubject(this.algo);
+    // modelingAlgorithm:Algorithm
+    // modelingAlgorithm$: Subject<Algorithm> = new BehaviorSubject(this.modelingAlgorithm);
+    // private dataset: Dataset;
     
 
 
@@ -30,6 +30,9 @@ export class SessionService{
     constructor(
         private _oidc:OidcSecurityService
     ){
+        // this.token = this._oidc.getToken()
+        // this.accessToken.next(this._oidc.getToken())
+        // this.token = this._oidc.getToken()
         // this.userData$ = this._oidc.userData$
         // this.userData$.subscribe(d=>{
         //     this._userData = d
@@ -65,41 +68,50 @@ export class SessionService{
         return this.theme.asObservable();
     }
 
-    getAlgorithm(): Observable<Algorithm>{
-        return this.algorithm$.asObservable();
+    getTokenObservable(): Observable<string>{
+        return this.accessToken.asObservable()
     }
 
-    clearAlgorithm(){
-        this.algorithm$.next();
+    getToken(): string{
+        return this._oidc.getToken()
+        // return this.token
     }
 
-    setAlgorithm(algorithm:Algorithm){
-        this.algorithm$.next( algorithm )
-    }
+    // getAlgorithm(): Observable<Algorithm>{
+    //     return this.algorithm$.asObservable();
+    // }
 
-    getDataset(){
-        return this.dataset;
-    }
+    // clearAlgorithm(){
+    //     this.algorithm$.next();
+    // }
 
-    clearDataset(){
-        this.dataset = null;
-    }
+    // setAlgorithm(algorithm:Algorithm){
+    //     this.algorithm$.next( algorithm )
+    // }
 
-    setDataset(dataset:Dataset){
-        this.dataset = dataset 
-    }
+    // getDataset(){
+    //     return this.dataset;
+    // }
 
-    clearModelingAlgorithm(){
-        this.modelingAlgorithm$.next();
-    }
+    // clearDataset(){
+    //     this.dataset = null;
+    // }
 
-    setModelingAlgorithm(algorithm:Algorithm){
-        this.modelingAlgorithm$.next( algorithm )
-    }
+    // setDataset(dataset:Dataset){
+    //     this.dataset = dataset 
+    // }
 
-    getModelingAlgorithm(){
-        return this.modelingAlgorithm$.asObservable();
-    }
+    // clearModelingAlgorithm(){
+    //     this.modelingAlgorithm$.next();
+    // }
+
+    // setModelingAlgorithm(algorithm:Algorithm){
+    //     this.modelingAlgorithm$.next( algorithm )
+    // }
+
+    // getModelingAlgorithm(){
+    //     return this.modelingAlgorithm$.asObservable();
+    // }
 
     // clearModelingDataset(){
     //     this.modelingDataset.next();

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MetaInfo, User } from '../jaqpot-client';
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { MetaInfo, } from '../jaqpot-client';
 
 @Injectable({
   providedIn: 'root'

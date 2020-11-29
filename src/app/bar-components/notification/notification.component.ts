@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {interval} from "rxjs/internal/observable/interval";
-import {startWith, switchMap, catchError, tap} from "rxjs/operators";
+import {startWith, switchMap } from "rxjs/operators";
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
 import { Notification } from '../../jaqpot-client/model/notification';
 import { DialogsService } from '../../dialogs/dialogs.service';

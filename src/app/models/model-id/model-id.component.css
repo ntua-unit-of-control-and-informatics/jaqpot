@@ -13,26 +13,31 @@
 
 .descr_input{
     width: 100%;
-    min-height: 8em;
+    /* min-height: 8em; */
 }
-.descr_text{
+/* .descr_text{
     min-height: 8em;
+} */
+
+.card_wrap{
+    position: fixed;
 }
 
 .card_wrap{
     min-height: calc(100vh - 64px);
+    float: left;
+    width: 18%;
 }
 
 .base_tabs{
-    margin-left: 0.5em;
+    margin-left: 19%;
     margin-top: 1em;
-    /* min-height: calc(100vh - 118px); */
-
-    /* min-height: calc(100vh - 70px);
-    max-height: calc(100vh - 70px);
-    overflow: scroll; */
-
-    /* max-height: calc(100vh - 118px); */
+    width: 62%;
+    max-width: 62%;
+    position: fixed;
+    overflow: auto;
+    height: calc(100vh - 58px);
+    padding-left: 1em;
 }
 
 .entity_image {

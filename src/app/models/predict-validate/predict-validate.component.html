@@ -5,6 +5,7 @@
 </div>
 
 <ng-template #can_execute>
+
   <div *ngIf="model" class="can mat-elevation-z2">
     <h4>Choose method</h4>
     <mat-form-field class="method">
@@ -18,12 +19,7 @@
 </ng-template>
 
 <div *ngIf="!taskStarted; else task" class="first_card">
-
-
   <div *ngIf="canExecute">
-
-
-
     <div *ngIf="selected === 'Predict';  else validate;" class="base mat-elevation-z2">
       <h4>Upload dataset with the required independent features and values</h4>
 
@@ -37,21 +33,13 @@
       </button>
       <input #dataInput id="fileToUpload" type="file" style="display:none;" accept="image/*, .csv" multiple="multiple"
         (change)="changeListener($event.target.files)">
-
-
       <div *ngIf="datasetFormated">
         <app-simple-dataset [datasetToSee]="datasetForPrediction"></app-simple-dataset>
       </div>
-
-
-
-
       <div *ngIf="datasetFormated" class="input_val_butt">
         <button class="b2" matTooltip="Erase dataset" mat-raised-button color="warn" (click)="eraseDataset()">
           Erase dataset
         </button>
-
-
         <button class="b1" mat-raised-button color="primary" matTooltip="Start prediction with input dataset"
           (click)="startDatasetPrediction()">
           Start procedure
@@ -66,11 +54,10 @@
           </mat-button-toggle>
         </mat-button-toggle-group>
       </div>
-
-
-
-
-      <h4 class="input_vals_h">Input values for the independent features</h4>
+      <div class="input_header">
+        <h4 class="input_vals_h">Input values for the independent features</h4>
+        <button mat-stroked-button color="primary" matTooltip="Sort by name" (click)="sortFeatures()">Sort</button>
+      </div>
 
       <div *ngIf="indepfeatureAndValues" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="4px"
         fxLayoutAlign="flex-start">
@@ -95,12 +82,9 @@
               </mat-form-field>
             </form>
           </ng-template>
-
         </div>
 
         <div *ngIf="ready" class="input_val_butt">
-
-
           <button class="b1" matTooltip="Start prediction with input values" mat-raised-button color="primary"
             (click)="startInputPrediction()">
             Start
@@ -116,11 +100,9 @@
           </mat-button-toggle-group>
         </div>
       </div>
-
     </div>
 
-
-
+    
     <ng-template #validate>
       <div *ngIf="depFeatureAndValues && indepfeatureAndValues">
         <app-validate [depFeats]="depFeatureAndValues" [indepFeats]="indepfeatureAndValues" [model]="model">

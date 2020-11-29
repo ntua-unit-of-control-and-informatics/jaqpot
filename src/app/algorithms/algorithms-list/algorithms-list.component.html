@@ -1,4 +1,4 @@
-
+<!-- 
 
 
 <mat-card class="algocard mat-elevation-z8">
@@ -29,25 +29,21 @@
 
                   <mat-table #table [dataSource]="dataSource">
                 
-                    <!-- Id Column -->
                     <ng-container matColumnDef="Id">
                       <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
                       <mat-cell *matCellDef="let algorithm"> {{algorithm._id}} </mat-cell>
                     </ng-container>
                 
-                    <!-- Descriptions Column -->
                     <ng-container matColumnDef="Descriptions">
                       <mat-header-cell *matHeaderCellDef> Descriptions </mat-header-cell>
                       <mat-cell *matCellDef="let algorithm"> {{algorithm.meta.descriptions[0]}} </mat-cell>
                     </ng-container>
                 
-                    <!-- Titles Column -->
                     <ng-container matColumnDef="Titles">
                       <mat-header-cell *matHeaderCellDef> Titles </mat-header-cell>
                       <mat-cell *matCellDef="let algorithm"> {{algorithm.meta.titles[0]}} </mat-cell>
                     </ng-container>
                 
-                    <!-- Subjects Column -->
                     <ng-container matColumnDef="Subjects">
                       <mat-header-cell *matHeaderCellDef> Subjects </mat-header-cell>
                       <mat-cell *matCellDef="let algorithm"> {{algorithm.meta.subjects[0]}} </mat-cell>
@@ -73,4 +69,4 @@
 
 </mat-card>
 
-
+ -->

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, UrlSerializer } from '@angular/router';
 import { SessionService } from '../../session/session.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
-import { Model, MetaInfo, User, Feature } from '../../jaqpot-client';
+import { Model, MetaInfo, Feature } from '../../jaqpot-client';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { RightsService } from '../../services/rights.service';
@@ -11,6 +11,7 @@ import { OrganizationService } from '../../jaqpot-client/api/organization.servic
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
+import { User } from '@euclia/accounts-client/dist/models/user';
 
 @Component({
   selector: 'app-model-id',
@@ -41,6 +42,9 @@ export class ModelIdComponent implements OnInit, OnDestroy {
 
   featsUpdatedArray:Feature[]
 
+  newTag:string;
+  addTagB:boolean = false;
+
   constructor(
     private rightsService:RightsService,
     private router:Router,
@@ -69,12 +73,12 @@ export class ModelIdComponent implements OnInit, OnDestroy {
     this.modelApi.getWithIdSecured(this.id).subscribe((model:Model) =>{
       this.modelToSee = model;
       this.entityMeta = model.meta;
-      this.userApi.getUserById(this.sessionService.getUserId()).subscribe((user:User)=>{
+      this.userApi.getUserById(this.sessionService.getUserId()).then((user:User)=>{
         this.user = user
         this.edit = this.rightsService.canEdit(model.meta, user);
         this.canEdit = this.rightsService.canEdit(model.meta, user);
         this.canUpdatePhoto = this.edit
-        this.userApi.getUserById(this.modelToSee.meta.creators[0]).subscribe((owner:User)=>{
+        this.userApi.getUserById(this.modelToSee.meta.creators[0]).then((owner:User)=>{
           this.modelOwner = owner
         })
       })
@@ -182,6 +186,29 @@ export class ModelIdComponent implements OnInit, OnDestroy {
 
   modelChanged($event){
 
+  }
+
+  addTag(){
+    this.addTagB = true;
+  }
+
+
+  addTagToModel(){
+    if(typeof this.modelToSee.meta.tags === 'undefined'){
+      this.modelToSee.meta.tags = []
+      this.modelToSee.meta.tags.push(this.newTag)
+      this.newTag = ''
+      this.addTagB = true
+    }
+    this.modelToSee.meta.tags.push(this.newTag)
+    this.newTag = ''
+    this.addTagB = true
+  }
+
+
+  deleteTag(tag){
+    let index = this.modelToSee.meta.tags.indexOf(tag)
+    this.modelToSee.meta.tags.splice(index, 1)
   }
 
 

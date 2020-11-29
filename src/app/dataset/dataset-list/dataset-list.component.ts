@@ -27,7 +27,7 @@ export class DatasetListComponent implements OnInit {
   private data_to_fetch = new BehaviorSubject(0);
  
   displayedColumns = ['Titles', 'Descriptions', 'Subjects'];
-  dataSource = new MatTableDataSource<Dataset>(this._datasets);
+  // dataSource = new MatTableDataSource<Dataset>(this._datasets);
 
   resultsLength = 0;
   isLoadingResults = false;
@@ -109,7 +109,7 @@ export class DatasetListComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    // this.dataSource.filter = filterValue;
   }
 
   changeDatasets(value){
@@ -118,7 +118,7 @@ export class DatasetListComponent implements OnInit {
   }
 
   onSelect(dataset:Dataset){
-    this._sessionService.setDataset(dataset);
+    // this._sessionService.setDataset(dataset);
     this.navigate();
     
   }

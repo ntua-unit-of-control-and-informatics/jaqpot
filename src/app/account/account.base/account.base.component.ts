@@ -3,13 +3,14 @@ import { SessionService } from '../../session/session.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { ErrorReport } from '../../ui-models/errorReport';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { User, MetaInfo } from '../../jaqpot-client';
+import { MetaInfo } from '../../jaqpot-client';
 import { ProfilepicDialogComponent } from '../../dialogs/profilepic-dialog/profilepic-dialog.component';
 import {MatDialog} from '@angular/material/dialog'
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { SocialBaseComponent } from '../social.base/social.base.component';
 import { CreateOrganizationComponent } from '../../dialogs/create-organization/create-organization.component';
+import { User } from '@euclia/accounts-client/dist/models/user';
 
 @Component({
   selector: 'app-account.base',
@@ -29,7 +30,6 @@ export class AccountBaseComponent implements OnInit {
   public email:string;
   public preferedUserName:string;
   public name:string;
-  private apiKey:string;
 
   public edit_name_is_disabled:boolean;
   public edit_familyname_is_disabled:boolean;
@@ -46,7 +46,6 @@ export class AccountBaseComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    // private dialog: MatDialog ,
     private sessionService:SessionService,
     private userService:UserService,
     private snackBar: MatSnackBar,
@@ -55,7 +54,6 @@ export class AccountBaseComponent implements OnInit {
     this.username = this.sessionService.get('userName');
     var userData = this.sessionService.getUserData();
     this.name = userData.name
-    this.apiKey = this.oidcSecurityService.getToken();
     this.familyName = userData.family_name;
     this.firstName = userData.given_name;
     this.email = userData.email;
@@ -75,7 +73,7 @@ export class AccountBaseComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUserById(this.id)
-    .subscribe((userGot:User) =>{
+    .then((userGot:User) =>{
       this.user = userGot;
       if(typeof userGot.meta != 'undefined'){
         if(userGot.meta.picture == null){
@@ -88,24 +86,24 @@ export class AccountBaseComponent implements OnInit {
   }
 
   addProfilePicDialog(){
-    let dialogRef = this.dialog.open(ProfilepicDialogComponent,{})
-    dialogRef.afterClosed().subscribe(result => {
-      if(typeof result != 'undefined'){
-        this.user.meta = <MetaInfo>{};
-        this.user.meta.picture = result;
-        this.userService.updateUserById(this.id, this.user)
-        .subscribe(userGot =>{
-          this.user = userGot;
-          if(this.user.meta.picture == null){
-            this.photo_unavail = true;
-          }else{
-            this.photo_unavail = false;
-          }
-        })
-      }});
-      this.userService.getUserById(this.sessionService.getUserId()).subscribe((userGot:User)=>{
-        this.user = userGot
-      })
+    // let dialogRef = this.dialog.open(ProfilepicDialogComponent,{})
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if(typeof result != 'undefined'){
+    //     this.user.meta = <MetaInfo>{};
+    //     this.user.meta.picture = result;
+    //     this.userService.updateUserById(this.id, this.user)
+    //     .subscribe(userGot =>{
+    //       this.user = userGot;
+    //       if(this.user.meta.picture == null){
+    //         this.photo_unavail = true;
+    //       }else{
+    //         this.photo_unavail = false;
+    //       }
+    //     })
+    //   }});
+    //   this.userService.getUserById(this.sessionService.getUserId()).subscribe((userGot:User)=>{
+    //     this.user = userGot
+    //   })
   }
 
   editForm(){
@@ -114,12 +112,12 @@ export class AccountBaseComponent implements OnInit {
   }
 
   saveForm(){
-    this.edit = true;
-    this.urlForm.disable();
-    this.userService.updateUserById(this.id, this.user)
-    .subscribe(userGot =>{
-      this.user = userGot;
-    })
+    // this.edit = true;
+    // this.urlForm.disable();
+    // this.userService.updateUserById(this.id, this.user)
+    // .subscribe(userGot =>{
+    //   this.user = userGot;
+    // })
   }
 
   openSnackBar(message: string, action: string) {
@@ -129,15 +127,15 @@ export class AccountBaseComponent implements OnInit {
   }
 
   onUpdated(user){
-    this.userService.updateUserById(user.id, user)
-    .subscribe(userGot =>{
-      this.user = userGot;
-      if(this.user.meta.picture == null){
-        this.photo_unavail = true;
-      }else{
-        this.photo_unavail = false;
-      }
-    });
+    // this.userService.updateUserById(user.id, user)
+    // .subscribe(userGot =>{
+    //   this.user = userGot;
+    //   if(this.user.meta.picture == null){
+    //     this.photo_unavail = true;
+    //   }else{
+    //     this.photo_unavail = false;
+    //   }
+    // });
   }
 
   onDialogClose(){

@@ -3,7 +3,7 @@
 <mat-dialog-content>
   <div class="all">
 
-    <div class="read_list">
+    <!-- <div class="read_list">
       <mat-form-field>
         <mat-chip-list #chipList1>
           <mat-chip *ngFor="let org of organizationsWillRead" [selectable]="selectable" [removable]="removable"
@@ -22,7 +22,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-    </div>
+    </div> -->
 
 
     <div class="write_list">
@@ -106,9 +106,9 @@
     </div> -->
   </div>
 
-  <mat-slide-toggle class="toggle" (change)="toggleChange($event)">
+  <!-- <mat-slide-toggle class="toggle" (change)="toggleChange($event)">
     Affiliated Orgs
-  </mat-slide-toggle>
+  </mat-slide-toggle> -->
 
   <div *ngIf="success">
     <mat-icon>check_circle_outline</mat-icon>

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { DiscussionBuilderService } from '../../jaqpot-client/builders/discussion-builder.service';
 import { MetaBuilderService } from '../../jaqpot-client/builders/meta-builder.service';
 import { SessionService } from '../../session/session.service';
-import { MetaInfo, User } from '../../jaqpot-client';
+import { MetaInfo } from '../../jaqpot-client';
 import { Discussion } from '../../jaqpot-client/model/discussion';
 import { DiscussionService } from '../../jaqpot-client/api/discussion.service';
 import { Reply } from '../../jaqpot-client/model/reply';
@@ -10,9 +10,9 @@ import { UserService } from '../../jaqpot-client/api/user.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpParams, HttpResponse} from '@angular/common/http';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { BehaviorSubject, Observable, of, merge } from 'rxjs';
-import { map, startWith, switchMap, catchError, distinctUntilKeyChanged} from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
+import { User } from '@euclia/accounts-client/dist/models/user';
 
 @Component({
   selector: 'app-comments',
@@ -151,14 +151,14 @@ export class CommentsComponent implements OnInit, OnDestroy {
         discussionAll.replyAll = [];
         discussionAll.discussion = disc;
         
-        this._userService.getUserById(disc.meta.creators[0]).subscribe(user =>{
+        this._userService.getUserById(disc.meta.creators[0]).then(user =>{
           discussionAll.user = user
         })
         if(typeof disc.replies  != 'undefined'){
           disc.replies.forEach((repl:Reply) =>{
             let replAll = <ReplyAll>{}
             replAll.reply = repl.reply
-            this._userService.getUserById(repl.owner).subscribe(user =>{
+            this._userService.getUserById(repl.owner).then(user =>{
               replAll.user= user
             })
             discussionAll.replyAll.push(replAll)
@@ -206,7 +206,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
       {
         let discussionAll = <DiscussionAll>{}
         discussionAll.discussion = resp;
-        this._userService.getUserById(resp.meta.creators[0]).subscribe(user =>{
+        this._userService.getUserById(resp.meta.creators[0]).then(user =>{
           discussionAll.user = user
         })
         if(resp.meta.creators[0] === this.userId){
@@ -216,7 +216,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
           resp.replies.forEach((repl:Reply) =>{
             let replAll = <ReplyAll>{}
             replAll.reply = repl.reply
-            this._userService.getUserById(repl.owner).subscribe(user =>{
+            this._userService.getUserById(repl.owner).then(user =>{
               replAll.user= user
             })
             discussionAll.replyAll.push(replAll)
@@ -291,14 +291,14 @@ export class CommentsComponent implements OnInit, OnDestroy {
         if(resp.meta.creators[0] === this.userId){
           discussionAll.delete = true;
         }
-        this._userService.getUserById(resp.meta.creators[0]).subscribe(user =>{
+        this._userService.getUserById(resp.meta.creators[0]).then(user =>{
           discussionAll.user = user
         })
         if(typeof resp.replies  != 'undefined'){
           resp.replies.forEach((repl:Reply) =>{
             let replAll = <ReplyAll>{}
             replAll.reply = repl.reply
-            this._userService.getUserById(repl.owner).subscribe(user =>{
+            this._userService.getUserById(repl.owner).then(user =>{
               replAll.user= user
             })
             discussionAll.replyAll.push(replAll)
@@ -371,14 +371,14 @@ export class CommentsComponent implements OnInit, OnDestroy {
           let discussionAll = <DiscussionAll>{}
           discussionAll.replyAll = [];
           discussionAll.discussion = disc;
-          this._userService.getUserById(disc.meta.creators[0]).subscribe(user =>{
+          this._userService.getUserById(disc.meta.creators[0]).then(user =>{
             discussionAll.user = user
           })
           if(typeof disc.replies  != 'undefined'){
             disc.replies.forEach((repl:Reply) =>{
               let replAll = <ReplyAll>{}
               replAll.reply = repl.reply
-              this._userService.getUserById(repl.owner).subscribe(user =>{
+              this._userService.getUserById(repl.owner).then(user =>{
                 replAll.user= user
               })
               

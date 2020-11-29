@@ -5,9 +5,9 @@ import { NotificationService } from '../../../jaqpot-client/api/notification.ser
 import { UserService } from '../../../jaqpot-client/api/user.service';
 import { ModelApiService } from '../../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
-import { User } from '../../../jaqpot-client';
-import { Organization } from '../../../jaqpot-client/model/organization';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-broken-affil-notif',
@@ -31,11 +31,11 @@ export class BrokenAffilNotifComponent implements OnInit {
   constructor(private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this._userApi.getUserById(this._notification.from).subscribe(user =>{
+    this._userApi.getUserById(this._notification.from).then(user =>{
       this.from = user
     })
 
-    this._organizationApi.getWithIdSecured(this._notification.affiliatedOrg).subscribe(organization =>{
+    this._organizationApi.getOrgById(this._notification.affiliatedOrg).then(organization =>{
       this.brokeWith = organization
     })
 

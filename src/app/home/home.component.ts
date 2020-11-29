@@ -7,10 +7,9 @@ import {DialogsService} from '../dialogs/dialogs.service';
 import { DatasetFactoryService } from '../jaqpot-client/factories/dataset-factory.service';
 import { FeatureApiService } from '../jaqpot-client/api/feature.service';
 import { DatasetService } from '../jaqpot-client/api/dataset.service';
-import { Dataset, Model, User } from '../jaqpot-client';
+import { Dataset, Model } from '../jaqpot-client';
 import { ModelApiService } from '../jaqpot-client/api/model.service';
 import { UserService } from '../jaqpot-client/api/user.service';
-import { Organization } from '../jaqpot-client/model/organization';
 // import { NgxPicaService, NgxPicaResizeOptionsInterface, NgxPicaErrorInterface } from '@digitalascetic/ngx-pica';
 // import { AspectRatioOptions } from '@digitalascetic/ngx-pica/src/ngx-pica-resize-options.interface';
 import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factory.service';
@@ -18,6 +17,9 @@ import { DatasetToViewdataService } from '../services/dataset-to-viewdata.servic
 import { HttpParams } from '@angular/common/http';
 import { ViewItem } from './data-model-view/data-model-view.component';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
+import { OrganizationService } from '../jaqpot-client/api/organization.service';
 
 // export interface Queries{
 //   value: string;
@@ -47,9 +49,12 @@ export class HomeComponent implements OnInit {
   models_to_view:Model[] = []
   view_type:string = "list"
   quick_view:boolean = true;
-  organizations:string[];
+  // organizations:string[];
+  organizations:Array<Organization>;
+  organizationsIds:Array<string>;
 
-  organizationActivated:string = "No organanization available";
+  organizationActivated:Organization = {title:"No organanization available"};
+  // organizationActivated:Organization = {};
   viewItem:ViewItem;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -71,6 +76,7 @@ export class HomeComponent implements OnInit {
     public modelApi:ModelApiService,
     public userApi:UserService,
     public featFactory:FeatureFactoryService,
+    public orgService:OrganizationService,
     public datasetToViewService:DatasetToViewdataService,
     // private ngxPicaService: NgxPicaService,
     private elRef: ElementRef) {
@@ -112,29 +118,38 @@ export class HomeComponent implements OnInit {
 
   sharedChosen() {
     this.query = "Shared";
-    this.userApi.getPropertyWithIdSecured(this.sessionService.getUserId(), 'organizations').subscribe(
+    this.userApi.getUserById(this.sessionService.getUserId()).then(
       (user:User) => {
-        let index = user.organizations.indexOf("Jaqpot")
-        user.organizations.splice(index, 1)
-        this.organizations = user.organizations
-        if(this.organizations.length > 0){
-          this.organizationActivated = this.organizations[0]
-          if(this.queries_for === 'Datasets'){
-            this.fetchOrgsDatasets(0, 10, this.organizationActivated)
-          }
-          if(this.queries_for === 'Models'){
-            this.fetchOrgsModels(0, 20, this.organizationActivated);
-          }
+        // console.log(user)
+        // let index = user.organizations.indexOf("Jaqpot")
+        // user.organizations.splice(index, 1)
+        this.organizations = []
+        user.organizations.forEach((oId)=>{
+          this.orgService.getOrgById(oId).then(o=>{
+            this.organizations.push(o)
+          })
+        })
+        this.organizationsIds = user.organizations
+        if(this.organizationsIds.length > 0){
+          // this.organizationActivated = this.organizationsIds[0]
+          this.orgService.getOrgById(this.organizationsIds[0]).then(o=>{
+            this.organizationActivated = o
+            if(this.queries_for === 'Datasets'){
+              this.fetchOrgsDatasets(0, 10, this.organizationActivated._id)
+            }
+            if(this.queries_for === 'Models'){
+              this.fetchOrgsModels(0, 20, this.organizationActivated._id);
+            }
+          })
+
         }
       }
     )
-
-    // console.log(this.queries_for)
   }
 
   mineChosen() {
     this.query = "Mine"
-    this.organizationActivated = 'No organanization available'
+    this.organizationActivated = {title:"No organanization available"}
     delete this.organizations 
     this.paginator.firstPage()
     if(this.queries_for === 'Datasets'){
@@ -150,8 +165,8 @@ export class HomeComponent implements OnInit {
     this.paginEnabled = true;
     this.models_to_view = []
     
-    if(this.organizationActivated != 'No organanization available'){
-      this.fetchOrgsDatasets(0,10, this.organizationActivated)
+    if(this.organizationActivated.title != 'No organanization available'){
+      this.fetchOrgsDatasets(0,10, this.organizationActivated._id)
     }else{
       this.fetchDatasets(0, 10, Dataset.ExistenceEnum.UPLOADED)
     }
@@ -170,8 +185,8 @@ export class HomeComponent implements OnInit {
     this.trash_view = false;
     this.datasets_to_view = []
     
-    if(this.organizationActivated != 'No organanization available'){
-      this.fetchOrgsModels(0,20, this.organizationActivated)
+    if(this.organizationActivated.title != 'No organanization available'){
+      this.fetchOrgsModels(0,20, this.organizationActivated._id)
     }else{
       this.fetchModels(0,20)
     }
@@ -274,8 +289,8 @@ export class HomeComponent implements OnInit {
       let start:number = event.pageIndex * event.pageSize
       let max:number = event.pageIndex * event.pageSize + event.pageSize
       this.models_to_view = []
-      if(this.organizationActivated != 'No organanization available'){
-        this.fetchOrgsDatasets(start,max, this.organizationActivated)
+      if(this.organizationActivated.title != 'No organanization available'){
+        this.fetchOrgsDatasets(start,max, this.organizationActivated._id)
       }else{
         this.fetchDatasets(start, max, Dataset.ExistenceEnum.UPLOADED)
       }
@@ -284,8 +299,8 @@ export class HomeComponent implements OnInit {
       let start:number = event.pageIndex * event.pageSize
       let max:number = event.pageIndex * event.pageSize + event.pageSize
       
-      if(this.organizationActivated != 'No organanization available'){
-        this.fetchOrgsModels(start, max, this.organizationActivated)
+      if(this.organizationActivated.title != 'No organanization available'){
+        this.fetchOrgsModels(start, max, this.organizationActivated._id)
       }else{
         this.fetchModels(start,max)
       }
@@ -344,7 +359,7 @@ export class HomeComponent implements OnInit {
       this.datasets_to_view = datasets
     })
     this.datasetApi.count(params).subscribe((counted:Response)=>{
-      this.totalEntities += Number(counted.headers.get('total'))
+      this.totalEntities = Number(counted.headers.get('total'))
     })
   }
 
@@ -355,7 +370,7 @@ export class HomeComponent implements OnInit {
       this.datasets_to_view = datasets
     })
     this.datasetApi.count(params).subscribe((counted:Response)=>{
-      this.totalEntities  += Number(counted.headers.get('total'))
+      this.totalEntities  = Number(counted.headers.get('total'))
     })
   }
 
@@ -365,16 +380,21 @@ export class HomeComponent implements OnInit {
     this.modelApi.getList(params).subscribe((models:Model[]) => {
       this.models_to_view = models
     })
+    this.modelApi.count(params).subscribe((counted:Response)=>{
+      this.totalEntities  = Number(counted.headers.get('total'))
+    })
+
   }
 
 
-  orgChosen(org){
+  orgChosen(org:Organization){
     this.organizationActivated = org
     if(this.queries_for === 'Datasets'){
-      this.fetchOrgsDatasets(0, 10, this.organizationActivated)
+
+      this.fetchOrgsDatasets(0, 10, org._id)
     }
     if(this.queries_for === 'Models'){
-      this.fetchOrgsModels(0, 20, this.organizationActivated);
+      this.fetchOrgsModels(0, 20, org._id);
     }
   }
 

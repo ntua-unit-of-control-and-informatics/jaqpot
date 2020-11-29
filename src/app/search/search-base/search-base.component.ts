@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import 'rxjs/add/operator/filter';
+// import 'rxjs/add/operator/filter';
 import { SearchApiService } from '../../jaqpot-client/api/search.service';
 import { FountEntities } from '../../jaqpot-client/model/fountEntities';
 import { Subject } from 'rxjs';

@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Organization } from '../../jaqpot-client/model/organization';
-import { User, MetaInfo } from '../../jaqpot-client';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
 import { SessionService } from '../../session/session.service';
+import { User } from '@euclia/accounts-client/dist/models/user';
+import { Meta } from '@euclia/accounts-client/dist/models/meta';
+import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-organization-users',
@@ -37,41 +38,29 @@ export class OrganizationUsersComponent implements OnInit {
     {
       var userData = this.sessionService.getUserData()
       
-      if(this.organization.meta.creators.includes(userData.sub) || this.organization.meta.contributors.includes(userData.sub)){
+      if(this.organization.creator.includes(userData.sub) || this.organization.users.includes(userData.sub)){
         this.caninvite = true;
       }
 
-      this.userIds = this.organization.userIds;
+      this.userIds = this.organization.users;
       let user:User = <User>{}
       
       this.userIds.forEach(id =>{
         let userFormed:User = <User>{}
-        let metaInfo:MetaInfo = <MetaInfo>{}
+        let metaInfo:Meta = <Meta>{}
         userFormed._id = id
         userFormed.meta = metaInfo
-        this.userService.getPropertyWithIdSecured(id, "picture")
-          .subscribe(userGot =>{
+        this.userService.getUserById(id)
+          .then(userGot =>{
             user = userGot
             if(user.meta != null && user.meta.picture != null){
               userFormed.meta.picture = user.meta.picture
             }
-        })
-        this.userService.getPropertyWithIdSecured(id, "occupation")
-        .subscribe(userGot => {
-          user = userGot
-          userFormed.occupation = user.occupation
-        })
-        this.userService.getPropertyWithIdSecured(id, "occupationat")
-        .subscribe(userGot => {
-          user = userGot
-          userFormed.occupationAt = user.occupationAt
-        })
-        this.userService.getPropertyWithIdSecured(id, "name")
-        .subscribe(userGot => {
-          user = userGot
-          userFormed.name = user.name
-        })
-        this.users.push(userFormed)
+            userFormed.occupation = user.occupation
+            userFormed.occupationAt = user.occupationAt
+            userFormed.name = user.name
+            this.users.push(userFormed)
+        })        
       })
     }
 

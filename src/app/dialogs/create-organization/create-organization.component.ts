@@ -31,15 +31,15 @@ export class CreateOrganizationComponent implements OnInit {
   }
 
   createOrganization(){
-    this.organization._id = this.orgId
-    console.log(this.organization)
-    this.organizationService.postEntity(this.organization)
-        .subscribe(orgCreated =>{
-          var route = "/organization/" + this.organization._id
-          this.dialogRef.close()
-          this.router.navigate([route])
-        }
-    )
+    // this.organization._id = this.orgId
+    // console.log(this.organization)
+    // this.organizationService.postEntity(this.organization)
+    //     .subscribe(orgCreated =>{
+    //       var route = "/organization/" + this.organization._id
+    //       this.dialogRef.close()
+    //       this.router.navigate([route])
+    //     }
+    // )
 
   }
 
