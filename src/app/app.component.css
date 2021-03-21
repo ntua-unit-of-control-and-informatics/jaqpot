@@ -171,3 +171,19 @@ i{
   margin-right: 0.5em;
   font-size: 0.95em;
 }
+
+.info{
+  height:80px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.infoa{
+  float: right;
+  margin-top: 2em;
+}
+
+.infoh{
+  float: left;
+}

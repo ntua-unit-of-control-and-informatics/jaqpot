@@ -4,12 +4,13 @@ import { ModelFeaturesComponent } from './model-features/model-features.componen
 import { PredictValidateComponent } from './predict-validate/predict-validate.component';
 import { ValidateComponent } from './validate/validate.component';
 import { PredArchiveComponent } from './pred-archive/pred-archive.component';
+import { ModelMetaComponent } from './model-meta/model-meta.component';
 // import { ModelIdComponent } from './model-id/model-id.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: []
+  declarations: [ModelMetaComponent]
 })
 export class ModelsModuleModule { }

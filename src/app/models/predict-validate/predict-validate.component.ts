@@ -113,11 +113,13 @@ export class PredictValidateComponent implements OnInit {
       }
       this._userApi.getUserById(this._sessionService.getUserId()).then((user:User)=>{
         this.userNow = user
-        user.organizations.forEach(org=>{
-          if(typeof model.meta.execute != 'undefined' && model.meta.execute.includes(org)){
-            this.canExecute = true;
-          }
-        })
+        if(user.organizations){
+          user.organizations.forEach(org=>{
+            if(typeof model.meta.execute != 'undefined' && model.meta.execute.includes(org)){
+              this.canExecute = true;
+            }
+          })
+        }
       })
 
       model.dependentFeatures.forEach(feat =>{

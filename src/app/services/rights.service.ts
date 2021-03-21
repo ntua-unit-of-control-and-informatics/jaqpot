@@ -14,11 +14,14 @@ export class RightsService {
     if(metaInfo.creators.includes(user._id)){
       canEdit = true;
     }
-    user.organizations.forEach(org =>{
-      if(typeof metaInfo.write != 'undefined' && metaInfo.write.includes(org)){
-        canEdit = true;
-      }
-    })
+    if(user.organizations){
+      user.organizations.forEach(org =>{
+        if(typeof metaInfo.write != 'undefined' && metaInfo.write.includes(org)){
+          canEdit = true;
+        }
+      })
+    }
+
     return canEdit;
   }
 

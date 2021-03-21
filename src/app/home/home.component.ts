@@ -84,6 +84,15 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if(typeof this.sessionService.getUserId() === undefined){
+      this.oidcSecurityService.userData$.subscribe(d =>{
+        if(d){
+          this.sessionService.setUserData(d)
+        }
+      })
+    } 
+
     let params:Map<string, any> = new Map();
     params.set("min", 0);
     params.set("max", 10);

@@ -115,6 +115,12 @@
           <app-comments [entityId]="entityId"></app-comments>
       </ng-template>
     </mat-tab>
+
+    <mat-tab *ngIf="trainedMeta" label="Model meta" class="tab">
+      <ng-template matTabContent>
+          <app-model-meta [trainedMeta]="trainedMeta"></app-model-meta>
+      </ng-template>
+    </mat-tab>
     <!-- <mat-tab label="Archive">
       <ng-template matTabContent>
           <app-pred-archive [modelId]="modelId"></app-pred-archive>

@@ -104,6 +104,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { configf } from './config/conf';
 import { Config } from './config/config';
 import { MatPseudoCheckboxModule, MatRippleModule } from '@angular/material/core';
+import { ModelMetaComponent } from './models/model-meta/model-meta.component';
 
 // import { EucliaAccounts } from '@euclia/accounts-client';
 /**
@@ -207,6 +208,7 @@ export class MaterialModule {}
   ],
   exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule, MatFormFieldModule, MatInputModule],
   declarations: [AppComponent,
+    ModelMetaComponent,
     BaseComponent,
     AlgorithmsComponent,
     AlgorithmsListComponent,

@@ -1,16 +1,16 @@
-import { Component , Inject} from '@angular/core';
+import { AfterViewInit, Component , Inject} from '@angular/core';
 import { DialogsService } from './dialogs/dialogs.service';
 import { FormControl, Validators } from '@angular/forms';
 import {OnInit, OnDestroy} from '@angular/core';
 import { Credentials } from './ui-models/credentials';
 import { LoginDialogComponent } from './dialogs/login-logout-dialog/login-dialog.component'
-import {LogoutDialogComponent} from './dialogs/login-logout-dialog/logout-dialog.component'
+import { LogoutDialogComponent } from './dialogs/login-logout-dialog/logout-dialog.component'
 // import { AccountDialogComponent } from './dialogs/account-dialog/account-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { SessionService } from './session/session.service';
 import { Subscription, Observable } from 'rxjs';
 import { element } from 'protractor';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 import { OidcSecurityService, PublicConfiguration, OidcClientNotification } from 'angular-auth-oidc-client';
 
@@ -65,31 +65,36 @@ export class AppComponent implements OnInit, OnDestroy{
     }
 
   ngOnInit(){
-    this.isAuthorizedSubscription = this.oidcSecurityService.isAuthenticated$.subscribe(
-      (isAuthorized: boolean) => {
-        if(isAuthorized === true){
-          this.isAuthorized = true
-          this.loggedIn = true;
-          this.userData$.subscribe(d =>{
-            if(d){
-              this.sessionService.setUserData(d)
-            }
-            // console.log(d)
-              // this.sessionService.setUserData(d)
-            })
-        }else{
-          this.isAuthorized = false
-          this.loggedIn = false;
-        }
-      });
+
       this.configuration = this.oidcSecurityService.configuration;
       this.userData$ = this.oidcSecurityService.userData$;
       this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$;
       this.checkSessionChanged$ = this.oidcSecurityService.checkSessionChanged$;
 
       this.oidcSecurityService.checkAuth().subscribe((isAuthenticated) => console.log('app authenticated', isAuthenticated));
+      this.isAuthorizedSubscription = this.oidcSecurityService.isAuthenticated$.subscribe(
+        (isAuthorized: boolean) => {
+          if(isAuthorized === true){
+            this.isAuthorized = true
+            this.loggedIn = true;
+            this.userData$.subscribe(d =>{
+              if(d){
+                this.sessionService.setUserData(d)
 
+                if(localStorage.getItem('goToModel')){
+                  var modelId = localStorage.getItem('goToModel')
+                  let model_url = '/model/' + modelId;
+                  // this.router.navigate([model_url])
+                  window.location.assign(model_url)
+                }
 
+              }
+            })
+          }else{
+            this.isAuthorized = false
+            this.loggedIn = false;
+          }
+        });
   }
 
   ngOnDestroy(): void {

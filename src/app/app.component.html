@@ -68,16 +68,16 @@
           <mat-icon class="side_icon">repeat</mat-icon>
           Models
         </a>
-        <h2 mat-subheader class="side_header">App's</h2>
+        <!-- <h2 mat-subheader class="side_header">App's</h2>
         <a mat-list-item class="side_nav_a" routerLink="/workbench" (click)="sidenav.toggle()">
           <mat-icon class="side_icon">view_comfy</mat-icon>
           Workbench
-        </a>
+        </a> -->
         <h2 mat-subheader class="side_header">BIOKINETICS</h2>
-        <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
+        <!-- <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
           <mat-icon class="side_icon">pie_chart_outlined</mat-icon>
           PkSim
-        </a>
+        </a> -->
         <!-- <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()">
           <img class="toxi_img" src="../../assets/toxikin2.ico">
           Httk
@@ -87,8 +87,17 @@
           Httk
         </a>
 
-        <h2 mat-subheader class="side_header">Info</h2>
+        
       </mat-nav-list>
+
+      <div class="info">
+        <h4 mat-subheader class="infoh">Info</h4>
+        <a mat-list-item class="side_nav_a" target="_blank" href="https://www.jaqpot.org" class="infoa">
+          <mat-icon class="side_icon">info</mat-icon>
+        </a>
+      </div>
+      
+
 
     </mat-sidenav>
     <mat-sidenav-content class="app_content">

@@ -12,6 +12,8 @@ import { NotificationService } from '../../jaqpot-client/api/notification.servic
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { User } from '@euclia/accounts-client/dist/models/user';
+import { OidcClientNotification, OidcSecurityService, PublicConfiguration } from 'angular-auth-oidc-client';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-model-id',
@@ -45,6 +47,15 @@ export class ModelIdComponent implements OnInit, OnDestroy {
   newTag:string;
   addTagB:boolean = false;
 
+  configuration: PublicConfiguration;
+  userDataChanged$: Observable<OidcClientNotification<any>>;
+  userData$: Observable<any>;
+  isAuthenticated$: Observable<boolean>;
+  checkSessionChanged$: Observable<boolean>;
+  checkSessionChanged: any;
+
+  trainedMeta: Object;
+
   constructor(
     private rightsService:RightsService,
     private router:Router,
@@ -57,7 +68,8 @@ export class ModelIdComponent implements OnInit, OnDestroy {
     private datasetApi:DatasetService,
     private organizationApi:OrganizationService,
     private notificationService:NotificationService,
-    private notificationFactory:NotificationFactoryService
+    private notificationFactory:NotificationFactoryService,
+    private oidcSecurityService:OidcSecurityService
   ) { 
     this.navigationSubscription = this.router.events.subscribe(e=>{
       if (e instanceof NavigationEnd) {
@@ -67,12 +79,24 @@ export class ModelIdComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    
+    this.userData$ = this.oidcSecurityService.userData$;
+
     this.id = this.route.snapshot.params.id
     this.entityId = "model/" + this.id
     this.modelId = this.id
     this.modelApi.getWithIdSecured(this.id).subscribe((model:Model) =>{
       this.modelToSee = model;
       this.entityMeta = model.meta;
+
+        try{
+          this.trainedMeta = model.additionalInfo['fromUser']['meta']
+        }catch(e){
+          e
+        }
+        
+      
+
       this.userApi.getUserById(this.sessionService.getUserId()).then((user:User)=>{
         this.user = user
         this.edit = this.rightsService.canEdit(model.meta, user);
@@ -83,6 +107,25 @@ export class ModelIdComponent implements OnInit, OnDestroy {
         })
       })
     })
+
+    this.oidcSecurityService.isAuthenticated$.subscribe(is =>{
+
+      if(is === false){
+        if(this.router.url.includes('model')){
+          localStorage.setItem('goToModel',this.router.url.split("/")[2])
+        }
+        this.oidcSecurityService.authorize()
+      }else{
+        this.userData$.subscribe(d =>{
+          if(d){
+            this.sessionService.setUserData(d)
+          }
+        })
+        localStorage.removeItem('goToModel')
+      }
+    })
+
+
   }
 
   ngOnDestroy(){
