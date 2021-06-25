@@ -210,6 +210,7 @@ export class MaterialModule {}
   declarations: [AppComponent,
     ModelMetaComponent,
     BaseComponent,
+    ModelMetaComponent,
     AlgorithmsComponent,
     AlgorithmsListComponent,
     AlgorithmDetailComponent,

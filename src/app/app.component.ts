@@ -130,7 +130,7 @@ export class AppComponent implements OnInit, OnDestroy{
     }
   }
 
-  trySSO(): void{
+  login(): void{
     this.oidcSecurityService.authorize();
   }
 

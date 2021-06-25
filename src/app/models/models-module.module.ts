@@ -11,6 +11,6 @@ import { ModelMetaComponent } from './model-meta/model-meta.component';
   imports: [
     CommonModule
   ],
-  declarations: [ModelMetaComponent]
+  declarations: []
 })
 export class ModelsModuleModule { }

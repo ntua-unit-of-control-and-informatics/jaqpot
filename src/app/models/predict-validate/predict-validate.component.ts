@@ -210,7 +210,9 @@ export class PredictValidateComponent implements OnInit {
       //  i += 1;
       // })
     }
-    var blob = new Blob([csvData], { type: 'text/csv' });
+
+    var blob = new Blob(["\ufeff"+csvData], { type: 'text/csv; charset=utf-8' });
+    // var blob = new Blob([csvData], { type: 'text/csv' });
     var url = window.URL.createObjectURL(blob);
     if(navigator.msSaveOrOpenBlob) {
       navigator.msSaveBlob(blob, "dataset.csv");
