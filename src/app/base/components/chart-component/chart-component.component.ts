@@ -106,19 +106,20 @@ export class ChartComponentComponent implements OnInit {
 
   renderPlot(xAxis:string, yAxis:string[]){
     this.chartFields = {}
-    this.chartFields[xAxis] = this.data[xAxis]
-    if (yAxis.length>=2){
-      yAxis.forEach(c => {
-        this.chartFields[c] = this.data[c]      
-      });
-
-      this.chartOptions = this._charts.multipleLinesChart(this.chartFields,xAxis,"Predictions Plot",true, false)
-
-      this.showChart = true;
-    } else {
-      this.showChart = false;
+    if (xAxis!=="" && xAxis!==null){
+      this.chartFields[xAxis] = this.data[xAxis]
+      if (yAxis.length>=2){
+        yAxis.forEach(c => {
+          this.chartFields[c] = this.data[c]      
+        });
+  
+        this.chartOptions = this._charts.multipleLinesChart(this.chartFields,xAxis,"Predictions Plot",true, false)
+  
+        this.showChart = true;
+      } else {
+        this.showChart = false;
+      }
     }
-
   }
 
   myChange(event) {
