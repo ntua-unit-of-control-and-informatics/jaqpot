@@ -4,7 +4,7 @@
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label>X Axis</mat-label>
-                <mat-select placeholder="Select X Axis" (selectionChange)="myChange($event)" id="xaxis" [disabled]="disabled">
+                <mat-select placeholder="Select X Axis" (selectionChange)="myChange($event)" id="xaxis">
                   <ng-container *ngFor="let c of allColumns">
                     <mat-option [value]="c">{{ c }}</mat-option>
         
