@@ -25,6 +25,9 @@
               </p> -->
           </mat-card-content>
           <mat-card-actions>
+            <button mat-icon-button matTooltip="Favourite" matTooltipPosition='above' class="card_item_button" (click)="handleFavorites($event)">
+              <mat-icon>favorite_border</mat-icon>
+            </button>
               <button mat-icon-button matTooltip="View"
                 matTooltipPosition='above'
                 class="card_item_button"
@@ -34,6 +37,7 @@
               <button mat-icon-button matTooltip="Delete" matTooltipPosition='above' class="card_item_button" (click)="moveToTrash(item)">
                 <mat-icon>delete</mat-icon>
               </button>
+              
           </mat-card-actions>
         </mat-card>
       </ng-container>
@@ -73,6 +77,9 @@
         <p mat-line> {{item.meta.date | date}} </p>
         <button *ngIf="!onTrash" mat-icon-button matTooltip="View" class="list_item_button" (click)="goToView(item)">
             <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Favourite" class="list_item_button" (click)="handleFavorites($event)">
+          <mat-icon>favorite_border</mat-icon>
         </button>
         <button *ngIf="!onTrash" mat-icon-button matTooltip="Move to trash" class="list_item_button" (click)="moveToTrash(item)">
           <mat-icon>delete</mat-icon>

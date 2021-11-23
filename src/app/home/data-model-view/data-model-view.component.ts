@@ -67,6 +67,10 @@ export class DataModelViewComponent implements OnChanges {
     })
     // console.log(this.view_items)
   }
+
+  handleFavorites(event){
+    console.log(event)
+  }
   
   goToView(item:ViewItem){
     switch(item.type){

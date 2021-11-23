@@ -9,6 +9,8 @@ import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.ser
 import { DatasourceToCsvService } from '../../services/table-to-csv.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpErrorResponse } from '@angular/common/http';
+//JASON - Start - 11/10
+//JASON - End - 11/10
 
 @Component({
   selector: 'app-pbpk-predicted',
@@ -22,6 +24,8 @@ export class PbpkPredictedComponent implements OnChanges {
   displayedColumns:string[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  goToPlot:boolean = false;
 
   subscription:Subscription;
   isLoading:boolean = true;
@@ -48,13 +52,16 @@ export class PbpkPredictedComponent implements OnChanges {
   xPlot
   yPlot
 
+  //JASON - Start - 11/10
+  //JASON - End - 11/10
+
 
   constructor(
     private featureApi:FeatureApiService,
     private datasetApi:DatasetService,
     private datasetViewService:DatasetToViewdataService,
     private datasourceToCsvService:DatasourceToCsvService,
-    private dialogsService:DialogsService
+    private dialogsService:DialogsService,
   ) { }
 
   ngOnChanges() {
@@ -111,8 +118,7 @@ export class PbpkPredictedComponent implements OnChanges {
     ).subscribe((data:Dataset) => {
       this.dataSource = this.datasetViewService.createViewData(data , 10);
       this.data_available = true;
-      this.isLoadingResults = false;
-      
+      this.isLoadingResults = false;     
     })
   }
 
@@ -250,6 +256,62 @@ export class PbpkPredictedComponent implements OnChanges {
       })
     })
   }
+
+  //JASON - Start - 11/10
+  newPlots(){
+    this.goToPlot = true;
+  }
+  // updateAllComplete() {
+  //   this.allComplete = this.outFeats.subtasks != null && this.outFeats.subtasks.every(t => t.completed);
+  // }
+
+  // someComplete(): boolean {
+  //   if (this.outFeats.subtasks == null) {
+  //     return false;
+  //   }
+
+  //   let chartCols = []
+
+  //   this.outFeats.subtasks.forEach(t => {
+  //       if (t.completed){
+  //         chartCols.push(t.name);
+  //     }
+  //   });
+
+  //   chartCols = chartCols.sort();
+
+  //   if (JSON.stringify(chartCols)!==JSON.stringify(Object.keys(this.chartFields).sort())){
+  //     this.renderPlot(chartCols)  
+  //   } 
+    
+    
+  //   return this.outFeats.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+  // }
+
+  // setAll(completed: boolean) {
+  //   this.allComplete = completed;
+  //   if (this.outFeats.subtasks == null) {
+  //     return;
+  //   }
+  //   this.outFeats.subtasks.forEach(t => t.completed = completed);
+  // }
+
+  // renderPlot(cols){
+  //   // this.chartFields = {}
+  //   // if (cols.length>=2){
+  //   //   cols.forEach(c => {
+  //   //     this.chartFields[c] = this.predictions[c]      
+  //   //   });
+
+  //   //   this.chartOptions = this._charts.multipleLinesChart(this.chartFields,"time","Predictions Plot",true, false)
+  //   //   this.showChart = true;
+  //   // } else {
+  //   //   this.showChart = false;
+  //   // }
+      
+  // }
+  //JASON - End - 11/10
+
 
 
   // getWholeDataset(datasetId, start, howMany): Promise<string>{
