@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { Dataset, Feature, FeatureInfo, ErrorReport, DataEntry } from '../../jaqpot-client';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -53,6 +53,7 @@ export class PbpkPredictedComponent implements OnChanges {
   yPlot
 
   //JASON - Start - 11/10
+  showData = []
   //JASON - End - 11/10
 
 
@@ -87,6 +88,19 @@ export class PbpkPredictedComponent implements OnChanges {
         })
       }
     })
+
+    // this.plotsStart()
+    this.datasetApi.getDataEntryPaginated(this.predictedDataset._id, 0 , 30).subscribe((d:Dataset)=>{
+      this.datasetForChart = d
+      this.getWholeDataset(this.predictedDataset._id, 30 , 30)
+    })
+
+  //  this.featureApi.getWithIdSecured("1c28a73b0f314ee4b35a27906af5dfc7").subscribe((f)=>{
+  //     console.log('feature1',f)
+  //   })
+  //   this.featureApi.getWithIdSecured("b5db8b7260504257ba0441c4502d0fb8").subscribe((f)=>{
+  //     console.log('feature2',f)
+  //   })
 
   }
 
@@ -259,6 +273,29 @@ export class PbpkPredictedComponent implements OnChanges {
 
   //JASON - Start - 11/10
   newPlots(){
+    // console.log('now', this.dataSource)
+    // this.getWholeDataset(this.predictedDataset._id, 0 , 30)
+    // console.log('after', this.datasetForChart)
+    this.creatingPlotData = true; 
+    
+    let mapper = {}
+    this.datasetForChart.features.forEach(feat => {
+      mapper[feat.key] = feat.name 
+    })
+    
+    // dato = {}
+    this.datasetForChart.dataEntry.forEach(entry =>{
+      let dato = {'Id':entry.entryId.name}
+
+      for (const [key, value] of Object.entries(entry.values)) {
+        dato[mapper[key]] = Number(value)
+      }
+      
+      this.showData.push(dato)
+    })
+    
+    this.creatingPlotData = false; 
+
     this.goToPlot = true;
   }
   // updateAllComplete() {
