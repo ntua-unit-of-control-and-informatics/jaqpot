@@ -25,8 +25,6 @@ export class PbpkPredictedComponent implements OnChanges {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  goToPlot:boolean = false;
-
   subscription:Subscription;
   isLoading:boolean = true;
 
@@ -270,86 +268,84 @@ export class PbpkPredictedComponent implements OnChanges {
       })
     })
   }
+  async plotsStart2(){
+    let dataVals = []
+    for(let key in this.dataSource[0]){
+      dataVals.push(key)
+    }
 
-  //JASON - Start - 11/10
-  newPlots(){
-    // console.log('now', this.dataSource)
-    // this.getWholeDataset(this.predictedDataset._id, 0 , 30)
-    // console.log('after', this.datasetForChart)
-    this.creatingPlotData = true; 
-    
-    let mapper = {}
-    this.datasetForChart.features.forEach(feat => {
-      mapper[feat.key] = feat.name 
-    })
-    
-    // dato = {}
-    this.datasetForChart.dataEntry.forEach(entry =>{
-      let dato = {'Id':entry.entryId.name}
+    // delete this.xPlot;
+    // delete this.yPlot;
+    // this.dialogsService.chooseXY(dataVals).subscribe(XYS =>{
+      this.creatingPlotData = true;
+      this.datasetApi.getDataEntryPaginated(this.predictedDataset._id, 0 , 30).subscribe((d:Dataset)=>{
+        this.datasetForChart = d
+        this.getWholeDataset(this.predictedDataset._id, 30 , 30)
+      })
+      this.datasetDownloaded.subscribe(da => {
+        if(da === true){
+          // let xFeat:string[] = XYS['xData']
+          // let yFeat:string[] = XYS['yData']
+          let x = {}
+          // if(xFeat.length > 1 || yFeat.length === 0){
+          //   let init ={}
+          //   let report = <ErrorReport>{}
+          //   report.details = "Wrong X val. Should be 1";
+          //   report.httpStatus = 400;
+          //   report.message = "X should be single value and y should at least be one";
+          //   init['error'] = report;
+          //   let errorToHttp: HttpErrorResponse = new HttpErrorResponse(init);
+          //   this.dialogsService.onError(errorToHttp)
+          // }
+          let xKey = ''
+          let yKeys = {}
+          this.datasetForChart.features.forEach((f:FeatureInfo)=>{
+            // if(f.name ===  xFeat[0]){
+            //   xKey = f.key
+            // }
+            // if(yFeat.includes( f.name) ){
+              yKeys[f.name] = f.key
+            // }
 
-      for (const [key, value] of Object.entries(entry.values)) {
-        dato[mapper[key]] = Number(value)
-      }
-      
-      this.showData.push(dato)
-    })
-    
-    this.creatingPlotData = false; 
-
-    this.goToPlot = true;
+          })
+          let xs = {}
+          let xArr = []
+          let ys = {}
+          for ( let key in yKeys ){
+            ys[key] = []
+          }
+          this.datasetForChart.dataEntry.forEach((de:DataEntry)=>{
+            for (let key in de.values){
+              if(key === String(xKey)){
+                xArr.push(de.values[key])
+              }
+              for(let ykey in yKeys){
+                if(yKeys[ykey] === key){
+                  ys[ykey].push(de.values[key])
+                }
+              }
+            }
+            // xs[xFeat[0]] = xArr 
+          })
+          this.showData = this.getArray(ys)
+          this.creatingPlotData = false
+          this.createdPlotData = true;
+          this.xPlot = xs
+          this.yPlot = ys
+        }
+      })
+    // })
   }
-  // updateAllComplete() {
-  //   this.allComplete = this.outFeats.subtasks != null && this.outFeats.subtasks.every(t => t.completed);
-  // }
 
-  // someComplete(): boolean {
-  //   if (this.outFeats.subtasks == null) {
-  //     return false;
-  //   }
-
-  //   let chartCols = []
-
-  //   this.outFeats.subtasks.forEach(t => {
-  //       if (t.completed){
-  //         chartCols.push(t.name);
-  //     }
-  //   });
-
-  //   chartCols = chartCols.sort();
-
-  //   if (JSON.stringify(chartCols)!==JSON.stringify(Object.keys(this.chartFields).sort())){
-  //     this.renderPlot(chartCols)  
-  //   } 
-    
-    
-  //   return this.outFeats.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
-  // }
-
-  // setAll(completed: boolean) {
-  //   this.allComplete = completed;
-  //   if (this.outFeats.subtasks == null) {
-  //     return;
-  //   }
-  //   this.outFeats.subtasks.forEach(t => t.completed = completed);
-  // }
-
-  // renderPlot(cols){
-  //   // this.chartFields = {}
-  //   // if (cols.length>=2){
-  //   //   cols.forEach(c => {
-  //   //     this.chartFields[c] = this.predictions[c]      
-  //   //   });
-
-  //   //   this.chartOptions = this._charts.multipleLinesChart(this.chartFields,"time","Predictions Plot",true, false)
-  //   //   this.showChart = true;
-  //   // } else {
-  //   //   this.showChart = false;
-  //   // }
-      
-  // }
-  //JASON - End - 11/10
-
-
+  private getArray(object) {
+    return Object.keys(object).reduce(function (r, k) {
+        object[k].forEach(function (a, i) {
+            r[i] = r[i] || {};
+            r[i][k] = a;
+        });
+        return r;
+    }, []);
+  }
 
   // getWholeDataset(datasetId, start, howMany): Promise<string>{
   //   this.datasetApi.getDataEntryPaginated(datasetId, start, howMany).subscribe((data:Dataset) =>{
