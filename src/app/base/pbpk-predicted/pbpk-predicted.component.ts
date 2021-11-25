@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { Dataset, Feature, FeatureInfo, ErrorReport, DataEntry } from '../../jaqpot-client';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -24,8 +24,6 @@ export class PbpkPredictedComponent implements OnChanges {
   displayedColumns:string[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  goToPlot:boolean = false;
 
   subscription:Subscription;
   isLoading:boolean = true;
@@ -53,6 +51,8 @@ export class PbpkPredictedComponent implements OnChanges {
   yPlot
 
   //JASON - Start - 11/10
+  showData = []
+  collectedData:Boolean = false;
   //JASON - End - 11/10
 
 
@@ -87,6 +87,19 @@ export class PbpkPredictedComponent implements OnChanges {
         })
       }
     })
+
+    // this.plotsStart()
+    this.datasetApi.getDataEntryPaginated(this.predictedDataset._id, 0 , 30).subscribe((d:Dataset)=>{
+      this.datasetForChart = d
+      this.getWholeDataset(this.predictedDataset._id, 30 , 30)
+    })
+
+  //  this.featureApi.getWithIdSecured("1c28a73b0f314ee4b35a27906af5dfc7").subscribe((f)=>{
+  //     console.log('feature1',f)
+  //   })
+  //   this.featureApi.getWithIdSecured("b5db8b7260504257ba0441c4502d0fb8").subscribe((f)=>{
+  //     console.log('feature2',f)
+  //   })
 
   }
 
@@ -256,62 +269,127 @@ export class PbpkPredictedComponent implements OnChanges {
       })
     })
   }
+  
+  async plotsStart2(){
 
-  //JASON - Start - 11/10
-  newPlots(){
-    this.goToPlot = true;
+    if (!this.collectedData){
+      let dataVals = []
+      for(let key in this.dataSource[0]){
+        dataVals.push(key)
+      }
+
+      this.creatingPlotData = true;
+      this.datasetApi.getDataEntryPaginated(this.predictedDataset._id, 0 , 30).subscribe((d:Dataset)=>{
+        this.datasetForChart = d
+        this.getWholeDataset(this.predictedDataset._id, 30 , 30)
+      })
+      this.datasetDownloaded.subscribe(da => {
+        if(da === true){
+
+          let xKey = ''
+          let yKeys = {}
+          this.datasetForChart.features.forEach((f:FeatureInfo)=>{
+              yKeys[f.name] = f.key
+          })
+          let xs = {}
+          let xArr = []
+          let ys = {}
+          for ( let key in yKeys ){
+            ys[key] = []
+          }
+          this.datasetForChart.dataEntry.forEach((de:DataEntry)=>{
+            for (let key in de.values){
+              if(key === String(xKey)){
+                xArr.push(de.values[key])
+              }
+              for(let ykey in yKeys){
+                if(yKeys[ykey] === key){
+                  ys[ykey].push(de.values[key])
+                }
+              }
+            }
+          })
+          this.showData = this.getArray(ys)
+          this.creatingPlotData = false
+          this.createdPlotData = true;
+          this.xPlot = xs
+          this.yPlot = ys
+        }
+      })
+
+    } else {
+      this.showData = this.getArray(this.yPlot)
+      this.createdPlotData = true;
+    }
+    this.collectedData = true;
+    // })
   }
-  // updateAllComplete() {
-  //   this.allComplete = this.outFeats.subtasks != null && this.outFeats.subtasks.every(t => t.completed);
-  // }
 
-  // someComplete(): boolean {
-  //   if (this.outFeats.subtasks == null) {
-  //     return false;
-  //   }
+  private getArray(object) {
+    return Object.keys(object).reduce(function (r, k) {
+        object[k].forEach(function (a, i) {
+            r[i] = r[i] || {};
+            r[i][k] = a;
+        });
+        return r;
+    }, []);
+  }
 
-  //   let chartCols = []
+  async gatherDownload(){
+    if (!this.collectedData){
+      let dataVals = []
+      for(let key in this.dataSource[0]){
+        dataVals.push(key)
+      }
 
-  //   this.outFeats.subtasks.forEach(t => {
-  //       if (t.completed){
-  //         chartCols.push(t.name);
-  //     }
-  //   });
+      this.creatingPlotData = true;
+      this.datasetApi.getDataEntryPaginated(this.predictedDataset._id, 0 , 30).subscribe((d:Dataset)=>{
+        this.datasetForChart = d
+        this.getWholeDataset(this.predictedDataset._id, 30 , 30)
+      })
 
-  //   chartCols = chartCols.sort();
+      this.datasetDownloaded.subscribe(da => {
+        if(da === true){
 
-  //   if (JSON.stringify(chartCols)!==JSON.stringify(Object.keys(this.chartFields).sort())){
-  //     this.renderPlot(chartCols)  
-  //   } 
-    
-    
-  //   return this.outFeats.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
-  // }
+          let xKey = ''
+          let yKeys = {}
+          this.datasetForChart.features.forEach((f:FeatureInfo)=>{
+              yKeys[f.name] = f.key
+          })
+          let xs = {}
+          let xArr = []
+          let ys = {}
+          for ( let key in yKeys ){
+            ys[key] = []
+          }
+          this.datasetForChart.dataEntry.forEach((de:DataEntry)=>{
+            for (let key in de.values){
+              if(key === String(xKey)){
+                xArr.push(de.values[key])
+              }
+              for(let ykey in yKeys){
+                if(yKeys[ykey] === key){
+                  ys[ykey].push(de.values[key])
+                }
+              }
+            }
+          })
+          // this.showData = this.getArray(ys)
+          this.creatingPlotData = false
+          // this.datasourceToCsvService.createAndDownload(ys, "predicted_dataset", options);  
+          this.yPlot = ys
+          this.datasourceToCsvService.downloadFullDataset(this.getArray(this.yPlot),'predictions')     
+        }
+      })
 
-  // setAll(completed: boolean) {
-  //   this.allComplete = completed;
-  //   if (this.outFeats.subtasks == null) {
-  //     return;
-  //   }
-  //   this.outFeats.subtasks.forEach(t => t.completed = completed);
-  // }
-
-  // renderPlot(cols){
-  //   // this.chartFields = {}
-  //   // if (cols.length>=2){
-  //   //   cols.forEach(c => {
-  //   //     this.chartFields[c] = this.predictions[c]      
-  //   //   });
-
-  //   //   this.chartOptions = this._charts.multipleLinesChart(this.chartFields,"time","Predictions Plot",true, false)
-  //   //   this.showChart = true;
-  //   // } else {
-  //   //   this.showChart = false;
-  //   // }
+    } else {
       
-  // }
-  //JASON - End - 11/10
-
+      this.datasourceToCsvService.downloadFullDataset(this.getArray(this.yPlot),'predicted_dataset')          
+      // this.datasourceToCsvService.createAndDownload(this.yPlot, "predicted_dataset", options);  
+    }    
+    this.collectedData = true;
+    // })
+  }
 
 
   // getWholeDataset(datasetId, start, howMany): Promise<string>{

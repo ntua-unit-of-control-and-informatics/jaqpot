@@ -16,6 +16,30 @@ export class DatasourceToCsvService {
 
     }
 
+    public downloadFullDataset(data:any, filename:string){
+        var csvData:string = "";
+        
+        let header = Object.keys(data[0]).join(',');
+        let values = data.map(o => Object.values(o).join(',')).join('\n');
+
+        csvData += header + '\n' + values;
+        
+        var blob = new Blob(["\ufeff"+csvData], { type: 'text/csv; charset=utf-8' });
+        var url = window.URL.createObjectURL(blob);
+        const datasetName = filename + ".csv"
+        if(navigator.msSaveOrOpenBlob) {
+            navigator.msSaveBlob(blob, datasetName);
+        } else {
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = datasetName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        window.URL.revokeObjectURL(url);
+    }
+
 
     public createAndDownload(DataJSON: any, filename: string, options?: any){
       let config = options || {};
