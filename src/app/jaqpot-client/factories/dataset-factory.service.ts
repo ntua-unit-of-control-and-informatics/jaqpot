@@ -30,6 +30,10 @@ export class DatasetFactoryService {
         rows.splice(remove, 1)
       }
     })
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     // let ids = rows[0].split(/,|;/);
     let ids = []
     this.csvToArray(rows[0]).forEach(id => {
@@ -275,7 +279,15 @@ export class DatasetFactoryService {
     this.csvToArray(rows[0]).forEach(id => {
       ids.push(id)
     })
+<<<<<<< Updated upstream
 
+=======
+    // rows[0].split(/,|;/).forEach(id => {
+    //   console.log(id)
+    //   let cleanedid = id.replace(/^"|"$/g, '')
+    //   ids.push(cleanedid)
+    // });
+>>>>>>> Stashed changes
     rows.splice(0,1)
     let i = 0
     rows.forEach(row => {
@@ -353,6 +365,13 @@ export class DatasetFactoryService {
     this.csvToArray(rows[0]).forEach(id => {
       ids.push(id)
     })
+<<<<<<< Updated upstream
+=======
+    // rows[0].split(/,|;/).forEach(id => {
+    //   let cleanedid = id.replace(/^"|"$/g, '')
+    //   ids.push(cleanedid)
+    // });
+>>>>>>> Stashed changes
     rows.splice(0,1)
     let i = 0
     rows.forEach(row => {

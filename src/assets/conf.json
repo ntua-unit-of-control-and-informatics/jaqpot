@@ -1,9 +1,16 @@
 {
+<<<<<<< Updated upstream
     "___jaqpotApi": "https://squonkpotapi.jaqpot.org/jaqpot/services",
     "__jaqpotApi": "http://localhost:8080/jaqpot/services",
     "jaqpotApi": "https://api.jaqpot.org/jaqpot/services",
+=======
+    "____jaqpotApi": "https://squonkpotapi.jaqpot.org/jaqpot/services",
+    "jaqpotApi": "http://localhost:8080/jaqpot/services",
+    "__jaqpotApi": "https://api.jaqpot.org/jaqpot/services",
+>>>>>>> Stashed changes
     "__jaqpotApiDev":"https://devapi.jaqpot.org/jaqpot/services",
     "accountsApi": "https://scountsapi.jaqpot.org",
+    "___accountsApi": "https://accountsapi.jaqpot.org",
     "__accountsApi": "https://accountsapi.jaqpot.org",
     "___stsServer": "https://squonk.informaticsmatters.org/auth/realms/squonk",
     "stsServer": "https://login.jaqpot.org/auth/realms/jaqpot",
@@ -15,8 +22,13 @@
     "__client_id":"jaqpot-ui",
     "response_type" : "code",
     "scope": "openid email profile",
+<<<<<<< Updated upstream
     "silent_redirect_url" : "https://app.jaqpot.org/assets/silent-renew.html",
     "__silent_redirect_url" : "https://squonkpot.jaqpot.org/assets/silent-renew.html",
+=======
+    "__silent_redirect_url" : "https://squonkpot.jaqpot.org/assets/silent-renew.html",
+    "silent_redirect_url" : "https://login.jaqpot.org/assets/silent-renew.html",
+>>>>>>> Stashed changes
     "__comment": "docker run -p 80:80 --name daphapp -v=/Users/pantelispanka/Jaqpot/deepdaph/deepdaph/conf.json:/usr/share/nginx/html/assets/conf.json deepdaph",
     "__baseurl": "http://localhost:4200/",
     "baseurl":"https://app.jaqpot.org",
