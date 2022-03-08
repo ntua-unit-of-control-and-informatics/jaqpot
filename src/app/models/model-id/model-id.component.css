@@ -17,7 +17,7 @@
 }
 
 .model_pic{
-    width:100%;
+    width:90%;
     float:left;
     margin-left: 0.5em;
 }
@@ -54,7 +54,7 @@
 .title{
     margin-left: 0.5em;
     float: left;
-    width: 100%;
+    width: 90%;
     display: flex;
     margin-top: 0.5em;
 }
@@ -87,21 +87,21 @@
   }
 
 .entity{
-    width: 100%;
+    width: 90%;
     float: left;
     margin-left: 0.5em;
     margin-top: 1em;
 }
 
 .owner{
-    width: 100%;
+    width: 90%;
     float: left;
     margin-left: 1em;
     margin-top: 0.5em;
 }
 
 .model_descr{
-    width: 100%;
+    width: 90%;
     float: left;
     margin-left: 1em;
     margin-top: 0.5em;

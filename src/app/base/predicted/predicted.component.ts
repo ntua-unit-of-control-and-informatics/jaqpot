@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
-import { Dataset, Feature, FeatureInfo, MetaInfo } from '../../jaqpot-client';
+import { Dataset, Feature, FeatureInfo, DataEntry, MetaInfo } from '../../jaqpot-client';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { Subscription, merge, of } from 'rxjs';
+import { Subscription, merge, of, BehaviorSubject } from 'rxjs';
 import { startWith, switchMap, catchError, map } from 'rxjs/operators';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service';
@@ -40,6 +40,12 @@ export class PredictedComponent implements OnChanges {
   allFeatures:string[] = [];
   predictedFeature:string[] = [];
 
+  datasetForDownload:Dataset
+  datasetDownloaded = new BehaviorSubject<boolean>(false);
+  collectedData:Boolean = false;
+  gatheringData:Boolean = false;
+  yData
+  
   constructor(
     // private featureApi:FeatureApiService,
     private datasetApi:DatasetService,
@@ -176,5 +182,89 @@ export class PredictedComponent implements OnChanges {
     this.datasourceToCsvService.createAndDownload(this.dataSource, "predicted_dataset", options);
   }
 
+  async gatherDownload(){
+    if (!this.collectedData){
+      let dataVals = []
+      for(let key in this.dataSource[0]){
+        dataVals.push(key)
+      }
 
+      this.gatheringData = true;
+      this.datasetApi.getDataEntryPaginated(this.predictedDataset._id, 0 , 30).subscribe((d:Dataset)=>{
+        this.datasetForDownload = d
+        this.getWholeDataset(this.predictedDataset._id, 30 , 30)
+      })
+      this.datasetDownloaded.subscribe(da => {
+        if(da === true){
+
+          let xKey = ''
+          let yKeys = {}
+          this.datasetForDownload.features.forEach((f:FeatureInfo)=>{
+              yKeys[f.name] = f.key
+          })
+          let xs = {}
+          let xArr = []
+          let ys = {}
+          for ( let key in yKeys ){
+            ys[key] = []
+          }
+          this.datasetForDownload.dataEntry.forEach((de:DataEntry)=>{
+            for (let key in de.values){
+              if(key === String(xKey)){
+                xArr.push(de.values[key])
+              }
+              for(let ykey in yKeys){
+                if(yKeys[ykey] === key){
+                  ys[ykey].push(de.values[key])
+                }
+              }
+            }
+          })
+          // this.showData = this.getArray(ys)
+          this.gatheringData = false
+          // this.datasourceToCsvService.createAndDownload(ys, "predicted_dataset", options);  
+          this.yData = ys
+          this.datasourceToCsvService.downloadFullDataset(this.getArray(this.yData), 'predictions')
+        }
+      })
+
+    } else {
+      this.datasourceToCsvService.downloadFullDataset(this.getArray(this.yData), 'predictions')
+      // this.datasourceToCsvService.createAndDownload(this.yPlot, "predicted_dataset", options);  
+    }    
+    this.collectedData = true;
+    // })
+  }
+
+  private getArray(object) {
+    return Object.keys(object).reduce(function (r, k) {
+        object[k].forEach(function (a, i) {
+            r[i] = r[i] || {};
+            r[i][k] = a;
+        });
+        return r;
+    }, []);
+  }
+
+  getWholeDataset(datasetId, start, howMany){
+    this.datasetApi.getDataEntryPaginated(datasetId, start, howMany).subscribe((data:Dataset) =>{
+      let totalRows = data.totalRows
+      let nowGot = this.datasetForDownload.dataEntry.length
+      if(nowGot < totalRows){
+        this.datasetApi.getDataEntryPaginated(datasetId, nowGot, howMany).subscribe((datanow:Dataset) =>{
+          datanow.dataEntry.forEach(de =>{
+            this.datasetForDownload.dataEntry.push(de)
+          })
+          nowGot =  this.datasetForDownload.dataEntry.length
+          if(nowGot < totalRows){
+            this.getWholeDataset(datasetId, nowGot, 30)
+          }else{
+            this.datasetDownloaded.next(true)
+          }
+        })
+      }else{
+        this.datasetDownloaded.next(true)
+      }
+    })
+  }
 }

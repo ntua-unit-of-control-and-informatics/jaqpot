@@ -31,11 +31,11 @@
 </div>
 
 <div>
-  <button matTooltip="Downloads only the visible entries" mat-raised-button color="primary" class="only_pred" (click)="downloadB()">
+  <button matTooltip="Downloads dataset" mat-raised-button color="primary" class="only_pred" (click)="gatherDownload()">
     Download 
   </button>
 
-  <button matTooltip="View plots" mat-raised-button color="accent" (click)="plotsStart()">
+  <button matTooltip="View plots" mat-raised-button color="accent" (click)="plotsStart2()">
     Plots
   </button>
 </div>
@@ -45,6 +45,8 @@
 </div>
 
 <div *ngIf="createdPlotData">
-    <app-multi-line [xs]="xPlot" [ys]="yPlot"></app-multi-line>
+  <app-chart-component [dataSource]="showData"></app-chart-component>
+    <!-- <app-multi-line [xs]="xPlot" [ys]="yPlot"></app-multi-line> -->
 </div>
+
 

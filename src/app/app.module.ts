@@ -106,6 +106,10 @@ import { Config } from './config/config';
 import { MatPseudoCheckboxModule, MatRippleModule } from '@angular/material/core';
 import { ModelMetaComponent } from './models/model-meta/model-meta.component';
 
+import { ChartComponentComponent } from './base/components/chart-component/chart-component.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 // import { EucliaAccounts } from '@euclia/accounts-client';
 /**
  * NgModule that includes all Material modules that are required to serve 
@@ -186,6 +190,8 @@ export class MaterialModule {}
 
   imports: [
     BrowserModule,
+    NgApexchartsModule,
+    MatCheckboxModule,
     // EucliaAccounts,
     CommonModule,
     MaterialModule,
@@ -228,6 +234,7 @@ export class MaterialModule {}
     ParameterstepsComponent,
     AccountBaseComponent,
     SocialBaseComponent,
+    ChartComponentComponent,
     QuotaComponent,
     OrganizationsComponent,
     OrganizationBaseComponent,

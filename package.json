@@ -27,6 +27,8 @@
     "@angular/router": "~10.1.6",
     "@euclia/accounts-client": "^1.0.22",
     "angular-auth-oidc-client": "^11.0.0",
+    "apexcharts": "^3.26.2",
+    "ng-apexcharts": "^1.5.9",
     "core-js": "^2.5.7",
     "d3": "^5.9.2",
     "ngx-image-cropper": "^1.0.1",
