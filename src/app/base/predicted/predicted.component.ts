@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
 import { Dataset, Feature, FeatureInfo, DataEntry, MetaInfo } from '../../jaqpot-client';
-<<<<<<< Updated upstream
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
-=======
->>>>>>> Stashed changes
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription, merge, of, BehaviorSubject } from 'rxjs';
 import { startWith, switchMap, catchError, map } from 'rxjs/operators';
@@ -74,24 +71,11 @@ export class PredictedComponent implements OnChanges {
       let featId = _stringSplitted[_stringSplitted.length - 1]
       if(featId != 'doa'){
         let featur = <Feature>{}
-<<<<<<< Updated upstream
         let meta = <MetaInfo>{}
         featur._id = featId
         meta.titles = [fi.name]
         featur.meta = meta
         this.features.push(featur)
-=======
-        let meta:MetaInfo = {}
-        meta.titles = [fi.name]
-        featur._id = featId
-        
-        featur.meta = meta
-        this.features.push(featur)
-
-        // this.featureApi.getWithIdSecured(featId).subscribe((feat:Feature)=>{
-        //   this.features.push(feat)
-        // })
->>>>>>> Stashed changes
       }
     })
 
@@ -170,13 +154,8 @@ export class PredictedComponent implements OnChanges {
 
     var blob = new Blob([csvData], { type: 'text/csv' });
     var url = window.URL.createObjectURL(blob);
-<<<<<<< Updated upstream
     if((window.navigator as any).msSaveOrOpenBlob) {
       (window.navigator as any).msSaveBlob(blob, "dataset.csv");
-=======
-    if((window.navigator as any).navigator.msSaveOrOpenBlob) {
-      (window.navigator as any).navigator.msSaveBlob(blob, "dataset.csv");
->>>>>>> Stashed changes
     } else {
       var a = document.createElement("a");
       a.href = url;
@@ -202,7 +181,6 @@ export class PredictedComponent implements OnChanges {
     this.datasourceToCsvService.createAndDownload(this.dataSource, "predicted_dataset", options);
   }
 
-<<<<<<< Updated upstream
   async gatherDownload(){
     if (!this.collectedData){
       let dataVals = []
@@ -288,6 +266,4 @@ export class PredictedComponent implements OnChanges {
       }
     })
   }
-=======
->>>>>>> Stashed changes
 }
