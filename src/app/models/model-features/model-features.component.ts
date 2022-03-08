@@ -46,7 +46,7 @@ export class ModelFeaturesComponent implements OnChanges {
 
   ngAfterViewInit(){
 
-      if(this.modelToSee.independentFeatures.length < 800){
+      if(this.modelToSee.independentFeatures.length < 40){
         this.modelToSee.independentFeatures.forEach(feat => {
           if(feat){
             let featId = feat.split("/")[feat.split("/").length - 1]

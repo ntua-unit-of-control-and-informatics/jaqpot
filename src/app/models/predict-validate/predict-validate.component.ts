@@ -132,7 +132,7 @@ export class PredictValidateComponent implements OnInit {
         }
       })
 
-      if(this.model.independentFeatures.length < 100){
+      if(this.model.independentFeatures.length < 40){
         this.model.independentFeatures.forEach(feat =>{
           if(feat){
             this._featureApi.getWithIdSecured(feat.split("/")[feat.split("/").length - 1]).subscribe((feat:Feature)=>{
@@ -151,6 +151,7 @@ export class PredictValidateComponent implements OnInit {
           meta.titles = [value]
           meta.descriptions = []
           feature.meta = meta
+          feature._id = key.split("/")[key.split("/").length - 1]
           featureAndValue.feature = feature
           this.indepfeatureAndValues.push(featureAndValue)
         }
@@ -214,8 +215,8 @@ export class PredictValidateComponent implements OnInit {
     var blob = new Blob(["\ufeff"+csvData], { type: 'text/csv; charset=utf-8' });
     // var blob = new Blob([csvData], { type: 'text/csv' });
     var url = window.URL.createObjectURL(blob);
-    if(navigator.msSaveOrOpenBlob) {
-      navigator.msSaveBlob(blob, "dataset.csv");
+    if((window.navigator as any).msSaveOrOpenBlob) {
+      (window.navigator as any).msSaveBlob(blob, "dataset.csv");
     } else {
       var a = document.createElement("a");
       a.href = url;
@@ -227,7 +228,6 @@ export class PredictValidateComponent implements OnInit {
     window.URL.revokeObjectURL(url);
   }
  
-  
   viewTheError(){
     this.viewError = true
   }
@@ -239,7 +239,6 @@ export class PredictValidateComponent implements OnInit {
     })
 
   }
-
 
   startInputPrediction(){
     let dataset:Dataset = this._datasetFactory.createPredictDataset(this.indepfeatureAndValues)

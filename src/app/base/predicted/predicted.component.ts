@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
-import { Dataset, Feature, FeatureInfo } from '../../jaqpot-client';
+import { Dataset, Feature, FeatureInfo, MetaInfo } from '../../jaqpot-client';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription, merge, of } from 'rxjs';
@@ -41,7 +41,7 @@ export class PredictedComponent implements OnChanges {
   predictedFeature:string[] = [];
 
   constructor(
-    private featureApi:FeatureApiService,
+    // private featureApi:FeatureApiService,
     private datasetApi:DatasetService,
     private datasetViewService:DatasetToViewdataService,
     private datasourceToCsvService:DatasourceToCsvService
@@ -65,9 +65,12 @@ export class PredictedComponent implements OnChanges {
       let _stringSplitted = _uri.split("/")
       let featId = _stringSplitted[_stringSplitted.length - 1]
       if(featId != 'doa'){
-        this.featureApi.getWithIdSecured(featId).subscribe((feat:Feature)=>{
-          this.features.push(feat)
-        })
+        let featur = <Feature>{}
+        let meta = <MetaInfo>{}
+        featur._id = featId
+        meta.titles = [fi.name]
+        featur.meta = meta
+        this.features.push(featur)
       }
     })
 
@@ -146,8 +149,8 @@ export class PredictedComponent implements OnChanges {
 
     var blob = new Blob([csvData], { type: 'text/csv' });
     var url = window.URL.createObjectURL(blob);
-    if(navigator.msSaveOrOpenBlob) {
-      navigator.msSaveBlob(blob, "dataset.csv");
+    if((window.navigator as any).msSaveOrOpenBlob) {
+      (window.navigator as any).msSaveBlob(blob, "dataset.csv");
     } else {
       var a = document.createElement("a");
       a.href = url;
