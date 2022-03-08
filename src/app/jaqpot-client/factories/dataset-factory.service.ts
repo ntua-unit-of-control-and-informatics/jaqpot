@@ -30,7 +30,12 @@ export class DatasetFactoryService {
         rows.splice(remove, 1)
       }
     })
-    let ids = rows[0].split(/,|;/);
+    // let ids = rows[0].split(/,|;/);
+    let ids = []
+    this.csvToArray(rows[0]).forEach(id => {
+      ids.push(id)
+    })
+
     let id_index:number;
     if(id != "None"){
       id_index = ids.indexOf(id, 0);
@@ -119,7 +124,11 @@ export class DatasetFactoryService {
         rows.splice(remove, 1)
       }
     })
-    let ids = rows[0].split(/,|;/);
+    // let ids = rows[0].split(/,|;/);
+    let ids = []
+    this.csvToArray(rows[0]).forEach(id => {
+      ids.push(id)
+    })
     let id_index:number;
     if(id != "None"){
       id_index = ids.indexOf(id, 0);
@@ -256,11 +265,17 @@ export class DatasetFactoryService {
     dataset.meta = meta;
     dataset.dataEntry = []
     const rows:string[] = csv.split(/\r?\n/)  
+    // let ids = []
+    // rows[0].split(/,|;/).forEach(id => {
+    //   let cleanedid = id.replace(/^"|"$/g, '')
+    //   ids.push(cleanedid)
+    // });
+
     let ids = []
-    rows[0].split(/,|;/).forEach(id => {
-      let cleanedid = id.replace(/^"|"$/g, '')
-      ids.push(cleanedid)
-    });
+    this.csvToArray(rows[0]).forEach(id => {
+      ids.push(id)
+    })
+
     rows.splice(0,1)
     let i = 0
     rows.forEach(row => {
@@ -329,11 +344,15 @@ export class DatasetFactoryService {
     dataset.meta = meta;
     dataset.dataEntry = []
     const rows:string[] = csv.split(/\r?\n/)  
+    // let ids = []
+    // rows[0].split(/,|;/).forEach(id => {
+    //   let cleanedid = id.replace(/^"|"$/g, '')
+    //   ids.push(cleanedid)
+    // });
     let ids = []
-    rows[0].split(/,|;/).forEach(id => {
-      let cleanedid = id.replace(/^"|"$/g, '')
-      ids.push(cleanedid)
-    });
+    this.csvToArray(rows[0]).forEach(id => {
+      ids.push(id)
+    })
     rows.splice(0,1)
     let i = 0
     rows.forEach(row => {

@@ -43,3 +43,4 @@ Thumbs.db
 .
 /pkg/
 pkg/
+bin/gopls
