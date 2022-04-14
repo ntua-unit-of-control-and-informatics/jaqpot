@@ -33,7 +33,7 @@
     "d3": "^5.9.2",
     "ngx-image-cropper": "^1.0.1",
     "ngx-markdown": "^9.1.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "rxjs": "^6.5.5",
     "rxjs-compat": "^6.2.1",
     "save": "^2.3.2",
