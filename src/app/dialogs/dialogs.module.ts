@@ -62,6 +62,12 @@ import { FyiNotifComponent } from './notification-dialogs/fyi-notif/fyi-notif.co
 import { ChooseXYComponent } from './choose-x-y/choose-x-y.component';
 import { MatOptionModule } from '@angular/material/core';
 import { ManageAccountsDialogComponent } from './manage-accounts-dialog/manage-accounts-dialog.component';
+import { SeeInvitationsComponentComponent } from './see-invitations-component/see-invitations-component.component';
+import { RequestComponent } from './request/request.component';
+import { RequestCreditsComponent } from './request-credits/request-credits.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { MessageComponent } from './message/message.component';
+import { InviteComponent } from './invite/invite.component';
 // import { RouterModule } from '@angular/router/src/router_module';
 
 @NgModule({
@@ -120,7 +126,7 @@ import { ManageAccountsDialogComponent } from './manage-accounts-dialog/manage-a
     UserQuickComponent, 
     AddImageDatasetDialogComponent, ShareDialogComponent, 
     ShareNotifDialogComponent, AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent, ManageAccountsDialogComponent],
+    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent, ManageAccountsDialogComponent, SeeInvitationsComponentComponent, RequestComponent, RequestCreditsComponent, ConfirmationComponent, MessageComponent, InviteComponent],
   exports: [LoginDialogComponent, 
     ErrorDialogComponent, 
     LogoutDialogComponent, 

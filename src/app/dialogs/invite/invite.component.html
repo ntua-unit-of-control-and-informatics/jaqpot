@@ -1,0 +1,32 @@
+<h3>Invite user to your organization</h3>
+<form class="invite-form">
+    <mat-form-field class="invite-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+             placeholder="Ex. pat@example.com"  [(ngModel)]="email"  (keydown)="onEnterVal()" >
+      <mat-hint>Enter a valid email</mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="invite-m-full-width">
+      <mat-label>Message</mat-label>
+      <input matInput [(ngModel)]="message" [ngModelOptions]="{standalone: true}">
+      <mat-hint>Enter a message to accompany the invitation</mat-hint>
+    </mat-form-field>
+
+
+  </form>
+
+
+  <div class="actions">
+    <button mat-raised-button color="primary" class="action-b2" matTooltip="Save about" [disabled]="!sent"
+      (click)="onSent()" matTooltip="Sent invitation">
+      <i class="material-icons">send</i>
+    </button>
+  </div>

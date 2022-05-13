@@ -1,0 +1,183 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel (opened)="viewUsers()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Users
+        </mat-panel-title>
+        <mat-panel-description>
+          Organization users
+          <mat-icon class="icon">people</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <app-user-list [isAdmin]="isAdmin" [users]="_orgUsers" (removeUserAction)="removeUserAction($event)"
+        (adminSelectedAction)="adminSelectedAction($event)"></app-user-list>
+  
+      <mat-paginator [length]="_totalUsers" [pageSize]="10" [pageSizeOptions]="[10]"
+        (page)="pageEvent = changeUsers($event)">
+      </mat-paginator>
+  
+      <div *ngIf="isAdmin">
+        <button mat-mini-fab color="primary" matTooltip="Invite user" class="inviteB" (click)="inviteUser()">
+          <mat-icon>mail_outline</mat-icon>
+        </button>
+      </div>
+  
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel (opened)="viewAdmins()">
+  
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Admins
+        </mat-panel-title>
+        <mat-panel-description>
+          Organization admins
+          <mat-icon class="icon">person</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <div *ngIf="isAdmin else noAdmin;">
+        <mat-list role="list">
+          <div *ngFor="let user of _ogrAdmins">
+            <mat-list-item role="listitem">
+              <button *ngIf="user._id  != _creator" mat-mini-fab color="accent" class="rem_adm" (click)="removeAdmin(user)" matTooltip="Remove admin">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+              {{user.name}}
+  
+            </mat-list-item>
+          </div>
+        </mat-list>
+      </div>
+      <ng-template #noAdmin>
+        <mat-list role="list">
+          <div *ngFor="let user of _ogrAdmins">
+            <mat-list-item role="listitem">
+              {{user.name}}
+            </mat-list-item>
+          </div>
+        </mat-list>
+      </ng-template>
+  
+  
+  
+      <mat-paginator [length]="_totalAdmins" [pageSize]="10" [pageSizeOptions]="[10]"
+        (page)="pageEvent = changeAdmins($event)">
+      </mat-paginator>
+  
+    </mat-expansion-panel>
+  
+  
+  
+  
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Organization domains
+        </mat-panel-title>
+        <mat-panel-description>
+          Website Linkedin and github
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngIf="org">
+  
+        <mat-form-field class="org_form">
+          <input [disabled]="!isAdmin" matInput placeholder="Website" [(ngModel)]="org.meta.website"
+            (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="org_form">
+          <input [disabled]="!isAdmin" matInput placeholder="Github" [(ngModel)]="org.meta.github" (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="org_form">
+          <input [disabled]="!isAdmin" matInput placeholder="Linkedin" [(ngModel)]="org.meta.linkedin"
+            (keydown)="changes()">
+        </mat-form-field>
+  
+      </div>
+      <div class="actions">
+        <button mat-raised-button color="accent" class="action-b2" matTooltip="Save about" [disabled]="!_save"
+          (click)="save()" matTooltip="Save">
+          <i class="material-icons">save</i>
+        </button>
+      </div>
+    </mat-expansion-panel>
+  
+  
+  
+  
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Contact points
+        </mat-panel-title>
+        <mat-panel-description>
+          Contact the organization
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <form class="contacts-form contacts">
+        <!-- <div *ngIf="org.contact; else addcontact"> -->
+  
+  
+        <div *ngFor="let contact of org?.contacttypes">
+          <div *ngIf="contact.length > 0 ; else addcontact">
+            <mat-form-field class="example-full-width">
+              <input [disabled]="!isAdmin" matInput placeholder="{{contact}} info" value={{org.contact[contact]}}
+                (keyup)="onContactTypeInput($event, contact)">
+              <button mat-button *ngIf="contact; else input" matSuffix mat-icon-button aria-label="Clear"
+                (click)="deleteUsage(contact)" matTooltip="Delete contact">
+                <mat-icon>close</mat-icon>
+              </button>
+              <ng-template #input>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addUsage()"
+                  matTooltip="Enable URL">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </ng-template>
+            </mat-form-field>
+          </div>
+  
+  
+          <!-- </div> -->
+  
+          <ng-template #addcontact>
+            <mat-form-field class="example-full-width">
+              <input matInput [disabled]="!isAdmin" placeholder="Contact type" value={{contact}}
+                (keyup)="onUsageTypeInput($event)">
+  
+              <button mat-button *ngIf="contact && isAdmin; else input" matSuffix mat-icon-button aria-label="Clear"
+                (click)="deleteUsage(contact)" matTooltip="Delete">
+                <mat-icon>close</mat-icon>
+              </button>
+  
+  
+              <ng-template #input>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addUsageType()"
+                  matTooltip="Add contact info">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </ng-template>
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <button mat-icon-button *ngIf="isAdmin" color="accent" (click)="addUsage()" matTooltip="Add Contact">
+          <mat-icon>add</mat-icon>
+        </button>
+      </form>
+      <div class="actions">
+        <button mat-raised-button color="accent" class="action-b2" matTooltip="Save about" [disabled]="!_save"
+          (click)="save()" matTooltip="Save">
+          <i class="material-icons">save</i>
+        </button>
+      </div>
+  
+  
+  
+    </mat-expansion-panel>
+  
+  
+  </mat-accordion>
+  

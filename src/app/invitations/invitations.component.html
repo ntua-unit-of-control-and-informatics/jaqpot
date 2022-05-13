@@ -1,0 +1,9 @@
+<button mat-icon-button matTooltip="Invitations" (click)="viewInvitations()">
+    <mat-icon *ngIf="_totalNew == 0" matBadgeColor="accent">announcement</mat-icon>
+    <mat-icon *ngIf="_totalNew > 0" matBadge="{{_totalNew}}" matBadgeColor="accent">announcement</mat-icon>
+  </button>
+  
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item>Settings</button>
+    <button mat-menu-item>Help</button>
+  </mat-menu>

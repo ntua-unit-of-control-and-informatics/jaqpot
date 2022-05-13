@@ -1,0 +1,28 @@
+
+
+<div *ngIf="user" >
+    <h3>Credits</h3>
+    <h3 class="usercredits">Available credits:  {{user.credits}}  </h3>
+  
+    <div *ngIf="user.spenton" >
+        <h5 class="creditssph">Credits have been spent on </h5>
+        <div *ngFor="let spenton of user.spenton" class="spendedon">
+          <h5>App:  {{spenton.appid}} </h5>
+            <div *ngFor="let sp of spenton.usage | keyvalue">
+              <!-- <div *ngFor="let sp of item | keyvalue"> -->
+                  Usage: <b>{{sp.key}}</b> , Credits spent: <b>{{sp.value}}</b>
+              <!-- </div> -->
+            </div>
+        </div>
+    </div>
+  
+    <div *ngIf="academic"> 
+        <button mat-raised-button color="primary" matSuffix (click)="request()" matTooltip="Request for credits" class="request-b">
+            Request
+          </button>
+    </div>
+
+
+
+</div>
+

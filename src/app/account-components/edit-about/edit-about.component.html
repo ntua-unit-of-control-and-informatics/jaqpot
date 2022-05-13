@@ -1,0 +1,76 @@
+<div class="edit-about-card mat-elevation-z2">
+    <div *ngIf="_user" class="user-base">
+      <div *ngIf="_user.meta">
+        <div *ngIf="_user.meta.picture; else noPic">
+          <div class="photo">
+            <button mat-fab color="primary" class="upload-pic" matTooltip="Add a photo">
+              <img class="prof-image" [src]="_user?.meta?.picture" />
+            </button>
+            <div style="display: inline-block">
+              <input #myInput id="file" name="file" (change)="photoChosen($event.target.files)" type="file"
+                accept="image/jpeg, image/png" matTooltip="Add a photo">
+            </div>
+          </div>
+        </div>
+        <ng-template #noPic>
+          <div class="photo">
+            <button mat-fab color="primary" class="upload-pic" matTooltip="Add a photo">
+              <mat-icon>add_a_photo</mat-icon>
+            </button>
+            <div style="display: inline-block">
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  
+    <div *ngIf="_org" class="user-base">
+      <div *ngIf="_org.meta">
+        <div *ngIf="_org.meta.picture; else noPic">
+          <div class="photo">
+            <button mat-fab color="primary" class="upload-pic" matTooltip="Add a photo">
+              <img class="prof-image" [src]="_org?.meta?.picture" />
+            </button>
+            <div style="display: inline-block">
+              <input #myInput id="file" name="file" (change)="photoChosen($event.target.files)" type="file"
+                accept="image/jpeg, image/png" matTooltip="Add a photo">
+            </div>
+          </div>
+        </div>
+        <ng-template #noPic>
+          <div class="photo">
+            <button mat-fab color="primary" class="upload-pic" matTooltip="Add a photo">
+              <mat-icon>add_a_photo</mat-icon>
+            </button>
+            <div style="display: inline-block">
+            </div>
+          </div>
+        </ng-template>
+  
+      </div>
+      <div *ngIf="_user">
+        <h3 class="header">Edit {{_user.name}} about</h3>
+      </div>
+      <div *ngIf="_org">
+        <h3 class="header">Edit {{_org.title}} about</h3>
+      </div>
+  
+    </div>
+  
+    <div *ngIf="_org || _user" class="user-meta">
+      <form class="meta-form">
+        <mat-form-field class="edit-about">
+          <textarea matInput placeholder="About" matTextareaAutosize matAutosizeMinRows=4 matAutosizeMaxRows=4
+            [(ngModel)]="_about" [ngModelOptions]="{standalone: true}" (keydown)="aboutChanged()"></textarea>
+          <mat-hint *ngIf="_about" align="end">{{_about.length}} / 512</mat-hint>
+        </mat-form-field>
+      </form>
+    </div>
+  
+    <div class="actions">
+      <button mat-raised-button class="action-b1" (click)="cancel()">Cancel</button>
+      <button mat-raised-button color="accent" class="action-b2" matTooltip="Save about" [disabled]="!_save"
+        (click)="save()">
+        <i class="material-icons">save</i>
+      </button>
+  

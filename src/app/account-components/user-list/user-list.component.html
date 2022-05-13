@@ -1,0 +1,30 @@
+
+<div *ngIf="isAdmin else noAdmin;">
+    <mat-list role="list">
+      <div *ngFor="let user of users">
+          <mat-list-item role="listitem">
+  
+            <button mat-mini-fab color="accent" class="rem_acc" (click)="removeUser(user)" matTooltip="Remove user from organization">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" class="sup_acc" (click)="selectAdmin(user)" matTooltip="Add user to admins">
+              <mat-icon>supervisor_account</mat-icon>
+            </button>
+  
+            {{user.name}}
+  
+          </mat-list-item>
+      </div>
+    </mat-list>
+  </div>
+  
+  
+  
+  <ng-template #noAdmin>
+      <mat-list role="list">
+          <div *ngFor="let user of users">
+              <mat-list-item role="listitem">{{user.name}}</mat-list-item>
+          </div>
+        </mat-list>
+  </ng-template>
+  

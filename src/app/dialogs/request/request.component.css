@@ -1,0 +1,18 @@
+.action-b2{
+    float: right;
+    margin-top: 1em;
+}
+
+.action-b1{
+    float: right;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.request-form{
+    width:280px;
+}
+
+.request-m-full-width{
+    width:100%;
+}

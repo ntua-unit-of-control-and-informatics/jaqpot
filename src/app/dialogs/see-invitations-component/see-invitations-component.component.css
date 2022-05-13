@@ -1,0 +1,17 @@
+.content{
+    height:240px;
+    overflow: auto;
+    width:480px;
+}
+
+.inv-list{
+    width:100%
+}
+
+.decline-b{
+    margin-right: 1em;
+}
+
+.list-item:hover{
+    background-color: lightgray;
+}

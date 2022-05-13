@@ -1,0 +1,58 @@
+<div class="org-main mat-elevation-z2">
+    <div *ngIf="_org" class="org-base">
+      <div *ngIf="_org">
+        <div *ngIf="_org.meta.picture; else noPic">
+            <div class="photo">
+                <button mat-fab color="primary" class="upload-pic" matTooltip="Add a photo" >
+                  <!-- <mat-icon matTooltip="Add a photo">add_a_photo</mat-icon> -->
+                    <img class="prof-image" [src]="_org?.meta?.picture" />
+                </button>
+                <div style="display: inline-block">
+                  <input #myInput  id="file" name="file" (change)="photoChosen($event.target.files)"
+                  type="file" accept="image/jpeg, image/png" matTooltip="Add a photo" *ngIf="_canEdit">
+                <!-- <p>{{file}}</p> -->
+                </div>
+              </div>
+        </div>
+        <ng-template #noPic>
+          <div class="photo">
+            <button mat-fab color="primary" class="upload-pic" matTooltip="Add a photo">
+              <mat-icon matTooltip="Add a photo">add_a_photo</mat-icon>
+            </button>
+            <div style="display: inline-block">
+              <input #myInput  id="file" name="file" (change)="photoChosen($event.target.files)"
+                type="file" accept="image/jpeg, image/png" matTooltip="Add a photo" *ngIf="_canEdit">
+              <!-- <p>{{file}}</p> -->
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <h3 class="header">{{_org.title}}</h3>
+    </div>
+  
+    <div *ngIf="_org" class="org-meta">
+        <div class="about_headers">
+          <h4 class="about_h">About</h4>
+          <button mat-icon-button color="primary" class="about_b" (click)="editAbout()" matTooltip="Edit About" *ngIf="_canEdit"> 
+            <i class="material-icons">edit</i>
+          </button>
+        </div>
+        <div class="about">
+          <p>{{_org.meta.about}}</p>
+        </div>
+    </div>
+
+    <button mat-stroked-button color="warn" class="delete_b" (click)="deleteOrg()" matTooltip="Delete organization!" *ngIf="isAdmin"> 
+      <i class="material-icons">delete</i>
+    </button>
+
+
+  </div>
+
+  <div class="org-base">
+    <app-orgs-base [isAdmin]="isAdmin" [org]="_org" (saveOrg)="saveOrg($event)"></app-orgs-base>
+  </div>
+
+
+
+

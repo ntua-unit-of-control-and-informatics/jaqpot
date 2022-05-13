@@ -1,0 +1,133 @@
+.header {
+    width: 140px;
+    overflow: auto;
+    margin-top: 3em;
+    float: left;
+    margin-left: 120px;
+  }
+  
+  .prof-image {
+    width: 8em;
+    height: 8em;
+    margin-top: -16px;
+    float: left;
+    border-radius: 50%;
+  }
+  
+  .user-main {
+    display: grid;
+    min-width: 320px;
+    max-width: 320px;
+    margin-top: 2em;
+    margin-left: 1em;
+    padding-bottom: 1em;
+    float: left;
+  }
+  
+  .user-header {
+    display: inline;
+  }
+  
+  .user-base {
+    width: 100%;
+  }
+  
+  .user-meta {
+    margin-top: 1em;
+    width: 90%;
+  }
+  
+  .meta-form {
+
+    margin-left: 1em;
+  
+  }
+  
+  .meta-full-width {
+    width: 100%;
+    margin-top: 1em;
+  }
+  
+  .save_b {
+    display: inline-block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* transition: all .2s ease-in-out; */
+    /* position: sticky; */
+    /* top: 20px;
+      right: 36px; */
+    color: lightseagreen;
+    /* opacity: 0.4; */
+  }
+  
+  .about {
+    margin-left: 2em;
+    max-height: 8em;
+    overflow: auto;
+    padding-right: 1em;
+    margin-bottom: 1em;
+    margin-top: 4em;
+}
+  
+  .about_h {
+    margin-left: 2em;
+    float: left;
+  }
+  
+  .about_headers {
+    width: 100%;
+  }
+  
+  .about_b {
+    float: right;
+    margin-top: 8px;
+  }
+  
+  
+  .user-base-c{
+      float:left;
+      margin-top: 2em;
+      margin-left: 1em;
+      min-width: 320px;
+      width: 50%;
+  }
+  
+  .upload-pic {
+    width: 8em;
+    height: 8em;
+    margin-top: 2em;
+    float: left;
+    margin-left: 2em;
+  }
+  
+  input {
+    opacity: 0;
+    width: 10em;
+    height: 37px;
+    float: left;
+    margin-left: -10em;
+    margin-top: 3em;
+    height: 9em;
+  }
+  
+  input:hover {
+    cursor: pointer;
+  }
+  
+  .photo {
+    width: 18%;
+    float: left;
+  }
+  
+  .meta-form {
+    margin-left: 1em;
+  }
+  
+  .quots-comp{
+    float:left;
+    margin-top: 2em;
+    margin-left: 1em;
+    min-width: 320px;
+    width: 20%;
+  }

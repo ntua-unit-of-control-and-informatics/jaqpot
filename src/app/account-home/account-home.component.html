@@ -1,0 +1,76 @@
+<div class="user-main mat-elevation-z2">
+    <div *ngIf="_user" class="user-base">
+      <div *ngIf="_user.meta">
+        <div *ngIf="_user.meta.picture && _user.meta.picture.length > 2; else noPic">
+            <div class="photo">
+                <button mat-fab color="primary" class="upload-pic" matTooltip="Add a photo" >
+                    <img class="prof-image" [src]="_user?.meta?.picture" />
+                </button>
+                <div style="display: inline-block">
+                  <input #myInput  id="file" name="file" (change)="photoChosen($event.target.files)"
+                  type="file" accept="image/jpeg, image/png" matTooltip="Add a photo">
+                  <!-- <p>{{file}}</p> -->
+                </div>
+              </div>
+        </div>
+        <ng-template #noPic>
+          <div class="photo">
+            <button mat-fab color="primary" class="upload-pic" matTooltip="Add a photo" >
+              <mat-icon matTooltip="Add a photo">add_a_photo</mat-icon>
+            </button>
+            <div style="display: inline-block" >
+              <input #myInput  id="file" name="file" (change)="photoChosen($event.target.files)"
+                type="file" accept="image/jpeg, image/png" matTooltip="Add a photo">
+              <!-- <p>{{file}}</p> -->
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <h3 class="header">Welcome, {{_user.name}}</h3>
+    </div>
+  
+    <!-- <mat-divider></mat-divider> -->
+    <div *ngIf="_user" class="user-meta">
+      <!-- <form class="meta-form" *ngIf="edit else show_about">
+        <mat-form-field class="meta-full-width" >
+          <textarea  matInput placeholder="About" matTextareaAutosize matAutosizeMinRows=1 matAutosizeMaxRows=8 [(ngModel)]="_user.meta.about" [ngModelOptions]="{standalone: true}" [disabled]="!edit"></textarea>
+        </mat-form-field>
+      </form>
+      <ng-template #show_about> -->
+        <div class="about_headers">
+          <h4 class="about_h">About</h4>
+          <button mat-icon-button color="primary" class="about_b" (click)="editAbout()" matTooltip="Edit About"> 
+            <i class="material-icons">edit</i>
+          </button>
+        </div>
+        <div class="about">
+          <p>{{_user.meta.about}}</p>
+        </div>
+  
+      <!-- </ng-template> -->
+    </div>
+  </div>
+  
+  <div class="user-base-c">
+    <app-user-base [user]="_user" (saveUser)="saveUser($event)"></app-user-base>
+  </div>
+  
+  
+  <app-quots [user]="_user"class="quots-comp" ></app-quots>
+  
+  
+  <!-- <span class="app-action" *ngIf="showEdits">
+    <div *ngIf="edit_b else save_b">
+      <button class="edit" matTooltip="Edit" matTooltipPosition="after" (click)="editForm()" mat-fab>
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <ng-template #save_b>
+      <div>
+        <button class="save_b" matTooltip="Save" matTooltipPosition="after" (click)="saveForm()" mat-fab>
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+  </span> -->
+  

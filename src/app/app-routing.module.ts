@@ -20,6 +20,10 @@ import { DatasetIdComponent } from './dataset/dataset-id/dataset-id.component';
 import { SearchBaseComponent } from './search/search-base/search-base.component';
 import { JaqpotNotificationsComponent } from './jaqpot-notifications/jaqpot-notifications.component';
 import { HttkmodelsComponent } from './httk/httkmodels/httkmodels.component';
+import { AccountHomeComponent } from './account-home/account-home.component';
+import { EditAboutComponent } from './account-components/edit-about/edit-about.component';
+import { CreateOrganizationComponent } from './dialogs/create-organization/create-organization.component';
+import { OrganizationComponent } from './account-components/organization/organization.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
@@ -31,14 +35,18 @@ const routes: Routes = [
   {path: 'httk', component:  HttkBaseComponent, canActivate: [AuthGuard]},
   {path: 'httk/createmodel', component:  CreatehttkmodelComponent, canActivate: [AuthGuard]},
   {path: 'httk/models', component:  HttkmodelsComponent, canActivate: [AuthGuard]},
-  {path: 'organization/:id', component:  OrganizationBaseComponent, canActivate: [AuthGuard]},
+  // {path: 'organization/:id', component:  OrganizationBaseComponent, canActivate: [AuthGuard]},
   {path: 'model/:id', component: ModelIdComponent},
   {path: 'dataset/:id', component:DatasetIdComponent},
   {path: 'workbench', component: WorkbenchBaseComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchBaseComponent, canActivate: [AuthGuard]},
   {path: 'notifications', component: JaqpotNotificationsComponent, canActivate: [AuthGuard]},
+  {path: "account/home", component: AccountHomeComponent, canActivate: [AuthGuard]},
+  {path:'edit/about', component:EditAboutComponent},
+  {path:'create/organization', component:CreateOrganizationComponent},
+  {path: 'organization/:id', component:  OrganizationComponent},
+  {path: 'edit/org/:id', component:EditAboutComponent},
   {path: '', component:  FrontComponent}
-
 ];
 
 

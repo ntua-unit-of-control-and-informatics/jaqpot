@@ -1,0 +1,36 @@
+.personal_form{
+    width: 98%;
+    margin:auto;
+}
+
+.no_orgs{
+    float:left;
+}
+
+.create-b{
+    margin-top: 8px;
+    float: right;
+    margin-right: 0.5em;
+}
+
+.orgim{
+    width: 2.5em;
+    border-radius: 25%;
+    float: left;
+    margin-right: 1em;
+}
+
+.orgtitle{
+    float: right;
+}
+
+.listItem:hover{
+    cursor: pointer;
+    background-color: lightgray;
+    transition: all .2s ease-in-out;
+}
+
+.orgs-list{
+    max-height: 400px;
+    overflow: auto;
+}

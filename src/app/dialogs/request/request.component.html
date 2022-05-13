@@ -1,0 +1,25 @@
+<h3>Credits request message</h3>
+<form class="request-form">
+
+    <mat-form-field class="request-m-full-width">
+      <mat-label>Message</mat-label>
+      <input matInput [(ngModel)]="message" [ngModelOptions]="{standalone: true}" (keydown)="messageChanged()">
+      <mat-hint>Enter a message to enable credit request</mat-hint>
+    </mat-form-field>
+
+</form>
+
+
+  <div class="actions">
+
+
+    <button mat-raised-button color="primary" class="action-b2" matTooltip="Send credits request"
+      (click)="onSend()" matTooltip="Sent invitation" [disabled]="!canSend">
+      <i class="material-icons">send</i>
+    </button>
+
+    <button mat-raised-button color="warn" class="action-b1" matTooltip="Cancel request"
+    (click)="onCancel()" matTooltip="Sent invitation">
+          Cancel
+  </button>
+  </div>

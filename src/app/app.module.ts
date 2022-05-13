@@ -109,6 +109,15 @@ import { ModelMetaComponent } from './models/model-meta/model-meta.component';
 import { ChartComponentComponent } from './base/components/chart-component/chart-component.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { InvitationsComponent } from './invitations/invitations.component';
+import { AccountHomeComponent } from './account-home/account-home.component';
+import { UserBaseComponent } from './account-components/user-base/user-base.component';
+import { EditAboutComponent } from './account-components/edit-about/edit-about.component';
+import { CreateOrgComponent } from './account-components/create-org/create-org.component';
+import { OrganizationComponent } from './account-components/organization/organization.component';
+import { QuotsComponent } from './account-components/quots/quots.component';
+import { OrgsBaseComponent } from './account-components/orgs-base/orgs-base.component';
+import { UserListComponent } from './account-components/user-list/user-list.component';
 
 // import { EucliaAccounts } from '@euclia/accounts-client';
 /**
@@ -215,6 +224,10 @@ export class MaterialModule {}
   exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule, MatFormFieldModule, MatInputModule],
   declarations: [AppComponent,
     ModelMetaComponent,
+    AccountHomeComponent,
+    UserBaseComponent,
+    EditAboutComponent, CreateOrgComponent, OrganizationComponent, QuotsComponent, OrgsBaseComponent, UserListComponent,
+    InvitationsComponent,
     BaseComponent,
     ModelMetaComponent,
     AlgorithmsComponent,
@@ -326,7 +339,7 @@ export function configureAuth(oidcConfigService: OidcConfigService, httpClient: 
               // postLoginRoute: customConfig.baseurl,
               // forbiddenRoute: customConfig.baseurl,
               // unauthorizedRoute: customConfig.baseurl,
-              logLevel: LogLevel.Error, // LogLevel.Debug,
+              logLevel: LogLevel.Debug, // LogLevel.Debug,
               maxIdTokenIatOffsetAllowedInSeconds: 120,
               historyCleanupOff: true,
               autoUserinfo: true,

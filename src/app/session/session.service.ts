@@ -22,7 +22,6 @@ export class SessionService{
     // private dataset: Dataset;
     
 
-
     userData$: Observable<any>;
 
     _userData:any
@@ -193,5 +192,9 @@ export class SessionService{
         return localStorage.setItem(key, data);
     }
 
+
+    getUserEmail(){
+        return this.userEmail
+    }
 
 }

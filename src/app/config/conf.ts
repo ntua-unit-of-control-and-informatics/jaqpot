@@ -8,4 +8,6 @@ export interface configf{
     scope?:string
     silent_redirect_url?:string
     baseurl?:string
+    jadsApi?:string
+    streamSize?:string
 }

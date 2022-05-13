@@ -29,6 +29,11 @@
             <app-notification></app-notification>
           </div>
         </span>
+        <span class="invitations">
+          <div *ngIf="loggedIn">
+            <app-invitations></app-invitations>
+          </div>
+        </span>
         <span class="app-action">
           <button mat-icon-button color="accent" (click)="changeTheme()">
             <mat-icon>invert_colors</mat-icon>
@@ -67,13 +72,30 @@
             <mat-icon class="side_icon">repeat</mat-icon>
             Models
           </a>
+
+          <h2 mat-subheader class="side_header">Data</h2>
+          <a mat-list-item class="side_nav_a" routerLink="/home" (click)="sidenav.toggle()" class="data">
+            <mat-icon class="side_icon">folder</mat-icon>
+            Objects
+          </a>
+
+
+          <mat-divider></mat-divider>
+
           <h2 mat-subheader class="side_header">BIOKINETICS</h2>
-          <a mat-list-item class="side_nav_a" routerLink="/httk" (click)="sidenav.toggle()">
+          <a mat-list-item class="side_nav_a" routerLink="/httk" (click)="sidenav.toggle()" class="biokin">
             <mat-icon class="side_icon">healing</mat-icon>
             Httk
           </a>
   
-          
+          <mat-divider></mat-divider>
+          <h2 mat-subheader class="side_header">Accounts</h2>
+          <a mat-list-item class="side_nav_a" routerLink="/account/home" (click)="sidenav.toggle()">
+            <mat-icon class="side_icon">person_outline</mat-icon>
+            Manage
+          </a>
+
+
         </mat-nav-list>
   
         <div class="info">

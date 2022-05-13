@@ -9,5 +9,7 @@ export let Config = {
     // 'JaqpotBase': 'https://api-jaqpot.prod.openrisknet.org/jaqpot/services',
     "AccountsApi":"https://accountsapi.jaqpot.org",
     // "AccountsApi":"https://scountsapi.jaqpot.org",
-    'notif_poll': true
+    'notif_poll': true,
+    "jadsApi":"http://localhost:8006/",
+    "StreamSize": 2200000,
 };

@@ -35,6 +35,13 @@ import { ChooseXYComponent } from './choose-x-y/choose-x-y.component';
 import { User } from '@euclia/accounts-client/dist/models/user';
 import { ManageAccountsDialogComponent } from './manage-accounts-dialog/manage-accounts-dialog.component';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
+import { SeeInvitationsComponentComponent } from './see-invitations-component/see-invitations-component.component';
+import { InvitationsService } from '../accounts-api/invitations.service';
+import { SessionService } from '../session/session.service';
+import { RequestComponent } from './request/request.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { MessageComponent } from './message/message.component';
+import { InviteComponent } from './invite/invite.component';
 
 @Injectable()
 export class DialogsService {
@@ -296,5 +303,39 @@ export class DialogsService {
         dialogRef = this.dialog.open(ManageAccountsDialogComponent);
         return dialogRef.afterClosed();
     }
+
+    public viewInvitations(invService:InvitationsService, sesService:SessionService){
+        let dialogRef: MatDialogRef<SeeInvitationsComponentComponent>;
+        dialogRef = this.dialog.open(SeeInvitationsComponentComponent);
+        dialogRef.componentInstance._invitationsApi = invService
+        dialogRef.componentInstance._sessionService = sesService
+        return dialogRef.afterClosed();
+    }
+
+    public onRequest(){
+        let dialogRef: MatDialogRef<RequestComponent>;
+        dialogRef = this.dialog.open(RequestComponent);
+        return dialogRef.afterClosed();
+    }
+
+    public onConfirm(message){
+        let dialogRef: MatDialogRef<ConfirmationComponent>;
+        dialogRef = this.dialog.open(ConfirmationComponent);
+        dialogRef.componentInstance.message = message
+        return dialogRef.afterClosed();
+    }
+
+    public onMessage(message:string){
+        let dialogRef: MatDialogRef<MessageComponent>;
+        dialogRef = this.dialog.open(MessageComponent);
+        dialogRef.componentInstance._message = message
+        return dialogRef.afterClosed();
+    }
+
+    public onInvite(){
+        let dialogRef: MatDialogRef<InviteComponent>;
+        dialogRef = this.dialog.open(InviteComponent);
+        return dialogRef.afterClosed();
+      }
 
 }

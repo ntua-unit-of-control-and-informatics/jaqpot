@@ -1,0 +1,143 @@
+<mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Personal info
+        </mat-panel-title>
+  
+      </mat-expansion-panel-header>
+  
+      <div *ngIf="user">
+  
+        <mat-form-field class="personal_form">
+          <input matInput placeholder="Preferred username" matTextareaAutosize [(ngModel)]="user.preferredUsername"
+            [ngModelOptions]="{standalone: true}" (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput disabled placeholder="Given name" [(ngModel)]="user.givenName">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput disabled placeholder="Family name" [(ngModel)]="user.familyName">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput placeholder="Occupation" [(ngModel)]="user.occupation" (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput placeholder="Occupation at" [(ngModel)]="user.occupationAt" (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput disabled placeholder="Email" [(ngModel)]="user.email" (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput placeholder="Country" [(ngModel)]="user.meta.country" (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput placeholder="City" [(ngModel)]="user.meta.city" (keydown)="changes()">
+        </mat-form-field>
+  
+      </div>
+  
+      <div class="actions">
+        <button mat-raised-button color="accent"
+         class="action-b2" matTooltip="Save about"
+        [disabled]="!_save" (click)="save()" matTooltip="Save"> 
+            <i class="material-icons">save</i>
+        </button>
+      </div>
+  
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="openedOrgsPanel()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Organizations
+        </mat-panel-title>
+        <mat-panel-description>
+          Member of
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="orgs">
+        <div *ngIf="orgs.length === 0 else orgsList;" >
+          <h4 class="no_orgs">No organizations available. Create one and invite people to start sharing </h4>
+          <button mat-mini-fab color="accent" class="create-b" (click)="createOrg()" matTooltip="Create Organization">
+            <i class="material-icons">
+              arrow_forward
+              </i>
+          </button>
+        </div>
+        <ng-template #orgsList>
+          <mat-divider></mat-divider>
+          <mat-list class="orgs-list">
+            <mat-list-item class="listItem" *ngFor="let organization of userOrgs" (click)="onOrgClicked(organization)">
+              <div *ngIf="organization.meta && organization.meta.picture">
+                <img class="orgim" [src]="organization?.meta?.picture" />
+              </div>
+              <h4 class="orgtitle" mat-line>{{organization?.title}}</h4>
+              <div *ngIf="organization.city">
+                <p mat-line> {{organization?.city}}, {{organization?.country}} </p>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+            
+          </mat-list>
+  
+          <button mat-mini-fab color="accent" class="create-b" (click)="createOrg()" matTooltip="Create Organization">
+            <i class="material-icons">
+              arrow_forward
+              </i>
+          </button>
+        </ng-template>
+      </div>
+      
+  
+    </mat-expansion-panel>
+  
+  
+  
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Domains
+        </mat-panel-title>
+  
+        <mat-panel-description>
+          Website Linkedin and github
+        </mat-panel-description>
+  
+      </mat-expansion-panel-header>
+  
+      <div *ngIf="user">
+  
+        <mat-form-field class="personal_form">
+          <input matInput placeholder="Website" [(ngModel)]="user.meta.website" (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput placeholder="Github" [(ngModel)]="user.meta.github" (keydown)="changes()">
+        </mat-form-field>
+  
+        <mat-form-field class="personal_form">
+          <input matInput placeholder="Linkedin" [(ngModel)]="user.meta.linkedin" (keydown)="changes()">
+        </mat-form-field>
+  
+      </div>
+  
+      <div class="actions">
+        <button mat-raised-button color="accent"
+         class="action-b2" matTooltip="Save about"
+        [disabled]="!_save" (click)="save()" matTooltip="Save"> 
+            <i class="material-icons">save</i>
+        </button>
+      </div>
+  
+    </mat-expansion-panel>
+  
+  
+  </mat-accordion>
+  
