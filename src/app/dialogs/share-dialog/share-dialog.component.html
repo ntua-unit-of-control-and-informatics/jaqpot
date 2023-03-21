@@ -124,4 +124,8 @@
   <button mat-raised-button color="primary" [disabled]="share" (click)="startSharing()">
     <mat-icon matTooltip="Share">send</mat-icon>
   </button>
+
+  <button mat-raised-button color="primary" (click)="makePublic()">
+    <mat-icon matTooltip="Make public. Everyone will have access to execute the model.">accessibility</mat-icon>
+  </button>
 </mat-dialog-actions>

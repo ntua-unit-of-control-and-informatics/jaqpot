@@ -3,7 +3,7 @@ import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete'
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {COMMA, E, ENTER} from '@angular/cdk/keycodes';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { Dataset, Model } from '../../jaqpot-client';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
@@ -95,19 +95,7 @@ export class ShareDialogComponent implements OnInit {
           this.organizationsToWrite.push(org.title)
           this.organizationsToRead.push(org.title)
         })
-        // this._organizationApi.getOrgById(orgid).then((org:Organization)=>{
-        //   if(typeof org. != 'undefined'){
-        //     org.affiliations.forEach(orgid =>{
-        //       if(!this.affiliatedOrgs.includes(orgid)){
-        //         this.affiliatedOrgs.push(orgid)
-        //       }
-        //     })
-        //   }
-        // })
       })
-      // this.organizationsToExecute = user.organizations.slice()
-      // this.organizationsToWrite = user.organizations.slice()
-      // this.organizationsToRead = user.organizations.slice()
     })
 
     if(this._entityType === "dataset"){
@@ -336,7 +324,11 @@ export class ShareDialogComponent implements OnInit {
       }else{
         this.share = true;
         this.cancell = true;
-      }
+    }
+    if(this.organizationsWillExecute.indexOf(org) < 0){
+      let ind = this.organizationsWillRead.indexOf(org)
+      this.organizationsWillRead.splice(ind, 1)
+    }
   }
 
   writeSelected(event: MatAutocompleteSelectedEvent): void {
@@ -409,7 +401,11 @@ export class ShareDialogComponent implements OnInit {
       }else{
         this.share = true;
         this.cancell = true;
-      }
+    }
+    if(this.organizationsWillWrite.indexOf(org) < 0){
+      let ind = this.organizationsWillRead.indexOf(org)
+      this.organizationsWillRead.splice(ind, 1)
+    }
   }
 
   executeSelected(event: MatAutocompleteSelectedEvent): void {
@@ -450,6 +446,14 @@ export class ShareDialogComponent implements OnInit {
     this.cancell = true;
   }
 
+
+  makePublic(){
+    this.organizationsWillExecute.push('@Everyone')
+    this.organizationsWillRead.push('@Everyone')
+    this.startSharing()
+  }
+
+
   startSharing(){
       switch(this._entityType) { 
         case "dataset": { 
@@ -464,7 +468,6 @@ export class ShareDialogComponent implements OnInit {
                   }
                 })
               })
-              // dataset.meta.read = this.organizationsWillRead.slice()
             }else{
               this.organizationsWillRead.forEach(orgTitle=>{
                 this.organizationsFull.forEach((o:Organization)=>{
@@ -473,7 +476,6 @@ export class ShareDialogComponent implements OnInit {
                   }
                 })
               })
-              // dataset.meta.read = dataset.meta.read.concat(this.organizationsWillRead)
             }
             if(typeof dataset.meta.write === 'undefined'){
               dataset.meta.write = []
@@ -484,7 +486,6 @@ export class ShareDialogComponent implements OnInit {
                   }
                 })
               })
-              // dataset.meta.write = this.organizationsWillWrite.slice()
             }else{
               this.organizationsWillWrite.forEach(orgTitle=>{
                 this.organizationsFull.forEach((o:Organization)=>{
@@ -493,7 +494,6 @@ export class ShareDialogComponent implements OnInit {
                   }
                 })
               })
-              // dataset.meta.write = dataset.meta.write.concat(this.organizationsWillWrite)
             }
             if(typeof dataset.meta.execute === 'undefined'){
               dataset.meta.execute = []
@@ -504,7 +504,6 @@ export class ShareDialogComponent implements OnInit {
                   }
                 })
               })
-              // dataset.meta.execute = this.organizationsWillExecute.slice()
             }else{
               this.organizationsWillWrite.forEach(orgTitle=>{
                 this.organizationsFull.forEach((o:Organization)=>{
@@ -513,10 +512,7 @@ export class ShareDialogComponent implements OnInit {
                   }
                 })
               })
-              // dataset.meta.execute = dataset.meta.write.concat(this.organizationsWillExecute)
             }
-            // let uniqueOrgs:string[] = this.organizationsWillRead.slice();
-            // let uniqueOrgs:string[] = this.organizationsToNotify.slice();
             let uniqueOrgs:string[] = Array.from(new Set(this.organizationsToNotify));
             let jind = uniqueOrgs.indexOf("Jaqpot")
             if(jind >= 0 ){
@@ -547,64 +543,91 @@ export class ShareDialogComponent implements OnInit {
             if(typeof model.meta.read === 'undefined'){
               model.meta.read = []
               this.organizationsWillRead.forEach(orgTitle=>{
-                this.organizationsFull.forEach((o:Organization)=>{
-                  if(o.title === orgTitle){
-                    model.meta.read.push(o._id) 
-                  }
-                })
+                if(orgTitle === '@Everyone'){
+                  model.meta.read.push('@Everyone')
+
+                }else{
+                  this.organizationsFull.forEach((o:Organization)=>{
+                    if(o.title === orgTitle){
+                      model.meta.read.push(o._id) 
+                    }
+                  })
+                }
               })
-              // model.meta.read = this.organizationsWillRead.slice()
             }else{
+              model.meta.read = []
               this.organizationsWillRead.forEach(orgTitle=>{
-                this.organizationsFull.forEach((o:Organization)=>{
-                  if(o.title === orgTitle){
-                    model.meta.read.push(o._id) 
-                  }
-                })
+                if(orgTitle === '@Everyone'){
+                  model.meta.read.push('@Everyone')
+                }else{
+                  this.organizationsFull.forEach((o:Organization)=>{
+                    if(o.title === orgTitle){
+                     
+                      model.meta.read.push(o._id) 
+                    }
+                  })
+                }
               })
-              // model.meta.read = model.meta.read.concat(this.organizationsWillRead)
             }
             if(typeof model.meta.write === 'undefined'){
               model.meta.write = []
               this.organizationsWillWrite.forEach(orgTitle=>{
-                this.organizationsFull.forEach((o:Organization)=>{
-                  if(o.title === orgTitle){
-                    model.meta.write.push(o._id) 
-                  }
-                })
+                if(orgTitle === '@Everyone'){
+                  model.meta.write.push('@Everyone')
+
+                }else{
+                  this.organizationsFull.forEach((o:Organization)=>{
+                    if(o.title === orgTitle){
+                      model.meta.write = []
+                      model.meta.write.push(o._id) 
+                    }
+                  })
+                }
               })
-              // model.meta.write = this.organizationsWillWrite.slice()
             }else{
+              model.meta.write = []
               this.organizationsWillWrite.forEach(orgTitle=>{
-                this.organizationsFull.forEach((o:Organization)=>{
-                  if(o.title === orgTitle){
-                    model.meta.write.push(o._id) 
-                  }
-                })
+                if(orgTitle === '@Everyone'){
+                  model.meta.write.push('@Everyone')
+
+                }else{
+                  this.organizationsFull.forEach((o:Organization)=>{
+                    if(o.title === orgTitle){
+                      
+                      model.meta.write.push(o._id) 
+                    }
+                  })
+                }
               })
-              // model.meta.write = model.meta.write.concat(this.organizationsWillWrite)
             }
             if(typeof model.meta.execute === 'undefined'){
               model.meta.execute = []
               this.organizationsWillExecute.forEach(orgTitle=>{
-                this.organizationsFull.forEach((o:Organization)=>{
-                  if(o.title === orgTitle){
-                    model.meta.execute.push(o._id) 
-                  }
-                })
+                if(orgTitle === '@Everyone'){
+                  model.meta.execute.push('@Everyone')
+                }else{
+                  this.organizationsFull.forEach((o:Organization)=>{
+                    if(o.title === orgTitle){
+                      model.meta.execute.push(o._id) 
+                    }
+                  })
+                }
               })
-              // model.meta.execute = this.organizationsWillExecute.slice()
             }else{
+              model.meta.execute = []
               this.organizationsWillExecute.forEach(orgTitle=>{
-                this.organizationsFull.forEach((o:Organization)=>{
-                  if(o.title === orgTitle){
-                    model.meta.execute.push(o._id) 
-                  }
-                })
+                if(orgTitle === '@Everyone'){
+                  model.meta.execute.push('@Everyone')
+                }else{
+                  this.organizationsFull.forEach((o:Organization)=>{
+                    if(o.title === orgTitle){
+                      
+                      model.meta.execute.push(o._id) 
+                    }
+                  })
+                }
               })
-              // model.meta.execute = model.meta.write.concat(this.organizationsWillExecute)
             }
-            // let uniqueOrgs:string[] = this.organizationsWillRead.slice();
             let uniqueOrgs:string[] = Array.from(new Set(this.organizationsToNotify));
             let jind = uniqueOrgs.indexOf("Jaqpot")
             if(jind >= 0 ){
@@ -637,31 +660,19 @@ export class ShareDialogComponent implements OnInit {
 
   toggleChange(event){
     if(event.checked === false){
-      // this.organizationsWillExecute = []
-      // this.organizationsWillRead = []
-      // this.organizationsWillWrite = []
       this.affiliatedOrgs.forEach(o =>{
         this.organizationsToExecute.push(o)
         this.organizationsToRead.push(o)
         this.organizationsToWrite.push(o)
       })
-      // this.organizationsToExecute = this.organizationsAll.slice()
-      // this.organizationsToRead = this.organizationsAll.slice()
-      // this.organizationsToWrite = this.organizationsAll.slice()
       this.share = true;
       this.cancell = true;
     }else{
-      // this.organizationsWillExecute = []
-      // this.organizationsWillRead = []
-      // this.organizationsWillWrite = []
       this.affiliatedOrgs.forEach(o =>{
         this.organizationsToExecute.push(o)
         this.organizationsToRead.push(o)
         this.organizationsToWrite.push(o)
       })
-      // this.organizationsToExecute = this.affiliatedOrgs.slice()
-      // this.organizationsToRead = this.affiliatedOrgs.slice()
-      // this.organizationsToWrite = this.affiliatedOrgs.slice()
       this.share = true;
       this.cancell = true;
 

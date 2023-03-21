@@ -12,6 +12,9 @@ import { Config } from '../../config/config';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { Organization, User } from '@euclia/accounts-client';
+import { SessionService } from '../../session/session.service';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-notification',
@@ -22,7 +25,11 @@ import { Router } from '@angular/router';
 export class NotificationComponent implements OnInit {
 
   notificationCount:number
+  notificationsTemp:Notification[] = new Array()
   notifications:Notification[] = new Array()
+
+  organizationsAll: Array<string> = []
+  organizationsFull: Array<Organization> = []
 
   constructor(
     private notificationService:NotificationService,
@@ -31,22 +38,99 @@ export class NotificationComponent implements OnInit {
     private dialogsService:DialogsService,
     private datasetService:DatasetService,
     private modelService:ModelApiService,
-    private router:Router
+    private router:Router,
+    private sessionService:SessionService
   ) { }
 
-  ngOnInit() {
+
+  async ngOnInit() {   
+
+    // this.userService.getUserById(this.sessionService.getUserId()).then((user:User) =>{
+    //   this.organizationsAll = user.organizations.slice()
+    //   this.organizationsAll.forEach(orgid => {
+    //     this.organizationService.getOrgById(orgid).then((org:Organization)=>{
+    //       this.organizationsFull.push(org)
+    //     })
+    //   })
+    // })
+
+    await this.getAllOrganizations()
+
+    // if(Config.notif_poll === true){
+    //   console.log("Starting pol")
+    //   interval(10000).pipe(
+    //     startWith(0),
+    //     switchMap(() => this.notificationService.getUnreadNotifications())
+    //   ).subscribe(notifsGot => {
+        
+    //     this.notificationsTemp = notifsGot
+    //     this.notificationsTemp.forEach( (notif:Notification) =>{
+    //       let org_name = this.organizationsFull.find(org_all => org_all._id === notif.organizationShared)
+          
+    //       notif.organizationShared = org_name.title
+    //       this.notifications.push(notif)
+    //     })
+    //     // this.notifications = notifsGot
+        
+    //     this.notifications.forEach
+    //     this.notificationService.countUnreadNotifications().subscribe(res =>{
+    //       this.notificationCount = res.headers.get("total")
+    //     })
+    //   })
+    // }  
+  }
+
+
+
+  async getAllOrganizations(){
+    this.userService.getUserById(this.sessionService.getUserId()).then((user:User) =>{
+      if (user.organizations){
+        this.organizationsAll = user.organizations.slice()
+        this.organizationsAll.forEach(orgid => {
+          this.organizationService.getOrgById(orgid).then((org:Organization)=>{
+            this.organizationsFull.push(org)
+            if(this.organizationsAll.length === this.organizationsFull.length){
+              this.startPoll()
+            }
+          })
+        })
+      }else{
+        this.organizationsAll = []
+        this.organizationsFull = []
+      }
+
+    })
+  }
+
+
+  startPoll(){
     if(Config.notif_poll === true){
       interval(10000).pipe(
         startWith(0),
         switchMap(() => this.notificationService.getUnreadNotifications())
       ).subscribe(notifsGot => {
-        this.notifications = notifsGot
+        
+        this.notificationsTemp = notifsGot
+        this.notificationsTemp.forEach( (notif:Notification) =>{
+          let org_name = this.organizationsFull.find(org_all => org_all._id === notif.organizationShared)
+          
+          notif.organizationShared = org_name.title
+          notif.organization_id = org_name._id
+          let found = this.notifications.find(notification => notification._id === notif._id )
+          if(typeof found === 'undefined'){
+            this.notifications.push(notif)
+          }
+        })        
+        this.notifications.forEach
         this.notificationService.countUnreadNotifications().subscribe(res =>{
           this.notificationCount = res.headers.get("total")
         })
       })
     }  
+
+
   }
+
 
   openNotifDialog(notif){
     this.dialogsService.openActualNotifDialog(notif,

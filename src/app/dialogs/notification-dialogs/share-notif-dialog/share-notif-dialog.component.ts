@@ -39,7 +39,7 @@ export class ShareNotifDialogComponent implements OnInit {
     this._userApi.getUserById(this._notification.from).then((user:User)=>{
       this.from = user
     })
-    this._organizationApi.getOrgById(this._notification.organizationShared).then((org:Organization) =>{
+    this._organizationApi.getOrgById(this._notification.organization_id).then((org:Organization) =>{
       this.organ = org
     })
     if(this._notification.entityShared.split("/")[0] === "dataset"){

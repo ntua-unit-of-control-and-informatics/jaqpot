@@ -21,7 +21,7 @@
       <button mat-menu-item (click)="openNotifDialog(notif)">
         <mat-icon>share</mat-icon>
         <span *ngIf="notif.viewed==false else no_bold">
-          <b> Shared {{notif.entityShared.split("/")[0]}}  </b> <!-- through {{notif.organizationShared}} -->
+          <b> Shared {{notif.entityShared.split("/")[0]}} through {{notif.organizationShared}}  </b> 
         </span>
         <ng-template #no_bold><span>Shared {{notif.entityShared.split("/")[0]}} through {{notif.organizationShared}}
           </span></ng-template>

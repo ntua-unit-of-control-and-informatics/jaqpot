@@ -21,6 +21,10 @@ import { User } from '@euclia/accounts-client/dist/models/user';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
 import { OrganizationService } from '../jaqpot-client/api/organization.service';
 
+
+import {NestedTreeControl} from '@angular/cdk/tree';
+import {MatTreeNestedDataSource} from '@angular/material/tree';
+
 // export interface Queries{
 //   value: string;
 //   viewValue: string;
@@ -65,6 +69,11 @@ export class HomeComponent implements OnInit {
   totalEntities:number;
 
 
+
+  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<FoodNode>();
+
+
   constructor(public oidcSecurityService: OidcSecurityService,
     public sessionService: SessionService,
     public router: Router,
@@ -81,7 +90,11 @@ export class HomeComponent implements OnInit {
     // private ngxPicaService: NgxPicaService,
     private elRef: ElementRef) {
 
+      this.dataSource.data = TREE_DATA;
+
   }
+
+  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
 
   ngOnInit() {
     let params:Map<string, any> = new Map();
@@ -94,12 +107,36 @@ export class HomeComponent implements OnInit {
     })
     let model_params:Map<string, any> = new Map();
     model_params.set("min", 0);
-    model_params.set("max", 10);
+    model_params.set("max", 40);
     let model_pars = new HttpParams().set("min", "0").set("max", "10");
     this.modelApi.getList(model_pars).subscribe((models:Model[])=>{
       this.models_to_view = models
     })
     
+    var url_arr = this.router.url.split("/")
+    if(url_arr[2] === 'shared'){
+      this.quick_view = false
+      this.queries_enabled = true
+      this.queries_for === 'Models'
+      if(url_arr[3] != "@Everyone" && url_arr[3] != 'undefined'){
+        this.orgService.getOrgById(url_arr[3]).then(org=>{
+          this.quick_view = false
+          this.queries_for = "Models"
+          this.organizationActivated = org
+          this.sharedChosen()
+        })
+      }else if(url_arr[3] === "@Everyone"){
+        this.queries_for = "Models"
+        this.publicChosen()
+      }else if(url_arr[3] === 'undefined'){
+        this.location.replaceState("/home/shared/@Everyone")
+        this.organizationActivated = {title:"No organanization available"}
+        this.queries_for = 'Models'
+        this.publicChosen()
+      }
+
+    }
+
   }
 
   ngOnAfterViewInit() {
@@ -117,6 +154,7 @@ export class HomeComponent implements OnInit {
   }
 
   sharedChosen() {
+    // this.location.replaceState("/home/shared/")
     this.query = "Shared";
     this.userApi.getUserById(this.sessionService.getUserId()).then(
       (user:User) => {
@@ -124,34 +162,45 @@ export class HomeComponent implements OnInit {
         // let index = user.organizations.indexOf("Jaqpot")
         // user.organizations.splice(index, 1)
         this.organizations = []
-        user.organizations.forEach((oId)=>{
-          this.orgService.getOrgById(oId).then(o=>{
-            this.organizations.push(o)
+        if(user.organizations){
+          user.organizations.forEach((oId)=>{
+            this.orgService.getOrgById(oId).then(o=>{
+              this.organizations.push(o)
+            })
           })
-        })
-        this.organizationsIds = user.organizations
-        if(this.organizationsIds.length > 0){
-          // this.organizationActivated = this.organizationsIds[0]
-          this.orgService.getOrgById(this.organizationsIds[0]).then(o=>{
-            this.organizationActivated = o
-            if(this.queries_for === 'Datasets'){
-              this.fetchOrgsDatasets(0, 10, this.organizationActivated._id)
-            }
-            if(this.queries_for === 'Models'){
-              this.fetchOrgsModels(0, 20, this.organizationActivated._id);
-            }
-          })
-
         }
+
+        if(user.organizations){
+          this.organizationsIds = user.organizations
+          if(this.organizationsIds.length > 0){
+            // this.organizationActivated = this.organizationsIds[0]
+            this.orgService.getOrgById(this.organizationsIds[0]).then(o=>{
+              if(this.organizationActivated.title === "No organanization available"){
+                this.organizationActivated = o
+              }
+              this.location.replaceState("/home/shared/" + o._id)
+              if(this.queries_for === 'Datasets'){
+                this.fetchOrgsDatasets(0, 10, this.organizationActivated._id)
+              }
+              if(this.queries_for === 'Models'){
+                this.fetchOrgsModels(0, 20, this.organizationActivated._id);
+              }
+            })
+          }
+        }
+
       }
     )
   }
 
   mineChosen() {
+    this.location.replaceState("/home/")
     this.query = "Mine"
     this.organizationActivated = {title:"No organanization available"}
     delete this.organizations 
-    this.paginator.firstPage()
+    if(typeof this.paginator != 'undefined'){
+      this.paginator.firstPage()
+    }
     if(this.queries_for === 'Datasets'){
       this.fetchDatasets(0, 10, Dataset.ExistenceEnum.UPLOADED)
     }
@@ -159,6 +208,22 @@ export class HomeComponent implements OnInit {
       this.fetchModels(0, 20);
     }
   }
+
+
+  publicChosen(){
+    this.location.replaceState("/home/shared/@Everyone")
+    this.query = "Public"
+    this.organizationActivated = {title:"No organanization available"}
+    delete this.organizations 
+    if(typeof this.paginator != 'undefined'){
+      this.paginator.firstPage()
+    }
+    if(this.query === 'Public'){
+      this.fetchOrgsModels(0, 20, "@Everyone");
+      // this.fetchModels(0, 20);
+    }
+  }
+
 
   goToDatasetView() {
     this.trash_view = false;
@@ -191,8 +256,7 @@ export class HomeComponent implements OnInit {
       this.fetchModels(0,20)
     }
     this.queries_for = "Models"
-    
-    // this.fetchModels(0, 20);
+    this.query = "Mine"
     this.quick_view = false
     this.queries_enabled = true
     this.add_dataset = false
@@ -246,39 +310,6 @@ export class HomeComponent implements OnInit {
       Array.from(files).forEach((file:File) =>{
         files2.push(file)
       })
-      // var options:NgxPicaResizeOptionsInterface = <NgxPicaResizeOptionsInterface>{};
-      // let aspectRatio:AspectRatioOptions = <AspectRatioOptions>{};
-      // options.aspectRatio = aspectRatio
-      // options.aspectRatio.keepAspectRatio = true;
-      // this.ngxPicaService.resizeImages(files2, 512, 512, options).subscribe((imageResized: File) => {
-      //   let reader: FileReader = new FileReader();
-      //   reader.readAsDataURL(imageResized);
-      //   reader.onload = (e) =>{
-      //     let image_to_csv = imageResized.name.toString() + "," + reader.result.toString() + "\n";
-      //     images_csv += image_to_csv
-      //     images[imageResized.name] = reader.result.toString();
-      //     i += 1;
-      //     if(images_num === i){
-      //       this.dialogsService.addImageCsvDataset(images_csv, this.datasetFactory, this.datasetToViewService,
-      //          this.featureApi, this.datasetApi, this.featFactory)
-      //     }
-      //   }, (err: NgxPicaErrorInterface) => {
-      //     throw err.err;
-      // }})
-
-      // Array.from(files).forEach((file:File) =>{
-      //   let reader: FileReader = new FileReader();
-      //   reader.readAsDataURL(file);
-      //   reader.onload = (e) =>{
-      //     images[file.name] = reader.result.toString();
-      //     i += 1;
-      //     if(images_num === i){
-      //       this.dialogsService.addImageDataset(images, this.datasetFactory, this.featureApi, this.datasetApi)
-      //     }
-      //   }        
-      // })
-
-
     }
     this.dataInput.nativeElement.value = "";
 
@@ -311,7 +342,6 @@ export class HomeComponent implements OnInit {
         this.fetchDatasetsOnTrash(start, max)
         this.fetchModelsOnTrash(start, max)
       }
-      // this.fetchModels(0, 20);
     }
 
 
@@ -333,6 +363,18 @@ export class HomeComponent implements OnInit {
   }
 
   fetchModels(min:number, max:number){
+    this.models_to_view = []
+    let params = new HttpParams().set("start", min.toString()).set("max", max.toString());
+    this.modelApi.getList(params).subscribe((models:Model[]) => {
+      this.models_to_view = models
+    })
+    this.modelApi.count(params).subscribe((counted:Response)=>{
+      this.totalEntities = Number(counted.headers.get('total'))
+    })
+  }
+
+
+  fetchPublicModels(min:number, max:number){
     this.models_to_view = []
     let params = new HttpParams().set("start", min.toString()).set("max", max.toString());
     this.modelApi.getList(params).subscribe((models:Model[]) => {
@@ -376,6 +418,7 @@ export class HomeComponent implements OnInit {
 
   fetchOrgsModels(min:Number, max:Number, organization:string){
     this.models_to_view = []
+    this.location.replaceState("/home/shared/" + organization)
     let params = new HttpParams().set("start", min.toString()).set("max", max.toString()).set("organization", organization);
     this.modelApi.getList(params).subscribe((models:Model[]) => {
       this.models_to_view = models
@@ -403,3 +446,35 @@ export class HomeComponent implements OnInit {
   }
 
 }
+
+
+
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+
+const TREE_DATA: FoodNode[] = [
+  {
+    name: 'Models',
+    children: [{name: 'Mine'}
+    , {
+        name: 'Shared',
+        children: [{name: "Org1"}]
+      }
+    , {name: 'Public'}],
+  },
+  {
+    name: 'Vegetables',
+    children: [
+      {
+        name: 'Green',
+        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
+      },
+      {
+        name: 'Orange',
+        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
+      },
+    ],
+  },
+];

@@ -30,6 +30,13 @@
       <mat-icon>folder_shared</mat-icon>
       <span>Shared</span>
     </button>
+
+    <button mat-menu-item (click)="publicChosen()">
+      <mat-icon>accessibility</mat-icon>
+      <span>Public</span>
+    </button>
+
+
   </mat-menu>
 
     <p *ngIf="organizations && !trash_view" class="query_chose">With {{organizationActivated.title}}</p>
@@ -78,12 +85,40 @@
 <div class="home_all">
 
   <div class="home_nav">
+
+    <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+          {{node.name}}
+      </mat-tree-node>
+      <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+          <div class="mat-tree-node">
+            <button mat-icon-button matTreeNodeToggle
+                    [attr.aria-label]="'Toggle ' + node.name">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            {{node.name}}
+          </div>
+          <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+              role="group">
+            <ng-container matTreeNodeOutlet></ng-container>
+        </div>
+      </mat-nested-tree-node>
+    </mat-tree> -->
+
+
+
     <mat-list role="list">
-      <a mat-list-item role="listitem" (click)="goToDatasetView()" class="nav_item">
+
+
+      <!-- <a mat-list-item role="listitem" (click)="goToDatasetView()" class="nav_item">
         <mat-icon mat-list-icon class="list_icon">attachment</mat-icon>
         <h4 mat-line>Datasets</h4>
         <p mat-line> Shared / Private </p>
-      </a>
+      </a> -->
+
+
       <a mat-list-item role="listitem" (click)="goToModelView()">
         <mat-icon mat-list-icon class="list_icon">note</mat-icon>
         <h4 mat-line>Models</h4>

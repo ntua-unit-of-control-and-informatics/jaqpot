@@ -24,9 +24,13 @@ import { AccountHomeComponent } from './account-home/account-home.component';
 import { EditAboutComponent } from './account-components/edit-about/edit-about.component';
 import { CreateOrganizationComponent } from './dialogs/create-organization/create-organization.component';
 import { OrganizationComponent } from './account-components/organization/organization.component';
+import { NglComponent } from './NGL/ngl/ngl.component';
+import { CreateOrgComponent } from './account-components/create-org/create-org.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'home/shared/', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'home/shared/:id', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'account', component: AccountBaseComponent, canActivate: [AuthGuard]},
   {path: 'algorithms', component: AlgorithmsComponent, canActivate: [AuthGuard]},
   {path: 'datasets', component: DatasetListComponent, canActivate: [AuthGuard]},
@@ -43,9 +47,10 @@ const routes: Routes = [
   {path: 'notifications', component: JaqpotNotificationsComponent, canActivate: [AuthGuard]},
   {path: "account/home", component: AccountHomeComponent, canActivate: [AuthGuard]},
   {path:'edit/about', component:EditAboutComponent},
-  {path:'create/organization', component:CreateOrganizationComponent},
+  {path:'create/organization', component:CreateOrgComponent},
   {path: 'organization/:id', component:  OrganizationComponent},
   {path: 'edit/org/:id', component:EditAboutComponent},
+  {path: 'viewer', component:NglComponent},
   {path: '', component:  FrontComponent}
 ];
 

@@ -1,1 +1,21 @@
-<p>create-org works!</p>
+<div class="create-org mat-elevation-z1">
+
+    <h4 class="org_h">Give organizations name</h4>
+
+    <mat-form-field appearance="outline" class="input">
+        <mat-label>Organizations name</mat-label>
+        <input matInput placeholder="Name"  (input)="changes($event.target.value)" [(ngModel)]="_title"
+        [ngModelOptions]="{standalone: true}">
+        <mat-icon matSuffix>domain</mat-icon>
+        <mat-hint>Must be at least three characters long</mat-hint>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" class="a_b_1" [disabled]="!_save" (click)="create()">
+        <mat-icon>group_add</mat-icon>
+    </button>
+
+    <button mat-raised-button class="a_b_0" (click)="cancel()">
+        Cancel
+    </button>
+
+</div>

@@ -28,6 +28,8 @@ export interface Notification{
     entityShared?: string
 
     organizationShared?: string
+
+    organization_id?: string
     
     resolved?: boolean
     

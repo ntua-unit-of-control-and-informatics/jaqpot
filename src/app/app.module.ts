@@ -118,6 +118,8 @@ import { OrganizationComponent } from './account-components/organization/organiz
 import { QuotsComponent } from './account-components/quots/quots.component';
 import { OrgsBaseComponent } from './account-components/orgs-base/orgs-base.component';
 import { UserListComponent } from './account-components/user-list/user-list.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { NglComponent } from './NGL/ngl/ngl.component';
 
 // import { EucliaAccounts } from '@euclia/accounts-client';
 /**
@@ -166,6 +168,7 @@ import { UserListComponent } from './account-components/user-list/user-list.comp
     MatChipsModule,
     MatDialogModule,
     MatGridListModule,
+    MatTreeModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
@@ -223,6 +226,7 @@ export class MaterialModule {}
   ],
   exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule, MatFormFieldModule, MatInputModule],
   declarations: [AppComponent,
+    NglComponent,
     ModelMetaComponent,
     AccountHomeComponent,
     UserBaseComponent,
@@ -322,6 +326,7 @@ export function configureAuth(oidcConfigService: OidcConfigService, httpClient: 
   const setupAction$ = httpClient.get<any>(`/assets/conf.json`).pipe(
       map((customConfig:configf) => {
         Config.JaqpotBase = customConfig.jaqpotApi
+        Config.AccountsApi = customConfig.accountsApi
         // Config.AccountsApi = customConfig.accountsApi
         // console.log("Accounts api at:")
         // console.log(Config.AccountsApi)
