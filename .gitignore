@@ -48,3 +48,5 @@ Thumbs.db
 >>>>>>> Stashed changes
 pkg/
 bin/gopls
+/.angular/*
+.angular/
