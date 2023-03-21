@@ -1,6 +1,5 @@
 import { P, U } from '@angular/cdk/keycodes';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { AnyRecord } from 'dns';
 declare var NGL: any;
 import { PocketService } from '../../jdock/pocket.service';
 import { Pocket } from '../../jdock/models/pocket'; 
@@ -17,7 +16,7 @@ import { PluginConfig } from 'molstar/lib/mol-plugin/config';
 // window["jQuery"] = $;
 // window["$3Dmol"] = $3Dmol;
 
-import { Stage } from 'ngl'
+// import { Stage } from 'ngl'
 
 // import Structure from 'ngl/src/structure/structure.js'
 
