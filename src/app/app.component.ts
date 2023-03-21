@@ -1,16 +1,12 @@
-import { AfterViewInit, Component , Inject} from '@angular/core';
+import {  Component } from '@angular/core';
 import { DialogsService } from './dialogs/dialogs.service';
-import { FormControl, Validators } from '@angular/forms';
 import {OnInit, OnDestroy} from '@angular/core';
-import { Credentials } from './ui-models/credentials';
 import { LoginDialogComponent } from './dialogs/login-logout-dialog/login-dialog.component'
 import { LogoutDialogComponent } from './dialogs/login-logout-dialog/logout-dialog.component'
-// import { AccountDialogComponent } from './dialogs/account-dialog/account-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { SessionService } from './session/session.service';
 import { Subscription, Observable } from 'rxjs';
-import { element } from 'protractor';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { OidcSecurityService, PublicConfiguration, OidcClientNotification } from 'angular-auth-oidc-client';
 
