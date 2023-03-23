@@ -15,31 +15,31 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {OverlayContainer} from '@angular/cdk/overlay';
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
-import {MatChipsModule} from '@angular/material/chips'
-import {MatDialogModule} from '@angular/material//dialog'
+import {MatLegacyChipsModule as MatChipsModule} from '@angular/material/legacy-chips'
+import {MatDialogModule} from '@angular/material/dialog'
 import {MatGridListModule} from '@angular/material/grid-list'
-import {MatProgressBarModule} from '@angular/material/progress-bar'
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
-import {MatRadioModule} from '@angular/material/radio'
-import {MatSelectModule} from '@angular/material/select'
-import {MatSlideToggleModule, _MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle'
+import {MatLegacyProgressBarModule as MatProgressBarModule} from '@angular/material/legacy-progress-bar'
+import {MatLegacyProgressSpinnerModule as MatProgressSpinnerModule} from '@angular/material/legacy-progress-spinner'
+import {MatLegacyRadioModule as MatRadioModule} from '@angular/material/legacy-radio'
+import {MatLegacySelectModule as MatSelectModule} from '@angular/material/legacy-select'
+import {MatLegacySlideToggleModule as MatSlideToggleModule, _MatLegacySlideToggleRequiredValidatorModule as _MatSlideToggleRequiredValidatorModule} from '@angular/material/legacy-slide-toggle'
 import {MatStepperModule} from '@angular/material/stepper'
-import {MatTabsModule} from '@angular/material/tabs'
-import {MatAutocompleteModule} from '@angular/material/autocomplete'
-import {MatTableModule} from '@angular/material/table'
+import {MatLegacyTabsModule as MatTabsModule} from '@angular/material/legacy-tabs'
+import {MatLegacyAutocompleteModule as MatAutocompleteModule} from '@angular/material/legacy-autocomplete'
+import {MatLegacyTableModule as MatTableModule} from '@angular/material/legacy-table'
 import {MatIconModule} from '@angular/material/icon'
-import {MatButtonModule} from '@angular/material/button'
-import {MatCardModule} from '@angular/material/card'
+import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button'
+import {MatLegacyCardModule as MatCardModule} from '@angular/material/legacy-card'
 import {MatSidenavModule} from '@angular/material/sidenav'
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatInputModule} from '@angular/material/input'
+import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field'
+import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input'
 import {MatExpansionModule} from '@angular/material/expansion'
-import {MatTooltipModule} from '@angular/material/tooltip'
-import {MatListModule} from '@angular/material/list'
-import {MatPaginatorModule} from '@angular/material/paginator'
-import {MatSnackBarModule} from '@angular/material/snack-bar'
+import {MatLegacyTooltipModule as MatTooltipModule} from '@angular/material/legacy-tooltip'
+import {MatLegacyListModule as MatListModule} from '@angular/material/legacy-list'
+import {MatLegacyPaginatorModule as MatPaginatorModule} from '@angular/material/legacy-paginator'
+import {MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar'
 import {MatBadgeModule} from '@angular/material/badge'
-import {MatMenuModule} from '@angular/material/menu'
+import {MatLegacyMenuModule as MatMenuModule} from '@angular/material/legacy-menu'
 import {AppComponent} from './app.component';
 
 // import { DialogsModule } from './dialogs/dialogs.module';
@@ -59,7 +59,7 @@ import { Router } from '@angular/router';
 import { SessionModule } from './session/session.module';
 import { AlgorithmDetailComponent } from './algorithms/algorithm-detail/algorithm-detail.component';
 import { DatasetDetailComponent } from './dataset/dataset-detail/dataset-detail.component';
-import { AuthModule, OidcSecurityService, OidcConfigService, LogLevel, } from 'angular-auth-oidc-client';
+import { AuthModule, OidcSecurityService, OidcConfigService } from 'angular-auth-oidc-client';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import {  HttkBaseComponent } from './httk/base/httk.base.component';
@@ -108,7 +108,7 @@ import { ModelMetaComponent } from './models/model-meta/model-meta.component';
 
 import { ChartComponentComponent } from './base/components/chart-component/chart-component.component';
 import { NgApexchartsModule } from "ng-apexcharts";
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatLegacyCheckboxModule as MatCheckboxModule} from '@angular/material/legacy-checkbox';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { AccountHomeComponent } from './account-home/account-home.component';
 import { UserBaseComponent } from './account-components/user-base/user-base.component';
@@ -355,4 +355,11 @@ export function configureAuth(oidcConfigService: OidcConfigService, httpClient: 
   );
 
   return () => setupAction$.toPromise();
+}
+
+
+declare global {
+  interface Navigator {
+      msSaveBlob?: (blob: any, defaultName?: string) => boolean
+  }
 }

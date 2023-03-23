@@ -1,7 +1,7 @@
 import {throwError as observableThrowError,  Observable } from 'rxjs';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import '../rxjs-operators';
-import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
@@ -10,7 +10,6 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo, Model, Task } from '../model/models';
-import { Domain } from 'domain';
 
 
 

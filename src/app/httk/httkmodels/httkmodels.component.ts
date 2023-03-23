@@ -4,7 +4,7 @@ import { HttpParams } from '@angular/common/http';
 import { Model, Dataset } from '../../jaqpot-client';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 
 @Component({
   selector: 'app-httkmodels',

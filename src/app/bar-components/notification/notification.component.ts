@@ -14,7 +14,6 @@ import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Organization, User } from '@euclia/accounts-client';
 import { SessionService } from '../../session/session.service';
-import { not } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-notification',

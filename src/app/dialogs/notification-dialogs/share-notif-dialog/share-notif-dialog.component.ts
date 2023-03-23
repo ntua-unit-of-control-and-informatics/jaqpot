@@ -6,8 +6,8 @@ import { UserService } from '../../../jaqpot-client/api/user.service';
 import { ModelApiService } from '../../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
 import { MetaInfo, Dataset, Model } from '../../../jaqpot-client';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import {MatDialogRef} from '@angular/material/dialog'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import {MatLegacyDialogRef as MatDialogRef} from '@angular/material/legacy-dialog'
 import { Router } from '@angular/router';
 import { User } from '@euclia/accounts-client/dist/models/user';
 import { Organization } from '@euclia/accounts-client/dist/models/models';

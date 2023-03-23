@@ -1,12 +1,12 @@
 import { Component, OnInit,ViewChild, AfterViewInit } from '@angular/core';
 import { Dataset } from '../../jaqpot-client/model/dataset';
 import { Subscription ,  BehaviorSubject ,  merge } from 'rxjs';
-import { MatPaginator} from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator} from '@angular/material/legacy-paginator';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 
 @Component({
   selector: 'app-dataset-list',

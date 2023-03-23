@@ -27,9 +27,12 @@ export class DatasourceToCsvService {
         var blob = new Blob(["\ufeff"+csvData], { type: 'text/csv; charset=utf-8' });
         var url = window.URL.createObjectURL(blob);
         const datasetName = filename + ".csv"
-        if(navigator.msSaveOrOpenBlob) {
-            navigator.msSaveBlob(blob, datasetName);
-        } else {
+
+        const nav = (window.navigator as any);
+
+        if (nav.msSaveOrOpenBlob) {
+            nav.msSaveOrOpenBlob(blob, datasetName);
+          } else {
             var a = document.createElement("a");
             a.href = url;
             a.download = datasetName;

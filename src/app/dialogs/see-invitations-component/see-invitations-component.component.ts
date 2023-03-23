@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { InvitationsService } from '../../accounts-api/invitations.service';
 import { HttpParams } from '@angular/common/http';
 import { Invitation } from '../../ui-models/invitation';

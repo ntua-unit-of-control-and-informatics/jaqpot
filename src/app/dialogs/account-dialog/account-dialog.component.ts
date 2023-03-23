@@ -1,5 +1,5 @@
 import { Component, Optional, ViewEncapsulation, OnInit} from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { ErrorReport } from '../../ui-models/errorReport'
 import { SessionService } from '../../session/session.service';
 import { Router} from '@angular/router';

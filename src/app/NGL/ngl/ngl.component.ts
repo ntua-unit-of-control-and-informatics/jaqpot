@@ -5,6 +5,10 @@ import { PocketService } from '../../jdock/pocket.service';
 import { Pocket } from '../../jdock/models/pocket'; 
 
 
+// import { DefaultPluginSpec, PluginSpec } from 'molstar/lib/mol-plugin/spec';
+// import { PluginContext  } from 'molstar/lib/mol-plugin/context';
+// import { PluginConfig } from 'molstar/lib/mol-plugin/config';
+
 // import { PluginContext } from 'molstar/lib/mol-plugin/context';
 // import { Viewer } from 'molstar/build/viewer/molstar'
 // import { DefaultPluginSpec, PluginSpec } from 'molstar/lib/mol-plugin/spec';

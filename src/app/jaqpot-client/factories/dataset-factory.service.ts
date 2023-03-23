@@ -8,7 +8,6 @@ import { FeatureInfoBuilderService } from '../builders/feature-info-builder.serv
 import { DataEntryBuilderService } from '../builders/data-entry-builder.service';
 import { FeatureAndValue } from '../../ui-models/featureAndValue';
 import { Config } from '../../config/config';
-import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
 
 @Injectable({
   providedIn: 'root'

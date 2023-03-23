@@ -2,7 +2,7 @@ import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'app-update-photo',

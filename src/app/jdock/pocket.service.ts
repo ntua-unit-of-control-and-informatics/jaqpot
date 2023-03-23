@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { title } from 'process';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap, catchError } from 'rxjs/operators';
 import { Config } from '../config/config';

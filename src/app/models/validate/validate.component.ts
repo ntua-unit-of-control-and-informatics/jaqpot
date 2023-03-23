@@ -184,7 +184,10 @@ getTask(taskId){
       })
     var blob = new Blob([csvData], { type: 'text/csv' });
     var url = window.URL.createObjectURL(blob);
-    if(navigator.msSaveOrOpenBlob) {
+
+    const nav = (window.navigator as any);
+
+    if(nav.msSaveOrOpenBlob) {
       navigator.msSaveBlob(blob, "dataset.csv");
     } else {
       var a = document.createElement("a");

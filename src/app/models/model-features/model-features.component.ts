@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input, EventEmitter, Output, OnChanges } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { Observable, of, Subject } from 'rxjs';
 import { Model, Feature, MetaInfo } from '../../jaqpot-client';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';

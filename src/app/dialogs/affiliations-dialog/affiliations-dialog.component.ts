@@ -3,7 +3,7 @@ import { OrganizationService } from '../../jaqpot-client/api/organization.servic
 import { NotificationService } from '../../jaqpot-client/api/notification.service';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { SessionService } from '../../session/session.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({

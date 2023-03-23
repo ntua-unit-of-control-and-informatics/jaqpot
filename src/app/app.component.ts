@@ -3,7 +3,7 @@ import { DialogsService } from './dialogs/dialogs.service';
 import {OnInit, OnDestroy} from '@angular/core';
 import { LoginDialogComponent } from './dialogs/login-logout-dialog/login-dialog.component'
 import { LogoutDialogComponent } from './dialogs/login-logout-dialog/logout-dialog.component'
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { SessionService } from './session/session.service';
 import { Subscription, Observable } from 'rxjs';
 import { Router } from '@angular/router';

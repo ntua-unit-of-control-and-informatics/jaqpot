@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 @Component({
   selector: 'app-data-model-view',

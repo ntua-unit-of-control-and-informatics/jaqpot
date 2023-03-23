@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { LoginDialogComponent } from './login-logout-dialog/login-dialog.component';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Credentials } from '../ui-models/credentials';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { ErrorReport } from '../ui-models/errorReport';

@@ -3,8 +3,8 @@ import { AlgorithmService } from '../../jaqpot-client/api/algorithm.service';
 import { Algorithm } from '../../jaqpot-client';
 import { startWith, scan, switchMap, map, catchError} from 'rxjs/operators';
 import { SessionService } from '../../session/session.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { merge } from 'rxjs';
 
 @Component({

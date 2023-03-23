@@ -5,8 +5,8 @@ import { ErrorReport } from '../../ui-models/errorReport';
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { MetaInfo } from '../../jaqpot-client';
 import { ProfilepicDialogComponent } from '../../dialogs/profilepic-dialog/profilepic-dialog.component';
-import {MatDialog} from '@angular/material/dialog'
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatLegacyDialog as MatDialog} from '@angular/material/legacy-dialog'
+import {MatLegacySnackBar as MatSnackBar} from '@angular/material/legacy-snack-bar';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { SocialBaseComponent } from '../social.base/social.base.component';
 import { CreateOrganizationComponent } from '../../dialogs/create-organization/create-organization.component';

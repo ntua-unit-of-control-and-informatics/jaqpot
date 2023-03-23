@@ -16,7 +16,7 @@ import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factor
 import { DatasetToViewdataService } from '../services/dataset-to-viewdata.service';
 import { HttpParams } from '@angular/common/http';
 import { ViewItem } from './data-model-view/data-model-view.component';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { LegacyPageEvent as PageEvent, MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { User } from '@euclia/accounts-client/dist/models/user';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
 import { OrganizationService } from '../jaqpot-client/api/organization.service';

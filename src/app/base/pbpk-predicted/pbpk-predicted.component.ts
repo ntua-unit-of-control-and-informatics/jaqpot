@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { Dataset, Feature, FeatureInfo, ErrorReport, DataEntry } from '../../jaqpot-client';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { Subscription, merge, of, Subject, BehaviorSubject } from 'rxjs';
 import { startWith, switchMap, catchError, map } from 'rxjs/operators';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
@@ -174,7 +174,9 @@ export class PbpkPredictedComponent implements OnChanges {
 
     var blob = new Blob([csvData], { type: 'text/csv' });
     var url = window.URL.createObjectURL(blob);
-    if(navigator.msSaveOrOpenBlob) {
+
+    const nav = (window.navigator as any);
+    if(nav.msSaveOrOpenBlob) {
       navigator.msSaveBlob(blob, "dataset.csv");
     } else {
       var a = document.createElement("a");

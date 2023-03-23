@@ -11,7 +11,7 @@ import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpParams, HttpResponse} from '@angular/common/http';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { BehaviorSubject } from 'rxjs';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { User } from '@euclia/accounts-client/dist/models/user';
 
 @Component({
