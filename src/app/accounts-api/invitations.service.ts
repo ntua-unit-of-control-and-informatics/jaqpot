@@ -23,7 +23,8 @@ export class InvitationsService extends BaseApiService<Invitation> {
 
     public getInvitations(params:HttpParams):Observable<Array<Invitation>>{
       let path = Config.AccountsApi + "/invitation"
-      const token = this.oidcSecurityService.getToken();
+      // const token = this.oidcSecurityService.getToken();
+      const token = this._token
       const tokenValue = 'Bearer ' + token;
       let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
       return this.http.get<Array<Invitation>>(path, { headers: headers, params: params} ).pipe(
@@ -33,8 +34,9 @@ export class InvitationsService extends BaseApiService<Invitation> {
     }
 
     public countInvitations(params:HttpParams):Observable<any>{
-      let path = Config.AccountsApi + "/invitation"
-      const token = this.oidcSecurityService.getToken();
+      let path = Config.AccountsApi + "/invitation"    
+      // const token = this.oidcSecurityService.getToken();
+      const token = this._token
       const tokenValue = 'Bearer ' + token;
       let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         return this.http.get(path, { headers: headers, params: params, observe:'response' } ).pipe(

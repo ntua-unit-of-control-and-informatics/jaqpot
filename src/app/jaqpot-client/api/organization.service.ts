@@ -12,9 +12,7 @@
 
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { Inject, Injectable, Optional } from '@angular/core';
-import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
-import { Observable , of} from 'rxjs';
+import { Injectable } from '@angular/core';
 import '../rxjs-operators';
 
 // import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
@@ -34,6 +32,7 @@ export class OrganizationService{
     private orgnanization:Organization;
     _organizationBase:string
     private accountsClient:IEucliaAccounts
+    _token : string
 
     constructor(http: HttpClient,
         public sessionServise:SessionService,
@@ -45,10 +44,15 @@ export class OrganizationService{
             this._privateBasePath = Config.JaqpotBase;
             this.accountsClient = new EucliaAccountsFactory(Config.AccountsApi).getClient(),
             this._organizationBase = this._privateBasePath + "/organization/";
+
+            this.oidcSecurityService.getAccessToken().subscribe(t=>{
+                this._token = t
+            })
         }
 
         public getOrgById(id:string):Promise<Organization>{
-            const token = this.oidcSecurityService.getToken();
+            // const token = this.oidcSecurityService.getToken();
+            const token = this._token
             return this.accountsClient.getOrganization(id, token)
         }
 

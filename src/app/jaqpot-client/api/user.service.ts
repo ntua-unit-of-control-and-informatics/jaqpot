@@ -22,6 +22,8 @@ export class UserService{
     private _userBase : string;
     private accountsClient:IEucliaAccounts
 
+    _token_local: string
+
     constructor(public http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
@@ -32,11 +34,15 @@ export class UserService{
             this.accountsClient = new EucliaAccountsFactory(Config.AccountsApi).getClient(),
             this._privateBasePath = Config.JaqpotBase;
             this._userBase = this._privateBasePath + "/user/"
+            this.oidcSecurityService.getIdToken().subscribe(t=>{
+                this._token_local = t
+            })
         }
 
 
     public getUserById(id:string): Promise<EucliaUser> {
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token_local
         return this.accountsClient.getUser(id, token)        
     }
 

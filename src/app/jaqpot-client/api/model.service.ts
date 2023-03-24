@@ -19,15 +19,23 @@ export class ModelApiService extends BaseClient<Dataset>{
     _privateBasePath:string;
     _modelBase:string = "/model/"
 
+    _token_local: string
+
     constructor(http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/model/")
+
+            this.oidcSecurityService.getAccessToken().subscribe(t=>{
+                this._token = t
+            })
+
         }
 
     public putMeta(model:Model):Observable<MetaInfo>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let params = new HttpParams().set("query", "UNREAD");
@@ -40,7 +48,8 @@ export class ModelApiService extends BaseClient<Dataset>{
     }
 
     public predict(modelId:string, datasetUri:string, visible, doa:boolean):Observable<Task>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization', tokenValue);
         let pathFormed = Config.JaqpotBase + this._modelBase + modelId 
@@ -56,7 +65,8 @@ export class ModelApiService extends BaseClient<Dataset>{
     }
 
     public updateOnTrash(modelId:string, model:Model):Observable<Model>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let pathFormed = Config.JaqpotBase + this._modelBase + modelId + '/ontrash';

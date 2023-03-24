@@ -19,7 +19,7 @@ export class SearchApiService {
     _privateBasePath:string;
     private dataset:Dataset;
     _searchBase:string = "/search/"
-
+    _token_local :string
 
 
     constructor(
@@ -28,10 +28,14 @@ export class SearchApiService {
         private dialogsService:DialogsService,
         private oidcSecurityService: OidcSecurityService){
             // super(http, dialogsService, oidcSecurityService, "/task/")
+            this.oidcSecurityService.getIdToken().subscribe(t =>{
+                this._token_local = t
+            })
     }
 
     public startSearch(searchTerm:string):Observable<SearchSession>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token_local
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let pathFormed = Config.JaqpotBase + this._searchBase
@@ -44,7 +48,8 @@ export class SearchApiService {
     }
 
     public searchSession(sessionId:string, from:number, to:number):Observable<FountEntities>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token_local
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let pathFormed = Config.JaqpotBase + this._searchBase + "session";

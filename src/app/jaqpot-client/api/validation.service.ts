@@ -27,7 +27,8 @@ export class ValidationApiService extends BaseClient<Task>{
 
 
     public externalValidation(modelUri:string, datasetUri:string, validationType:string):Observable<Task>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization', tokenValue);
         let pathFormed = Config.JaqpotBase + this._validateBase + "test_set_validation"

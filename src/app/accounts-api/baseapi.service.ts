@@ -38,16 +38,23 @@ export class BaseApiService < T > {
   private _defaultHeaders: Headers = new Headers();
   private _path: string;
 
+  _token: string
+
   constructor(protected http: HttpClient,
     protected dialogsService: DialogsService,
     protected oidcSecurityService: OidcSecurityService,
     protected requestPath: String) {
     this._basePath = Config.AccountsApi
     this._path = this._basePath + this.requestPath
+    this.oidcSecurityService.getIdToken().subscribe(t=>{
+      this._token = t
+    })
+
   }
 
   public post < T > (entity: any): Observable < T > {
-    const token = this.oidcSecurityService.getToken();
+    // const token = this.oidcSecurityService.getToken();
+    const token = this._token
     const tokenValue = 'Bearer ' + token;
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -57,18 +64,12 @@ export class BaseApiService < T > {
       headers: headers}).pipe(tap((res:Response) =>{
         return res
       }),catchError(err =>this.dialogsService.onError(err)))
-    // return this.http.post(pathFormed, entity, {
-    //   headers: headers
-    // }).pipe(
-    //   tap((res: Response) => {
-    //     return res
-    //   })
-    // )
   }
 
     public getWithIdSecured<T>(id:string): Observable<T>{
         let params = new HttpParams();
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
         let pathFormed = this._path + id
@@ -105,7 +106,8 @@ export class BaseApiService < T > {
 
     public putWithIdSecured<T>(id:string, updateIt:any): Observable<T>{
         let params = new HttpParams();
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
         let pathFormed = this._path + id
@@ -118,7 +120,8 @@ export class BaseApiService < T > {
 
     public putEntitySecured<T>(updateIt:any): Observable<T>{
         let params = new HttpParams();
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
         let pathFormed = this._path
@@ -131,7 +134,8 @@ export class BaseApiService < T > {
 
     public putWithParamsEntitySecured<T>(updateIt:any, params:HttpParams): Observable<T>{
       // let params = new HttpParams();
-      const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
       const tokenValue = 'Bearer ' + token;
       let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
       let pathFormed = this._path
@@ -155,7 +159,8 @@ export class BaseApiService < T > {
     // }
 
     public deleteEntityWithID<T>(id:string): Observable<T>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
         let pathFormed = this._path + id

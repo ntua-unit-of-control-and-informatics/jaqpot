@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject,  BehaviorSubject } from 'rxjs';
-import { Algorithm } from '../jaqpot-client/model/algorithm';
-import { Dataset } from '../jaqpot-client/model/dataset';
+import {Observable, Subject } from 'rxjs';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Injectable()
@@ -13,13 +11,7 @@ export class SessionService{
     userEmail:string;
     private accessToken: Subject<string>;
     private userName = new Subject<any>();
-    //private loggedIn = new Subject<any>();
     private theme = new Subject<any>();
-    // algo:Algorithm
-    // algorithm$: Subject<Algorithm> = new BehaviorSubject(this.algo);
-    // modelingAlgorithm:Algorithm
-    // modelingAlgorithm$: Subject<Algorithm> = new BehaviorSubject(this.modelingAlgorithm);
-    // private dataset: Dataset;
     
 
     userData$: Observable<any>;
@@ -71,10 +63,17 @@ export class SessionService{
         return this.accessToken.asObservable()
     }
 
-    getToken(): string{
-        return this._oidc.getToken()
-        // return this.token
+    // getToken(): string{
+    //     return this._oidc.getToken()
+    //     // return this.token
+    // }
+
+    getToken(){
+        return this._oidc.getAccessToken().subscribe( (t)=> {
+            return t;
+        })
     }
+
 
     // getAlgorithm(): Observable<Algorithm>{
     //     return this.algorithm$.asObservable();

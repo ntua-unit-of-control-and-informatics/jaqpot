@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { SessionService } from '../../session/session.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { SessionService } from '../../session/session.service';
 })
 export class ManageAccountsDialogComponent implements OnInit {
 
+  _token: string
+
   private setting = {
     element: {
       dynamicDownload: null as HTMLElement
@@ -17,8 +20,15 @@ export class ManageAccountsDialogComponent implements OnInit {
 
   constructor(
     private dialog: MatDialogRef<ManageAccountsDialogComponent>,
-    private sessionService:SessionService
-  ) { }
+    private sessionService:SessionService,
+    private oidc:OidcSecurityService
+  ) { 
+
+    this.oidc.getAccessToken().subscribe(t=>{
+      this._token = t
+    })
+
+  }
 
   ngOnInit(): void {
     this.changePosition()
@@ -44,8 +54,10 @@ export class ManageAccountsDialogComponent implements OnInit {
     }
     const element = this.setting.element.dynamicDownload;
     const fileType = fileName.indexOf('.json') > -1 ? 'text/json' : 'text/plain';
-    let text = this.sessionService.getToken()
-    element.setAttribute('href', `data:${fileType};charset=utf-8,${encodeURIComponent(text)}`);
+    // let text = this.sessionService.getToken()
+
+    
+    element.setAttribute('href', `data:${fileType};charset=utf-8,${encodeURIComponent(this._token)}`);
     element.setAttribute('download', fileName);
 
     var event = new MouseEvent("click");

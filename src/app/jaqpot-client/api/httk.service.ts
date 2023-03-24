@@ -28,7 +28,8 @@ export class HttkApiService extends BaseClient<Task>{
     }
 
     public createHttkModel(parameters:string, title:string, description:string):Observable<Task>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization', tokenValue);
         let params = new HttpParams().set('parameters', parameters).set('title', title).set('description', description);
@@ -41,7 +42,8 @@ export class HttkApiService extends BaseClient<Task>{
     }
 
     public predictFromModel(modelId:string):Observable<Task>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization', tokenValue);
         let params = new HttpParams().set('visible', "true");

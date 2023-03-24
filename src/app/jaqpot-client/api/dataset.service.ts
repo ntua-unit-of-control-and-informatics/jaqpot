@@ -50,7 +50,8 @@ export class DatasetService extends BaseClient<Dataset>{
 
     public uploadNewDatasetForPrediction(dataset:Dataset):Observable<Dataset>{
             dataset.existence = Dataset.ExistenceEnum.FORPREDICTION
-            const token = this.oidcSecurityService.getToken();
+            // const token = this.oidcSecurityService.getToken();
+            const token = this._token
             const tokenValue = 'Bearer ' + token;
             let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
             let pathFormed = Config.JaqpotBase + this._datasetBase
@@ -64,7 +65,8 @@ export class DatasetService extends BaseClient<Dataset>{
 
     public uploadNewDataset(dataset:Dataset):Observable<Dataset>{
         dataset.existence = Dataset.ExistenceEnum.UPLOADED
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let pathFormed = Config.JaqpotBase + this._datasetBase
@@ -76,7 +78,8 @@ export class DatasetService extends BaseClient<Dataset>{
     }
 
     public putMeta(dataset:Dataset):Observable<MetaInfo>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let params = new HttpParams().set("query", "UNREAD");
@@ -89,7 +92,8 @@ export class DatasetService extends BaseClient<Dataset>{
     }
     
     public getDataEntryPaginated(datasetId:string, start:number, max:number){
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let params = new HttpParams().set('dataEntries', 'true').set('rowStart', start.toString()).set('rowMax', max.toString());
@@ -102,7 +106,8 @@ export class DatasetService extends BaseClient<Dataset>{
     }
 
     public updateOnTrash(datasetId:string, dataset:Dataset):Observable<Dataset>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let pathFormed = Config.JaqpotBase + this._datasetBase + datasetId + '/ontrash';

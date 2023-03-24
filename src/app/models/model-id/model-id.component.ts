@@ -12,7 +12,7 @@ import { NotificationService } from '../../jaqpot-client/api/notification.servic
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { User } from '@euclia/accounts-client/dist/models/user';
-import { OidcClientNotification, OidcSecurityService, PublicConfiguration } from 'angular-auth-oidc-client';
+import { OidcClientNotification, OidcSecurityService } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -47,7 +47,6 @@ export class ModelIdComponent implements OnInit, OnDestroy {
   newTag:string;
   addTagB:boolean = false;
 
-  configuration: PublicConfiguration;
   userDataChanged$: Observable<OidcClientNotification<any>>;
   userData$: Observable<any>;
   isAuthenticated$: Observable<boolean>;
@@ -110,7 +109,7 @@ export class ModelIdComponent implements OnInit, OnDestroy {
 
     this.oidcSecurityService.isAuthenticated$.subscribe(is =>{
 
-      if(is === false){
+      if(is.isAuthenticated === false){
         if(this.router.url.includes('model')){
           localStorage.setItem('goToModel',this.router.url.split("/")[2])
         }

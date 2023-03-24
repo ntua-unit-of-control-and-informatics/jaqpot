@@ -16,6 +16,8 @@ export class PocketService {
   _basePath:string
   _createPocket:string
 
+  _token: string
+
   constructor(private http: HttpClient,
     private sessionServise:SessionService,
     private dialogsService:DialogsService,
@@ -23,13 +25,17 @@ export class PocketService {
     this._basePath = Config.jdockApi;
     
     this._createPocket = "/pocket";
+      this.oidcSecurityService.getAccessToken().subscribe(t =>{
+        this._token = t
+      })
+
 
   }
 
 
   public createPocket(pocket:Pocket): Observable<Pocket>{
 
-    const token = this.oidcSecurityService.getToken();
+    const token = this._token
     const tokenValue = 'Bearer ' + token;
     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
     let pathFormed = this._basePath + this._createPocket

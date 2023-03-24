@@ -23,7 +23,8 @@ export class UsersApiService extends BaseApiService<User> {
 
   public getUser(params:HttpParams):Observable<Array<User>>{
     let path = Config.AccountsApi + "/users"
-    const token = this.oidcSecurityService.getToken();
+    // const token = this.oidcSecurityService.getToken();
+    const token = this._token
     const tokenValue = 'Bearer ' + token;
     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
     return this.http.get<Array<User>>(path, { headers: headers, params: params} ).pipe(
@@ -34,7 +35,8 @@ export class UsersApiService extends BaseApiService<User> {
 
   public updateUser(user:User):Observable<User>{
     let path = Config.AccountsApi + "/users"
-    const token = this.oidcSecurityService.getToken();
+    // const token = this.oidcSecurityService.getToken();
+    const token = this._token
     const tokenValue = 'Bearer ' + token;
     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
     return this.http.put<User>(path, user, { headers: headers} ).pipe(

@@ -25,6 +25,7 @@ export class NotificationService extends BaseClient<Notification>{
     _privateBasePath:string;
     private orgnanization:Organization;
     _notificationBase:string = "/notification/"
+    _token_local:string
 
     constructor(http: HttpClient,
         public sessionServise:SessionService,
@@ -32,10 +33,14 @@ export class NotificationService extends BaseClient<Notification>{
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/notification/")
             this._privateBasePath = Config.JaqpotBase + this._notificationBase
+            this.oidcSecurityService.getAccessToken().subscribe(t=>{
+                this._token = t
+            })
         }
 
     public getUnreadNotifications():Observable<any>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let params = new HttpParams().set("query", "UNREAD");
@@ -50,7 +55,8 @@ export class NotificationService extends BaseClient<Notification>{
     }
 
     public getUnreadNotificationsResponse(){
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let params = new HttpParams().set("query", "UNREAD");
@@ -59,7 +65,8 @@ export class NotificationService extends BaseClient<Notification>{
     }
 
     public getNotifsByCategory(category:string, start:number, max:number):Observable<any>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let params = new HttpParams().set("category", category).set('start', start.toString()).set('max', max.toString());
@@ -68,7 +75,8 @@ export class NotificationService extends BaseClient<Notification>{
     }
      
     public countNotifsByCategory(category:string, start:number, max:number):Observable<any>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let params = new HttpParams().set("category", category).set('start', start.toString()).set('max', max.toString());
@@ -84,7 +92,8 @@ export class NotificationService extends BaseClient<Notification>{
 
 
     public countUnreadNotifications():Observable<any>{
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
         let params = new HttpParams().set("query", "UNREAD").set("min", "0").set("max", "1");

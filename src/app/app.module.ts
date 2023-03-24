@@ -15,31 +15,30 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {OverlayContainer} from '@angular/cdk/overlay';
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
-import {MatLegacyChipsModule as MatChipsModule} from '@angular/material/legacy-chips'
+import { MatChipsModule } from "@angular/material/chips"
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatGridListModule} from '@angular/material/grid-list'
-import {MatLegacyProgressBarModule as MatProgressBarModule} from '@angular/material/legacy-progress-bar'
-import {MatLegacyProgressSpinnerModule as MatProgressSpinnerModule} from '@angular/material/legacy-progress-spinner'
-import {MatLegacyRadioModule as MatRadioModule} from '@angular/material/legacy-radio'
-import {MatLegacySelectModule as MatSelectModule} from '@angular/material/legacy-select'
-import {MatLegacySlideToggleModule as MatSlideToggleModule, _MatLegacySlideToggleRequiredValidatorModule as _MatSlideToggleRequiredValidatorModule} from '@angular/material/legacy-slide-toggle'
+import { MatProgressBarModule } from "@angular/material/progress-bar"
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper'
-import {MatLegacyTabsModule as MatTabsModule} from '@angular/material/legacy-tabs'
-import {MatLegacyAutocompleteModule as MatAutocompleteModule} from '@angular/material/legacy-autocomplete'
-import {MatLegacyTableModule as MatTableModule} from '@angular/material/legacy-table'
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTableModule } from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon'
-import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button'
-import {MatLegacyCardModule as MatCardModule} from '@angular/material/legacy-card'
+import {MatButtonModule} from "@angular/material/button"
+import { MatCardModule } from "@angular/material/card"
 import {MatSidenavModule} from '@angular/material/sidenav'
-import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field'
-import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion'
-import {MatLegacyTooltipModule as MatTooltipModule} from '@angular/material/legacy-tooltip'
-import {MatLegacyListModule as MatListModule} from '@angular/material/legacy-list'
-import {MatLegacyPaginatorModule as MatPaginatorModule} from '@angular/material/legacy-paginator'
-import {MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar'
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge'
-import {MatLegacyMenuModule as MatMenuModule} from '@angular/material/legacy-menu'
+import { MatMenuModule } from '@angular/material/menu';
 import {AppComponent} from './app.component';
 
 // import { DialogsModule } from './dialogs/dialogs.module';
@@ -59,7 +58,7 @@ import { Router } from '@angular/router';
 import { SessionModule } from './session/session.module';
 import { AlgorithmDetailComponent } from './algorithms/algorithm-detail/algorithm-detail.component';
 import { DatasetDetailComponent } from './dataset/dataset-detail/dataset-detail.component';
-import { AuthModule, OidcSecurityService, OidcConfigService } from 'angular-auth-oidc-client';
+
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import {  HttkBaseComponent } from './httk/base/httk.base.component';
@@ -108,7 +107,7 @@ import { ModelMetaComponent } from './models/model-meta/model-meta.component';
 
 import { ChartComponentComponent } from './base/components/chart-component/chart-component.component';
 import { NgApexchartsModule } from "ng-apexcharts";
-import {MatLegacyCheckboxModule as MatCheckboxModule} from '@angular/material/legacy-checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 import { InvitationsComponent } from './invitations/invitations.component';
 import { AccountHomeComponent } from './account-home/account-home.component';
 import { UserBaseComponent } from './account-components/user-base/user-base.component';
@@ -120,6 +119,13 @@ import { OrgsBaseComponent } from './account-components/orgs-base/orgs-base.comp
 import { UserListComponent } from './account-components/user-list/user-list.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { NglComponent } from './NGL/ngl/ngl.component';
+import { MatSlideToggleModule , _MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle';
+// import {MatLegacySlideToggleModule as MatSlideToggleModule, _MatLegacySlideToggleRequiredValidatorModule as _MatSlideToggleRequiredValidatorModule} from '@angular/material/legacy-slide-toggle'
+
+import { AuthModule, StsConfigHttpLoader, StsConfigLoader, LogLevel } from 'angular-auth-oidc-client';
+
+// import { AuthModule, OidcSecurityService, OidcConfigService, LogLevel } from 'angular-auth-oidc-client';
+import { MatDividerModule } from '@angular/material/divider';
 
 // import { EucliaAccounts } from '@euclia/accounts-client';
 /**
@@ -132,81 +138,127 @@ import { NglComponent } from './NGL/ngl/ngl.component';
 //   return () => oidcConfigService.load_using_stsServer('http://147.102.86.129:30008/auth/realms/Jaqpan');
 // }
 
-@NgModule({
-  exports: [
-    // CDK
-    A11yModule,
-    BidiModule,
-    ObserversModule,
-    OverlayModule,
-    PlatformModule,
-    PortalModule,
-    CdkStepperModule,
-    CdkTableModule,
-    ScrollingModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatSnackBarModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatPaginatorModule,
-    MatSidenavModule,
-    MatInputModule,
-    MatButtonToggleModule,
-    MatAutocompleteModule,
-    MatPseudoCheckboxModule,
-    MatChipsModule,
-    MatDialogModule,
-    MatGridListModule,
-    MatTreeModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatStepperModule,
-    MatTableModule,
-    MatTabsModule,
-    MatAutocompleteModule,
-    MatTableModule,
-    MatBadgeModule,
-    MatFormFieldModule, MatInputModule,
-    MatFormFieldModule
-  ],
-  declarations: [],
 
-  providers: [
-    // OidcConfigService,
-    // {
-    //     provide: APP_INITIALIZER,
-    //     useFactory: loadConfig,
-    //     deps: [OidcConfigService],
-    //     multi: true
-    // }
-  ]
-})
-export class MaterialModule {}
+// @NgModule({
+//   exports: [
+//     // CDK
+//     A11yModule,
+//     BidiModule,
+//     ObserversModule,
+//     OverlayModule,
+//     PlatformModule,
+//     PortalModule,
+//     CdkStepperModule,
+//     CdkTableModule,
+//     ScrollingModule,
+//     MatIconModule,
+//     MatButtonModule,
+//     MatFormFieldModule,
+//     MatInputModule,
+//     MatCardModule,
+//     MatExpansionModule,
+//     MatIconModule,
+//     MatInputModule,
+//     MatListModule,
+//     MatMenuModule,
+//     MatSnackBarModule,
+//     MatSidenavModule,
+//     MatToolbarModule,
+//     MatTooltipModule,
+//     MatFormFieldModule,
+//     MatCardModule,
+//     MatPaginatorModule,
+//     MatSidenavModule,
+//     MatInputModule,
+//     MatButtonToggleModule,
+//     MatAutocompleteModule,
+//     MatPseudoCheckboxModule,
+//     MatChipsModule,
+//     MatDialogModule,
+//     MatGridListModule,
+//     MatTreeModule,
+//     MatProgressBarModule,
+//     MatProgressSpinnerModule,
+//     MatRadioModule,
+//     MatRippleModule,
+//     MatSelectModule,
+//     MatSlideToggleModule,
+//     MatStepperModule,
+//     MatTableModule,
+//     MatTabsModule,
+//     MatAutocompleteModule,
+//     MatTableModule,
+//     MatBadgeModule,
+//     MatFormFieldModule, MatInputModule,
+//     MatFormFieldModule
+//   ],
+//   declarations: [],
+
+//   providers: [
+//     // OidcConfigService,
+//     // {
+//     //     provide: APP_INITIALIZER,
+//     //     useFactory: loadConfig,
+//     //     deps: [OidcConfigService],
+//     //     multi: true
+//     // }
+//   ]
+// })
+
+// export class MaterialModule {}
+
+
+
+export const httpLoaderFactory = (httpClient: HttpClient) => {
+  const config$ = httpClient.get<any>(`/assets/conf.json`).pipe(
+    map((customConfig: any) => {
+
+      Config.JaqpotBase = customConfig.jaqpotApi
+      Config.AccountsApi = customConfig.accountsApi
+
+      return {
+              stsServer: customConfig.stsServer,
+              redirectUrl: customConfig.redirect_url,
+              clientId: customConfig.client_id,
+              responseType: customConfig.response_type,
+              scope: customConfig.scope,
+              // postLogoutRedirectUri: customConfig.baseurl,
+              // startCheckSession: customConfig.start_checksession,
+              // silentRenew: customConfig.silent_renew,
+              silentRenewUrl: customConfig.silent_redirect_url,
+              postLogoutRedirectUri: window.location.origin,
+              // postLoginRoute: customConfig.baseurl,
+              // forbiddenRoute: customConfig.baseurl,
+              // unauthorizedRoute: customConfig.baseurl,
+              logLevel: LogLevel.Debug, // LogLevel.Debug,
+              maxIdTokenIatOffsetAllowedInSeconds: 120,
+              historyCleanupOff: true,
+              autoUserinfo: true,
+              storage: localStorage
+      };
+
+    })
+  );
+
+  return new StsConfigHttpLoader(config$);
+};
+
 
 @NgModule({
 
   imports: [
+    A11yModule, BidiModule, ObserversModule, OverlayModule, PlatformModule, PortalModule, CdkStepperModule,  CdkTableModule, ScrollingModule,
+    MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule,
+    MatMenuModule, MatPaginatorModule, MatDividerModule, MatTableModule, MatTabsModule, MatIconModule, MatSnackBarModule, MatSidenavModule, MatToolbarModule,
+    MatTooltipModule, MatFormFieldModule, MatCardModule, MatPaginatorModule, MatSidenavModule, MatInputModule, MatButtonToggleModule, MatAutocompleteModule,
+    MatPseudoCheckboxModule, MatChipsModule, MatDialogModule, MatGridListModule, MatTreeModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
+    MatRippleModule, MatSelectModule, MatSlideToggleModule, MatStepperModule, MatTableModule, MatTabsModule, MatAutocompleteModule, MatTableModule, MatBadgeModule,
+    MatFormFieldModule, MatInputModule, MatFormFieldModule,
     BrowserModule,
     NgApexchartsModule,
     MatCheckboxModule,
     // EucliaAccounts,
     CommonModule,
-    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -220,11 +272,18 @@ export class MaterialModule {}
     FlexLayoutModule,
     MarkdownModule.forRoot(),
     // AuthModule.forRoot( { storage:SecurityStorage } ),
-    AuthModule.forRoot( ),
+    // AuthModule.forRoot( ),
     CommonModule,
+    AuthModule.forRoot({
+      loader: {
+        provide: StsConfigLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient],
+      },
+    })
     
   ],
-  exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule, MatFormFieldModule, MatInputModule],
+  exports: [DialogsModule, AppRoutingModule, RouterModule, MatFormFieldModule, MatInputModule, AuthModule],
   declarations: [AppComponent,
     NglComponent,
     ModelMetaComponent,
@@ -270,16 +329,19 @@ export class MaterialModule {}
     SimpleDatasetComponent,
     ValidateComponent,
     ValidationReportComponent,SearchAllComponentComponent,SearchBaseComponent, SearchQuickViewComponent,
-    PredArchiveComponent, JaqpotNotificationsComponent, ViewNotifsComponent ,PbpkPredictedComponent,MultiLineComponent
+    PredArchiveComponent, JaqpotNotificationsComponent, ViewNotifsComponent ,PbpkPredictedComponent,MultiLineComponent,
+
   ],
   bootstrap: [AppComponent],
-  providers: [SessionService, OidcConfigService,
-    {
-        provide: APP_INITIALIZER,
-        useFactory: configureAuth,
-        deps: [OidcConfigService, HttpClient],
-        multi: true,
-    }],
+  providers: [SessionService,HttpClient
+    // {
+    //     provide: APP_INITIALIZER,
+    //     useFactory: configureAuth,
+    //     deps: [ HttpClient],
+    //     multi: true,
+    // }
+  ],
+
   entryComponents: []
 })
 export class AppModule {
@@ -288,8 +350,9 @@ export class AppModule {
   theme:string;
   constructor(private overlayContainer: OverlayContainer
               , private sessionService: SessionService
-              , private oidcConfigService: OidcConfigService
-              , public oidcSecurityService: OidcSecurityService) {
+              // , private oidcConfigService: OidcConfigService
+              // , public oidcSecurityService: OidcSecurityService
+              ) {
     
     var _theme = sessionService.get('theme');
     if(_theme === 'dark-theme'){
@@ -322,41 +385,41 @@ export class AppModule {
   }
 }
 
-export function configureAuth(oidcConfigService: OidcConfigService, httpClient: HttpClient) {
-  const setupAction$ = httpClient.get<any>(`/assets/conf.json`).pipe(
-      map((customConfig:configf) => {
-        Config.JaqpotBase = customConfig.jaqpotApi
-        Config.AccountsApi = customConfig.accountsApi
-        // Config.AccountsApi = customConfig.accountsApi
-        // console.log("Accounts api at:")
-        // console.log(Config.AccountsApi)
-          return {
-              stsServer: customConfig.stsServer,
-              redirectUrl: customConfig.redirect_url,
-              clientId: customConfig.client_id,
-              responseType: customConfig.response_type,
-              scope: customConfig.scope,
-              // postLogoutRedirectUri: customConfig.baseurl,
-              // startCheckSession: customConfig.start_checksession,
-              // silentRenew: customConfig.silent_renew,
-              silentRenewUrl: customConfig.silent_redirect_url,
-              postLogoutRedirectUri: window.location.origin,
-              // postLoginRoute: customConfig.baseurl,
-              // forbiddenRoute: customConfig.baseurl,
-              // unauthorizedRoute: customConfig.baseurl,
-              logLevel: LogLevel.Debug, // LogLevel.Debug,
-              maxIdTokenIatOffsetAllowedInSeconds: 120,
-              historyCleanupOff: true,
-              autoUserinfo: true,
-              storage: localStorage
-          };
-      }),
-      switchMap((config) => oidcConfigService.withConfig(config))
-  );
 
-  return () => setupAction$.toPromise();
-}
+// export function configureAuth(oidcConfigService: OidcConfigService, httpClient: HttpClient) {
+//   const setupAction$ = httpClient.get<any>(`/assets/conf.json`).pipe(
+//       map((customConfig:configf) => {
+//         Config.JaqpotBase = customConfig.jaqpotApi
+//         Config.AccountsApi = customConfig.accountsApi
+//           return {
+//               stsServer: customConfig.stsServer,
+//               redirectUrl: customConfig.redirect_url,
+//               clientId: customConfig.client_id,
+//               responseType: customConfig.response_type,
+//               scope: customConfig.scope,
+//               // postLogoutRedirectUri: customConfig.baseurl,
+//               // startCheckSession: customConfig.start_checksession,
+//               // silentRenew: customConfig.silent_renew,
+//               silentRenewUrl: customConfig.silent_redirect_url,
+//               postLogoutRedirectUri: window.location.origin,
+//               // postLoginRoute: customConfig.baseurl,
+//               // forbiddenRoute: customConfig.baseurl,
+//               // unauthorizedRoute: customConfig.baseurl,
+//               logLevel: LogLevel.Debug, // LogLevel.Debug,
+//               maxIdTokenIatOffsetAllowedInSeconds: 120,
+//               historyCleanupOff: true,
+//               autoUserinfo: true,
+//               storage: localStorage
+//           };
+//       }),
+//       switchMap((config) => oidcConfigService.withConfig(config))
+//   );
 
+//   return () => setupAction$.toPromise();
+// }
+
+
+export class AuthConfigModule {}
 
 declare global {
   interface Navigator {

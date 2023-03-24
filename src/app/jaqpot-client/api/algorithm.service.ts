@@ -45,6 +45,7 @@ export class AlgorithmService {
     private _errorReportEndpoint: ErrorReport;
 
     private _subjectId:string;
+    _token: string
 
     constructor(private http: HttpClient,
         private sessionServise:SessionService,
@@ -59,6 +60,11 @@ export class AlgorithmService {
         this._getAlgorithmByIdEndpoint = this._basePath + "/algotithm";
         this._modifyAlgorithmEndpoint = this._basePath + "/algorithm";
         this._createModelEndpoint = this._basePath + "/algorithm";
+
+        this.oidcSecurityService.getAccessToken().subscribe(t=>{
+            this._token = t
+        })
+
     }
 
 
@@ -69,7 +75,8 @@ export class AlgorithmService {
         params.set('max', max.toString());
         let headers = new HttpHeaders({'Content-Type':'application/json'});
         headers.set('subjectid', this._subjectId);
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         headers.set('Authorization', tokenValue);
         return this.http.get(this._getAlgorithmsEndpoint, { headers: headers, params: params }).pipe(
@@ -86,7 +93,8 @@ export class AlgorithmService {
         params.set('max', "1");
         
         let headers = new HttpHeaders({'Content-Type':'application/json'});
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         headers.set('Authorization', tokenValue);
 
@@ -99,7 +107,8 @@ export class AlgorithmService {
 
     public getAlgorithmById(id:string): Observable<Algorithm> {
         let params = new HttpParams();
-        const token = this.oidcSecurityService.getToken();
+        // const token = this.oidcSecurityService.getToken();
+        const token = this._token
         const tokenValue = 'Bearer ' + token;
         let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
         return this.http.get(this._getAlgorithmById + id, { headers: headers, params: params }).pipe(

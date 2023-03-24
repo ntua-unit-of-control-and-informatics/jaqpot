@@ -3,12 +3,12 @@ import { DialogsService } from './dialogs/dialogs.service';
 import {OnInit, OnDestroy} from '@angular/core';
 import { LoginDialogComponent } from './dialogs/login-logout-dialog/login-dialog.component'
 import { LogoutDialogComponent } from './dialogs/login-logout-dialog/logout-dialog.component'
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { SessionService } from './session/session.service';
 import { Subscription, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { OidcSecurityService, PublicConfiguration, OidcClientNotification } from 'angular-auth-oidc-client';
+import { OidcSecurityService, OidcClientNotification, AuthenticatedResult } from 'angular-auth-oidc-client';
 
 // import { Store } from '@ngrx/store';
 
@@ -26,10 +26,9 @@ export class AppComponent implements OnInit, OnDestroy{
   isAuthorizedSubscription: Subscription;
   isAuthorized: boolean;
 
-  configuration: PublicConfiguration;
   userDataChanged$: Observable<OidcClientNotification<any>>;
   userData$: Observable<any>;
-  isAuthenticated$: Observable<boolean>;
+  isAuthenticated$: Observable<AuthenticatedResult>;
   checkSessionChanged$: Observable<boolean>;
   checkSessionChanged: any;
 
@@ -62,15 +61,15 @@ export class AppComponent implements OnInit, OnDestroy{
 
   ngOnInit(){
 
-      this.configuration = this.oidcSecurityService.configuration;
       this.userData$ = this.oidcSecurityService.userData$;
-      this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$;
+
+      this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$
       this.checkSessionChanged$ = this.oidcSecurityService.checkSessionChanged$;
 
       this.oidcSecurityService.checkAuth().subscribe((isAuthenticated) => console.log('app authenticated', isAuthenticated));
       this.isAuthorizedSubscription = this.oidcSecurityService.isAuthenticated$.subscribe(
-        (isAuthorized: boolean) => {
-          if(isAuthorized === true){
+        (isAuthorized: AuthenticatedResult) => {
+          if(isAuthorized.isAuthenticated === true){
             this.isAuthorized = true
             this.loggedIn = true;
             this.userData$.subscribe(d =>{
