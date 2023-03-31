@@ -8,7 +8,7 @@ import { SessionService } from './session/session.service';
 import { Subscription, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { OidcSecurityService, OidcClientNotification, AuthenticatedResult } from 'angular-auth-oidc-client';
+import { AuthenticatedResult, OidcClientNotification, OidcSecurityService, OpenIdConfiguration, UserDataResult } from 'angular-auth-oidc-client';
 
 // import { Store } from '@ngrx/store';
 
@@ -17,7 +17,7 @@ import { OidcSecurityService, OidcClientNotification, AuthenticatedResult } from
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy{
+export class AppComponent implements OnInit{
 
 
   isDarkTheme: boolean;
@@ -26,18 +26,22 @@ export class AppComponent implements OnInit, OnDestroy{
   isAuthorizedSubscription: Subscription;
   isAuthorized: boolean;
 
+
+  configuration$: Observable<OpenIdConfiguration>;
   userDataChanged$: Observable<OidcClientNotification<any>>;
-  userData$: Observable<any>;
-  isAuthenticated$: Observable<AuthenticatedResult>;
+  userData$: Observable<UserDataResult>;
+  isAuthenticated = false;
   checkSessionChanged$: Observable<boolean>;
   checkSessionChanged: any;
+  isAuthenticated$: Observable<AuthenticatedResult>;
+
 
   constructor(
     public oidcSecurityService: OidcSecurityService,
     public dialog: MatDialog,
     public dialogsService:DialogsService,
-    public sessionService: SessionService,
-    private router: Router) { 
+    public sessionService: SessionService
+    ) { 
 
 
       var theme = sessionService.get('theme');
@@ -61,14 +65,20 @@ export class AppComponent implements OnInit, OnDestroy{
 
   ngOnInit(){
 
+
+
+    this.oidcSecurityService.getConfiguration().subscribe(c =>{
+      console.log(c)
+    })
       this.userData$ = this.oidcSecurityService.userData$;
 
       this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$
       this.checkSessionChanged$ = this.oidcSecurityService.checkSessionChanged$;
 
-      this.oidcSecurityService.checkAuth().subscribe((isAuthenticated) => console.log('app authenticated', isAuthenticated));
       this.isAuthorizedSubscription = this.oidcSecurityService.isAuthenticated$.subscribe(
+        
         (isAuthorized: AuthenticatedResult) => {
+          console.log(isAuthorized)
           if(isAuthorized.isAuthenticated === true){
             this.isAuthorized = true
             this.loggedIn = true;
@@ -90,10 +100,22 @@ export class AppComponent implements OnInit, OnDestroy{
             this.loggedIn = false;
           }
         });
-  }
 
-  ngOnDestroy(): void {
-    // this.oidcSecurityService.onModuleSetup.unsubscribe();
+
+        this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken, idToken, configId }) => {
+        });
+
+        this.configuration$ = this.oidcSecurityService.getConfiguration();
+        this.userData$ = this.oidcSecurityService.userData$;
+        this.checkSessionChanged$ = this.oidcSecurityService.checkSessionChanged$;
+    
+        this.oidcSecurityService.isAuthenticated$.subscribe(({ isAuthenticated }) => {
+          this.isAuthenticated = isAuthenticated;
+    
+          console.warn('authenticated: ', isAuthenticated);
+        });
+
+
   }
 
   openLoginDialog() {
@@ -105,18 +127,11 @@ export class AppComponent implements OnInit, OnDestroy{
     let dialogRef = this.dialog.open(LogoutDialogComponent,{
     });
   }
-
-  // openAccountDialog(){
-  //   let dialogRef = this.dialog.open(AccountDialogComponent,{
-  //     height: '100%',
-  //     width: '100%',
-  //     maxHeight:'100%',
-  //     maxWidth:'100%',
-  //     panelClass: 'account_dialog'
-  //   });
-  // }
   
-
+  refreshSession() {
+    this.oidcSecurityService.forceRefreshSession().subscribe((result) => console.log(result));
+  }
+  
   changeTheme(): void{
       if (this.isDarkTheme === true) {
         this.sessionService.set('theme', 'default-theme');
@@ -136,12 +151,6 @@ export class AppComponent implements OnInit, OnDestroy{
       }
     })
   }
-
-  // private doCallbackLogicIfRequired() {
-  //   if (window.location.hash) {
-  //     this.oidcSecurityService.authorizedCallback();
-  //   }
-  // }
 
 }
 

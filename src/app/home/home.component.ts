@@ -16,7 +16,7 @@ import { FeatureFactoryService } from '../jaqpot-client/factories/feature-factor
 import { DatasetToViewdataService } from '../services/dataset-to-viewdata.service';
 import { HttpParams } from '@angular/common/http';
 import { ViewItem } from './data-model-view/data-model-view.component';
-import { LegacyPageEvent as PageEvent, MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator'
 import { User } from '@euclia/accounts-client/dist/models/user';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
 import { OrganizationService } from '../jaqpot-client/api/organization.service';
@@ -101,10 +101,10 @@ export class HomeComponent implements OnInit {
     params.set("min", 0);
     params.set("max", 10);
     params.set("existence", Dataset.ExistenceEnum.UPLOADED)
-    let pars = new HttpParams().set("min", "0").set("max", "10").set("existence", Dataset.ExistenceEnum.UPLOADED.toString());
-    this.datasetApi.getList(pars).subscribe((datasets:Dataset[]) => {
-      this.datasets_to_view = datasets
-    })
+    // let pars = new HttpParams().set("min", "0").set("max", "10").set("existence", Dataset.ExistenceEnum.UPLOADED.toString());
+    // this.datasetApi.getList(pars).subscribe((datasets:Dataset[]) => {
+    //   this.datasets_to_view = datasets
+    // })
     let model_params:Map<string, any> = new Map();
     model_params.set("min", 0);
     model_params.set("max", 40);

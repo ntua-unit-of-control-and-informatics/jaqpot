@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
-import { MatLegacyAutocomplete as MatAutocomplete, MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent} from '@angular/material/legacy-autocomplete'
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {COMMA, E, ENTER} from '@angular/cdk/keycodes';
@@ -11,7 +11,7 @@ import { NotificationService } from '../../jaqpot-client/api/notification.servic
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { Notification } from '../../jaqpot-client/model/notification';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
-import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/legacy-chips';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { User } from '@euclia/accounts-client/dist/models/user';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
 

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { ProfilepicDialogComponent } from '../../dialogs/profilepic-dialog/profilepic-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { MetaInfo, Model } from '../../jaqpot-client';
+import { Model } from '../../jaqpot-client';
 import { SessionService } from '../../session/session.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';

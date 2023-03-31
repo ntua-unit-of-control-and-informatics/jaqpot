@@ -1,6 +1,6 @@
 import { Component, Inject , Optional, OnInit} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 // import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ErrorReport } from '../../ui-models/errorReport'
 import { SessionService } from '../../session/session.service';

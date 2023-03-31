@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild, OnChanges, Output, EventEmitter, AfterViewInit} from '@angular/core';
 import { Dataset, FeatureInfo,  } from '../../jaqpot-client';
 import { Subscription , merge, of as observableOf} from 'rxjs';
-import { MatLegacyPaginator as MatPaginator} from '@angular/material/legacy-paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { Feature } from '../../jaqpot-client/model/feature';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';

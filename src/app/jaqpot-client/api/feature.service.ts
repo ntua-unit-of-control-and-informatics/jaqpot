@@ -26,6 +26,9 @@ export class FeatureApiService extends BaseClient<Feature>{
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/feature/")
+            this.oidcSecurityService.getAccessToken().subscribe(t=>{
+                this._token = t
+            })
         }
 
     

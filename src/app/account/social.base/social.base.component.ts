@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../jaqpot-client';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({

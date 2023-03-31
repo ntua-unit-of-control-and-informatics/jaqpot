@@ -1,5 +1,5 @@
 import { Component, OnInit, Optional } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Algorithm } from '../../jaqpot-client/model/algorithm';
 
 @Component({

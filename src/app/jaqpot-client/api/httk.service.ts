@@ -25,6 +25,9 @@ export class HttkApiService extends BaseClient<Task>{
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/biokinetics/httk/createmodel/")
+            this.oidcSecurityService.getAccessToken().subscribe(t=>{
+                this._token = t
+            })
     }
 
     public createHttkModel(parameters:string, title:string, description:string):Observable<Task>{

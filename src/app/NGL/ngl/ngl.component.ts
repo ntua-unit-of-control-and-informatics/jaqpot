@@ -9,12 +9,11 @@ import { Pocket } from '../../jdock/models/pocket';
 // import { PluginContext  } from 'molstar/lib/mol-plugin/context';
 // import { PluginConfig } from 'molstar/lib/mol-plugin/config';
 
-// import { PluginContext } from 'molstar/lib/mol-plugin/context';
-// import { Viewer } from 'molstar/build/viewer/molstar'
-// import { DefaultPluginSpec, PluginSpec } from 'molstar/lib/mol-plugin/spec';
 // import { PluginConfig } from 'molstar/lib/mol-plugin/config';
 // import * as $ from 'jquery';
 // import * as $3Dmol from '3dmol';
+
+
 
 // window["$"] = $;
 // window["jQuery"] = $;
@@ -50,14 +49,6 @@ export class NglComponent implements OnInit {
     private _pocketService: PocketService,
     private elRef: ElementRef
   ) { }
-
-
-  // MySpec: PluginSpec = {
-  //   ...DefaultPluginSpec(),
-  //     config: [
-  //         [PluginConfig.VolumeStreaming.Enabled, false]
-  //     ]
-  // }
 
 
   // async initViewer() {

@@ -16,11 +16,18 @@ export class DoaApiService extends BaseClient<Doa>{
     _privateBasePath:string;
     _doaBase:string = "/doa/"
 
+
+
     constructor(http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/doa/")
+
+            this.oidcSecurityService.getAccessToken().subscribe(t=>{
+                this._token = t
+            })
+
         }
 
     

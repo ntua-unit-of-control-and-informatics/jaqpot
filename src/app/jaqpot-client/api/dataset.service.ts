@@ -41,11 +41,17 @@ export class DatasetService extends BaseClient<Dataset>{
     private _createQPRFEndpoint:string;
 
 
+    // _token_local : string
+
     constructor(http: HttpClient,
         public sessionServise:SessionService,
         public dialogsService:DialogsService,
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/dataset/")
+
+            this.oidcSecurityService.getAccessToken().subscribe(t=>{
+                this._token = t
+            })
         }
 
     public uploadNewDatasetForPrediction(dataset:Dataset):Observable<Dataset>{

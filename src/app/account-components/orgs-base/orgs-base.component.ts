@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Organization, User } from '@euclia/accounts-client';
 import { InvitationsService } from '../../accounts-api/invitations.service';
 import { OrganizationsApiService } from '../../accounts-api/organizations-api.service';

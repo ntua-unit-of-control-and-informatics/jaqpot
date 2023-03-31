@@ -120,10 +120,10 @@ import { UserListComponent } from './account-components/user-list/user-list.comp
 import { MatTreeModule } from '@angular/material/tree';
 import { NglComponent } from './NGL/ngl/ngl.component';
 import { MatSlideToggleModule , _MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle';
-// import {MatLegacySlideToggleModule as MatSlideToggleModule, _MatLegacySlideToggleRequiredValidatorModule as _MatSlideToggleRequiredValidatorModule} from '@angular/material/legacy-slide-toggle'
+
+// import { AuthModule, StsConfigHttpLoader, StsConfigLoader, LogLevel, AbstractSecurityStorage } from 'angular-auth-oidc-client';
 
 import { AuthModule, StsConfigHttpLoader, StsConfigLoader, LogLevel } from 'angular-auth-oidc-client';
-
 // import { AuthModule, OidcSecurityService, OidcConfigService, LogLevel } from 'angular-auth-oidc-client';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -209,39 +209,84 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 
+// export const httpLoaderFactory = (httpClient: HttpClient) => {
+//   const config$ = httpClient.get<any>(`/assets/conf.json`).pipe(
+//     map((customConfig: any) => {
+//       console.log(customConfig)
+//       Config.JaqpotBase = customConfig.jaqpotApi
+//       Config.AccountsApi = customConfig.accountsApi
+
+//       return {
+//               authWellknownEndpointUrl: customConfig.stsServer,
+//               authority: customConfig.stsServer,
+//               stsServer: customConfig.stsServer,
+              
+//               redirectUrl: customConfig.redirect_url,
+//               clientId: customConfig.client_id,
+//               responseType: customConfig.response_type,
+//               scope: customConfig.scope,
+//               // postLogoutRedirectUri: customConfig.baseurl,
+//               // startCheckSession: customConfig.start_checksession,
+//               // silentRenew: customConfig.silent_renew,
+//               silentRenewUrl: customConfig.silent_redirect_url,
+//               postLogoutRedirectUri: window.location.origin,
+//               // postLoginRoute: customConfig.baseurl,
+//               // forbiddenRoute: customConfig.baseurl,
+//               // unauthorizedRoute: customConfig.baseurl,
+//               logLevel: LogLevel.Debug, // LogLevel.Debug,
+//               maxIdTokenIatOffsetAllowedInSeconds: 120,
+//               historyCleanupOff: true,
+//               autoUserinfo: true,
+//               storage: localStorage
+//       };
+
+//     })
+//   );
+
+//   return new StsConfigHttpLoader(config$);
+// };
+
+
+
 export const httpLoaderFactory = (httpClient: HttpClient) => {
-  const config$ = httpClient.get<any>(`/assets/conf.json`).pipe(
-    map((customConfig: any) => {
-
-      Config.JaqpotBase = customConfig.jaqpotApi
-      Config.AccountsApi = customConfig.accountsApi
-
-      return {
-              stsServer: customConfig.stsServer,
-              redirectUrl: customConfig.redirect_url,
-              clientId: customConfig.client_id,
-              responseType: customConfig.response_type,
-              scope: customConfig.scope,
-              // postLogoutRedirectUri: customConfig.baseurl,
-              // startCheckSession: customConfig.start_checksession,
-              // silentRenew: customConfig.silent_renew,
-              silentRenewUrl: customConfig.silent_redirect_url,
-              postLogoutRedirectUri: window.location.origin,
-              // postLoginRoute: customConfig.baseurl,
-              // forbiddenRoute: customConfig.baseurl,
-              // unauthorizedRoute: customConfig.baseurl,
-              logLevel: LogLevel.Debug, // LogLevel.Debug,
-              maxIdTokenIatOffsetAllowedInSeconds: 120,
-              historyCleanupOff: true,
-              autoUserinfo: true,
-              storage: localStorage
-      };
-
-    })
-  );
+  const config$ = httpClient
+    .get<any>(`/assets/conf.json`)
+    .pipe(
+      map((customConfig: any) => {      
+        Config.JaqpotBase = customConfig.jaqpotApi
+        Config.AccountsApi = customConfig.accountsApi
+        return {
+          // authWellknownEndpointUrl: customConfig.stsServer,
+          authority: customConfig.stsServer,
+          // stsServer: customConfig.stsServer,
+          
+          redirectUrl: customConfig.redirect_url,
+          clientId: customConfig.client_id,
+          responseType: customConfig.response_type,
+          scope: customConfig.scope,
+          // responseType: 'code',
+          // postLogoutRedirectUri: customConfig.baseurl,
+          // startCheckSession: customConfig.start_checksession,
+          silentRenew: customConfig.silent_renew,
+          silentRenewUrl: customConfig.silent_redirect_url,
+          postLogoutRedirectUri: window.location.origin,
+          postLoginRoute: customConfig.baseurl,
+          // forbiddenRoute: customConfig.baseurl,
+          // unauthorizedRoute: customConfig.baseurl,
+          logLevel: LogLevel.Debug,
+          maxIdTokenIatOffsetAllowedInSeconds: 120,
+          historyCleanupOff: true,
+          autoUserinfo: true,
+          // storage: localStorage,
+          triggerRefreshWhenIdTokenExpired: true
+        };
+      })
+    )
+    // .toPromise();
 
   return new StsConfigHttpLoader(config$);
 };
+
 
 
 @NgModule({
@@ -253,23 +298,8 @@ export const httpLoaderFactory = (httpClient: HttpClient) => {
     MatTooltipModule, MatFormFieldModule, MatCardModule, MatPaginatorModule, MatSidenavModule, MatInputModule, MatButtonToggleModule, MatAutocompleteModule,
     MatPseudoCheckboxModule, MatChipsModule, MatDialogModule, MatGridListModule, MatTreeModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
     MatRippleModule, MatSelectModule, MatSlideToggleModule, MatStepperModule, MatTableModule, MatTabsModule, MatAutocompleteModule, MatTableModule, MatBadgeModule,
-    MatFormFieldModule, MatInputModule, MatFormFieldModule,
-    BrowserModule,
-    NgApexchartsModule,
-    MatCheckboxModule,
-    // EucliaAccounts,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    DialogsModule,
-    // HttpModule,
-    AppRoutingModule,
-    RouterModule,
-    HttpClientModule,
-    ImageCropperModule,
-    // NgxPicaModule,
-    FlexLayoutModule,
+    MatFormFieldModule, MatInputModule, MatFormFieldModule, BrowserModule, NgApexchartsModule, MatCheckboxModule, CommonModule, FormsModule, ReactiveFormsModule,
+    BrowserAnimationsModule,  DialogsModule, AppRoutingModule, RouterModule, HttpClientModule, ImageCropperModule, FlexLayoutModule,
     MarkdownModule.forRoot(),
     // AuthModule.forRoot( { storage:SecurityStorage } ),
     // AuthModule.forRoot( ),
@@ -284,62 +314,26 @@ export const httpLoaderFactory = (httpClient: HttpClient) => {
     
   ],
   exports: [DialogsModule, AppRoutingModule, RouterModule, MatFormFieldModule, MatInputModule, AuthModule],
-  declarations: [AppComponent,
-    NglComponent,
-    ModelMetaComponent,
-    AccountHomeComponent,
-    UserBaseComponent,
+  declarations: [AppComponent, NglComponent, ModelMetaComponent, AccountHomeComponent, UserBaseComponent,
     EditAboutComponent, CreateOrgComponent, OrganizationComponent, QuotsComponent, OrgsBaseComponent, UserListComponent,
-    InvitationsComponent,
-    BaseComponent,
-    ModelMetaComponent,
-    AlgorithmsComponent,
-    AlgorithmsListComponent,
-    AlgorithmDetailComponent,
-    DatasetComponent,
-    DatasetListComponent,
-    DatasetDetailComponent,
-    ModelsComponent,
-    ModelFeaturesComponent,
-    PredictValidateComponent,
-    HomeComponent,
-    HttkBaseComponent,
-    HttkmodelsComponent,
-    CreatehttkmodelComponent,
-    ParameterlistComponent,
-    ParameterstepsComponent,
-    AccountBaseComponent,
-    SocialBaseComponent,
-    ChartComponentComponent,
-    QuotaComponent,
-    OrganizationsComponent,
-    OrganizationBaseComponent,
-    OrganizationDetailsComponent,
-    OrganizationUsersComponent,
-    NotificationComponent,
-    FrontComponent,
-    DataModelViewComponent,
-    ModelIdComponent,
-    DatasetIdComponent,
-    WorkbenchBaseComponent,
-    CommentsComponent,
-    QuickViewComponent,
-    MarkdownComponent,
-    PredictedComponent,
-    SimpleDatasetComponent,
-    ValidateComponent,
-    ValidationReportComponent,SearchAllComponentComponent,SearchBaseComponent, SearchQuickViewComponent,
-    PredArchiveComponent, JaqpotNotificationsComponent, ViewNotifsComponent ,PbpkPredictedComponent,MultiLineComponent,
-
+    InvitationsComponent, BaseComponent, ModelMetaComponent, AlgorithmsComponent, AlgorithmsListComponent, AlgorithmDetailComponent,
+    DatasetComponent, DatasetListComponent, DatasetDetailComponent, ModelsComponent, ModelFeaturesComponent, PredictValidateComponent,
+    HomeComponent, HttkBaseComponent, HttkmodelsComponent, CreatehttkmodelComponent, ParameterlistComponent, ParameterstepsComponent, AccountBaseComponent, SocialBaseComponent,
+    ChartComponentComponent, QuotaComponent, OrganizationsComponent, OrganizationBaseComponent, OrganizationDetailsComponent, OrganizationUsersComponent, NotificationComponent,
+    FrontComponent, DataModelViewComponent, ModelIdComponent, DatasetIdComponent, WorkbenchBaseComponent, CommentsComponent, QuickViewComponent,
+    MarkdownComponent, PredictedComponent, SimpleDatasetComponent, ValidateComponent, ValidationReportComponent,SearchAllComponentComponent,
+    SearchBaseComponent, SearchQuickViewComponent, PredArchiveComponent, JaqpotNotificationsComponent, ViewNotifsComponent ,PbpkPredictedComponent,MultiLineComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [SessionService,HttpClient
+  providers: [SessionService, HttpClient,
+
     // {
     //     provide: APP_INITIALIZER,
-    //     useFactory: configureAuth,
+    //     useFactory: httpLoaderFactory,
     //     deps: [ HttpClient],
     //     multi: true,
     // }
+
   ],
 
   entryComponents: []

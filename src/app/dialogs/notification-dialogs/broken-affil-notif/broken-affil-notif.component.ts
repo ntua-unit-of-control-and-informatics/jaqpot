@@ -5,7 +5,7 @@ import { NotificationService } from '../../../jaqpot-client/api/notification.ser
 import { UserService } from '../../../jaqpot-client/api/user.service';
 import { ModelApiService } from '../../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '@euclia/accounts-client/dist/models/user';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
 

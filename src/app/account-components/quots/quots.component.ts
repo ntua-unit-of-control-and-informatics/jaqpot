@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '@euclia/accounts-client';
 import { RequestsService } from '../../accounts-api/requests.service';
 import { DialogsService } from '../../dialogs/dialogs.service';

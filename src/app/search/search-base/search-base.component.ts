@@ -9,7 +9,7 @@ import { SearchViewItem } from '../../ui-models/searchViewItem';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
 import { Model, Dataset } from '../../jaqpot-client';
-import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-base',

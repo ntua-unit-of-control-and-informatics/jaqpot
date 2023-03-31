@@ -26,7 +26,12 @@ export class DiscussionService extends BaseClient<Discussion>{
         public oidcSecurityService: OidcSecurityService){
             super(http, dialogsService, oidcSecurityService, "/discussion/")
             this._privateBasePath = Config.JaqpotBase;
+            
             this._discussionBase = this._privateBasePath + "/user/"
+
+            this.oidcSecurityService.getAccessToken().subscribe(t=>{
+                this._token = t
+            })
         }
 
 }
