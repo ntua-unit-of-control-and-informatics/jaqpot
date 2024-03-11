@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   organizations:Array<Organization>;
   organizationsIds:Array<string>;
 
-  organizationActivated:Organization = {title:"No organanization available"};
+  organizationActivated:Organization = {title:"No organization available"};
   // organizationActivated:Organization = {};
   viewItem:ViewItem;
 
@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
     this.modelApi.getList(model_pars).subscribe((models:Model[])=>{
       this.models_to_view = models
     })
-    
+
   }
 
   ngOnAfterViewInit() {
@@ -149,8 +149,8 @@ export class HomeComponent implements OnInit {
 
   mineChosen() {
     this.query = "Mine"
-    this.organizationActivated = {title:"No organanization available"}
-    delete this.organizations 
+    this.organizationActivated = {title:"No organization available"}
+    delete this.organizations
     this.paginator.firstPage()
     if(this.queries_for === 'Datasets'){
       this.fetchDatasets(0, 10, Dataset.ExistenceEnum.UPLOADED)
@@ -164,8 +164,8 @@ export class HomeComponent implements OnInit {
     this.trash_view = false;
     this.paginEnabled = true;
     this.models_to_view = []
-    
-    if(this.organizationActivated.title != 'No organanization available'){
+
+    if(this.organizationActivated.title != 'No organization available'){
       this.fetchOrgsDatasets(0,10, this.organizationActivated._id)
     }else{
       this.fetchDatasets(0, 10, Dataset.ExistenceEnum.UPLOADED)
@@ -184,14 +184,14 @@ export class HomeComponent implements OnInit {
     this.paginEnabled = true;
     this.trash_view = false;
     this.datasets_to_view = []
-    
-    if(this.organizationActivated.title != 'No organanization available'){
+
+    if(this.organizationActivated.title != 'No organization available'){
       this.fetchOrgsModels(0,20, this.organizationActivated._id)
     }else{
       this.fetchModels(0,20)
     }
     this.queries_for = "Models"
-    
+
     // this.fetchModels(0, 20);
     this.quick_view = false
     this.queries_enabled = true
@@ -200,7 +200,7 @@ export class HomeComponent implements OnInit {
     if(typeof this.paginator != 'undefined'){
       this.paginator.firstPage()
     }
-    
+
   }
 
   goToTrashView(){
@@ -218,7 +218,7 @@ export class HomeComponent implements OnInit {
   }
 
   changeListener(files: FileList) {
-    
+
     if (files && files.length === 1 && files.item(0).name.split(".")[1] === 'csv') {
       let reader: FileReader = new FileReader();
       let file: File = files.item(0);
@@ -275,7 +275,7 @@ export class HomeComponent implements OnInit {
       //     if(images_num === i){
       //       this.dialogsService.addImageDataset(images, this.datasetFactory, this.featureApi, this.datasetApi)
       //     }
-      //   }        
+      //   }
       // })
 
 
@@ -289,7 +289,7 @@ export class HomeComponent implements OnInit {
       let start:number = event.pageIndex * event.pageSize
       let max:number = event.pageIndex * event.pageSize + event.pageSize
       this.models_to_view = []
-      if(this.organizationActivated.title != 'No organanization available'){
+      if(this.organizationActivated.title != 'No organization available'){
         this.fetchOrgsDatasets(start,max, this.organizationActivated._id)
       }else{
         this.fetchDatasets(start, max, Dataset.ExistenceEnum.UPLOADED)
@@ -298,8 +298,8 @@ export class HomeComponent implements OnInit {
     if(this.queries_for === 'Models'){
       let start:number = event.pageIndex * event.pageSize
       let max:number = event.pageIndex * event.pageSize + event.pageSize
-      
-      if(this.organizationActivated.title != 'No organanization available'){
+
+      if(this.organizationActivated.title != 'No organization available'){
         this.fetchOrgsModels(start, max, this.organizationActivated._id)
       }else{
         this.fetchModels(start,max)

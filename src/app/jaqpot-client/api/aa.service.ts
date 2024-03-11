@@ -32,7 +32,7 @@
 
 
 //     constructor(private http: Http,
-//                 private sessionService: SessionService) { 
+//                 private sessionService: SessionService) {
 //         this._basePath = Config.JaqpotBase
 //         this._authenticateEndpoint = this._basePath + "/aa/login";
 //         this._authorizeEndpoint = this._basePath + "/aa/authorize";
@@ -89,19 +89,19 @@
 //     }
 
 //     /**
-//      * 
-//      * @param error 
-//      * 
-//      * 
+//      *
+//      * @param error
+//      *
+//      *
 //      * private hanlde error only aplyies at the login module of the application
 //      */
 //     private handleError(error: Response): Promise<any> {
-//         let err: ErrorReport = { 
+//         let err: ErrorReport = {
 //             httpStatus: error.json().httpStatus,
 //             details: error.json().details,
 //             message: error.json().message
 //         };
-        
+
 //         return Promise.reject(this._errorReport || err);
 //     }
 
