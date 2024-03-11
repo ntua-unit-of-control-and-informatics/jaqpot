@@ -1,104 +1,126 @@
-
-
-
 <!-- <mat-dialog-content *ngIf="from">
   <h5>User {{from.name}} shared {{_notification.entityShared.split("/")[0]}} through organization {{_notification.organizationShared}}</h5>
 
   <p>{{_notification.body}}</p>
 </mat-dialog-content> -->
 
+<h4 mat-dialog-title>
+  {{ _notification.entityShared.split('/')[0].toUpperCase() }} SHARED
+</h4>
 
+<mat-dialog-content class="from-content">
+  <!-- <mat-divider></mat-divider> -->
 
-    <h4 mat-dialog-title>
-        {{_notification.entityShared.split("/")[0].toUpperCase() }} SHARED
-    </h4>
-    
-    <mat-dialog-content class="from-content" >
-      <!-- <mat-divider></mat-divider> -->
-    
-      <div class="base-content">
-        <p>{{_notification.body}}</p>
-      </div>
-    
-      <div class="from-content" *ngIf="organ && from && entityMeta">
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                From user
-              </mat-panel-title>
-              <mat-panel-description>
-                {{from.name}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-    
-            <div class="cont-all">
-              <div class="user-photo" *ngIf="from?.meta?.picture">
-                <img class="from-im" [src]="from?.meta?.picture" />
-              </div>
-    
-              <div class="user-cont">
-                <p>{{from.name}} <span *ngIf="from.occupation">| {{from.occupation }} </span><span *ngIf="from.occupationAt">at
-                    {{from.occupationAt }} </span></p>
-                <p *ngIf="from.livesAtCity"> {{from.livesAtCity}} <span *ngIf="from.livesAtCountry">{{from.livesAtCountry}}
-                  </span></p>
-              </div>
-            </div>
-          </mat-expansion-panel>
-    
-          <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Shared with
-            </mat-panel-title>
-            <mat-panel-description>
-              {{organ.title}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="cont-all">
-            <div class="organ-photo" *ngIf="organ?.meta?.picture">
-              <img class="organ-im" [src]="organ?.meta?.picture" />
-            </div>
-    
-            <div class="organ-cont">
-              <p>{{organ.city}} <span *ngIf="organ.country"> {{organ.country}}</span> </p>
-              <p>{{organ.about}} </p>
-            </div>
+  <div class="base-content">
+    <p>{{ _notification.body }}</p>
+  </div>
+
+  <div class="from-content" *ngIf="organ && from && entityMeta">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> From user </mat-panel-title>
+          <mat-panel-description>
+            {{ from.name }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="cont-all">
+          <div class="user-photo" *ngIf="from?.meta?.picture">
+            <img class="from-im" [src]="from?.meta?.picture" />
           </div>
-          </mat-expansion-panel>
 
-
-          <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{_notification.entityShared.split("/")[0]}}
-                </mat-panel-title>
-                <mat-panel-description>
-                  {{entityMeta.titles[0]}}
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <div class="cont-all">
-                <div class="organ-photo" *ngIf="entityMeta?.picture">
-                  <img class="organ-im" [src]="entityMeta?.picture" />
-                </div>
-      
-                <div class="organ-cont">
-                  <p>{{entityMeta.descriptions[0]}}</p>
-                </div>
-              </div>
-            </mat-expansion-panel>
-
-        </mat-accordion>
-      </div>
-    
-    
-    
-    </mat-dialog-content>
-    
-    <mat-dialog-actions>
-        <button mat-raised-button color="accent" matTooltip="View" [mat-dialog-close]="true" (click)="goToEntity()">View</button>
-        <div *ngIf="openedFrom === 'menu'">
-            <button mat-button matTooltip="Notification won't appear" [mat-dialog-close]="true" (click)="resolveNotification()">remove</button>
+          <div class="user-cont">
+            <p>
+              {{ from.name }}
+              <span *ngIf="from.occupation">| {{ from.occupation }} </span
+              ><span *ngIf="from.occupationAt"
+                >at {{ from.occupationAt }}
+              </span>
+            </p>
+            <p *ngIf="from.livesAtCity">
+              {{ from.livesAtCity }}
+              <span *ngIf="from.livesAtCountry"
+                >{{ from.livesAtCountry }}
+              </span>
+            </p>
+          </div>
         </div>
-        <div *ngIf="openedFrom === 'viewAll'"><button mat-button matTooltip="Notification will be deleted" [mat-dialog-close]="true" (click)="deleteNotification()">Delete</button></div>
-    </mat-dialog-actions>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Shared with </mat-panel-title>
+          <mat-panel-description>
+            {{ organ.title }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="cont-all">
+          <div class="organ-photo" *ngIf="organ?.meta?.picture">
+            <img class="organ-im" [src]="organ?.meta?.picture" />
+          </div>
+
+          <div class="organ-cont">
+            <p>
+              {{ organ.city }}
+              <span *ngIf="organ.country"> {{ organ.country }}</span>
+            </p>
+            <p>{{ organ.about }}</p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ _notification.entityShared.split('/')[0] }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ entityMeta.titles[0] }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="cont-all">
+          <div class="organ-photo" *ngIf="entityMeta?.picture">
+            <img class="organ-im" [src]="entityMeta?.picture" />
+          </div>
+
+          <div class="organ-cont">
+            <p>{{ entityMeta.descriptions[0] }}</p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="accent"
+    matTooltip="View"
+    [mat-dialog-close]="true"
+    (click)="goToEntity()"
+  >
+    View
+  </button>
+  <div *ngIf="openedFrom === 'menu'">
+    <button
+      mat-button
+      matTooltip="Notification won't appear"
+      [mat-dialog-close]="true"
+      (click)="resolveNotification()"
+    >
+      remove
+    </button>
+  </div>
+  <div *ngIf="openedFrom === 'viewAll'">
+    <button
+      mat-button
+      matTooltip="Notification will be deleted"
+      [mat-dialog-close]="true"
+      (click)="deleteNotification()"
+    >
+      Delete
+    </button>
+  </div>
+</mat-dialog-actions>

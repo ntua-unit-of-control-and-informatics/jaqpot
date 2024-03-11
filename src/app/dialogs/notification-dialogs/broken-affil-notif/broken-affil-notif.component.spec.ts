@@ -8,9 +8,8 @@ describe('BrokenAffilNotifComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BrokenAffilNotifComponent ]
-    })
-    .compileComponents();
+      declarations: [BrokenAffilNotifComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,30 +1,29 @@
-.algorithm_card{
-    width: 400px;
-    float: left;
+.algorithm_card {
+  width: 400px;
+  float: left;
 }
 
-
-.meta{
-    padding-right: 4em;
+.meta {
+  padding-right: 4em;
 }
-.algo_det{
-    /* margin: 2em; */
-    margin-top: 2em;
-}
-
-mat-list{
-    overflow: scroll;
-    max-height: 10em;
+.algo_det {
+  /* margin: 2em; */
+  margin-top: 2em;
 }
 
-.firstexpr{
-    margin-top: 1em;
+mat-list {
+  overflow: scroll;
+  max-height: 10em;
 }
 
-.chosen{
-    transition: all .8s ease-in-out;
-    opacity: 0.8;
-    float: left;
+.firstexpr {
+  margin-top: 1em;
+}
+
+.chosen {
+  transition: all 0.8s ease-in-out;
+  opacity: 0.8;
+  float: left;
 }
 
 /* .label{

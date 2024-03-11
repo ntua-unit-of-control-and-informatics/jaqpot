@@ -14,51 +14,50 @@ import { Algorithm } from './algorithm';
 import { BibTeX } from './bibTeX';
 import { MetaInfo } from './metaInfo';
 
-
 export interface Model {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    dependentFeatures?: Array<string>;
+  dependentFeatures?: Array<string>;
 
-    independentFeatures?: Array<string>;
+  independentFeatures?: Array<string>;
 
-    predictedFeatures?: Array<string>;
+  predictedFeatures?: Array<string>;
 
-    reliability?: number;
+  reliability?: number;
 
-    datasetUri?: string;
+  datasetUri?: string;
 
-    parameters?: { [key: string]: any; };
+  parameters?: { [key: string]: any };
 
-    algorithm?: Algorithm;
+  algorithm?: Algorithm;
 
-    bibtex?: BibTeX;
+  bibtex?: BibTeX;
 
-    actualModel?: any;
+  actualModel?: any;
 
-    pmmlModel?: any;
+  pmmlModel?: any;
 
-    additionalInfo?: any;
+  additionalInfo?: any;
 
-    pmmlTransformations?: string;
+  pmmlTransformations?: string;
 
-    doaModel?: string;
+  doaModel?: string;
 
-    transformationModels?: Array<string>;
+  transformationModels?: Array<string>;
 
-    linkedModels?: Array<string>;
+  linkedModels?: Array<string>;
 
-    id?: string;
+  id?: string;
 
-    _id?: string;
+  _id?: string;
 
-    onTrash?: boolean;
+  onTrash?: boolean;
 }

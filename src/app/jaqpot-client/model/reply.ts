@@ -1,7 +1,5 @@
 export interface Reply {
-    
-    owner?: string;
+  owner?: string;
 
-    reply?: string;
-
+  reply?: string;
 }

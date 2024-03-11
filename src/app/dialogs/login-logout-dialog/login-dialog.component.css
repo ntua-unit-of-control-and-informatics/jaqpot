@@ -1,29 +1,29 @@
 .example-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
+  display: flex;
+  flex-direction: column;
+}
+
 .example-container > * {
   width: 100%;
 }
 
-.email{
+.email {
   width: 300px;
   margin-right: 36px;
 }
 
-.pass{
+.pass {
   width: 300px;
   margin-right: 36px;
 }
 
-.error{
+.error {
   color: red;
   font-weight: bold;
   margin-left: 22px;
 }
 
-.success{
+.success {
   color: green;
   font-weight: bold;
   margin-left: 22px;

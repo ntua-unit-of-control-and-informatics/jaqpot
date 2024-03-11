@@ -8,9 +8,8 @@ describe('QuotaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuotaComponent ]
-    })
-    .compileComponents();
+      declarations: [QuotaComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

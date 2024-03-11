@@ -1,6 +1,16 @@
-<button matTooltip="Notifications" matTooltipPosition="below" mat-icon-button [matMenuTriggerFor]="notsshortmenu">
-  <div *ngIf="notifications.length > 0 else without_badge">
-    <mat-icon matBadge="{{notificationCount}}" matBadgeColor="warn" class="notif-icon-b">notifications</mat-icon>
+<button
+  matTooltip="Notifications"
+  matTooltipPosition="below"
+  mat-icon-button
+  [matMenuTriggerFor]="notsshortmenu"
+>
+  <div *ngIf="notifications.length > 0; else without_badge">
+    <mat-icon
+      matBadge="{{ notificationCount }}"
+      matBadgeColor="warn"
+      class="notif-icon-b"
+      >notifications</mat-icon
+    >
   </div>
   <ng-template #without_badge>
     <mat-icon matBadgeColor="warn" class="notif-icon">notifications</mat-icon>
@@ -8,51 +18,72 @@
 </button>
 <mat-menu #notsshortmenu="matMenu" class="notif-menu">
   <div *ngFor="let notif of notifications">
-    <div *ngIf="notif.type=='INVITATION'">
+    <div *ngIf="notif.type == 'INVITATION'">
       <button mat-menu-item (click)="openNotifDialog(notif)">
         <mat-icon>group</mat-icon>
-        <span *ngIf="notif.viewed==false else no_bold">
-          <b> Invitation to join organization  </b> <!--{{notif.invitationTo}}-->
+        <span *ngIf="notif.viewed == false; else no_bold">
+          <b> Invitation to join organization </b>
+          <!--{{notif.invitationTo}}-->
         </span>
-        <ng-template #no_bold><span>Invitation to join organization</span></ng-template> <!--{{notif.invitationTo}}-->
+        <ng-template #no_bold
+          ><span>Invitation to join organization</span></ng-template
+        >
+        <!--{{notif.invitationTo}}-->
       </button>
     </div>
-    <div *ngIf="notif.type=='SHARE'">
+    <div *ngIf="notif.type == 'SHARE'">
       <button mat-menu-item (click)="openNotifDialog(notif)">
         <mat-icon>share</mat-icon>
-        <span *ngIf="notif.viewed==false else no_bold">
-          <b> Shared {{notif.entityShared.split("/")[0]}}  </b> <!-- through {{notif.organizationShared}} -->
+        <span *ngIf="notif.viewed == false; else no_bold">
+          <b> Shared {{ notif.entityShared.split('/')[0] }} </b>
+          <!-- through {{notif.organizationShared}} -->
         </span>
-        <ng-template #no_bold><span>Shared {{notif.entityShared.split("/")[0]}} through {{notif.organizationShared}}
-          </span></ng-template>
+        <ng-template #no_bold
+          ><span
+            >Shared {{ notif.entityShared.split('/')[0] }} through
+            {{ notif.organizationShared }}
+          </span></ng-template
+        >
       </button>
     </div>
-    <div *ngIf="notif.type=='AFFILIATION'">
+    <div *ngIf="notif.type == 'AFFILIATION'">
       <button mat-menu-item (click)="openNotifDialog(notif)">
         <mat-icon>cast</mat-icon>
-        <span *ngIf="notif.viewed==false else no_bold">
-          <b> Affiliation for {{notif.affiliatedOrg}} through {{notif.organizationShared}} </b>
+        <span *ngIf="notif.viewed == false; else no_bold">
+          <b>
+            Affiliation for {{ notif.affiliatedOrg }} through
+            {{ notif.organizationShared }}
+          </b>
         </span>
-        <ng-template #no_bold><span>Affiliation for {{notif.affiliatedOrg}} through {{notif.organizationShared}} </span></ng-template>
+        <ng-template #no_bold
+          ><span
+            >Affiliation for {{ notif.affiliatedOrg }} through
+            {{ notif.organizationShared }}
+          </span></ng-template
+        >
       </button>
     </div>
-    <div *ngIf="notif.type=='BROKENAFFILIATION'">
-        <button mat-menu-item (click)="openNotifDialog(notif)">
-          <mat-icon>voice_over_off</mat-icon>
-          <span *ngIf="notif.viewed==false else no_bold">
-            <b> Broken affiliation for {{notif.organizationShared}} </b>
-          </span>
-          <ng-template #no_bold><span>Broken affiliation for {{notif.organizationShared}}</span></ng-template>
-        </button>
-      </div>
-      <div *ngIf="notif.type=='FYI'">
-          <button mat-menu-item (click)="openNotifDialog(notif)">
-            <mat-icon>info</mat-icon>
-            <span *ngIf="notif.viewed==false else no_bold">
-              <b> {{notif.body}} </b>
-            </span>
-          </button>
-        </div>
+    <div *ngIf="notif.type == 'BROKENAFFILIATION'">
+      <button mat-menu-item (click)="openNotifDialog(notif)">
+        <mat-icon>voice_over_off</mat-icon>
+        <span *ngIf="notif.viewed == false; else no_bold">
+          <b> Broken affiliation for {{ notif.organizationShared }} </b>
+        </span>
+        <ng-template #no_bold
+          ><span
+            >Broken affiliation for {{ notif.organizationShared }}</span
+          ></ng-template
+        >
+      </button>
+    </div>
+    <div *ngIf="notif.type == 'FYI'">
+      <button mat-menu-item (click)="openNotifDialog(notif)">
+        <mat-icon>info</mat-icon>
+        <span *ngIf="notif.viewed == false; else no_bold">
+          <b> {{ notif.body }} </b>
+        </span>
+      </button>
+    </div>
   </div>
-  <button mat-button class="view-all"  (click)="viewAll()">View All</button>
+  <button mat-button class="view-all" (click)="viewAll()">View All</button>
 </mat-menu>

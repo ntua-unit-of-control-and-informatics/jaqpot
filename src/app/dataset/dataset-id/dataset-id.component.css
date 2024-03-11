@@ -12,7 +12,7 @@
   border: lightgray solid 1px;
 }
 
-.entity_image_jaqpots{
+.entity_image_jaqpots {
   height: 86px;
   width: 86px;
   float: left;
@@ -23,7 +23,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   /* position: sticky; */
   /* top: 20px;
     right: 36px; */
@@ -38,14 +38,13 @@
   height:40px; */
   bottom: 90px;
   right: 20px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   /* position: sticky; */
   /* top: 20px;
     right: 36px; */
   color: lightseagreen;
   opacity: 0.4;
 }
-
 
 .share {
   display: inline-block;
@@ -54,7 +53,7 @@
   height:40px; */
   bottom: 20px;
   right: 90px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   /* position: sticky; */
   /* top: 20px;
     right: 36px; */
@@ -62,19 +61,18 @@
   opacity: 0.4;
 }
 
-.quick_view:hover{
-  transition: all .2s ease-in-out;
+.quick_view:hover {
+  transition: all 0.2s ease-in-out;
   opacity: 1;
 }
 
-.share:hover{
-  transition: all .2s ease-in-out;
+.share:hover {
+  transition: all 0.2s ease-in-out;
   opacity: 1;
 }
-
 
 .edit:hover {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   opacity: 1;
 }
 
@@ -91,20 +89,20 @@
   /* opacity: 0.4; */
 }
 
-.card_header{
-  min-height:10vh;
+.card_header {
+  min-height: 10vh;
 }
 
-.card_header{
+.card_header {
   margin-left: 10em;
-  width:80%;
+  width: 80%;
 }
 
-mat-card-subtitle{
+mat-card-subtitle {
   padding-top: 1em;
 }
 
-.owner_name{
+.owner_name {
   cursor: pointer;
 }
 
@@ -128,8 +126,7 @@ mat-card-subtitle{
   width: 300px;
 }
 
-
-.base_card{
+.base_card {
   margin-left: 0.5em;
   margin-right: 0.5em;
   margin-top: 4em;
@@ -142,22 +139,20 @@ mat-card-subtitle{
   /* min-width: inherit; */
 }
 
-.card_wrap{
+.card_wrap {
   min-height: calc(100vh - 64px);
 }
 
-
-.base_tabs{
+.base_tabs {
   margin-left: 0.5em;
   margin-top: 1em;
-
 }
 
-.descr_input{
+.descr_input {
   width: 100%;
   min-height: 8em;
 }
-.descr_text{
+.descr_text {
   min-height: 8em;
 }
 
@@ -168,12 +163,12 @@ mat-card-subtitle{
   border: lightgray solid 1px;
 }
 
-.entity_image_jaqpots{
+.entity_image_jaqpots {
   height: 86px;
   width: 86px;
   float: left;
 }
 
-.model_pic{
+.model_pic {
   margin-left: -18%;
 }

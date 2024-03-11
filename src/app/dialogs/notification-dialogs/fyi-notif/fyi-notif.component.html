@@ -1,16 +1,14 @@
 <div>
-    <h2 mat-dialog-title>For your information</h2>
-  
-  
+  <h2 mat-dialog-title>For your information</h2>
+</div>
+<mat-dialog-content>
+  <!-- <mat-divider></mat-divider> -->
+
+  <div class="base-content">
+    <p>{{ _notification.body }}</p>
   </div>
-  <mat-dialog-content>
-    <!-- <mat-divider></mat-divider> -->
-  
-    <div class="base-content">
-      <p>{{_notification.body}}</p>
-    </div>
-  
-    <!-- <div class="from-content" *ngIf="organ && from">
+
+  <!-- <div class="from-content" *ngIf="organ && from">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -59,12 +57,16 @@
   
       </mat-accordion>
     </div> -->
-  
-  
-  
-  </mat-dialog-content>
-  
-  <mat-dialog-actions>
-    <button mat-raised-button color="warn" matTooltip="Resolve" [mat-dialog-close]="true" (click)="resolveNotification()">Resolve</button>
-  </mat-dialog-actions>
-  
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="warn"
+    matTooltip="Resolve"
+    [mat-dialog-close]="true"
+    (click)="resolveNotification()"
+  >
+    Resolve
+  </button>
+</mat-dialog-actions>

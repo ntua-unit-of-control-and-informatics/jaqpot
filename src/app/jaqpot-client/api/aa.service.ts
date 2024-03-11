@@ -30,16 +30,14 @@
 //     private _errorReport: ErrorReport;
 //     private _authToken : AuthToken;
 
-
 //     constructor(private http: Http,
-//                 private sessionService: SessionService) { 
+//                 private sessionService: SessionService) {
 //         this._basePath = Config.JaqpotBase
 //         this._authenticateEndpoint = this._basePath + "/aa/login";
 //         this._authorizeEndpoint = this._basePath + "/aa/authorize";
 //         this._logoutEndpoint = this._basePath + "/aa/logout";
 //         this._validateEndpoint = this._basePath + "/aa/validate";
 //     }
-
 
 //     public login(username: string, password: string){
 //         let body = new URLSearchParams();
@@ -61,7 +59,6 @@
 //                 return this._authToken
 //             }),catchError(err => this.handleError(err) ))
 //     }
-
 
 //     public vallidate(subjectId:string){
 
@@ -89,316 +86,308 @@
 //     }
 
 //     /**
-//      * 
-//      * @param error 
-//      * 
-//      * 
+//      *
+//      * @param error
+//      *
+//      *
 //      * private hanlde error only aplyies at the login module of the application
 //      */
 //     private handleError(error: Response): Promise<any> {
-//         let err: ErrorReport = { 
+//         let err: ErrorReport = {
 //             httpStatus: error.json().httpStatus,
 //             details: error.json().details,
 //             message: error.json().message
 //         };
-        
+
 //         return Promise.reject(this._errorReport || err);
 //     }
 
+// /**
+//  *
+//  * Extends object by coping non-existing properties.
+//  * @param objA object to be extended
+//  * @param objB source object
+//  */
+// private extendObj<T1,T2>(objA: T1, objB: T2) {
+//     for(let key in objB){
+//         if(objB.hasOwnProperty(key)){
+//             (objA as any)[key] = (objB as any)[key];
+//         }
+//     }
+//     return <T1&T2>objA;
+// }
 
-    // /**
-    //  *
-    //  * Extends object by coping non-existing properties.
-    //  * @param objA object to be extended
-    //  * @param objB source object
-    //  */
-    // private extendObj<T1,T2>(objA: T1, objB: T2) {
-    //     for(let key in objB){
-    //         if(objB.hasOwnProperty(key)){
-    //             (objA as any)[key] = (objB as any)[key];
-    //         }
-    //     }
-    //     return <T1&T2>objA;
-    // }
+// /**
+//  * @param consumes string[] mime-types
+//  * @return true: consumes contains 'multipart/form-data', false: otherwise
+//  */
+// private canConsumeForm(consumes: string[]): boolean {
+//     const form = 'multipart/form-data';
+//     for (let consume of consumes) {
+//         if (form === consume) {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
-    // /**
-    //  * @param consumes string[] mime-types
-    //  * @return true: consumes contains 'multipart/form-data', false: otherwise
-    //  */
-    // private canConsumeForm(consumes: string[]): boolean {
-    //     const form = 'multipart/form-data';
-    //     for (let consume of consumes) {
-    //         if (form === consume) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
+// /**
+//  * Requests authorization from SSO
+//  * Checks whether the client identified by the provided AA token can apply a method to a URI
+//  * @param method HTTP method
+//  * @param uri URI
+//  * @param subjectid Authorization token
+//  */
+// public authorize(method: string, uri: string, subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
+//     return this.authorizeWithHttpInfo(method, uri, subjectid, extraHttpRequestParams)
+//         .tap((response: Response) => {
+//             if (response.status === 204) {
+//                 return undefined;
+//             } else {
+//                 return response.json() || {};
+//             }
+//         });
+// }
 
-    // /**
-    //  * Requests authorization from SSO
-    //  * Checks whether the client identified by the provided AA token can apply a method to a URI
-    //  * @param method HTTP method
-    //  * @param uri URI
-    //  * @param subjectid Authorization token
-    //  */
-    // public authorize(method: string, uri: string, subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
-    //     return this.authorizeWithHttpInfo(method, uri, subjectid, extraHttpRequestParams)
-    //         .tap((response: Response) => {
-    //             if (response.status === 204) {
-    //                 return undefined;
-    //             } else {
-    //                 return response.json() || {};
-    //             }
-    //         });
-    // }
+// /**
+//  * Creates Security Token
+//  * Uses OpenAM server to get a security token.
+//  * @param username Username
+//  * @param password Password
+//  */
+// public login(username: string, password: string, extraHttpRequestParams?: any): Observable<AuthToken> {
+//     return this.loginWithHttpInfo(username, password, extraHttpRequestParams)
+//         .tap((response: Response) => {
+//             if (response.status === 204) {
+//                 return undefined;
+//             } else {
+//                 return response.json() || {};
+//             }
+//         });
+// }
 
-    // /**
-    //  * Creates Security Token
-    //  * Uses OpenAM server to get a security token.
-    //  * @param username Username
-    //  * @param password Password
-    //  */
-    // public login(username: string, password: string, extraHttpRequestParams?: any): Observable<AuthToken> {
-    //     return this.loginWithHttpInfo(username, password, extraHttpRequestParams)
-    //         .tap((response: Response) => {
-    //             if (response.status === 204) {
-    //                 return undefined;
-    //             } else {
-    //                 return response.json() || {};
-    //             }
-    //         });
-    // }
+// /**
+//  * Logs out a user
+//  * Invalidates a security token and logs out the corresponding user
+//  * @param subjectid Authorization token
+//  */
+// public logout(subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
+//     return this.logoutWithHttpInfo(subjectid, extraHttpRequestParams)
+//         .tap((response: Response) => {
+//             if (response.status === 204) {
+//                 return undefined;
+//             } else {
+//                 return response.json() || {};
+//             }
+//         });
+// }
 
-    // /**
-    //  * Logs out a user
-    //  * Invalidates a security token and logs out the corresponding user
-    //  * @param subjectid Authorization token
-    //  */
-    // public logout(subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
-    //     return this.logoutWithHttpInfo(subjectid, extraHttpRequestParams)
-    //         .tap((response: Response) => {
-    //             if (response.status === 204) {
-    //                 return undefined;
-    //             } else {
-    //                 return response.json() || {};
-    //             }
-    //         });
-    // }
+// /**
+//  * Validate authorization token
+//  * Checks whether an authorization token is valid
+//  * @param subjectid Authorization token
+//  */
+// public validate(subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
+//     return this.validateWithHttpInfo(subjectid, extraHttpRequestParams)
+//         .tap((response: Response) => {
+//             if (response.status === 204) {
+//                 return undefined;
+//             } else {
+//                 return response.json() || {};
+//             }
+//         });
+// }
 
-    // /**
-    //  * Validate authorization token
-    //  * Checks whether an authorization token is valid
-    //  * @param subjectid Authorization token
-    //  */
-    // public validate(subjectid?: string, extraHttpRequestParams?: any): Observable<string> {
-    //     return this.validateWithHttpInfo(subjectid, extraHttpRequestParams)
-    //         .tap((response: Response) => {
-    //             if (response.status === 204) {
-    //                 return undefined;
-    //             } else {
-    //                 return response.json() || {};
-    //             }
-    //         });
-    // }
+// /**
+//  * Requests authorization from SSO
+//  * Checks whether the client identified by the provided AA token can apply a method to a URI
+//  * @param method HTTP method
+//  * @param uri URI
+//  * @param subjectid Authorization token
+//  */
+// public authorizeWithHttpInfo(method: string, uri: string, subjectid?: string, extraHttpRequestParams?: any): Observable<Response> {
+//     const path = this.basePath + '/aa/authorize';
 
+//     let queryParameters = new URLSearchParams();
+//     let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
 
-    // /**
-    //  * Requests authorization from SSO
-    //  * Checks whether the client identified by the provided AA token can apply a method to a URI
-    //  * @param method HTTP method
-    //  * @param uri URI
-    //  * @param subjectid Authorization token
-    //  */
-    // public authorizeWithHttpInfo(method: string, uri: string, subjectid?: string, extraHttpRequestParams?: any): Observable<Response> {
-    //     const path = this.basePath + '/aa/authorize';
+//     // verify required parameter 'method' is not null or undefined
+//     if (method === null || method === undefined) {
+//         throw new Error('Required parameter method was null or undefined when calling authorize.');
+//     }
+//     // verify required parameter 'uri' is not null or undefined
+//     if (uri === null || uri === undefined) {
+//         throw new Error('Required parameter uri was null or undefined when calling authorize.');
+//     }
+//     if (subjectid !== undefined && subjectid !== null) {
+//         headers.set('subjectid', String(subjectid));
+//     }
 
-    //     let queryParameters = new URLSearchParams();
-    //     let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+//     // to determine the Content-Type header
+//     let consumes: string[] = [
+//         'application/x-www-form-urlencoded'
+//     ];
+//     let canConsumeForm = this.canConsumeForm(consumes);
+//     let useForm = false;
+//     let formParams = new (useForm ? FormData : URLSearchParams as any)() as {
+//       set(param: string, value: any): void;
+//     };
 
-    //     // verify required parameter 'method' is not null or undefined
-    //     if (method === null || method === undefined) {
-    //         throw new Error('Required parameter method was null or undefined when calling authorize.');
-    //     }
-    //     // verify required parameter 'uri' is not null or undefined
-    //     if (uri === null || uri === undefined) {
-    //         throw new Error('Required parameter uri was null or undefined when calling authorize.');
-    //     }
-    //     if (subjectid !== undefined && subjectid !== null) {
-    //         headers.set('subjectid', String(subjectid));
-    //     }
+//     // to determine the Accept header
+//     let produces: string[] = [
+//         'application/json'
+//     ];
 
-    //     // to determine the Content-Type header
-    //     let consumes: string[] = [
-    //         'application/x-www-form-urlencoded'
-    //     ];
-    //     let canConsumeForm = this.canConsumeForm(consumes);
-    //     let useForm = false;
-    //     let formParams = new (useForm ? FormData : URLSearchParams as any)() as {
-    //       set(param: string, value: any): void;
-    //     };
+//     if (method !== undefined) {
+//         formParams.set('method', <any>method);
+//     }
 
-    //     // to determine the Accept header
-    //     let produces: string[] = [
-    //         'application/json'
-    //     ];
+//     if (uri !== undefined) {
+//         formParams.set('uri', <any>uri);
+//     }
 
+//     let requestOptions: RequestOptionsArgs = new RequestOptions({
+//         method: RequestMethod.Post,
+//         headers: headers,
+//         body: formParams.toString(),
+//         search: queryParameters,
+//         // withCredentials:this.configuration.withCredentials
+//     });
+//     // https://github.com/swagger-api/swagger-codegen/issues/4037
+//     if (extraHttpRequestParams) {
+//         requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+//     }
 
-    //     if (method !== undefined) {
-    //         formParams.set('method', <any>method);
-    //     }
+//     return this.http.request(path, requestOptions);
+// }
 
-    //     if (uri !== undefined) {
-    //         formParams.set('uri', <any>uri);
-    //     }
+// /**
+//  * Creates Security Token
+//  * Uses OpenAM server to get a security token.
+//  * @param username Username
+//  * @param password Password
+//  */
+// public loginWithHttpInfo(username: string, password: string, extraHttpRequestParams?: any): Observable<Response> {
+//     const path = this.basePath + '/aa/login';
 
-    //     let requestOptions: RequestOptionsArgs = new RequestOptions({
-    //         method: RequestMethod.Post,
-    //         headers: headers,
-    //         body: formParams.toString(),
-    //         search: queryParameters,
-    //         // withCredentials:this.configuration.withCredentials
-    //     });
-    //     // https://github.com/swagger-api/swagger-codegen/issues/4037
-    //     if (extraHttpRequestParams) {
-    //         requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
-    //     }
+//     let queryParameters = new URLSearchParams();
+//     let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
 
-    //     return this.http.request(path, requestOptions);
-    // }
+//     // verify required parameter 'username' is not null or undefined
+//     if (username === null || username === undefined) {
+//         throw new Error('Required parameter username was null or undefined when calling login.');
+//     }
+//     // verify required parameter 'password' is not null or undefined
+//     if (password === null || password === undefined) {
+//         throw new Error('Required parameter password was null or undefined when calling login.');
+//     }
+//     // to determine the Content-Type header
+//     let consumes: string[] = [
+//         'application/x-www-form-urlencoded',
+//     ];
 
-    // /**
-    //  * Creates Security Token
-    //  * Uses OpenAM server to get a security token.
-    //  * @param username Username
-    //  * @param password Password
-    //  */
-    // public loginWithHttpInfo(username: string, password: string, extraHttpRequestParams?: any): Observable<Response> {
-    //     const path = this.basePath + '/aa/login';
+//     let canConsumeForm = this.canConsumeForm(consumes);
+//     let useForm = false;
+//     let formParams = new (useForm ? FormData : URLSearchParams as any)() as {
+//       set(param: string, value: any): void;
+//     };
 
-    //     let queryParameters = new URLSearchParams();
-    //     let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+//     // to determine the Accept header
+//     let produces: string[] = [
+//         'application/json',
+//     ];
 
-    //     // verify required parameter 'username' is not null or undefined
-    //     if (username === null || username === undefined) {
-    //         throw new Error('Required parameter username was null or undefined when calling login.');
-    //     }
-    //     // verify required parameter 'password' is not null or undefined
-    //     if (password === null || password === undefined) {
-    //         throw new Error('Required parameter password was null or undefined when calling login.');
-    //     }
-    //     // to determine the Content-Type header
-    //     let consumes: string[] = [
-    //         'application/x-www-form-urlencoded',
-    //     ];
+//     headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
-    //     let canConsumeForm = this.canConsumeForm(consumes);
-    //     let useForm = false;
-    //     let formParams = new (useForm ? FormData : URLSearchParams as any)() as {
-    //       set(param: string, value: any): void;
-    //     };
+//     if (username !== undefined) {
+//         formParams.set('username', <any>username);
+//     }
 
-    //     // to determine the Accept header
-    //     let produces: string[] = [
-    //         'application/json',
-    //     ];
+//     if (password !== undefined) {
+//         formParams.set('password', <any>password);
+//     }
 
-    //     headers.set('Content-Type', 'application/x-www-form-urlencoded');
+//     let requestOptions: RequestOptionsArgs = new RequestOptions({
+//         method: RequestMethod.Post,
+//         headers: headers,
+//         body: formParams.toString(),
+//         search: queryParameters,
+//         // withCredentials:this.configuration.withCredentials
+//     });
+//     // https://github.com/swagger-api/swagger-codegen/issues/4037
+//     if (extraHttpRequestParams) {
+//         requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+//     }
 
-    //     if (username !== undefined) {
-    //         formParams.set('username', <any>username);
-    //     }
+//     return this.http.request(path, requestOptions);
+// }
 
-    //     if (password !== undefined) {
-    //         formParams.set('password', <any>password);
-    //     }
+// /**
+//  * Logs out a user
+//  * Invalidates a security token and logs out the corresponding user
+//  * @param subjectid Authorization token
+//  */
+// public logoutWithHttpInfo(subjectid?: string, extraHttpRequestParams?: any): Observable<Response> {
+//     const path = this.basePath + '/aa/logout';
 
+//     let queryParameters = new URLSearchParams();
+//     let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
 
-    //     let requestOptions: RequestOptionsArgs = new RequestOptions({
-    //         method: RequestMethod.Post,
-    //         headers: headers,
-    //         body: formParams.toString(),
-    //         search: queryParameters,
-    //         // withCredentials:this.configuration.withCredentials
-    //     });
-    //     // https://github.com/swagger-api/swagger-codegen/issues/4037
-    //     if (extraHttpRequestParams) {
-    //         requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
-    //     }
+//     if (subjectid !== undefined && subjectid !== null) {
+//         headers.set('subjectid', String(subjectid));
+//     }
 
-    //     return this.http.request(path, requestOptions);
-    // }
+//     // to determine the Accept header
+//     let produces: string[] = [
+//         'application/json'
+//     ];
 
-    // /**
-    //  * Logs out a user
-    //  * Invalidates a security token and logs out the corresponding user
-    //  * @param subjectid Authorization token
-    //  */
-    // public logoutWithHttpInfo(subjectid?: string, extraHttpRequestParams?: any): Observable<Response> {
-    //     const path = this.basePath + '/aa/logout';
+//     let requestOptions: RequestOptionsArgs = new RequestOptions({
+//         method: RequestMethod.Post,
+//         headers: headers,
+//         search: queryParameters,
+//         // withCredentials:this.configuration.withCredentials
+//     });
+//     // https://github.com/swagger-api/swagger-codegen/issues/4037
+//     if (extraHttpRequestParams) {
+//         requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+//     }
 
-    //     let queryParameters = new URLSearchParams();
-    //     let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+//     return this.http.request(path, requestOptions);
+// }
 
-    //     if (subjectid !== undefined && subjectid !== null) {
-    //         headers.set('subjectid', String(subjectid));
-    //     }
+// /**
+//  * Validate authorization token
+//  * Checks whether an authorization token is valid
+//  * @param subjectid Authorization token
+//  */
+// public validateWithHttpInfo(subjectid?: string, extraHttpRequestParams?: any): Observable<Response> {
+//     const path = this.basePath + '/aa/validate';
 
+//     let queryParameters = new URLSearchParams();
+//     let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
 
-    //     // to determine the Accept header
-    //     let produces: string[] = [
-    //         'application/json'
-    //     ];
+//     if (subjectid !== undefined && subjectid !== null) {
+//         headers.set('subjectid', String(subjectid));
+//     }
 
+//     // to determine the Accept header
+//     let produces: string[] = [
+//         'application/json'
+//     ];
 
-    //     let requestOptions: RequestOptionsArgs = new RequestOptions({
-    //         method: RequestMethod.Post,
-    //         headers: headers,
-    //         search: queryParameters,
-    //         // withCredentials:this.configuration.withCredentials
-    //     });
-    //     // https://github.com/swagger-api/swagger-codegen/issues/4037
-    //     if (extraHttpRequestParams) {
-    //         requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
-    //     }
+//     let requestOptions: RequestOptionsArgs = new RequestOptions({
+//         method: RequestMethod.Post,
+//         headers: headers,
+//         search: queryParameters,
+//         // withCredentials:this.configuration.withCredentials
+//     });
+//     // https://github.com/swagger-api/swagger-codegen/issues/4037
+//     if (extraHttpRequestParams) {
+//         requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+//     }
 
-    //     return this.http.request(path, requestOptions);
-    // }
-
-    // /**
-    //  * Validate authorization token
-    //  * Checks whether an authorization token is valid
-    //  * @param subjectid Authorization token
-    //  */
-    // public validateWithHttpInfo(subjectid?: string, extraHttpRequestParams?: any): Observable<Response> {
-    //     const path = this.basePath + '/aa/validate';
-
-    //     let queryParameters = new URLSearchParams();
-    //     let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-
-    //     if (subjectid !== undefined && subjectid !== null) {
-    //         headers.set('subjectid', String(subjectid));
-    //     }
-
-
-    //     // to determine the Accept header
-    //     let produces: string[] = [
-    //         'application/json'
-    //     ];
-
-
-    //     let requestOptions: RequestOptionsArgs = new RequestOptions({
-    //         method: RequestMethod.Post,
-    //         headers: headers,
-    //         search: queryParameters,
-    //         // withCredentials:this.configuration.withCredentials
-    //     });
-    //     // https://github.com/swagger-api/swagger-codegen/issues/4037
-    //     if (extraHttpRequestParams) {
-    //         requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
-    //     }
-
-    //     return this.http.request(path, requestOptions);
-    // }
+//     return this.http.request(path, requestOptions);
+// }
 
 // }

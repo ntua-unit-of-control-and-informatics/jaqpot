@@ -4,16 +4,12 @@ import { Report } from '../../jaqpot-client';
 @Component({
   selector: 'app-validation-report',
   templateUrl: './validation-report.component.html',
-  styleUrls: ['./validation-report.component.css']
+  styleUrls: ['./validation-report.component.css'],
 })
 export class ValidationReportComponent implements OnInit {
+  @Input() report: Report;
 
-  @Input() report:Report
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 }

@@ -6,50 +6,52 @@ import { ModelApiService } from '../../../jaqpot-client/api/model.service';
 import { DatasetService } from '../../../jaqpot-client/api/dataset.service';
 import { Notification } from '../../../jaqpot-client/model/notification';
 import { MatDialogRef } from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '@euclia/accounts-client/dist/models/user';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
-
 
 @Component({
   selector: 'app-affiliation-notif',
   templateUrl: './affiliation-notif.component.html',
-  styleUrls: ['./affiliation-notif.component.css']
+  styleUrls: ['./affiliation-notif.component.css'],
 })
 export class AffiliationNotifComponent implements OnInit {
+  _notification: Notification;
+  _organizationApi: OrganizationService;
+  _notificationApi: NotificationService;
+  _userApi: UserService;
+  _modelApi: ModelApiService;
+  _datasetApi: DatasetService;
 
-  _notification:Notification
-  _organizationApi:OrganizationService
-  _notificationApi:NotificationService
-  _userApi:UserService
-  _modelApi:ModelApiService
-  _datasetApi:DatasetService
+  openedFrom: string;
 
+  from: User;
+  organToAffiliate: Organization;
+  yourOrgan: Organization;
 
-  openedFrom:string
-
-  
-  from:User
-  organToAffiliate:Organization
-  yourOrgan:Organization
-
-  constructor(private snackBar: MatSnackBar,private dialogRef: MatDialogRef<AffiliationNotifComponent>) { }
+  constructor(
+    private snackBar: MatSnackBar,
+    private dialogRef: MatDialogRef<AffiliationNotifComponent>,
+  ) {}
 
   ngOnInit() {
-    this._userApi.getUserById(this._notification.from).then(user =>{
-      this.from = user
-    })
+    this._userApi.getUserById(this._notification.from).then((user) => {
+      this.from = user;
+    });
 
-    this._organizationApi.getOrgById(this._notification.organizationShared).then(organization =>{
-      this.organToAffiliate = organization
-    })
-    this._organizationApi.getOrgById(this._notification.organizationShared).then(organization =>{
-      this.yourOrgan = organization
-    })
-
+    this._organizationApi
+      .getOrgById(this._notification.organizationShared)
+      .then((organization) => {
+        this.organToAffiliate = organization;
+      });
+    this._organizationApi
+      .getOrgById(this._notification.organizationShared)
+      .then((organization) => {
+        this.yourOrgan = organization;
+      });
   }
 
-  acceptInvitation(){
+  acceptInvitation() {
     // if(typeof this.organToAffiliate.affiliations === 'undefined'){
     //   this.organToAffiliate.affiliations = []
     // }
@@ -73,7 +75,7 @@ export class AffiliationNotifComponent implements OnInit {
     //       })
     //     }
     //   })
-    // }else if(!this.organToAffiliate.affiliations.includes(this.yourOrgan._id)){ 
+    // }else if(!this.organToAffiliate.affiliations.includes(this.yourOrgan._id)){
     //   this.yourOrgan.affiliations.push(this.organToAffiliate._id)
     //   this._organizationApi.putEntitySecured(this.yourOrgan).subscribe((organ:Organization)=>{
     //     this.organToAffiliate
@@ -97,26 +99,34 @@ export class AffiliationNotifComponent implements OnInit {
     // }
   }
 
-
-  declineInvitation(){
+  declineInvitation() {
     this._notification.viewed = true;
-    this._notificationApi.putEntitySecured(this._notification).subscribe(notif =>{
-      this.openSnackBar("You have declined invitation", "Notification Resolved")
-    })
+    this._notificationApi
+      .putEntitySecured(this._notification)
+      .subscribe((notif) => {
+        this.openSnackBar(
+          'You have declined invitation',
+          'Notification Resolved',
+        );
+      });
   }
 
-  resolveNotification(){
+  resolveNotification() {
     this._notification.viewed = true;
-    this._notificationApi.putEntitySecured(this._notification).subscribe(notifNew=>{
-      this.openSnackBar("Notification won't appear any more", "")
-    })
+    this._notificationApi
+      .putEntitySecured(this._notification)
+      .subscribe((notifNew) => {
+        this.openSnackBar("Notification won't appear any more", '');
+      });
   }
 
-  deleteNotification(){
-    this._notificationApi.deleteEntityWithID(this._notification._id).subscribe(notifNew=>{
-      this.dialogRef.close('deleted')
-      this.openSnackBar("Notification deleted", "")
-    })
+  deleteNotification() {
+    this._notificationApi
+      .deleteEntityWithID(this._notification._id)
+      .subscribe((notifNew) => {
+        this.dialogRef.close('deleted');
+        this.openSnackBar('Notification deleted', '');
+      });
   }
 
   openSnackBar(message: string, action: string) {
@@ -124,5 +134,4 @@ export class AffiliationNotifComponent implements OnInit {
       duration: 3200,
     });
   }
-
 }

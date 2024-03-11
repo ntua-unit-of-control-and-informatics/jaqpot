@@ -1,25 +1,40 @@
 <div class="grid_list">
   <div *ngIf="grid_view; else list_view">
-    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-sm="column"
+      fxLayoutGap="32px"
+      fxLayoutAlign="flex-start"
+    >
       <ng-container *ngFor="let item of view_items">
-        <mat-card (click)="clicked(item)" matTooltip={{item.meta.descriptions[0]}} fxFlex.xl="12%" fxFlex.lg="18%" fxFlex.md="24%" fxFlex.sm="42%"
-          class="card">
+        <mat-card
+          (click)="clicked(item)"
+          matTooltip="{{ item.meta.descriptions[0] }}"
+          fxFlex.xl="12%"
+          fxFlex.lg="18%"
+          fxFlex.md="24%"
+          fxFlex.sm="42%"
+          class="card"
+        >
           <mat-card-header class="card_header">
-            <mat-card-title>Title: {{item.meta.titles[0]}}</mat-card-title>
-            <mat-card-subtitle>{{item.meta.date | date}}</mat-card-subtitle>
+            <mat-card-title>Title: {{ item.meta.titles[0] }}</mat-card-title>
+            <mat-card-subtitle>{{ item.meta.date | date }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
             <div *ngIf="item.meta.picture; else no_image" class="image_div">
-              <img class="entity_image" src="{{item.meta.picture}}">
+              <img class="entity_image" src="{{ item.meta.picture }}" />
             </div>
             <ng-template #no_image>
-
-              <img *ngIf="item.type == 'Dataset'; else model_icon" class="entity_image" src="assets/dataset3.png">
+              <img
+                *ngIf="item.type == 'Dataset'; else model_icon"
+                class="entity_image"
+                src="assets/dataset3.png"
+              />
               <ng-template #model_icon>
-                  <img class="entity_image" src="assets/model_wb.png">
+                <img class="entity_image" src="assets/model_wb.png" />
               </ng-template>
             </ng-template>
-            <h4>{{item.type}}</h4>
+            <h4>{{ item.type }}</h4>
             <!--  <p class="description">
                 {{item.meta.descriptions[0]}}
               </p> -->
@@ -28,16 +43,24 @@
             <!-- <button mat-icon-button matTooltip="Favourite" matTooltipPosition='above' class="card_item_button" (click)="handleFavorites($event)">
               <mat-icon>favorite_border</mat-icon>
             </button> -->
-              <button mat-icon-button matTooltip="View"
-                matTooltipPosition='above'
-                class="card_item_button"
-                (click)="goToView(item)">
-                  <mat-icon>remove_red_eye</mat-icon>
-              </button>
-              <button mat-icon-button matTooltip="Delete" matTooltipPosition='above' class="card_item_button" (click)="moveToTrash(item)">
-                <mat-icon>delete</mat-icon>
-              </button>
-              
+            <button
+              mat-icon-button
+              matTooltip="View"
+              matTooltipPosition="above"
+              class="card_item_button"
+              (click)="goToView(item)"
+            >
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Delete"
+              matTooltipPosition="above"
+              class="card_item_button"
+              (click)="moveToTrash(item)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
           </mat-card-actions>
         </mat-card>
       </ng-container>
@@ -68,31 +91,60 @@
   </div>
   <ng-template #list_view>
     <mat-list>
-      <mat-list-item  *ngFor="let item of view_items" class="list_item" (click)="clicked(item)">
-        <mat-icon mat-list-icon *ngIf="item.type == 'Dataset'; else model_icon">description</mat-icon>
+      <mat-list-item
+        *ngFor="let item of view_items"
+        class="list_item"
+        (click)="clicked(item)"
+      >
+        <mat-icon mat-list-icon *ngIf="item.type == 'Dataset'; else model_icon"
+          >description</mat-icon
+        >
         <ng-template #model_icon>
           <mat-icon mat-list-icon>flare</mat-icon>
         </ng-template>
-        <h4 mat-line> {{item.type}} title: {{item.meta.titles[0]}}</h4>
-        <p mat-line> {{item.meta.date | date}} </p>
-        <button *ngIf="!onTrash" mat-icon-button matTooltip="View" class="list_item_button" (click)="goToView(item)">
-            <mat-icon>remove_red_eye</mat-icon>
+        <h4 mat-line>{{ item.type }} title: {{ item.meta.titles[0] }}</h4>
+        <p mat-line>{{ item.meta.date | date }}</p>
+        <button
+          *ngIf="!onTrash"
+          mat-icon-button
+          matTooltip="View"
+          class="list_item_button"
+          (click)="goToView(item)"
+        >
+          <mat-icon>remove_red_eye</mat-icon>
         </button>
         <!-- <button mat-icon-button matTooltip="Favourite" class="list_item_button" (click)="handleFavorites($event)">
           <mat-icon>favorite_border</mat-icon>
         </button> -->
-        <button *ngIf="!onTrash" mat-icon-button matTooltip="Move to trash" class="list_item_button" (click)="moveToTrash(item)">
+        <button
+          *ngIf="!onTrash"
+          mat-icon-button
+          matTooltip="Move to trash"
+          class="list_item_button"
+          (click)="moveToTrash(item)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
-        <button *ngIf="onTrash" mat-icon-button matTooltip="Delete for ever" class="list_item_button" (click)="deleteForever(item)">
-            <mat-icon>delete_forever</mat-icon>
-          </button>
-          <button *ngIf="onTrash" mat-icon-button matTooltip="Restore from trash" class="list_item_button" (click)="restoreFromTrash(item)">
-              <mat-icon>restore_from_trash</mat-icon>
-            </button>
+        <button
+          *ngIf="onTrash"
+          mat-icon-button
+          matTooltip="Delete for ever"
+          class="list_item_button"
+          (click)="deleteForever(item)"
+        >
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+        <button
+          *ngIf="onTrash"
+          mat-icon-button
+          matTooltip="Restore from trash"
+          class="list_item_button"
+          (click)="restoreFromTrash(item)"
+        >
+          <mat-icon>restore_from_trash</mat-icon>
+        </button>
         <mat-divider></mat-divider>
       </mat-list-item>
-
     </mat-list>
   </ng-template>
 </div>

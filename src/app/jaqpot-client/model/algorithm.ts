@@ -14,33 +14,30 @@ import { BibTeX } from './bibTeX';
 import { MetaInfo } from './metaInfo';
 import { Parameter } from './parameter';
 
-
 export interface Algorithm {
+  meta?: MetaInfo;
 
-    meta?: MetaInfo;
+  ontologicalClasses?: Array<string>;
 
-    ontologicalClasses?: Array<string>;
+  visible?: boolean;
 
-    visible?: boolean;
+  temporary?: boolean;
 
-    temporary?: boolean;
+  featured?: boolean;
 
-    featured?: boolean;
+  parameters?: Array<Parameter>;
 
-    parameters?: Array<Parameter>;
+  ranking?: number;
 
-    ranking?: number;
+  bibtex?: Array<BibTeX>;
 
-    bibtex?: Array<BibTeX>;
+  trainingService?: string;
 
-    trainingService?: string;
+  predictionService?: string;
 
-    predictionService?: string;
+  reportService?: string;
 
-    reportService?: string;
+  id?: string;
 
-    id?: string;
-
-    _id?: string;
-
+  _id?: string;
 }

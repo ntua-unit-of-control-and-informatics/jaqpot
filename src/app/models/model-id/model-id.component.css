@@ -1,48 +1,47 @@
-.base_card{
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-    margin-top: 4em;
-    min-height: calc(100vh - 236px);
-    max-height: calc(100vh - 236px);
-    /* position: fixed; */
-    /* display: inline-block; */
-    /* width: inherit;  */
-    /* max-width: inherit; */
-    /* min-width: inherit; */
+.base_card {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 4em;
+  min-height: calc(100vh - 236px);
+  max-height: calc(100vh - 236px);
+  /* position: fixed; */
+  /* display: inline-block; */
+  /* width: inherit;  */
+  /* max-width: inherit; */
+  /* min-width: inherit; */
 }
 
-.model-side{
-    width: 260px;
-
+.model-side {
+  width: 260px;
 }
 
-.model_pic{
-    width:90%;
-    float:left;
-    margin-left: 0.5em;
+.model_pic {
+  width: 90%;
+  float: left;
+  margin-left: 0.5em;
 }
 
-.entity_image{
-    border-radius: 50%;
-    float:left;
-    margin: 1em;
+.entity_image {
+  border-radius: 50%;
+  float: left;
+  margin: 1em;
 }
 
-.example-container{
-    min-height: calc(100vh - 54px);
-    /* width: 100%; */
+.example-container {
+  min-height: calc(100vh - 54px);
+  /* width: 100%; */
 }
 
-.descr_input{
-    width: 90%;
-    /* min-height: 8em; */
+.descr_input {
+  width: 90%;
+  /* min-height: 8em; */
 }
 /* .descr_text{
     min-height: 8em;
 } */
 
-.card_wrap{
-    position: fixed;
+.card_wrap {
+  position: fixed;
 }
 /* 
 .card_wrap{
@@ -51,157 +50,156 @@
     width: 18%;
 } */
 
-.title{
-    margin-left: 0.5em;
-    float: left;
-    width: 90%;
-    display: flex;
-    margin-top: 0.5em;
+.title {
+  margin-left: 0.5em;
+  float: left;
+  width: 90%;
+  display: flex;
+  margin-top: 0.5em;
 }
 
-.base_tabs{
-    /* margin-left: 19%; */
-    margin-top: 1em;
-    width: 62%;
-    max-width: 62%;
-    position: fixed;
-    overflow: auto;
-    height: calc(100vh - 58px);
-    padding-left: 1em;
+.base_tabs {
+  /* margin-left: 19%; */
+  margin-top: 1em;
+  width: 62%;
+  max-width: 62%;
+  position: fixed;
+  overflow: auto;
+  height: calc(100vh - 58px);
+  padding-left: 1em;
 }
 
 .entity_image {
-    height: 86px;
-    width: 86px;
-    float: left;
-    /* margin-top: -4em; */
-    border-radius: 25%;
-    border: lightgray solid 1px;
-  }
-  
-  .entity_image_jaqpots{
-    height: 86px;
-    width: 86px;
-    float: left;
-    border-radius: 25%;
-  }
-
-.entity{
-    width: 90%;
-    float: left;
-    margin-left: 0.5em;
-    margin-top: 1em;
+  height: 86px;
+  width: 86px;
+  float: left;
+  /* margin-top: -4em; */
+  border-radius: 25%;
+  border: lightgray solid 1px;
 }
 
-.owner{
-    width: 90%;
-    float: left;
-    margin-left: 1em;
-    margin-top: 0.5em;
+.entity_image_jaqpots {
+  height: 86px;
+  width: 86px;
+  float: left;
+  border-radius: 25%;
 }
 
-.model_descr{
-    width: 90%;
-    float: left;
-    margin-left: 1em;
-    margin-top: 0.5em;
+.entity {
+  width: 90%;
+  float: left;
+  margin-left: 0.5em;
+  margin-top: 1em;
+}
+
+.owner {
+  width: 90%;
+  float: left;
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.model_descr {
+  width: 90%;
+  float: left;
+  margin-left: 1em;
+  margin-top: 0.5em;
 }
 
 /* .content{
     margin-top: 1em;
 } */
 
-a:hover{
-    cursor: pointer;
+a:hover {
+  cursor: pointer;
 }
 
 .edit {
-    display: inline-block;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    transition: all .2s ease-in-out;
-    /* position: sticky; */
-    /* top: 20px;
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: all 0.2s ease-in-out;
+  /* position: sticky; */
+  /* top: 20px;
       right: 36px; */
-    color: lightseagreen;
-    opacity: 0.4;
-    z-index: 2;
+  color: lightseagreen;
+  opacity: 0.4;
+  z-index: 2;
 }
 
 .quick_view {
-    display: inline-block;
-    position: fixed;
-    /* width:40px;
+  display: inline-block;
+  position: fixed;
+  /* width:40px;
     height:40px; */
-    bottom: 90px;
-    right: 20px;
-    transition: all .2s ease-in-out;
-    /* position: sticky; */
-    /* top: 20px;
+  bottom: 90px;
+  right: 20px;
+  transition: all 0.2s ease-in-out;
+  /* position: sticky; */
+  /* top: 20px;
       right: 36px; */
-    color: lightseagreen;
-    opacity: 0.4;
-    z-index: 2;
-  }
-  
-  
-  .share {
-    display: inline-block;
-    position: fixed;
-    /* width:40px;
+  color: lightseagreen;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.share {
+  display: inline-block;
+  position: fixed;
+  /* width:40px;
     height:40px; */
-    bottom: 20px;
-    right: 90px;
-    transition: all .2s ease-in-out;
-    /* position: sticky; */
-    /* top: 20px;
+  bottom: 20px;
+  right: 90px;
+  transition: all 0.2s ease-in-out;
+  /* position: sticky; */
+  /* top: 20px;
       right: 36px; */
-    color: lightseagreen;
-    opacity: 0.4;
-    z-index: 2;
+  color: lightseagreen;
+  opacity: 0.4;
+  z-index: 2;
 }
 
 .save_b {
-    display: inline-block;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    /* transition: all .2s ease-in-out; */
-    /* position: sticky; */
-    /* top: 20px;
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  /* transition: all .2s ease-in-out; */
+  /* position: sticky; */
+  /* top: 20px;
       right: 36px; */
-    color: lightseagreen;
-    /* opacity: 0.4; */
-    z-index: 2;
+  color: lightseagreen;
+  /* opacity: 0.4; */
+  z-index: 2;
 }
 
-.save_b{
-    transition: all .2s ease-in-out;
-    opacity: 1;
+.save_b {
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
 }
 
-.edit:hover{
-    transition: all .2s ease-in-out;
-    opacity: 1;
+.edit:hover {
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
 }
 
-.quick_view:hover{
-    transition: all .2s ease-in-out;
-    opacity: 1;
+.quick_view:hover {
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
 }
 
-.share:hover{
-    transition: all .2s ease-in-out;
-    opacity: 1;
+.share:hover {
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
 }
 
-.markdown{
-    margin-bottom: 0.2em;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
+.markdown {
+  margin-bottom: 0.2em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
 }
 
-.inner{
-    margin: 1em;
+.inner {
+  margin: 1em;
 }

@@ -6,29 +6,25 @@ import { SearchSession } from '../../jaqpot-client/model/searchSession';
 @Component({
   selector: 'app-search-all-component',
   templateUrl: './search-all-component.component.html',
-  styleUrls: ['./search-all-component.component.css']
+  styleUrls: ['./search-all-component.component.css'],
 })
 export class SearchAllComponentComponent implements OnInit {
-
-
-  searchTerm:string;
+  searchTerm: string;
 
   constructor(
-    private router:Router,
-    private searchApi:SearchApiService
-  ) { }
+    private router: Router,
+    private searchApi: SearchApiService,
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  search($event){
-    this.searchApi.startSearch(this.searchTerm).subscribe(resp =>{
+  search($event) {
+    this.searchApi.startSearch(this.searchTerm).subscribe((resp) => {
       let seacrhSession = resp.seacrhSession;
-      this.router.navigate(['/search'],  { queryParams: { q: this.searchTerm, s:seacrhSession  } });
-      this.searchTerm = ''
-    })
-
-    
+      this.router.navigate(['/search'], {
+        queryParams: { q: this.searchTerm, s: seacrhSession },
+      });
+      this.searchTerm = '';
+    });
   }
-
 }

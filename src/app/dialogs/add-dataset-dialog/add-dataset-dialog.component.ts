@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Dataset, Feature, DataEntry, FeatureInfo } from '../../jaqpot-client';
-import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service'
+import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service';
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
 import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-factory.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,156 +12,161 @@ import { Config } from '../../config/config';
 @Component({
   selector: 'app-add-dataset-dialog',
   templateUrl: './add-dataset-dialog.component.html',
-  styleUrls: ['./add-dataset-dialog.component.css']
+  styleUrls: ['./add-dataset-dialog.component.css'],
 })
 export class AddDatasetDialogComponent implements OnInit {
-
-  csv:string;
-  file_name:string;
-  dataset_id = "";
-  possible_ids: string[] = [] ;
-  selected = ""
+  csv: string;
+  file_name: string;
+  dataset_id = '';
+  possible_ids: string[] = [];
+  selected = '';
   selectedId: Subject<string> = new Subject();
   data_available = false;
   features_available = false;
-  dataset:Dataset
-  datasetFactory:DatasetFactoryService
-  dataset_to_check:Dataset
+  dataset: Dataset;
+  datasetFactory: DatasetFactoryService;
+  dataset_to_check: Dataset;
 
-
-  featureApi:FeatureApiService
-  datasetApi:DatasetService
+  featureApi: FeatureApiService;
+  datasetApi: DatasetService;
 
   displayedColumns: string[] = [];
-  dataSource:{ [key: string]: any; } = {};
+  dataSource: { [key: string]: any } = {};
 
-  features_to_edit:Feature[] = []
+  features_to_edit: Feature[] = [];
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
   loadImageFailed: any = '';
   cropperReady = false;
-  datasetTitle:FormControl
-  datasetDiscription:FormControl
+  datasetTitle: FormControl;
+  datasetDiscription: FormControl;
 
   content = true;
   dataset_uploaded = false;
   submit = true;
 
-  datasetUploaded:Dataset
+  datasetUploaded: Dataset;
 
   datasetMetaForm = new FormGroup({
     datasetTitle: new FormControl('', Validators.required),
-    datasetDiscription: new FormControl('', Validators.required)
-  })
+    datasetDiscription: new FormControl('', Validators.required),
+  });
 
   constructor(
-    private datasetViewService:DatasetToViewdataService,
-    private featFactory:FeatureFactoryService
+    private datasetViewService: DatasetToViewdataService,
+    private featFactory: FeatureFactoryService,
   ) {
     // this.datasetApiFacade._featureApi = this.featureApi
-   }
+  }
 
   ngOnInit() {
     this.datasetMetaForm = new FormGroup({
       datasetTitle: new FormControl('', Validators.required),
-      datasetDiscription: new FormControl('', Validators.required)
-    })
-    const rows = this.csv.split(/\r?\n/)  
+      datasetDiscription: new FormControl('', Validators.required),
+    });
+    const rows = this.csv.split(/\r?\n/);
     let ids = rows[0].split(/,|;/);
-    this.possible_ids.push("None");
-    ids.forEach(id => {
-      this.possible_ids.push(id)
-    })
-    rows[0].length
-    const rows_number = rows.length
-    this.selectedId.subscribe()
+    this.possible_ids.push('None');
+    ids.forEach((id) => {
+      this.possible_ids.push(id);
+    });
+    rows[0].length;
+    const rows_number = rows.length;
+    this.selectedId.subscribe();
   }
 
-  idChanged($event){
+  idChanged($event) {
     this.data_available = false;
     this.features_available = false;
-    let dataset_id = this.selected
-    this.dataset_to_check = {}
-    this.displayedColumns = []
-    this.dataSource = []
-    this.features_to_edit = []
-    this.dataset_to_check = this.datasetFactory.createDummyFromCsv(this.csv, dataset_id)
-    this.dataSource = this.datasetViewService.createViewData(this.dataset_to_check , 10);
-    this.dataset_to_check.features.forEach(fi =>{
-      this.features_to_edit.push(this.featFactory.featFromFeatInfo(fi))
-    })
-    for(let key in this.dataSource[0]){
-      this.displayedColumns.push(key)
+    let dataset_id = this.selected;
+    this.dataset_to_check = {};
+    this.displayedColumns = [];
+    this.dataSource = [];
+    this.features_to_edit = [];
+    this.dataset_to_check = this.datasetFactory.createDummyFromCsv(
+      this.csv,
+      dataset_id,
+    );
+    this.dataSource = this.datasetViewService.createViewData(
+      this.dataset_to_check,
+      10,
+    );
+    this.dataset_to_check.features.forEach((fi) => {
+      this.features_to_edit.push(this.featFactory.featFromFeatInfo(fi));
+    });
+    for (let key in this.dataSource[0]) {
+      this.displayedColumns.push(key);
     }
     this.data_available = true;
     this.features_available = true;
   }
 
   fileChangeEvent(event: any): void {
-      this.imageChangedEvent = event;
+    this.imageChangedEvent = event;
   }
   imageCroppedBase64(image: string) {
-    this.dataset_to_check.meta.picture = image
-      this.croppedImage = image;
+    this.dataset_to_check.meta.picture = image;
+    this.croppedImage = image;
   }
 
   imageLoaded() {
     this.cropperReady = true;
   }
 
-  imageLoadFailed () {
+  imageLoadFailed() {
     console.log('Load failed');
   }
 
-  uplodDataset(){
-    let _temp_actual_ids:{ [key: string]: any; } = {};
-    let feat_length = this.features_to_edit.length
+  uplodDataset() {
+    let _temp_actual_ids: { [key: string]: any } = {};
+    let feat_length = this.features_to_edit.length;
     // console.log(feat_length)
     let i = 0;
     this.content = false;
     this.submit = false;
-    this.features_to_edit.forEach(feat => {
-      this.featureApi.postEntity(feat).subscribe(
-        (feature:Feature)=>{
-          _temp_actual_ids[feature.meta.titles[0]] = feature._id
-          i += 1
-          if(i === feat_length){
-            for(let key in _temp_actual_ids){
-              let data_entry:DataEntry[] = this.dataset_to_check.dataEntry
-              data_entry.forEach(de=>{
-                // let values: { [key: string]: any; } = {}
-                for(let de_key in de.values){
-                  let key_name = de_key.split("/");
-                  if(key_name[1] === key){
-                    let data_entry_new_key = Config.JaqpotBase + '/feature/'+ _temp_actual_ids[key]
-                    de.values[data_entry_new_key] = de.values[de_key]
-                    delete de.values[de_key]
-                    // values[data_entry_new_key] = de.values[de_key]
-                    // console.log(values)
-                  }
+    this.features_to_edit.forEach((feat) => {
+      this.featureApi.postEntity(feat).subscribe((feature: Feature) => {
+        _temp_actual_ids[feature.meta.titles[0]] = feature._id;
+        i += 1;
+        if (i === feat_length) {
+          for (let key in _temp_actual_ids) {
+            let data_entry: DataEntry[] = this.dataset_to_check.dataEntry;
+            data_entry.forEach((de) => {
+              // let values: { [key: string]: any; } = {}
+              for (let de_key in de.values) {
+                let key_name = de_key.split('/');
+                if (key_name[1] === key) {
+                  let data_entry_new_key =
+                    Config.JaqpotBase + '/feature/' + _temp_actual_ids[key];
+                  de.values[data_entry_new_key] = de.values[de_key];
+                  delete de.values[de_key];
+                  // values[data_entry_new_key] = de.values[de_key]
+                  // console.log(values)
                 }
-              })
-              // console.log(this.dataset_to_check)
-            }
-            let featurInf:FeatureInfo[] = this.dataset_to_check.features
-            featurInf.forEach(fi=>{
-              fi.uri =  Config.JaqpotBase + '/feature/'+ _temp_actual_ids[fi.name]
-            })
-            this.datasetApi.uploadNewDataset(this.dataset_to_check).subscribe((dataset_posted)=>{
-              this.datasetUploaded = dataset_posted
-              this.dataset_uploaded = true;
-            })
+              }
+            });
+            // console.log(this.dataset_to_check)
           }
+          let featurInf: FeatureInfo[] = this.dataset_to_check.features;
+          featurInf.forEach((fi) => {
+            fi.uri =
+              Config.JaqpotBase + '/feature/' + _temp_actual_ids[fi.name];
+          });
+          this.datasetApi
+            .uploadNewDataset(this.dataset_to_check)
+            .subscribe((dataset_posted) => {
+              this.datasetUploaded = dataset_posted;
+              this.dataset_uploaded = true;
+            });
         }
-      )
-    })
+      });
+    });
   }
 
-  ngOnDestroy(){
-    this.selectedId.unsubscribe()
-    this.csv = ""
-    this.dataset_to_check = {}
+  ngOnDestroy() {
+    this.selectedId.unsubscribe();
+    this.csv = '';
+    this.dataset_to_check = {};
   }
-
 }

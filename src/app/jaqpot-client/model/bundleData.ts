@@ -10,19 +10,16 @@
  * Do not edit the class manually.
  */
 
-
-
 export interface BundleData {
-    bundleId?: string;
+  bundleId?: string;
 
-    bundleUri?: string;
+  bundleUri?: string;
 
-    description?: string;
+  description?: string;
 
-    substanceOwner?: string;
+  substanceOwner?: string;
 
-    substances?: Array<string>;
+  substances?: Array<string>;
 
-    properties?: { [key: string]: Array<string>; };
-
+  properties?: { [key: string]: Array<string> };
 }

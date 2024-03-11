@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../jaqpot-client/api/user.service';
-import { FormControl, Validators } from '../../../../node_modules/@angular/forms';
+import {
+  FormControl,
+  Validators,
+} from '../../../../node_modules/@angular/forms';
 import { User, MetaInfo } from '../../jaqpot-client';
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { Notification } from '../../jaqpot-client/model/notification';
@@ -12,41 +15,39 @@ import { Organization } from '@euclia/accounts-client/dist/models/models';
 @Component({
   selector: 'app-invite-dialog',
   templateUrl: './invite-dialog.component.html',
-  styleUrls: ['./invite-dialog.component.css']
+  styleUrls: ['./invite-dialog.component.css'],
 })
 export class InviteDialogComponent implements OnInit {
-
   userService: UserService;
-  notifFactory:NotificationFactoryService
-  notificationService:NotificationService
+  notifFactory: NotificationFactoryService;
+  notificationService: NotificationService;
 
-  organization:Organization
-  notification:Notification
+  organization: Organization;
+  notification: Notification;
 
-  inviteMessage:string;
+  inviteMessage: string;
 
   username: string;
   usersTemp: Array<User> = new Array();
-  users:User[] = [];
-  user: User
+  users: User[] = [];
+  user: User;
 
-  addBodyB:boolean=false;
+  addBodyB: boolean = false;
 
   public userInputCtrl: FormControl;
 
-  constructor(
-    private sessionService:SessionService
-  ) {
-
-    this.userInputCtrl = new FormControl({ value: '', disabled: false }, Validators.required)
+  constructor(private sessionService: SessionService) {
+    this.userInputCtrl = new FormControl(
+      { value: '', disabled: false },
+      Validators.required,
+    );
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   inputChanged(username: string) {
     if (username.length > 1) {
-      let ids:User[] = []
+      let ids: User[] = [];
       this.users = [];
       // this.userService.searchUserByName(username)
       //   .subscribe((idsGot:User[]) => {
@@ -83,12 +84,11 @@ export class InviteDialogComponent implements OnInit {
       //       })
       //       this.users.push(user)
       //     })
-      //   })        
+      //   })
     }
   }
 
-  searchByEmail(email:string, idsAllready:string[]){
-
+  searchByEmail(email: string, idsAllready: string[]) {
     // this.userService.searchUserEmail(email)
     // .subscribe((idsGotbyem:User[]) => {
     //   idsGotbyem.forEach((e:User) => {
@@ -99,7 +99,6 @@ export class InviteDialogComponent implements OnInit {
     //       let miustemp:MetaInfo = <MetaInfo>{}
     //       user.meta = mius
     //       user.meta = miustemp
-
     //       this.userService.getPropertyWithIdSecured(e._id, "name").subscribe(username => {
     //         tempuser = username
     //         user.name = tempuser.name
@@ -123,36 +122,38 @@ export class InviteDialogComponent implements OnInit {
     //     }
     //   })
     // })
-
   }
-
 
   invite() {
-    let userToInv = <User>{}
-    userToInv = this.users.find(users => users.name === this.user)
-    if(userToInv == null){
-      console.log("Canot find user")
+    let userToInv = <User>{};
+    userToInv = this.users.find((users) => users.name === this.user);
+    if (userToInv == null) {
+      console.log('Canot find user');
     }
-    var userData = this.sessionService.getUserData()
+    var userData = this.sessionService.getUserData();
     // var userData = JSON.parse(sessionStorage.getItem('userData'))
-    this.notification = this.notifFactory.invitationNotification(userData.sub, userToInv._id, this.organization._id)
-    
-    if(this.addBodyB === true && this.inviteMessage != null){
-      this.notification.body = this.inviteMessage
+    this.notification = this.notifFactory.invitationNotification(
+      userData.sub,
+      userToInv._id,
+      this.organization._id,
+    );
+
+    if (this.addBodyB === true && this.inviteMessage != null) {
+      this.notification.body = this.inviteMessage;
     }
-    
-    this.notificationService.postEntity(this.notification)
-      .subscribe(notifGot =>{
-        this.notification = notifGot
-      })
+
+    this.notificationService
+      .postEntity(this.notification)
+      .subscribe((notifGot) => {
+        this.notification = notifGot;
+      });
   }
 
-  addBody(){
+  addBody() {
     this.addBodyB = true;
   }
 
-  cancelBody(){
+  cancelBody() {
     this.addBodyB = false;
   }
-
 }

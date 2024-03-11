@@ -5,11 +5,14 @@ import { NotificationFactoryService } from './notification-factory.service';
 describe('NotificationFactoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NotificationFactoryService]
+      providers: [NotificationFactoryService],
     });
   });
 
-  it('should be created', inject([NotificationFactoryService], (service: NotificationFactoryService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [NotificationFactoryService],
+    (service: NotificationFactoryService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

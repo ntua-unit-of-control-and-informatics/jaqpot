@@ -2,38 +2,46 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginDialogComponent } from './login-logout-dialog/login-dialog.component';
 import { DialogsService } from './dialogs.service';
-import { FormsModule, FormControlDirective, FormGroupDirective, ReactiveFormsModule } from '@angular/forms'
-import {MatToolbarModule} from '@angular/material/toolbar'
-import {MatButtonToggleModule} from '@angular/material/button-toggle'
-import {MatChipsModule} from '@angular/material/chips'
-import {MatDialogModule} from '@angular/material//dialog'
-import {MatGridListModule} from '@angular/material/grid-list'
-import {MatProgressBarModule} from '@angular/material/progress-bar'
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
-import {MatRadioModule} from '@angular/material/radio'
-import {MatSelectModule} from '@angular/material/select'
-import {MatSlideToggleModule, _MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle'
-import {MatStepperModule} from '@angular/material/stepper'
-import {MatTabsModule} from '@angular/material/tabs'
-import {MatAutocompleteModule} from '@angular/material/autocomplete'
-import {MatTableModule} from '@angular/material/table'
-import {MatIconModule} from '@angular/material/icon'
-import {MatButtonModule} from '@angular/material/button'
-import {MatCardModule} from '@angular/material/card'
-import {MatSidenavModule} from '@angular/material/sidenav'
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatInputModule} from '@angular/material/input'
-import {MatExpansionModule} from '@angular/material/expansion'
-import {MatTooltipModule} from '@angular/material/tooltip'
-import {MatListModule} from '@angular/material/list'
-import { JaqpotClientModule } from '../jaqpot-client/jaqpot-client.module'
+import {
+  FormsModule,
+  FormControlDirective,
+  FormGroupDirective,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material//dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import {
+  MatSlideToggleModule,
+  _MatSlideToggleRequiredValidatorModule,
+} from '@angular/material/slide-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { JaqpotClientModule } from '../jaqpot-client/jaqpot-client.module';
 import { UiModelsModule } from '../ui-models/ui-models.module';
 import { Credentials } from '../ui-models/credentials';
 import { LogoutDialogComponent } from './login-logout-dialog/logout-dialog.component';
 import { AddAlgorithmDialogComponent } from './add-algorithm-dialog/add-algorithm-dialog.component';
 import { MaterialModule } from '../app.module';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
-import {  AccountDialogComponent } from './account-dialog/account-dialog.component';
+import { AccountDialogComponent } from './account-dialog/account-dialog.component';
 import { ProfilepicDialogComponent } from './profilepic-dialog/profilepic-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { OrganizationDialogComponent } from './organization-dialog/organization-dialog.component';
@@ -98,72 +106,96 @@ import { ManageAccountsDialogComponent } from './manage-accounts-dialog/manage-a
     FormsModule,
     MatProgressSpinnerModule,
     MatChipsModule,
-    DragDropModule,MatSlideToggleModule
+    DragDropModule,
+    MatSlideToggleModule,
     // DatasetDetailComponent
     // RouterModule
-
   ],
-  declarations: [LoginDialogComponent,
+  declarations: [
+    LoginDialogComponent,
     ErrorDialogComponent,
     LogoutDialogComponent,
     AddAlgorithmDialogComponent,
     AccountDialogComponent,
     ProfilepicDialogComponent,
     OrganizationDialogComponent,
-    CreateOrganizationComponent, 
-    InviteDialogComponent, 
-    NotificationDialogComponent, 
-    ConfirmationDialogComponent, 
-    InvitationNotifDialogComponent, 
+    CreateOrganizationComponent,
+    InviteDialogComponent,
+    NotificationDialogComponent,
+    ConfirmationDialogComponent,
+    InvitationNotifDialogComponent,
     AddDatasetDialogComponent,
-    UpdatePhotoComponent, 
-    UserQuickComponent, 
-    AddImageDatasetDialogComponent, ShareDialogComponent, 
-    ShareNotifDialogComponent, AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent, ManageAccountsDialogComponent],
-  exports: [LoginDialogComponent, 
-    ErrorDialogComponent, 
-    LogoutDialogComponent, 
-    AddAlgorithmDialogComponent, 
-    AccountDialogComponent, 
-    ProfilepicDialogComponent, 
-    OrganizationDialogComponent,
-    CreateOrganizationComponent, 
-    InviteDialogComponent, 
-    NotificationDialogComponent, 
-    ConfirmationDialogComponent, 
-    InvitationNotifDialogComponent, 
-    AddDatasetDialogComponent, 
-    UpdatePhotoComponent, 
-    UserQuickComponent, 
-    AddImageDatasetDialogComponent, 
-    ShareDialogComponent, ShareNotifDialogComponent, 
-    AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent, ManageAccountsDialogComponent] ,
-  entryComponents: [LoginDialogComponent, 
-    ErrorDialogComponent, 
-    LogoutDialogComponent, 
-    AddAlgorithmDialogComponent, 
-    AccountDialogComponent, 
-    ProfilepicDialogComponent, 
+    UpdatePhotoComponent,
+    UserQuickComponent,
+    AddImageDatasetDialogComponent,
+    ShareDialogComponent,
+    ShareNotifDialogComponent,
+    AskForIdComponent,
+    AddAdministratorComponent,
+    AffiliationsDialogComponent,
+    AffiliationNotifComponent,
+    BrokenAffilNotifComponent,
+    FyiNotifComponent,
+    ChooseXYComponent,
+    ManageAccountsDialogComponent,
+  ],
+  exports: [
+    LoginDialogComponent,
+    ErrorDialogComponent,
+    LogoutDialogComponent,
+    AddAlgorithmDialogComponent,
+    AccountDialogComponent,
+    ProfilepicDialogComponent,
     OrganizationDialogComponent,
     CreateOrganizationComponent,
-    InviteDialogComponent, 
-    NotificationDialogComponent, 
-    ConfirmationDialogComponent, 
-    InvitationNotifDialogComponent, 
-    AddDatasetDialogComponent, 
-    UpdatePhotoComponent, 
-    UserQuickComponent, 
-    AddImageDatasetDialogComponent, 
-    ShareDialogComponent, 
-    ShareNotifDialogComponent, 
-    AskForIdComponent, AddAdministratorComponent, 
-    AffiliationsDialogComponent, AffiliationNotifComponent, BrokenAffilNotifComponent, FyiNotifComponent, ChooseXYComponent, ManageAccountsDialogComponent],
-  providers: [
-    DialogsService, OrganizationService
+    InviteDialogComponent,
+    NotificationDialogComponent,
+    ConfirmationDialogComponent,
+    InvitationNotifDialogComponent,
+    AddDatasetDialogComponent,
+    UpdatePhotoComponent,
+    UserQuickComponent,
+    AddImageDatasetDialogComponent,
+    ShareDialogComponent,
+    ShareNotifDialogComponent,
+    AskForIdComponent,
+    AddAdministratorComponent,
+    AffiliationsDialogComponent,
+    AffiliationNotifComponent,
+    BrokenAffilNotifComponent,
+    FyiNotifComponent,
+    ChooseXYComponent,
+    ManageAccountsDialogComponent,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
-
+  entryComponents: [
+    LoginDialogComponent,
+    ErrorDialogComponent,
+    LogoutDialogComponent,
+    AddAlgorithmDialogComponent,
+    AccountDialogComponent,
+    ProfilepicDialogComponent,
+    OrganizationDialogComponent,
+    CreateOrganizationComponent,
+    InviteDialogComponent,
+    NotificationDialogComponent,
+    ConfirmationDialogComponent,
+    InvitationNotifDialogComponent,
+    AddDatasetDialogComponent,
+    UpdatePhotoComponent,
+    UserQuickComponent,
+    AddImageDatasetDialogComponent,
+    ShareDialogComponent,
+    ShareNotifDialogComponent,
+    AskForIdComponent,
+    AddAdministratorComponent,
+    AffiliationsDialogComponent,
+    AffiliationNotifComponent,
+    BrokenAffilNotifComponent,
+    FyiNotifComponent,
+    ChooseXYComponent,
+    ManageAccountsDialogComponent,
+  ],
+  providers: [DialogsService, OrganizationService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class DialogsModule { }
+export class DialogsModule {}

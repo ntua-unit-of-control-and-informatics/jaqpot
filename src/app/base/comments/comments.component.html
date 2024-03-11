@@ -77,86 +77,143 @@
 </div>
 <mat-paginator [length]="totalFound" [pageSize]="10"></mat-paginator> -->
 
-
-
 <div class="input_comment">
   <form>
     <mat-form-field class="full-width">
-      <textarea matInput placeholder="Leave a comment" [(ngModel)]="comment" name="comment" (ngModelChange)="commentChanged()"> </textarea>
+      <textarea
+        matInput
+        placeholder="Leave a comment"
+        [(ngModel)]="comment"
+        name="comment"
+        (ngModelChange)="commentChanged()"
+      >
+      </textarea>
     </mat-form-field>
   </form>
-  <button class="save_button" *ngIf="saveButton" mat-raised-button color="primary" (click)="saveDiscussion()">Save</button>
+  <button
+    class="save_button"
+    *ngIf="saveButton"
+    mat-raised-button
+    color="primary"
+    (click)="saveDiscussion()"
+  >
+    Save
+  </button>
 </div>
 
 <!-- <ng-container *ngIf="infinite | async as discussionAll"> -->
 
-<cdk-virtual-scroll-viewport *ngIf="viewDisc" class="scroll" itemSize="100" (scrolledIndexChange)="nextBatch($event, (discussionsAll[discussionsAll.length - 1]))">
-
-  <div *cdkVirtualFor="let disc of discussionsAll;" class="discussion">
-
+<cdk-virtual-scroll-viewport
+  *ngIf="viewDisc"
+  class="scroll"
+  itemSize="100"
+  (scrolledIndexChange)="
+    nextBatch($event, discussionsAll[discussionsAll.length - 1])
+  "
+>
+  <div *cdkVirtualFor="let disc of discussionsAll" class="discussion">
     <div class="userphoto" *ngIf="disc.user?.meta?.picture; else nopic">
-      <a matTooltip="{{disc.user.name}}" matTooltipPosition="below" (click)="openUserDialog(disc.user)">
+      <a
+        matTooltip="{{ disc.user.name }}"
+        matTooltipPosition="below"
+        (click)="openUserDialog(disc.user)"
+      >
         <img class="userim" [src]="disc.user.meta.picture" />
       </a>
     </div>
     <ng-template #nopic>
-      <a matTooltip="{{disc?.user?.name}}" matTooltipPosition="below" (click)="openUserDialog(disc.user)">
-        <button *ngIf="disc?.user?.name" mat-fab color="primary">{{disc.user.name.charAt(0)}}</button>
+      <a
+        matTooltip="{{ disc?.user?.name }}"
+        matTooltipPosition="below"
+        (click)="openUserDialog(disc.user)"
+      >
+        <button *ngIf="disc?.user?.name" mat-fab color="primary">
+          {{ disc.user.name.charAt(0) }}
+        </button>
       </a>
     </ng-template>
     <div *ngIf="disc?.user?.name" class="actual_comment">
-      <p mat-line class="details"> {{disc.user.name}}, {{disc.discussion.meta.date | date}} </p>
-      <p class="comment"> {{disc.discussion.comment}}</p>
+      <p mat-line class="details">
+        {{ disc.user.name }}, {{ disc.discussion.meta.date | date }}
+      </p>
+      <p class="comment">{{ disc.discussion.comment }}</p>
       <div>
-        <button mat-button class="reply_button" (click)="reply(disc)">Reply</button>
-        <button matTooltip="View replies" *ngIf="disc?.replyAll?.length > 0" mat-icon-button class="replies_button"
-          (click)="viewReplies(disc)">
-          <mat-icon matBadge="{{disc.replyAll.length}}">keyboard_arrow_down</mat-icon>
+        <button mat-button class="reply_button" (click)="reply(disc)">
+          Reply
+        </button>
+        <button
+          matTooltip="View replies"
+          *ngIf="disc?.replyAll?.length > 0"
+          mat-icon-button
+          class="replies_button"
+          (click)="viewReplies(disc)"
+        >
+          <mat-icon matBadge="{{ disc.replyAll.length }}"
+            >keyboard_arrow_down</mat-icon
+          >
         </button>
       </div>
 
-
-      <div *ngIf="disc.viewReply;">
+      <div *ngIf="disc.viewReply">
         <div *ngFor="let reply of disc.replyAll" class="replies">
-
           <div class="userphoto" *ngIf="reply.user?.meta?.picture; else nopic">
-            <a matTooltip="{{reply.user.name}}" matTooltipPosition="below" (click)="openUserDialog(reply.user)">
+            <a
+              matTooltip="{{ reply.user.name }}"
+              matTooltipPosition="below"
+              (click)="openUserDialog(reply.user)"
+            >
               <img class="userimreply" [src]="reply.user.meta.picture" />
             </a>
           </div>
           <ng-template #nopic>
-            <a matTooltip="{{reply?.user?.name}}" matTooltipPosition="below" (click)="openUserDialog(reply.user)">
-              <button *ngIf="reply?.user?.name" mat-fab color="primary">{{reply.user.name.charAt(0)}}</button>
+            <a
+              matTooltip="{{ reply?.user?.name }}"
+              matTooltipPosition="below"
+              (click)="openUserDialog(reply.user)"
+            >
+              <button *ngIf="reply?.user?.name" mat-fab color="primary">
+                {{ reply.user.name.charAt(0) }}
+              </button>
             </a>
           </ng-template>
           <div *ngIf="reply?.user?.name" class="actual_reply">
-            <p mat-line class="details"> {{reply.user.name}} </p>
-            <p> {{reply.reply}}</p>
+            <p mat-line class="details">{{ reply.user.name }}</p>
+            <p>{{ reply.reply }}</p>
           </div>
         </div>
-        <button mat-button class="reply_button" (click)="hideReply(disc)">hide replies</button>
+        <button mat-button class="reply_button" (click)="hideReply(disc)">
+          hide replies
+        </button>
       </div>
 
-
       <div *ngIf="disc.reply" div="reply">
-
         <div class="input_reply">
           <form>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Reply" [(ngModel)]="disc.replyTemp" name="reply" (ngModelChange)="replyChanged()">
+              <input
+                matInput
+                placeholder="Reply"
+                [(ngModel)]="disc.replyTemp"
+                name="reply"
+                (ngModelChange)="replyChanged()"
+              />
             </mat-form-field>
           </form>
-          <button class="save_button" *ngIf="replyButton" mat-button color="primary" (click)="updateDiscussion()">Save</button>
+          <button
+            class="save_button"
+            *ngIf="replyButton"
+            mat-button
+            color="primary"
+            (click)="updateDiscussion()"
+          >
+            Save
+          </button>
         </div>
-
       </div>
     </div>
   </div>
 
-  <div class="last">
-
-  </div>
+  <div class="last"></div>
 </cdk-virtual-scroll-viewport>
-
 
 <!-- </ng-container> -->

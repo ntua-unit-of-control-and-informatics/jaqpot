@@ -8,9 +8,8 @@ describe('WorkbenchBaseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WorkbenchBaseComponent ]
-    })
-    .compileComponents();
+      declarations: [WorkbenchBaseComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

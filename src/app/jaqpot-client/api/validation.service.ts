@@ -1,4 +1,4 @@
-import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { throwError as observableThrowError, Observable } from 'rxjs';
 import { Inject, Injectable, Optional } from '@angular/core';
 import '../rxjs-operators';
 import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
@@ -11,37 +11,45 @@ import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo, Model, Task } from '../model/models';
 
-
 @Injectable()
-export class ValidationApiService extends BaseClient<Task>{
+export class ValidationApiService extends BaseClient<Task> {
+  _privateBasePath: string;
+  _validateBase: string = '/validation/';
 
-    _privateBasePath:string;
-    _validateBase:string = "/validation/"
+  constructor(
+    http: HttpClient,
+    public sessionServise: SessionService,
+    public dialogsService: DialogsService,
+    public oidcSecurityService: OidcSecurityService,
+  ) {
+    super(http, dialogsService, oidcSecurityService, '/validation/');
+  }
 
-    constructor(http: HttpClient,
-        public sessionServise:SessionService,
-        public dialogsService:DialogsService,
-        public oidcSecurityService: OidcSecurityService){
-            super(http, dialogsService, oidcSecurityService, "/validation/")
-        }
-
-
-    public externalValidation(modelUri:string, datasetUri:string, validationType:string):Observable<Task>{
-        const token = this.oidcSecurityService.getToken();
-        const tokenValue = 'Bearer ' + token;
-        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization', tokenValue);
-        let pathFormed = Config.JaqpotBase + this._validateBase + "test_set_validation"
-        let body = new HttpParams();
-        body = body.set('test_dataset_uri', datasetUri);
-        body = body.set('model_uri', modelUri);
-        body = body.set('validation_type', validationType);
-        return this.http.post(pathFormed, body.toString(), { headers:headers }).pipe(
-            tap((res : Response) =>{
-                return res;
-            }),catchError( err => this.dialogsService.onError(err) )
-        )
-    }
-
+  public externalValidation(
+    modelUri: string,
+    datasetUri: string,
+    validationType: string,
+  ): Observable<Task> {
+    const token = this.oidcSecurityService.getToken();
+    const tokenValue = 'Bearer ' + token;
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', tokenValue);
+    let pathFormed =
+      Config.JaqpotBase + this._validateBase + 'test_set_validation';
+    let body = new HttpParams();
+    body = body.set('test_dataset_uri', datasetUri);
+    body = body.set('model_uri', modelUri);
+    body = body.set('validation_type', validationType);
+    return this.http
+      .post(pathFormed, body.toString(), { headers: headers })
+      .pipe(
+        tap((res: Response) => {
+          return res;
+        }),
+        catchError((err) => this.dialogsService.onError(err)),
+      );
+  }
 }
 
 // /**
@@ -70,7 +78,6 @@ export class ValidationApiService extends BaseClient<Task>{
 
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
-
 
 // @Injectable()
 // export class ValidationService {
@@ -186,7 +193,6 @@ export class ValidationApiService extends BaseClient<Task>{
 //             });
 //     }
 
-
 //     /**
 //      * Creates Validation Report
 //      * Creates Validation Report
@@ -225,7 +231,6 @@ export class ValidationApiService extends BaseClient<Task>{
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         if (algorithmUri !== undefined) {
 //             formParams.set('algorithm_uri', <any>algorithmUri);
@@ -310,7 +315,6 @@ export class ValidationApiService extends BaseClient<Task>{
 //             'application/json'
 //         ];
 
-
 //         if (modelUri !== undefined) {
 //             formParams.set('model_uri', <any>modelUri);
 //         }
@@ -376,7 +380,6 @@ export class ValidationApiService extends BaseClient<Task>{
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         if (algorithmUri !== undefined) {
 //             formParams.set('algorithm_uri', <any>algorithmUri);

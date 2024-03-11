@@ -1,8 +1,7 @@
-import { Component, OnInit , ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Algorithm, Dataset } from '../jaqpot-client';
 import { SessionService } from '../session/session.service';
-
 
 @Component({
   selector: 'app-base',
@@ -12,20 +11,18 @@ import { SessionService } from '../session/session.service';
   preserveWhitespaces: false,
 })
 export class BaseComponent implements OnInit {
-
   active = 'home';
 
-  subscription:Subscription;
-  algoForModel:Algorithm;
-  datasetForModel:Dataset;
-  algoIsNotChosen:boolean = true;
-  datasetIsNotChosen:boolean = true;
-  notReady:boolean = true;
+  subscription: Subscription;
+  algoForModel: Algorithm;
+  datasetForModel: Dataset;
+  algoIsNotChosen: boolean = true;
+  datasetIsNotChosen: boolean = true;
+  notReady: boolean = true;
 
-  constructor(private _sessionService:SessionService) { }
+  constructor(private _sessionService: SessionService) {}
 
   ngOnInit() {
-
     // this.subscription = this._sessionService
     // .getModelingAlgorithm().subscribe( algo => {
     //   if(algo){
@@ -34,9 +31,9 @@ export class BaseComponent implements OnInit {
     //     this.algoIsNotChosen = true;
     //   }
     //   this.algoForModel = algo;
-    // })  
+    // })
     // this.subscription = this._sessionService
-    // .getModelingDataset().subscribe( dataset =>{ 
+    // .getModelingDataset().subscribe( dataset =>{
     //   if(dataset){
     //     this.datasetIsNotChosen = false;
     //   }else{
@@ -44,11 +41,9 @@ export class BaseComponent implements OnInit {
     //   }
     //   this.datasetForModel = dataset;
     // })
-
   }
 
-  changeActive(string){
+  changeActive(string) {
     this.active = string;
   }
-
 }

@@ -12,69 +12,67 @@ import { Organization } from '@euclia/accounts-client/dist/models/models';
 @Component({
   selector: 'app-organization-users',
   templateUrl: './organization-users.component.html',
-  styleUrls: ['./organization-users.component.css']
+  styleUrls: ['./organization-users.component.css'],
 })
 export class OrganizationUsersComponent implements OnInit {
-
   @Input() organization: Organization;
-  users:Array<User> = new Array();
-  userIds:Array<string> = new Array();
-  totalUsers:Number;
+  users: Array<User> = new Array();
+  userIds: Array<string> = new Array();
+  totalUsers: Number;
   caninvite = false;
 
-
   constructor(
-    public userService:UserService,
-    public notifFactory:NotificationFactoryService,
-    public notificationService:NotificationService,
-    public dialogsService:DialogsService,
-    private sessionService:SessionService,
-    public oidcService:OidcSecurityService
-  ) { }
+    public userService: UserService,
+    public notifFactory: NotificationFactoryService,
+    public notificationService: NotificationService,
+    public dialogsService: DialogsService,
+    private sessionService: SessionService,
+    public oidcService: OidcSecurityService,
+  ) {}
 
   ngOnInit() {
+    if (this.organization._id != 'Jaqpot') {
+      var userData = this.sessionService.getUserData();
 
-    if(this.organization._id != "Jaqpot")
-    {
-      var userData = this.sessionService.getUserData()
-      
-      if(this.organization.creator.includes(userData.sub) || this.organization.users.includes(userData.sub)){
+      if (
+        this.organization.creator.includes(userData.sub) ||
+        this.organization.users.includes(userData.sub)
+      ) {
         this.caninvite = true;
       }
 
       this.userIds = this.organization.users;
-      let user:User = <User>{}
-      
-      this.userIds.forEach(id =>{
-        let userFormed:User = <User>{}
-        let metaInfo:Meta = <Meta>{}
-        userFormed._id = id
-        userFormed.meta = metaInfo
-        this.userService.getUserById(id)
-          .then(userGot =>{
-            user = userGot
-            if(user.meta != null && user.meta.picture != null){
-              userFormed.meta.picture = user.meta.picture
-            }
-            userFormed.occupation = user.occupation
-            userFormed.occupationAt = user.occupationAt
-            userFormed.name = user.name
-            this.users.push(userFormed)
-        })        
-      })
+      let user: User = <User>{};
+
+      this.userIds.forEach((id) => {
+        let userFormed: User = <User>{};
+        let metaInfo: Meta = <Meta>{};
+        userFormed._id = id;
+        userFormed.meta = metaInfo;
+        this.userService.getUserById(id).then((userGot) => {
+          user = userGot;
+          if (user.meta != null && user.meta.picture != null) {
+            userFormed.meta.picture = user.meta.picture;
+          }
+          userFormed.occupation = user.occupation;
+          userFormed.occupationAt = user.occupationAt;
+          userFormed.name = user.name;
+          this.users.push(userFormed);
+        });
+      });
     }
-
   }
 
-  openInviteDialog(){
-    this.dialogsService.inviteToOrganization(this.userService
-      , this.notifFactory
-      , this.organization
-      , this.notificationService);
+  openInviteDialog() {
+    this.dialogsService.inviteToOrganization(
+      this.userService,
+      this.notifFactory,
+      this.organization,
+      this.notificationService,
+    );
   }
 
-  openUserDialog(user){
-    this.dialogsService.quickUser(this.userService, user)
+  openUserDialog(user) {
+    this.dialogsService.quickUser(this.userService, user);
   }
-
 }

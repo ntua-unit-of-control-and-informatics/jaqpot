@@ -1,5 +1,5 @@
-.data_table{
-    margin:1em;
+.data_table {
+  margin: 1em;
 }
 
 /* .table{
@@ -30,7 +30,6 @@ td {
   position: relative;
   max-height: 400px;
   overflow: auto;
-
 }
 
 table {
@@ -62,9 +61,9 @@ table {
   height: 94%;
 } */
 
-.grid{
+.grid {
   margin: 1em;
-  width:94%;
+  width: 94%;
 }
 
 .example-rate-limit-reached {
@@ -79,7 +78,7 @@ table {
   max-width: 64px;
 }
 
-.dataset_image{
+.dataset_image {
   max-width: 192px;
   max-height: 192px;
   margin: 0 auto;
@@ -89,37 +88,36 @@ table {
   max-width: 124px;
 }
 
-
-.feat_header{
+.feat_header {
   position: sticky;
 }
 
-.feat_card{
+.feat_card {
   width: 80%;
   margin: 1em;
   padding-right: 17px;
 }
-.feat_input{
+.feat_input {
   width: 94%;
 }
 
-.feat_header{
+.feat_header {
   margin-left: 1em;
 }
 
-.features_header{
+.features_header {
   margin-left: 2em;
 }
 
-.feat{
+.feat {
   margin: 1em;
 }
 
-.feat_input{
-  width:100%;
+.feat_input {
+  width: 100%;
 }
 
-.feat_edit{
+.feat_edit {
   margin: 0 auto;
   margin-bottom: 1em;
 }

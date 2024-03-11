@@ -4,44 +4,47 @@ import { OrganizationService } from '../../../jaqpot-client/api/organization.ser
 import { UserService } from '../../../jaqpot-client/api/user.service';
 import { Notification } from '../../../jaqpot-client/model/notification';
 import { MatDialogRef } from '@angular/material/dialog';
-import {MatSnackBar } from '@angular/material/snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '@euclia/accounts-client/dist/models/user';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Component({
   selector: 'app-invitation-notif-dialog',
   templateUrl: './invitation-notif-dialog.component.html',
-  styleUrls: ['./invitation-notif-dialog.component.css']
+  styleUrls: ['./invitation-notif-dialog.component.css'],
 })
 export class InvitationNotifDialogComponent implements OnInit {
+  notification: Notification;
 
-  notification:Notification
+  notificationService: NotificationService;
+  organizationService: OrganizationService;
+  userService: UserService;
 
-  notificationService:NotificationService
-  organizationService:OrganizationService
-  userService:UserService
+  openedFrom: string;
 
-  openedFrom:string
+  from: User;
+  me: User;
 
-  from: User
-  me: User
+  organ: Organization;
 
-  organ: Organization
-
-  constructor(public snackBar: MatSnackBar, private dialogRef: MatDialogRef<InvitationNotifDialogComponent>) { }
+  constructor(
+    public snackBar: MatSnackBar,
+    private dialogRef: MatDialogRef<InvitationNotifDialogComponent>,
+  ) {}
 
   ngOnInit() {
-    this.userService.getUserById(this.notification.from).then(user =>{
-      this.from = user
-    })
+    this.userService.getUserById(this.notification.from).then((user) => {
+      this.from = user;
+    });
 
-    this.organizationService.getOrgById(this.notification.invitationTo).then(organization =>{
-      this.organ = organization
-    })
-
+    this.organizationService
+      .getOrgById(this.notification.invitationTo)
+      .then((organization) => {
+        this.organ = organization;
+      });
   }
 
-  acceptInvitation(){
+  acceptInvitation() {
     // this.userService.getUserById(this.notification.owner).then(user => {
     //   this.me = user
     //   if(!this.me.organizations.some(c => c === this.organ._id)){
@@ -54,7 +57,6 @@ export class InvitationNotifDialogComponent implements OnInit {
     //       })
     //       this.notification.viewed = true;
     //       this.notificationService.putEntitySecured(this.notification).subscribe(notif =>{
-            
     //       })
     //     })
     //   }else{
@@ -64,28 +66,36 @@ export class InvitationNotifDialogComponent implements OnInit {
     //     })
     //   }
     // })
-
   }
 
-  declineInvitation(){
+  declineInvitation() {
     this.notification.viewed = true;
-    this.notificationService.putEntitySecured(this.notification).subscribe(notif =>{
-      this.openSnackBar("You have declined invitation", "Notification Resolved")
-    })
+    this.notificationService
+      .putEntitySecured(this.notification)
+      .subscribe((notif) => {
+        this.openSnackBar(
+          'You have declined invitation',
+          'Notification Resolved',
+        );
+      });
   }
 
-  resolveNotification(){
+  resolveNotification() {
     this.notification.viewed = true;
-    this.notificationService.putEntitySecured(this.notification).subscribe(notifNew=>{
-      this.openSnackBar("Notification won't appear any more", "")
-    })
+    this.notificationService
+      .putEntitySecured(this.notification)
+      .subscribe((notifNew) => {
+        this.openSnackBar("Notification won't appear any more", '');
+      });
   }
 
-  deleteNotification(){
-    this.notificationService.deleteEntityWithID(this.notification._id).subscribe(notifNew=>{
-      this.dialogRef.close('deleted')
-      this.openSnackBar("Notification deleted", "")
-    })
+  deleteNotification() {
+    this.notificationService
+      .deleteEntityWithID(this.notification._id)
+      .subscribe((notifNew) => {
+        this.dialogRef.close('deleted');
+        this.openSnackBar('Notification deleted', '');
+      });
   }
 
   openSnackBar(message: string, action: string) {
@@ -93,5 +103,4 @@ export class InvitationNotifDialogComponent implements OnInit {
       duration: 3200,
     });
   }
-
 }

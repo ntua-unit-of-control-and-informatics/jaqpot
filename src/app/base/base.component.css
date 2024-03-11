@@ -1,29 +1,27 @@
-button{
-    float: right;
+button {
+  float: right;
 }
 
 /* .base-toolbar{
     position: relative;
 } */
 
-
 .example-spacer {
-    flex: 1 1 auto;
-  }
-
-
-.modeling_session{
-    margin-left: 8em;
-    margin-right: 1em;
-    opacity: 0.8;
+  flex: 1 1 auto;
 }
 
-.session_bar{
-    /* background-color: grey; */
-    padding-top: 0px;
-    font-family: sans-serif;
-    max-height: 25px;
-    font-size: 0.8em;
-    
-    /* opacity: 0.4; */
+.modeling_session {
+  margin-left: 8em;
+  margin-right: 1em;
+  opacity: 0.8;
+}
+
+.session_bar {
+  /* background-color: grey; */
+  padding-top: 0px;
+  font-family: sans-serif;
+  max-height: 25px;
+  font-size: 0.8em;
+
+  /* opacity: 0.4; */
 }

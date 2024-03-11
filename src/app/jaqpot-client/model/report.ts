@@ -13,24 +13,22 @@
 import { ArrayCalculation } from './arrayCalculation';
 import { MetaInfo } from './metaInfo';
 
-
 export interface Report {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    singleCalculations?: { [key: string]: any; };
+  singleCalculations?: { [key: string]: any };
 
-    arrayCalculations?: { [key: string]: ArrayCalculation; };
+  arrayCalculations?: { [key: string]: ArrayCalculation };
 
-    figures?: { [key: string]: string; };
+  figures?: { [key: string]: string };
 
-    id?: string;
-
+  id?: string;
 }

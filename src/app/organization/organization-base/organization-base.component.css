@@ -1,13 +1,13 @@
-.org-photo{
+.org-photo {
   height: 8em;
 }
 
-.orgid{
+.orgid {
   max-width: 100%;
   overflow: hidden;
 }
 
-.card_wrap{
+.card_wrap {
   margin-right: 1em;
   margin-left: 1em;
   margin-top: 2em;
@@ -15,44 +15,44 @@
   overflow: auto; */
 }
 
-.base_card{
+.base_card {
   margin-bottom: 1em;
 }
 
-.org_pic{
-  width:100%;
+.org_pic {
+  width: 100%;
 }
 
-.entity_image{
-  width:100%;
+.entity_image {
+  width: 100%;
   border-radius: 5px;
 }
 
-.edit-city{
-  width:100%;
+.edit-city {
+  width: 100%;
 }
-.edit-country{
-  width:100%;
+.edit-country {
+  width: 100%;
 }
 
-.descr_input{
+.descr_input {
   margin-top: 1em;
-  width:100%;
+  width: 100%;
 }
 
-.admins_and_all{
+.admins_and_all {
   max-height: 280px;
   overflow: auto;
   padding-bottom: 1em;
 }
-.userim{
+.userim {
   margin-top: 0.5em;
   width: 3em;
   border-radius: 50%;
   /* float: left; */
 }
 
-.user_name{
+.user_name {
   float: left;
   margin-top: 1.5em;
   margin-right: 1em;
@@ -60,28 +60,28 @@
   overflow: hidden;
 }
 
-.descr{
+.descr {
   max-height: 6em;
   overflow: auto;
 }
 
-.creator_wrap{
+.creator_wrap {
   min-height: 100%;
 }
 
-.admins_b{
+.admins_b {
   margin-top: 2em;
 }
 
-.adm_head{
+.adm_head {
   margin-top: 2em;
 }
 
-.creator_head{
+.creator_head {
   margin-top: 2em;
 }
 
-.overview_card{
+.overview_card {
   margin-top: 2em;
   margin-left: 1em;
   margin-right: 1em;
@@ -90,7 +90,7 @@
   overflow: auto;
 }
 
-.users_card{
+.users_card {
   /* margin-top: 2em; */
   margin-left: 1em;
   margin-right: 1em;
@@ -101,12 +101,12 @@
   height: 100%;
 }
 
-.grig_org{
+.grig_org {
   margin-top: 2em;
   margin-bottom: 1em;
 }
 
-.card_contact{
+.card_contact {
   margin-bottom: 2em;
   max-height: 280px;
   margin-left: 1em;
@@ -116,7 +116,7 @@
   height: 100%;
 }
 
-.affiliations{
+.affiliations {
   margin-bottom: 2em;
   margin-left: 1em;
   margin-right: 1em;
@@ -126,41 +126,41 @@
   height: 100%;
 }
 
-.card_models{
+.card_models {
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 2em;
 }
 
-.mcont{
+.mcont {
   /* max-height: calc(100vh - 180px);
   overflow: auto; */
 }
 
-.socialpng{
+.socialpng {
   margin-left: 1em;
   width: 2em;
   float: left;
 }
 
-.edit-website{
+.edit-website {
   width: 100%;
 }
 
-.website{
-  width:140%;
+.website {
+  width: 140%;
 }
 
-.editsite{
+.editsite {
   width: 100%;
 }
 
-.socialpng{
+.socialpng {
   float: left;
   width: 2em;
 }
 
-.orgsite{
+.orgsite {
   text-decoration: none;
   margin-top: 0.5em;
   margin-left: 1em;
@@ -170,16 +170,16 @@
   overflow: hidden;
 }
 
-.orgcontact{
-  width:100%;
+.orgcontact {
+  width: 100%;
 }
 
-.contemail{
+.contemail {
   float: left;
   margin-top: 1em;
 }
 
-.contact{
+.contact {
   float: left;
   margin-top: 2em;
   margin-left: 2em;
@@ -187,68 +187,63 @@
   overflow: hidden;
 }
 
-.editcontact{
-  width:100%;
+.editcontact {
+  width: 100%;
 }
 
-.edit-contact{
-  width:100%;
-
+.edit-contact {
+  width: 100%;
 }
-.markdown{
+.markdown {
   padding: 1em;
 }
 
-.contemailedit{
+.contemailedit {
   margin-left: 0.6em;
 }
 
-.aff_but{
+.aff_but {
   margin-top: 0.5em;
   margin-left: 1em;
 }
 
-.rem_aff_but{
+.rem_aff_but {
   float: right;
 }
 
-
-.mat-card .mat-divider-horizontal{
-  width:100%;
+.mat-card .mat-divider-horizontal {
+  width: 100%;
   position: relative;
   margin-top: 1em;
 }
-
-
-
 
 .edit {
   display: inline-block;
   position: fixed;
   bottom: 20px;
   right: 20px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   color: lightseagreen;
   opacity: 0.4;
 }
 
 .edit:hover {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   opacity: 1;
 }
 
-.delete{
+.delete {
   display: inline-block;
   position: fixed;
   bottom: 100px;
   right: 20px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   color: lightseagreen;
   opacity: 0.4;
 }
 
 .delete:hover {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   opacity: 1;
 }
 
@@ -260,28 +255,27 @@
   color: lightseagreen;
 }
 
-.orgim{
+.orgim {
   width: 2.5em;
   border-radius: 25%;
   float: left;
   margin-right: 1em;
 }
 
-.orgim2{
+.orgim2 {
   width: 2em;
   border-radius: 25%;
   float: left;
   margin-right: 1em;
 }
 
-.orgtitle{
+.orgtitle {
   float: right;
 }
 
-.listItem:hover{
-  width:100%;
+.listItem:hover {
+  width: 100%;
   cursor: pointer;
   background-color: lightgray;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
-

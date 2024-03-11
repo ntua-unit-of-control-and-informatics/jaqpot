@@ -4,15 +4,12 @@ import { Parameter } from '../../../jaqpot-client';
 @Component({
   selector: 'app-parametersteps',
   templateUrl: './parametersteps.component.html',
-  styleUrls: ['./parametersteps.component.css']
+  styleUrls: ['./parametersteps.component.css'],
 })
 export class ParameterstepsComponent implements OnInit {
-
   @Input() parameters: Array<Parameter>;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

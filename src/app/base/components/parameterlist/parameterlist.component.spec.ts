@@ -8,9 +8,8 @@ describe('ParameterlistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParameterlistComponent ]
-    })
-    .compileComponents();
+      declarations: [ParameterlistComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

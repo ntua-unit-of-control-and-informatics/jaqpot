@@ -8,9 +8,8 @@ describe('UserQuickComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserQuickComponent ]
-    })
-    .compileComponents();
+      declarations: [UserQuickComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

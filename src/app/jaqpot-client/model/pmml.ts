@@ -12,20 +12,18 @@
 
 import { MetaInfo } from './metaInfo';
 
-
 export interface Pmml {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    pmml?: string;
+  pmml?: string;
 
-    id?: string;
-
+  id?: string;
 }

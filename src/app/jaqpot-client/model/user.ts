@@ -12,50 +12,48 @@
 
 import { MetaInfo } from './metaInfo';
 
-
 export interface User {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    name?: string;
+  name?: string;
 
-    mail?: string;
+  mail?: string;
 
-    hashedPass?: string;
+  hashedPass?: string;
 
-    capabilities?: { [key: string]: number; };
+  capabilities?: { [key: string]: number };
 
-    publicationRatePerWeek?: { [key: string]: number; };
+  publicationRatePerWeek?: { [key: string]: number };
 
-    organizations?: Array<string>;
+  organizations?: Array<string>;
 
-    _id?: string;
+  _id?: string;
 
-    occupation?: string;
+  occupation?: string;
 
-    occupationAt?: string;
+  occupationAt?: string;
 
-    about?: string;
+  about?: string;
 
-    linkedin?: string;
+  linkedin?: string;
 
-    github?: string;
+  github?: string;
 
-    twitter?: string;
+  twitter?: string;
 
-    website?: string;
+  website?: string;
 
-    cv?: string;
+  cv?: string;
 
-    livesAtCity?: string;
-    
-    livesAtCountry?: string;
+  livesAtCity?: string;
 
+  livesAtCountry?: string;
 }

@@ -8,9 +8,8 @@ describe('AskForIdComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AskForIdComponent ]
-    })
-    .compileComponents();
+      declarations: [AskForIdComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

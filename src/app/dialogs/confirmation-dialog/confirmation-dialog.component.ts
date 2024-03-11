@@ -4,23 +4,22 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
-  styleUrls: ['./confirmation-dialog.component.css']
+  styleUrls: ['./confirmation-dialog.component.css'],
 })
 export class ConfirmationDialogComponent implements OnInit {
+  confirmationMessage: string;
+  confirmationAction: string;
 
-  confirmationMessage:string;
-  confirmationAction:string;
-
-  constructor(public thisDialogRef: MatDialogRef<ConfirmationDialogComponent>) { }
-  ngOnInit() {
-  }
+  constructor(
+    public thisDialogRef: MatDialogRef<ConfirmationDialogComponent>,
+  ) {}
+  ngOnInit() {}
 
   onCloseConfirm() {
     this.thisDialogRef.close(true);
   }
-  
+
   onCloseCancel() {
     this.thisDialogRef.close(false);
   }
-
 }

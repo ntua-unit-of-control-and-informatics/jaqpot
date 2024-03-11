@@ -1,168 +1,177 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DatasourceToCsvService {
-
   public fileName: string;
-    public labels: Array<String>;
-    public data: any[];
+  public labels: Array<String>;
+  public data: any[];
 
-    private _options: Options;
-    private csv = "";
+  private _options: Options;
+  private csv = '';
 
-    constructor() {
+  constructor() {}
 
+  public downloadFullDataset(data: any, filename: string) {
+    var csvData: string = '';
+
+    let header = Object.keys(data[0]).join(',');
+    let values = data.map((o) => Object.values(o).join(',')).join('\n');
+
+    csvData += header + '\n' + values;
+
+    var blob = new Blob(['\ufeff' + csvData], {
+      type: 'text/csv; charset=utf-8',
+    });
+    var url = window.URL.createObjectURL(blob);
+    const datasetName = filename + '.csv';
+    if (navigator.msSaveOrOpenBlob) {
+      navigator.msSaveBlob(blob, datasetName);
+    } else {
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = datasetName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+    window.URL.revokeObjectURL(url);
+  }
+
+  public createAndDownload(DataJSON: any, filename: string, options?: any) {
+    let config = options || {};
+
+    this.data = typeof DataJSON != 'object' ? JSON.parse(DataJSON) : DataJSON;
+
+    this._options = objectAssign({}, ConfigDefaults, config);
+
+    if (this._options.filename) {
+      this._options.filename = filename;
     }
 
-    public downloadFullDataset(data:any, filename:string){
-        var csvData:string = "";
-        
-        let header = Object.keys(data[0]).join(',');
-        let values = data.map(o => Object.values(o).join(',')).join('\n');
+    this.generateCsv();
+  }
 
-        csvData += header + '\n' + values;
-        
-        var blob = new Blob(["\ufeff"+csvData], { type: 'text/csv; charset=utf-8' });
-        var url = window.URL.createObjectURL(blob);
-        const datasetName = filename + ".csv"
-        if(navigator.msSaveOrOpenBlob) {
-            navigator.msSaveBlob(blob, datasetName);
-        } else {
-            var a = document.createElement("a");
-            a.href = url;
-            a.download = datasetName;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-        window.URL.revokeObjectURL(url);
+  /**
+   * Generate and Download Csv
+   */
+  private generateCsv() {
+    if (this._options.useBom) {
+      this.csv += CsvConfigConsts.BOM;
     }
 
+    if (this._options.showTitle) {
+      this.csv += this._options.title + '\r\n\n';
+    }
 
-    public createAndDownload(DataJSON: any, filename: string, options?: any){
-      let config = options || {};
+    this.getHeaders();
+    this.getBody();
 
-      this.data = typeof DataJSON != 'object' ? JSON.parse(DataJSON) : DataJSON;
+    if (this.csv == '') {
+      console.log('Invalid data');
+      return;
+    }
 
-      this._options = objectAssign({}, ConfigDefaults, config);
+    if (this._options.noDownload) {
+      return this.csv;
+    }
 
-      if (this._options.filename) {
-          this._options.filename = filename;
+    let blob = new Blob([this.csv], { type: 'text/csv;charset=utf8;' });
+
+    if (navigator.msSaveBlob) {
+      let filename = this._options.filename.replace(/ /g, '_') + '.csv';
+      navigator.msSaveBlob(blob, filename);
+    } else {
+      let uri = 'data:attachment/csv;charset=utf-8,' + encodeURI(this.csv);
+      let link = document.createElement('a');
+
+      link.href = URL.createObjectURL(blob);
+
+      link.setAttribute('visibility', 'hidden');
+      link.download = this._options.filename.replace(/ /g, '_') + '.csv';
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+
+  /**
+   * Create Headers
+   */
+  getHeaders(): void {
+    if (this._options.headers.length > 0) {
+      const { headers } = this._options;
+      let row = headers.reduce((headerRow, header) => {
+        return headerRow + header + this._options.fieldSeparator;
+      }, '');
+      row = row.slice(0, -1);
+      this.csv += row + CsvConfigConsts.EOL;
+    }
+  }
+
+  /**
+   * Create Body
+   */
+  getBody() {
+    for (let i = 0; i < this.data.length; i++) {
+      let row = '';
+      for (const index in this.data[i]) {
+        row +=
+          this.formartData(this.data[i][index]) + this._options.fieldSeparator;
       }
 
-      this.generateCsv();
+      row = row.slice(0, -1);
+      this.csv += row + CsvConfigConsts.EOL;
+    }
+  }
+
+  /**
+   * Format Data
+   * @param {any} data
+   */
+  formartData(data: any) {
+    if (
+      this._options.decimalseparator === 'locale' &&
+      DatasourceToCsvService.isFloat(data)
+    ) {
+      return data.toLocaleString();
     }
 
-    /**
-     * Generate and Download Csv
-     */
-    private generateCsv() {
-        if (this._options.useBom) {
-            this.csv += CsvConfigConsts.BOM;
-        }
-
-        if (this._options.showTitle) {
-            this.csv += this._options.title + '\r\n\n';
-        }
-
-        this.getHeaders();
-        this.getBody();
-
-        if (this.csv == '') {
-            console.log("Invalid data");
-            return;
-        }
-
-        if(this._options.noDownload) {
-            return this.csv;
-        }
-
-        let blob = new Blob([this.csv], {"type": "text/csv;charset=utf8;"});
-
-        if (navigator.msSaveBlob) {
-            let filename = this._options.filename.replace(/ /g, "_") + ".csv";
-            navigator.msSaveBlob(blob, filename);
-        } else {
-            let uri = 'data:attachment/csv;charset=utf-8,' + encodeURI(this.csv);
-            let link = document.createElement("a");
-
-            link.href = URL.createObjectURL(blob);
-
-            link.setAttribute('visibility', 'hidden');
-            link.download = this._options.filename.replace(/ /g, "_") + ".csv";
-
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+    if (
+      this._options.decimalseparator !== '.' &&
+      DatasourceToCsvService.isFloat(data)
+    ) {
+      return data.toString().replace('.', this._options.decimalseparator);
     }
 
-    /**
-     * Create Headers
-     */
-    getHeaders(): void {
-      if (this._options.headers.length > 0) {
-          const { headers } = this._options;
-          let row = headers.reduce((headerRow, header) => {
-              return headerRow + header + this._options.fieldSeparator;
-          }, '');
-          row = row.slice(0, -1);
-          this.csv += row + CsvConfigConsts.EOL;
+    if (typeof data === 'string') {
+      data = data.replace(/"/g, '""');
+      if (
+        this._options.quoteStrings ||
+        data.indexOf(',') > -1 ||
+        data.indexOf('\n') > -1 ||
+        data.indexOf('\r') > -1
+      ) {
+        data = this._options.quoteStrings + data + this._options.quoteStrings;
       }
+      return data;
     }
 
-    /**
-     * Create Body
-     */
-    getBody() {
-        for (let i = 0; i < this.data.length; i++) {
-            let row = "";
-            for (const index in this.data[i]) {
-                row += this.formartData(this.data[i][index]) + this._options.fieldSeparator;
-            }
-
-            row = row.slice(0, -1);
-            this.csv += row + CsvConfigConsts.EOL;
-        }
+    if (typeof data === 'boolean') {
+      return data ? 'TRUE' : 'FALSE';
     }
+    return data;
+  }
 
-    /**
-     * Format Data
-     * @param {any} data
-     */
-    formartData(data: any) {
-
-        if (this._options.decimalseparator === 'locale' && DatasourceToCsvService.isFloat(data)) {
-            return data.toLocaleString();
-        }
-
-        if (this._options.decimalseparator !== '.' && DatasourceToCsvService.isFloat(data)) {
-            return data.toString().replace('.', this._options.decimalseparator);
-        }
-
-        if (typeof data === 'string') {
-            data = data.replace(/"/g, '""');
-            if (this._options.quoteStrings || data.indexOf(',') > -1 || data.indexOf('\n') > -1 || data.indexOf('\r') > -1) {
-                data = this._options.quoteStrings + data + this._options.quoteStrings;
-            }
-            return data;
-        }
-
-        if (typeof data === 'boolean') {
-            return data ? 'TRUE' : 'FALSE';
-        }
-        return data;
-    }
-
-    /**
-     * Check if is Float
-     * @param {any} input
-     */
-    static isFloat(input: any) {
-        return +input === input && (!isFinite(input) || Boolean(input % 1));
-    }
+  /**
+   * Check if is Float
+   * @param {any} input
+   */
+  static isFloat(input: any) {
+    return +input === input && (!isFinite(input) || Boolean(input % 1));
+  }
 }
 
 let hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -173,10 +182,12 @@ let propIsEnumerable = Object.prototype.propertyIsEnumerable;
  * @param {any} val
  */
 function toObject(val: any) {
-    if (val === null || val === undefined) {
-        throw new TypeError('Object.assign cannot be called with null or undefined');
-    }
-    return Object(val);
+  if (val === null || val === undefined) {
+    throw new TypeError(
+      'Object.assign cannot be called with null or undefined',
+    );
+  }
+  return Object(val);
 }
 
 /**
@@ -185,32 +196,30 @@ function toObject(val: any) {
  * @param {any[]} ...source
  */
 function objectAssign(target: any, ...source: any[]) {
-    let from: any;
-    let to = toObject(target);
-    let symbols: any;
+  let from: any;
+  let to = toObject(target);
+  let symbols: any;
 
-    for (let s = 1; s < arguments.length; s++) {
-        from = Object(arguments[s]);
+  for (let s = 1; s < arguments.length; s++) {
+    from = Object(arguments[s]);
 
-        for (const key in from) {
-            if (hasOwnProperty.call(from, key)) {
-                to[key] = from[key];
-            }
-        }
-
-        if ((<any>Object).getOwnPropertySymbols) {
-            symbols = (<any>Object).getOwnPropertySymbols(from);
-            for (let i = 0; i < symbols.length; i++) {
-                if (propIsEnumerable.call(from, symbols[i])) {
-                    to[symbols[i]] = from[symbols[i]];
-                }
-            }
-        }
+    for (const key in from) {
+      if (hasOwnProperty.call(from, key)) {
+        to[key] = from[key];
+      }
     }
-    return to;
+
+    if ((<any>Object).getOwnPropertySymbols) {
+      symbols = (<any>Object).getOwnPropertySymbols(from);
+      for (let i = 0; i < symbols.length; i++) {
+        if (propIsEnumerable.call(from, symbols[i])) {
+          to[symbols[i]] = from[symbols[i]];
+        }
+      }
+    }
+  }
+  return to;
 }
-
-
 
 export interface Options {
   filename: string;
@@ -226,9 +235,8 @@ export interface Options {
 }
 
 export class CsvConfigConsts {
-
-  public static EOL = "\r\n";
-  public static BOM = "\ufeff";
+  public static EOL = '\r\n';
+  public static BOM = '\ufeff';
 
   public static DEFAULT_FIELD_SEPARATOR = ',';
   public static DEFAULT_DECIMAL_SEPARATOR = '.';
@@ -240,7 +248,6 @@ export class CsvConfigConsts {
   public static DEFAULT_USE_BOM = true;
   public static DEFAULT_HEADER: any[] = [];
   public static DEFAULT_NO_DOWNLOAD = false;
-
 }
 
 export const ConfigDefaults: Options = {
@@ -253,5 +260,5 @@ export const ConfigDefaults: Options = {
   title: CsvConfigConsts.DEFAULT_TITLE,
   useBom: CsvConfigConsts.DEFAULT_USE_BOM,
   headers: CsvConfigConsts.DEFAULT_HEADER,
-  noDownload: CsvConfigConsts.DEFAULT_NO_DOWNLOAD
+  noDownload: CsvConfigConsts.DEFAULT_NO_DOWNLOAD,
 };

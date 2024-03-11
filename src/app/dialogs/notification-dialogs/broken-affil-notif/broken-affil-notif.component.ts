@@ -12,40 +12,42 @@ import { Organization } from '@euclia/accounts-client/dist/models/models';
 @Component({
   selector: 'app-broken-affil-notif',
   templateUrl: './broken-affil-notif.component.html',
-  styleUrls: ['./broken-affil-notif.component.css']
+  styleUrls: ['./broken-affil-notif.component.css'],
 })
 export class BrokenAffilNotifComponent implements OnInit {
+  _notification: Notification;
+  _organizationApi: OrganizationService;
+  _notificationApi: NotificationService;
+  _userApi: UserService;
+  _modelApi: ModelApiService;
+  _datasetApi: DatasetService;
 
-  _notification:Notification
-  _organizationApi:OrganizationService
-  _notificationApi:NotificationService
-  _userApi:UserService
-  _modelApi:ModelApiService
-  _datasetApi:DatasetService
+  openedFrom: string;
 
-  openedFrom:string
+  from: User;
+  brokeWith: Organization;
 
-  from:User
-  brokeWith:Organization
-
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this._userApi.getUserById(this._notification.from).then(user =>{
-      this.from = user
-    })
+    this._userApi.getUserById(this._notification.from).then((user) => {
+      this.from = user;
+    });
 
-    this._organizationApi.getOrgById(this._notification.affiliatedOrg).then(organization =>{
-      this.brokeWith = organization
-    })
-
+    this._organizationApi
+      .getOrgById(this._notification.affiliatedOrg)
+      .then((organization) => {
+        this.brokeWith = organization;
+      });
   }
 
-  resolveNotification(){
+  resolveNotification() {
     this._notification.viewed = true;
-    this._notificationApi.putEntitySecured(this._notification).subscribe(notifNew=>{
-      this.openSnackBar("Notification won't appear any more", "")
-    })
+    this._notificationApi
+      .putEntitySecured(this._notification)
+      .subscribe((notifNew) => {
+        this.openSnackBar("Notification won't appear any more", '');
+      });
   }
 
   openSnackBar(message: string, action: string) {
@@ -53,5 +55,4 @@ export class BrokenAffilNotifComponent implements OnInit {
       duration: 3200,
     });
   }
-
 }

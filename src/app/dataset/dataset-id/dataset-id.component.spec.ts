@@ -8,9 +8,8 @@ describe('DatasetIdComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DatasetIdComponent ]
-    })
-    .compileComponents();
+      declarations: [DatasetIdComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,8 +1,7 @@
-<h4 mat-dialog-title> {{title}}</h4>
+<h4 mat-dialog-title>{{ title }}</h4>
 
 <mat-dialog-content>
   <div class="all">
-
     <!-- <div class="read_list">
       <mat-form-field>
         <mat-chip-list #chipList1>
@@ -24,23 +23,39 @@
       </mat-form-field>
     </div> -->
 
-
     <div class="write_list">
       <mat-form-field>
         <mat-chip-list #chipList2>
-          <mat-chip *ngFor="let org of organizationsWillWrite" [selectable]="selectable" [removable]="removable"
-            (removed)="removeWriteOrg(org)">
-            {{org}}
+          <mat-chip
+            *ngFor="let org of organizationsWillWrite"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="removeWriteOrg(org)"
+          >
+            {{ org }}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input matTooltip="These Organizations will be able to write on the dataset" placeholder="Write" #writeInput
-            [formControl]="writeCtrl" [matAutocomplete]="writeAuto" [matChipInputFor]="chipList2"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="addWriteOrg($event)">
+          <input
+            matTooltip="These Organizations will be able to write on the dataset"
+            placeholder="Write"
+            #writeInput
+            [formControl]="writeCtrl"
+            [matAutocomplete]="writeAuto"
+            [matChipInputFor]="chipList2"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addWriteOrg($event)"
+          />
         </mat-chip-list>
-        <mat-autocomplete #writeAuto="matAutocomplete" (optionSelected)="writeSelected($event)">
-          <mat-option *ngFor="let organization of organizationsToWrite" [value]="organization">
-            {{organization}}
+        <mat-autocomplete
+          #writeAuto="matAutocomplete"
+          (optionSelected)="writeSelected($event)"
+        >
+          <mat-option
+            *ngFor="let organization of organizationsToWrite"
+            [value]="organization"
+          >
+            {{ organization }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -49,38 +64,61 @@
     <div class="execute_list">
       <mat-form-field class="example-chip-list">
         <mat-chip-list #chipList3>
-          <mat-chip *ngFor="let org of organizationsWillExecute" [selectable]="selectable" [removable]="removable"
-            (removed)="removeExecuteOrg(org)">
-            {{org}}
+          <mat-chip
+            *ngFor="let org of organizationsWillExecute"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="removeExecuteOrg(org)"
+          >
+            {{ org }}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input matTooltip="These Organizations will be able to use the dataset" placeholder="Execute" #executeInput
-            [formControl]="executeCtrl" [matAutocomplete]="executeAuto" [matChipInputFor]="chipList3"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-            (matChipInputTokenEnd)="addExecuteOrg($event)">
+          <input
+            matTooltip="These Organizations will be able to use the dataset"
+            placeholder="Execute"
+            #executeInput
+            [formControl]="executeCtrl"
+            [matAutocomplete]="executeAuto"
+            [matChipInputFor]="chipList3"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addExecuteOrg($event)"
+          />
         </mat-chip-list>
-        <mat-autocomplete #executeAuto="matAutocomplete" (optionSelected)="executeSelected($event)">
-          <mat-option *ngFor="let organization of organizationsToExecute" [value]="organization">
-            {{organization}}
+        <mat-autocomplete
+          #executeAuto="matAutocomplete"
+          (optionSelected)="executeSelected($event)"
+        >
+          <mat-option
+            *ngFor="let organization of organizationsToExecute"
+            [value]="organization"
+          >
+            {{ organization }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </div>
   </div>
 
-
   <div class="notes">
     <h4>Notes about sharing</h4>
     <p>Deleting is only available for the creator</p>
-    <p>When something is shared with Jaqpot it becomes available for all the users</p>
-    <p>The priviledges are given to all the users of an organization whared with</p>
+    <p>
+      When something is shared with Jaqpot it becomes available for all the
+      users
+    </p>
+    <p>
+      The priviledges are given to all the users of an organization whared with
+    </p>
     <h5>View</h5>
     <p>Users with will be able to view the resource</p>
     <h5>Write</h5>
     <p>Users will be able to view and edit and share the resource</p>
     <h5>Notes about Execute</h5>
-    <p class="long">Users will be able to view the resource, execute tasks with the resource
-      (train, predict, validate etc) and share the resource</p>
+    <p class="long">
+      Users will be able to view the resource, execute tasks with the resource
+      (train, predict, validate etc) and share the resource
+    </p>
     <!-- <p>Users will be able to execute tasks with the resource <span><p>(train, predict, validate etc)</p> </span></p> -->
     <!-- <p>Users shared with will be able to share the resource </p> -->
     <!-- <div class="read_notes">
@@ -116,12 +154,16 @@
   </div>
 </mat-dialog-content>
 
-
 <mat-dialog-actions>
   <!-- <button mat-raised-button [disabled]="share" (click)="reset()">
     <mat-icon matTooltip="Cancell">cancel_presentation</mat-icon>
   </button> -->
-  <button mat-raised-button color="primary" [disabled]="share" (click)="startSharing()">
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="share"
+    (click)="startSharing()"
+  >
     <mat-icon matTooltip="Share">send</mat-icon>
   </button>
 </mat-dialog-actions>

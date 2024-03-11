@@ -8,9 +8,8 @@ describe('AffiliationNotifComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AffiliationNotifComponent ]
-    })
-    .compileComponents();
+      declarations: [AffiliationNotifComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

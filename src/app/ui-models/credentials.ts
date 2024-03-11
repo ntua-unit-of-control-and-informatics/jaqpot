@@ -1,10 +1,6 @@
-export class Credentials{
+export class Credentials {
+  constructor() {}
 
-    constructor(
-        
-    ){}
-
-    public username: string;
-    public password: string;
-
+  public username: string;
+  public password: string;
 }

@@ -25,7 +25,6 @@
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
 
-
 // @Injectable()
 // export class PmmlService {
 
@@ -142,7 +141,6 @@
 //             });
 //     }
 
-
 //     /**
 //      * Creates a new PMML entry
 //      * Creates a new PMML entry which is assigned a random unique ID
@@ -177,7 +175,6 @@
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         if (title !== undefined) {
 //             formParams.set('title', <any>title);
@@ -234,7 +231,6 @@
 //             'text/uri-list'
 //         ];
 
-
 //         if (features !== undefined) {
 //             formParams.set('features', <any>features);
 //         }
@@ -275,7 +271,6 @@
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
@@ -283,7 +278,6 @@
 //             'application/xml',
 //             'text/xml'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -324,13 +318,11 @@
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,

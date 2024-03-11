@@ -4,15 +4,12 @@ import { User } from '../../jaqpot-client';
 @Component({
   selector: 'app-quota',
   templateUrl: './quota.component.html',
-  styleUrls: ['./quota.component.css']
+  styleUrls: ['./quota.component.css'],
 })
 export class QuotaComponent implements OnInit {
+  @Input() user: User;
 
-  @Input() user:User;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

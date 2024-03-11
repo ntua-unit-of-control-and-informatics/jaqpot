@@ -10,30 +10,26 @@
  * Do not edit the class manually.
  */
 
-
-
 export interface FeatureInfo {
+  key?: string;
 
-    key?: string;
+  name?: string;
 
-    name?: string;
+  units?: string;
 
-    units?: string;
+  conditions?: { [key: string]: any };
 
-    conditions?: { [key: string]: any; };
+  category?: FeatureInfo.CategoryEnum;
 
-    category?: FeatureInfo.CategoryEnum;
-
-    uri?: string;
-
+  uri?: string;
 }
 export namespace FeatureInfo {
-    export enum CategoryEnum {
-        EXPERIMENTAL = <any> 'EXPERIMENTAL',
-        IMAGE = <any> 'IMAGE',
-        GO = <any> 'GO',
-        MOPAC = <any> 'MOPAC',
-        CDK = <any> 'CDK',
-        PREDICTED = <any> 'PREDICTED'
-    }
+  export enum CategoryEnum {
+    EXPERIMENTAL = <any>'EXPERIMENTAL',
+    IMAGE = <any>'IMAGE',
+    GO = <any>'GO',
+    MOPAC = <any>'MOPAC',
+    CDK = <any>'CDK',
+    PREDICTED = <any>'PREDICTED',
+  }
 }

@@ -8,9 +8,8 @@ describe('MultiLineComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MultiLineComponent ]
-    })
-    .compileComponents();
+      declarations: [MultiLineComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

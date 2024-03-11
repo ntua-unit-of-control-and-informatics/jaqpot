@@ -1,9 +1,7 @@
-export interface DatasetView{
+export interface DatasetView {
+  columnDef?: string;
 
-    columnDef?:string;
+  header?: string;
 
-    header?:string;
-
-    // cell: (any:string) => `{any}`;
-
+  // cell: (any:string) => `{any}`;
 }

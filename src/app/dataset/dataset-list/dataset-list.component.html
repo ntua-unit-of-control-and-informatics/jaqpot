@@ -1,100 +1,112 @@
-
 <div *ngIf="visible" class="wrapper">
-
   <div class="databutw">
     <span class="databut">
-      <button mat-mini-fab  
-          color="primary"
-          matTooltip="Featured"
-          matTooltipPosition="below"
-          class="first"
-          value="Featured Datasets"
-          (click)="changeDatasets('Featured')">
-            <i class="material-icons">featured_play_list</i>
-        </button>
-        <button
-          color="primary"
-          mat-mini-fab
-          matTooltip="All"
-          matTooltipPosition="below"
-          class="last"
-          value="All Datasets"
-          (click)="changeDatasets('All')">
-            <i class="material-icons">all_inclusive</i>
+      <button
+        mat-mini-fab
+        color="primary"
+        matTooltip="Featured"
+        matTooltipPosition="below"
+        class="first"
+        value="Featured Datasets"
+        (click)="changeDatasets('Featured')"
+      >
+        <i class="material-icons">featured_play_list</i>
+      </button>
+      <button
+        color="primary"
+        mat-mini-fab
+        matTooltip="All"
+        matTooltipPosition="below"
+        class="last"
+        value="All Datasets"
+        (click)="changeDatasets('All')"
+      >
+        <i class="material-icons">all_inclusive</i>
       </button>
     </span>
   </div>
 
   <div class="datalist">
     <mat-card class="datasetcard mat-elevation-z8">
-      <mat-card-header >
-          
-          <mat-card-title class="datasetcardheader">Datasets</mat-card-title>
-          <mat-card-subtitle class="datacardheader">
-            {{data_in}} in jaqpot
-          </mat-card-subtitle>
-                
-
+      <mat-card-header>
+        <mat-card-title class="datasetcardheader">Datasets</mat-card-title>
+        <mat-card-subtitle class="datacardheader">
+          {{ data_in }} in jaqpot
+        </mat-card-subtitle>
       </mat-card-header>
-        <mat-card-content >
-          <div class="data-table mat-elevation-z8" >
-
-            <div class="example-container ">
-
-                <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
-
-                    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-                    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-                      Jaqpot Api rate is limmited! Please try again later.
-                    </div>
-
-                </div>
-          
-                    <div class="filter">
-                      <mat-form-field>
-                          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                      </mat-form-field>
-                    </div>
-
-
-                    <mat-table #table [dataSource]="dataSource">
-                  
-                      <!-- Id Column -->
-                      <ng-container matColumnDef="Titles">
-                        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-                        <mat-cell *matCellDef="let dataset"> {{dataset.meta.titles[0]}} </mat-cell>
-                      </ng-container>
-                  
-                      <!-- Descriptions Column -->
-                      <ng-container matColumnDef="Subjects">
-                        <mat-header-cell *matHeaderCellDef> Subjects </mat-header-cell>
-                        <mat-cell *matCellDef="let dataset"> {{dataset.meta.subjects}} </mat-cell>
-                      </ng-container>
-
-                      <ng-container matColumnDef="Descriptions">
-                        <mat-header-cell *matHeaderCellDef> Descriptions </mat-header-cell>
-                        <mat-cell *matCellDef="let dataset"> {{dataset.meta.descriptions[0]}} </mat-cell>
-                      </ng-container>
-                  
-                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                      <mat-row (click)="onSelect(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                    </mat-table>
-                  
-                    <mat-paginator #paginator
-                                  [length]="resultsLength"
-                                  [pageSize]="10"
-                                  [pageSizeOptions]="[10, 20, 30]">
-                    </mat-paginator>
-            
-                
+      <mat-card-content>
+        <div class="data-table mat-elevation-z8">
+          <div class="example-container">
+            <div
+              class="loading-shade"
+              *ngIf="isLoadingResults || isRateLimitReached"
+            >
+              <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+              <div
+                class="example-rate-limit-reached"
+                *ngIf="isRateLimitReached"
+              >
+                Jaqpot Api rate is limmited! Please try again later.
+              </div>
             </div>
 
+            <div class="filter">
+              <mat-form-field>
+                <input
+                  matInput
+                  (keyup)="applyFilter($event.target.value)"
+                  placeholder="Filter"
+                />
+              </mat-form-field>
+            </div>
+
+            <mat-table #table [dataSource]="dataSource">
+              <!-- Id Column -->
+              <ng-container matColumnDef="Titles">
+                <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+                <mat-cell *matCellDef="let dataset">
+                  {{ dataset.meta.titles[0] }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- Descriptions Column -->
+              <ng-container matColumnDef="Subjects">
+                <mat-header-cell *matHeaderCellDef> Subjects </mat-header-cell>
+                <mat-cell *matCellDef="let dataset">
+                  {{ dataset.meta.subjects }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Descriptions">
+                <mat-header-cell *matHeaderCellDef>
+                  Descriptions
+                </mat-header-cell>
+                <mat-cell *matCellDef="let dataset">
+                  {{ dataset.meta.descriptions[0] }}
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row
+                (click)="onSelect(row)"
+                *matRowDef="let row; columns: displayedColumns"
+              ></mat-row>
+            </mat-table>
+
+            <mat-paginator
+              #paginator
+              [length]="resultsLength"
+              [pageSize]="10"
+              [pageSizeOptions]="[10, 20, 30]"
+            >
+            </mat-paginator>
           </div>
-              
-        </mat-card-content>
+        </div>
+      </mat-card-content>
     </mat-card>
   </div>
-
 </div>
 
 <router-outlet></router-outlet>

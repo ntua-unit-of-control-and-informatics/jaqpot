@@ -1,19 +1,19 @@
-.inputorganization{
-    width: 100%;
+.inputorganization {
+  width: 100%;
 }
 
-.orgim{
-    width:2em;
-    border-radius: 50%;
-    vertical-align: middle;
-    margin-right: 1em;
+.orgim {
+  width: 2em;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 1em;
 }
 
-.orgname{
-    margin-left: 1em;
-    vertical-align: middle;
+.orgname {
+  margin-left: 1em;
+  vertical-align: middle;
 }
 
-.invite-message{
-    width: 100%;
+.invite-message {
+  width: 100%;
 }

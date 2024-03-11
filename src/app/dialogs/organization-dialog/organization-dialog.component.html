@@ -3,22 +3,23 @@
     <img class="orgpic" [src]="organization?.meta?.picture" />
   </div>
   <div class="basis">
-    <h3 mat-dialog-title class="orgtitle">{{organization?.title}}</h3>
+    <h3 mat-dialog-title class="orgtitle">{{ organization?.title }}</h3>
     <!-- <p class="orgsite">{{organization?.website}}</p> -->
     <!-- <div *ngIf="organization.city"> -->
-      <!-- <p class="orgwhere">{{organization?.city}}, {{organization?.country}}</p> -->
+    <!-- <p class="orgwhere">{{organization?.city}}, {{organization?.country}}</p> -->
     <!-- </div> -->
     <!-- <p class="contact">Contact: {{organization?.contact}}</p> -->
   </div>
-
 </div>
 
 <mat-dialog-content class="orgcont">
   <h3 *ngIf="organization?.meta?.descriptions" class="about">About</h3>
-  {{organization?.meta?.descriptions}}
+  {{ organization?.meta?.descriptions }}
 </mat-dialog-content>
 
-<button *ngIf="view" mat-button class="vieworg" (click)="goToOrganization()">View</button>
+<button *ngIf="view" mat-button class="vieworg" (click)="goToOrganization()">
+  View
+</button>
 
 <mat-dialog-actions *ngIf="edit">
   <button mat-button (click)="goToOrganization()">Edit</button>

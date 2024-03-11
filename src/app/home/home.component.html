@@ -1,8 +1,6 @@
-<mat-toolbar  class="home_toolbar">
+<mat-toolbar class="home_toolbar">
   <mat-icon class="home_icon">home</mat-icon>
-  <span class="header">
-    Home
-  </span>
+  <span class="header"> Home </span>
 
   <span *ngIf="quick_view">
     <p class="quick_view">Quick view</p>
@@ -11,13 +9,18 @@
     <p class="trash_view">Trash</p>
   </span>
   <span *ngIf="queries_enabled">
-    <p class="view_enabled">{{queries_for}}</p>
+    <p class="view_enabled">{{ queries_for }}</p>
   </span>
   <mat-icon *ngIf="queries_enabled">arrow_right</mat-icon>
   <span *ngIf="queries_enabled">
-    <p class="query_chose">{{query}}</p>
+    <p class="query_chose">{{ query }}</p>
   </span>
-  <button *ngIf="queries_enabled" mat-icon-button [matMenuTriggerFor]="menu" class="query_menu">
+  <button
+    *ngIf="queries_enabled"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    class="query_menu"
+  >
     <mat-icon *ngIf="query != 'mine' && !trash_view">arrow_right</mat-icon>
   </button>
 
@@ -32,62 +35,101 @@
     </button>
   </mat-menu>
 
-    <p *ngIf="organizations && !trash_view" class="query_chose">With {{organizationActivated.title}}</p>
-    <button *ngIf="organizations && !trash_view" mat-icon-button [matMenuTriggerFor]="orgMenu" class="query_menu">
-        <mat-icon >arrow_drop_down</mat-icon>
-    </button>
+  <p *ngIf="organizations && !trash_view" class="query_chose">
+    With {{ organizationActivated.title }}
+  </p>
+  <button
+    *ngIf="organizations && !trash_view"
+    mat-icon-button
+    [matMenuTriggerFor]="orgMenu"
+    class="query_menu"
+  >
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
 
   <mat-menu #orgMenu="matMenu">
-      <button *ngFor="let org of organizations" mat-menu-item (click)="orgChosen(org)">
-          <mat-icon>business</mat-icon>
-          <span>{{org.title}}</span>
-        </button>
+    <button
+      *ngFor="let org of organizations"
+      mat-menu-item
+      (click)="orgChosen(org)"
+    >
+      <mat-icon>business</mat-icon>
+      <span>{{ org.title }}</span>
+    </button>
   </mat-menu>
-
 
   <span class="example-spacer"></span>
   <div class="add_dataset">
-    <button *ngIf="add_dataset" mat-mini-fab type="button" matTooltip="Add dataset" onclick="document.getElementById('fileToUpload').click()">
+    <button
+      *ngIf="add_dataset"
+      mat-mini-fab
+      type="button"
+      matTooltip="Add dataset"
+      onclick="document.getElementById('fileToUpload').click()"
+    >
       <mat-icon>add</mat-icon>
     </button>
-    <input #dataInput id="fileToUpload" type="file" style="display:none;" accept="image/*, .csv" multiple="multiple"
-      (change)="changeListener($event.target.files)">
-
+    <input
+      #dataInput
+      id="fileToUpload"
+      type="file"
+      style="display: none"
+      accept="image/*, .csv"
+      multiple="multiple"
+      (change)="changeListener($event.target.files)"
+    />
   </div>
 
-
-  <span><mat-paginator  *ngIf="paginEnabled" class="paginator" [length]="totalEntities"
-    [pageSize]="20" (page)="onPaginateChange($event)">
-      </mat-paginator></span>
+  <span
+    ><mat-paginator
+      *ngIf="paginEnabled"
+      class="paginator"
+      [length]="totalEntities"
+      [pageSize]="20"
+      (page)="onPaginateChange($event)"
+    >
+    </mat-paginator
+  ></span>
 
   <div *ngIf="listView; else gridView">
-    <button mat-icon-button matTooltip="Switch to grid view" (click)="changeToGridView()">
+    <button
+      mat-icon-button
+      matTooltip="Switch to grid view"
+      (click)="changeToGridView()"
+    >
       <mat-icon>format_list_bulleted</mat-icon>
     </button>
   </div>
   <ng-template #gridView>
-    <button mat-icon-button matTooltip="Switch to list view" (click)="changeToListView()">
+    <button
+      mat-icon-button
+      matTooltip="Switch to list view"
+      (click)="changeToListView()"
+    >
       <mat-icon>view_compact</mat-icon>
     </button>
   </ng-template>
-
 </mat-toolbar>
 
 <mat-divider class="hor_vert"></mat-divider>
 
 <div class="home_all">
-
   <div class="home_nav">
     <mat-list role="list">
-      <a mat-list-item role="listitem" (click)="goToDatasetView()" class="nav_item">
+      <a
+        mat-list-item
+        role="listitem"
+        (click)="goToDatasetView()"
+        class="nav_item"
+      >
         <mat-icon mat-list-icon class="list_icon">attachment</mat-icon>
         <h4 mat-line>Datasets</h4>
-        <p mat-line> Shared / Private </p>
+        <p mat-line>Shared / Private</p>
       </a>
       <a mat-list-item role="listitem" (click)="goToModelView()">
         <mat-icon mat-list-icon class="list_icon">note</mat-icon>
         <h4 mat-line>Models</h4>
-        <p mat-line> Shared / Private </p>
+        <p mat-line>Shared / Private</p>
       </a>
       <a mat-list-item role="listitem" (click)="goToTrashView()">
         <mat-icon mat-list-icon class="list_icon">delete</mat-icon>
@@ -96,13 +138,18 @@
     </mat-list>
   </div>
   <div class="home_content">
-    <app-data-model-view *ngIf="datasets_to_view || models_to_view" [datasets_to_view]="datasets_to_view"
-      [models_to_view]="models_to_view" [view_type]="view_type" [onTrash]="trash_view" (itemClicked)="onItemClicked($event)"></app-data-model-view>
+    <app-data-model-view
+      *ngIf="datasets_to_view || models_to_view"
+      [datasets_to_view]="datasets_to_view"
+      [models_to_view]="models_to_view"
+      [view_type]="view_type"
+      [onTrash]="trash_view"
+      (itemClicked)="onItemClicked($event)"
+    ></app-data-model-view>
   </div>
   <mat-divider class="vert_divider" [vertical]="true"></mat-divider>
-  <app-quick-view  class="quick_view" [viewItem]="viewItem"></app-quick-view>
+  <app-quick-view class="quick_view" [viewItem]="viewItem"></app-quick-view>
 </div>
-
 
 <!-- <div class="test">
       <table mat-table [dataSource]="data" class="mat-elevation-z8">

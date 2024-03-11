@@ -14,36 +14,33 @@
   /* display: inline-block; */
 }
 
-
-.mat-card-content{
-    margin-bottom: 0;
+.mat-card-content {
+  margin-bottom: 0;
 }
 
 .card:hover {
   cursor: pointer;
   background-color: lightgray;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.list_item_button{
-    visibility: hidden;
+.list_item_button {
+  visibility: hidden;
 }
 
-.list_item:hover .list_item_button{
-    visibility: visible;
+.list_item:hover .list_item_button {
+  visibility: visible;
 }
 
 /* mat-list-item.button:hover{
     display:block;
 } */
 
-.list_item:hover{
-    cursor: pointer;
-    background-color: lightgray;
-    transition: all .2s ease-in-out;
+.list_item:hover {
+  cursor: pointer;
+  background-color: lightgray;
+  transition: all 0.2s ease-in-out;
 }
-
-
 
 /* .item_card{
     width: 60%;
@@ -82,9 +79,8 @@
   overflow: hidden;
   width: 100%;
   max-height: 5em;
-  min-height: 5em
+  min-height: 5em;
 }
-
 
 /* .image_div{
     margin-top:2em; 

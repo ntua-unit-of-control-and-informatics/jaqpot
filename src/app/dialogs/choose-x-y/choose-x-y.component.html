@@ -5,20 +5,18 @@
     <h4 class="header">Y</h4>
   </div>
   <div class="container">
-    
-
     <div
       cdkDropList
       #dataList="cdkDropList"
       [cdkDropListData]="data"
       [cdkDropListConnectedTo]="[xList, yList]"
       class="list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="box" *ngFor="let dato of data" cdkDrag>{{dato}}</div>
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="box" *ngFor="let dato of data" cdkDrag>{{ dato }}</div>
     </div>
   </div>
 
-  
   <div class="container">
     <div
       cdkDropList
@@ -26,13 +24,12 @@
       [cdkDropListData]="xData"
       [cdkDropListConnectedTo]="[dataList]"
       class="list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="box" *ngFor="let xD of xData" cdkDrag>{{xD}}</div>
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="box" *ngFor="let xD of xData" cdkDrag>{{ xD }}</div>
     </div>
   </div>
 
-
-  
   <div class="container">
     <div
       cdkDropList
@@ -40,11 +37,19 @@
       [cdkDropListData]="yData"
       [cdkDropListConnectedTo]="[dataList]"
       class="list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="box" *ngFor="let yD of yData" cdkDrag>{{yD}}</div>
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="box" *ngFor="let yD of yData" cdkDrag>{{ yD }}</div>
     </div>
   </div>
 </div>
 <mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="adminUsers" color="primary" (click)="closeDialog()">Set X-Y</button>
+  <button
+    mat-button
+    [mat-dialog-close]="adminUsers"
+    color="primary"
+    (click)="closeDialog()"
+  >
+    Set X-Y
+  </button>
 </mat-dialog-actions>

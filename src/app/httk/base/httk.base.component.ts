@@ -4,13 +4,10 @@ import { MatToolbar } from '@angular/material/toolbar';
 @Component({
   selector: 'app-httk-base',
   templateUrl: './httk.base.component.html',
-  styleUrls: ['./httk.base.component.css']
+  styleUrls: ['./httk.base.component.css'],
 })
 export class HttkBaseComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,4 +1,4 @@
-import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { throwError as observableThrowError, Observable } from 'rxjs';
 import { Inject, Injectable, Optional } from '@angular/core';
 import '../rxjs-operators';
 import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
@@ -12,63 +12,77 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo, Model, Task } from '../model/models';
 import { Domain } from 'domain';
 
-
-
 @Injectable()
-export class ModelApiService extends BaseClient<Dataset>{
+export class ModelApiService extends BaseClient<Dataset> {
+  _privateBasePath: string;
+  _modelBase = '/model/';
 
-    _privateBasePath:string;
-    _modelBase:string = "/model/"
+  constructor(
+    http: HttpClient,
+    public sessionServise: SessionService,
+    public dialogsService: DialogsService,
+    public oidcSecurityService: OidcSecurityService,
+  ) {
+    super(http, dialogsService, oidcSecurityService, '/model/');
+  }
 
-    constructor(http: HttpClient,
-        public sessionServise:SessionService,
-        public dialogsService:DialogsService,
-        public oidcSecurityService: OidcSecurityService){
-            super(http, dialogsService, oidcSecurityService, "/model/")
-        }
+  public putMeta(model: Model): Observable<MetaInfo> {
+    const token = this.oidcSecurityService.getToken();
+    const tokenValue = 'Bearer ' + token;
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', tokenValue);
+    const pathFormed =
+      Config.JaqpotBase + this._modelBase + model._id + '/meta';
+    return this.http.put(pathFormed, model, { headers: headers }).pipe(
+      tap((res: Response) => {
+        return res;
+      }),
+      catchError((err) => this.dialogsService.onError(err)),
+    );
+  }
 
-    public putMeta(model:Model):Observable<MetaInfo>{
-        const token = this.oidcSecurityService.getToken();
-        const tokenValue = 'Bearer ' + token;
-        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-        let params = new HttpParams().set("query", "UNREAD");
-        let pathFormed = Config.JaqpotBase + this._modelBase + model._id + "/meta"
-        return this.http.put(pathFormed, model, { headers: headers} ).pipe(
-            tap((res : Response) => { 
-                return res           
-            }),catchError( err => this.dialogsService.onError(err) )
-        );
-    }
+  public predict(
+    modelId: string,
+    datasetUri: string,
+    visible,
+    doa: boolean,
+  ): Observable<Task> {
+    const token = this.oidcSecurityService.getToken();
+    const tokenValue = 'Bearer ' + token;
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', tokenValue);
+    const pathFormed = Config.JaqpotBase + this._modelBase + modelId;
+    let body = new HttpParams();
+    body = body.set('dataset_uri', datasetUri);
+    body = body.set('visible', visible);
+    body = body.set('doa', doa.toString());
+    return this.http
+      .post(pathFormed, body.toString(), { headers: headers })
+      .pipe(
+        tap((res: Response) => {
+          return res;
+        }),
+        catchError((err) => this.dialogsService.onError(err)),
+      );
+  }
 
-    public predict(modelId:string, datasetUri:string, visible, doa:boolean):Observable<Task>{
-        const token = this.oidcSecurityService.getToken();
-        const tokenValue = 'Bearer ' + token;
-        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization', tokenValue);
-        let pathFormed = Config.JaqpotBase + this._modelBase + modelId 
-        let body = new HttpParams();
-        body = body.set('dataset_uri', datasetUri);
-        body = body.set('visible', visible);
-        body = body.set('doa', doa.toString())
-        return this.http.post(pathFormed, body.toString(), { headers:headers }).pipe(
-            tap((res : Response) =>{
-                return res;
-            }),catchError( err => this.dialogsService.onError(err) )
-        )
-    }
-
-    public updateOnTrash(modelId:string, model:Model):Observable<Model>{
-        const token = this.oidcSecurityService.getToken();
-        const tokenValue = 'Bearer ' + token;
-        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-        let pathFormed = Config.JaqpotBase + this._modelBase + modelId + '/ontrash';
-        return this.http.put(pathFormed, model, { headers:headers }).pipe(
-            tap((res : Response) =>{
-                return res;
-            }),catchError( err => this.dialogsService.onError(err) )
-        )
-
-    }
-
+  public updateOnTrash(modelId: string, model: Model): Observable<Model> {
+    const token = this.oidcSecurityService.getToken();
+    const tokenValue = 'Bearer ' + token;
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', tokenValue);
+    const pathFormed =
+      Config.JaqpotBase + this._modelBase + modelId + '/ontrash';
+    return this.http.put(pathFormed, model, { headers: headers }).pipe(
+      tap((res: Response) => {
+        return res;
+      }),
+      catchError((err) => this.dialogsService.onError(err)),
+    );
+  }
 }
 
 // /**
@@ -82,8 +96,6 @@ export class ModelApiService extends BaseClient<Dataset>{
 //  * https://github.com/swagger-api/swagger-codegen.git
 //  * Do not edit the class manually.
 //  */
-
-
 
 // /* tslint:disable:no-unused-variable member-ordering */
 
@@ -100,7 +112,6 @@ export class ModelApiService extends BaseClient<Dataset>{
 
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
-
 
 // @Injectable()
 // export class ModelService {
@@ -322,7 +333,6 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             });
 //     }
 
-
 //     /**
 //      * Deletes a particular Model resource
 //      * Deletes a Model of a given ID. The method is idempondent, that is it can be used more than once without triggering an exception/error. If the Model does not exist, the method will return without errors. Authentication and authorization requirements apply, so clients that are not authenticated with a valid token or do not have sufficient priviledges will not be able to delete Models using this method.
@@ -343,7 +353,6 @@ export class ModelApiService extends BaseClient<Dataset>{
 //         if (subjectid !== undefined && subjectid !== null) {
 //             headers.set('subjectid', String(subjectid));
 //         }
-
 
 //         // to determine the Accept header
 //         let produces: string[] = [
@@ -388,14 +397,12 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list',
 //             'application/ld+json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -432,12 +439,10 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/xml'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -478,13 +483,11 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -521,12 +524,10 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -563,12 +564,10 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -605,12 +604,10 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -647,12 +644,10 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             headers.set('subjectId', String(subjectId));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -693,13 +688,11 @@ export class ModelApiService extends BaseClient<Dataset>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -748,32 +741,32 @@ export class ModelApiService extends BaseClient<Dataset>{
 //         ];
 //         let canConsumeForm = this.canConsumeForm(consumes);
 //         let useForm = false;
-    //     let formParams = new (useForm ? FormData : URLSearchParams as any)() as {
-    //       set(param: string, value: any): void;
-    //     };
+//     let formParams = new (useForm ? FormData : URLSearchParams as any)() as {
+//       set(param: string, value: any): void;
+//     };
 
-    //     // to determine the Accept header
-    //     let produces: string[] = [
-    //         'application/json'
-    //     ];
+//     // to determine the Accept header
+//     let produces: string[] = [
+//         'application/json'
+//     ];
 
-    //   headers.set('Content-Type', 'application/x-www-form-urlencoded');
+//   headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
-    //   if (datasetUri !== undefined) {
-    //         formParams.set('dataset_uri', <any>datasetUri);
-    //     }
+//   if (datasetUri !== undefined) {
+//         formParams.set('dataset_uri', <any>datasetUri);
+//     }
 
-    //     if (visible !== undefined) {
-    //         formParams.set('visible', <any>visible);
-    //     }
+//     if (visible !== undefined) {
+//         formParams.set('visible', <any>visible);
+//     }
 
-    //     let requestOptions: RequestOptionsArgs = new RequestOptions({
-    //         method: RequestMethod.Post,
-    //         headers: headers,
-    //         body: formParams.toString(),
-    //         search: queryParameters,
-    //         withCredentials:this.configuration.withCredentials
-    //     });
+//     let requestOptions: RequestOptionsArgs = new RequestOptions({
+//         method: RequestMethod.Post,
+//         headers: headers,
+//         body: formParams.toString(),
+//         search: queryParameters,
+//         withCredentials:this.configuration.withCredentials
+//     });
 //         // https://github.com/swagger-api/swagger-codegen/issues/4037
 //         if (extraHttpRequestParams) {
 //             requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);

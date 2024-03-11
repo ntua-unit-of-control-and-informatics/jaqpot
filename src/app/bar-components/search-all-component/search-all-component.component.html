@@ -9,19 +9,23 @@
   </mat-form-field>
 </form> -->
 
-
 <!-- <div class="outlined">
     <input type="search">
   <mat-icon class="s_icon" >search</mat-icon>
 </div> -->
 
-
 <form class="search-form">
   <div class="input-container">
-    <input class="input-field" type="text" placeholder="Search Jaqpot" (keyup.enter)="search($event)" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}"> 
+    <input
+      class="input-field"
+      type="text"
+      placeholder="Search Jaqpot"
+      (keyup.enter)="search($event)"
+      [(ngModel)]="searchTerm"
+      [ngModelOptions]="{ standalone: true }"
+    />
   </div>
 </form>
-
 
 <!-- <div  class="outlined">
   <mat-form-field appearance="outline">

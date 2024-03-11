@@ -5,11 +5,14 @@ import { FeatureFactoryService } from './feature-factory.service';
 describe('FeatureFactoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FeatureFactoryService]
+      providers: [FeatureFactoryService],
     });
   });
 
-  it('should be created', inject([FeatureFactoryService], (service: FeatureFactoryService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [FeatureFactoryService],
+    (service: FeatureFactoryService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

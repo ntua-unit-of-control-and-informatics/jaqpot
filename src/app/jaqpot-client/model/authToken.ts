@@ -10,11 +10,8 @@
  * Do not edit the class manually.
  */
 
-
-
 export interface AuthToken {
-    userName?: string;
+  userName?: string;
 
-    authToken?: string;
-
+  authToken?: string;
 }

@@ -8,9 +8,8 @@ describe('SimpleDatasetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleDatasetComponent ]
-    })
-    .compileComponents();
+      declarations: [SimpleDatasetComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

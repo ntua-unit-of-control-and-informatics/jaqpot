@@ -1,33 +1,31 @@
 import { MetaInfo } from './metaInfo';
 
-
 export interface Organization {
-    _id?: string;
+  _id?: string;
 
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    capabilities?: { [key: string]: number; };
+  capabilities?: { [key: string]: number };
 
-    userIds?: Array<string>;
+  userIds?: Array<string>;
 
-    about?: string;
+  about?: string;
 
-    website?: string;
+  website?: string;
 
-    contact?: string;
+  contact?: string;
 
-    city?: string;
-    
-    country?: string;
+  city?: string;
 
-    affiliations?: Array<string>; 
+  country?: string;
 
+  affiliations?: Array<string>;
 }

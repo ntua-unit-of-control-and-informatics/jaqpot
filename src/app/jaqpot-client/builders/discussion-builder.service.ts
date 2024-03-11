@@ -4,40 +4,36 @@ import { MetaInfo } from '../model/models';
 import { Reply } from '../model/reply';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DiscussionBuilderService {
+  private discussion: Discussion;
 
-  private discussion:Discussion
-
-
-  constructor() { 
-    this.discussion = <Discussion>{}
+  constructor() {
+    this.discussion = <Discussion>{};
   }
 
-  public setEntriryId(entityId:string){
-    this.discussion.onEntity = entityId
+  public setEntriryId(entityId: string) {
+    this.discussion.onEntity = entityId;
     return this;
   }
 
-  public setComment(comment:string){
-    this.discussion.comment = comment
+  public setComment(comment: string) {
+    this.discussion.comment = comment;
     return this;
   }
 
-  public setMeta(meta:MetaInfo){
-    this.discussion.meta = meta
+  public setMeta(meta: MetaInfo) {
+    this.discussion.meta = meta;
     return this;
   }
 
-  public setReply(reply:Reply){
+  public setReply(reply: Reply) {
     this.discussion.replies.push(reply);
     return this;
   }
 
-  public build(){
+  public build() {
     return this.discussion;
   }
-
-
 }

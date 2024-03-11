@@ -1,166 +1,241 @@
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened class="model-side">
-
     <!-- <div class="card_wrap"> -->
-      <div *ngIf="modelToSee" class="base_card">
-        <!-- <mat-card-header> -->
-          <div class="model_pic">
-            <div *ngIf="modelToSee.meta?.picture; else no_image">
-              <div *ngIf="canUpdatePhoto; else cannotUpdate">
-                <a matTooltip="Update photo" matTooltipPosition="below" (click)="updatePhoto()">
-                  <img mat-card-image-lg class="entity_image" src="{{modelToSee.meta.picture}}">
-                </a>
-              </div>
-              <ng-template #cannotUpdate>
-                <img mat-card-image-lg class="entity_image" src="{{modelToSee.meta.picture}}">
-              </ng-template>
-            </div>
-            <ng-template #no_image>
-  
-              <div *ngIf="canUpdatePhoto; else cannotUpdate">
-                <a matTooltip="Update photo" matTooltipPosition="below" (click)="updatePhoto()">
-                  <img mat-card-avatar class="entity_image_jaqpots" src="assets/model.jpg">
-                </a>
-              </div>
-              <ng-template #cannotUpdate>
-                <img mat-card-avatar class="entity_image_jaqpots" src="assets/model.jpg">
-              </ng-template>
-            </ng-template>
+    <div *ngIf="modelToSee" class="base_card">
+      <!-- <mat-card-header> -->
+      <div class="model_pic">
+        <div *ngIf="modelToSee.meta?.picture; else no_image">
+          <div *ngIf="canUpdatePhoto; else cannotUpdate">
+            <a
+              matTooltip="Update photo"
+              matTooltipPosition="below"
+              (click)="updatePhoto()"
+            >
+              <img
+                mat-card-image-lg
+                class="entity_image"
+                src="{{ modelToSee.meta.picture }}"
+              />
+            </a>
           </div>
-        <!-- </mat-card-header> -->
-  
-        <div *ngIf="modelToSee && modelOwner && entityId" class="content">
-          <mat-card-title class="entity">{{entityId.split("/")[0].toUpperCase()}}</mat-card-title>
-          <mat-card-title class="title">Title: {{modelToSee.meta.titles[0]}}</mat-card-title>
-          <mat-card-subtitle class="owner"> Owner: <a class="owner_name" (click)="openUser()">{{modelOwner.name}} </a></mat-card-subtitle>
-  
-          <div class="model_descr" *ngIf="modelToSee">
-            <div *ngIf="!edit_descr; else editit;">
-                <h5>Description: </h5>
-                <span>
-                  <p>{{modelToSee.meta.descriptions[0]}}</p>
-                </span>
-            </div>
-            <ng-template #editit>
-                <mat-form-field class="descr_input">
-                    <textarea class="descr_text" matInput placeholder="Description" value="{{modelToSee.meta.descriptions[0]}}" [(ngModel)]="modelToSee.meta.descriptions[0]"></textarea>
-                </mat-form-field>
-            </ng-template>
+          <ng-template #cannotUpdate>
+            <img
+              mat-card-image-lg
+              class="entity_image"
+              src="{{ modelToSee.meta.picture }}"
+            />
+          </ng-template>
+        </div>
+        <ng-template #no_image>
+          <div *ngIf="canUpdatePhoto; else cannotUpdate">
+            <a
+              matTooltip="Update photo"
+              matTooltipPosition="below"
+              (click)="updatePhoto()"
+            >
+              <img
+                mat-card-avatar
+                class="entity_image_jaqpots"
+                src="assets/model.jpg"
+              />
+            </a>
           </div>
-  
-          <div class="model_descr" *ngIf="modelToSee">
-            <div *ngIf="!edit_descr; else editit;">
-                <h5 *ngIf="modelToSee.meta.tags">Tags: </h5>
-                <span>
-                  <p *ngFor="let tag of modelToSee.meta.tags;">{{tag}}</p>
-                </span>
-            </div>
-            <ng-template #editit>
-                  <h5>Tags: </h5>
-                    <!-- <p *ngFor="let tag of modelToSee.meta.tags;">{{tag}}</p> -->
-  
-                    
-                      <div *ngFor="let tag of modelToSee.meta.tags;" >
-                        <mat-form-field class="tag_input">
-                          <input matInput value={{tag}} />
-                          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="deleteTag(tag)" matTooltip="Delete Tag">
-                              <mat-icon>close</mat-icon>
-                          </button>
-                        </mat-form-field>
-                      </div>
-  
-                  <button *ngIf="!addTagB"  mat-mini-fab color="primary" (click)="addTag()" matTooltip="Add tag">
-                    <mat-icon>add</mat-icon>
-                  </button>
-  
-                  <mat-form-field *ngIf="addTagB" class="tag_input">
-                    <input matInput class="tag_text" placeholder="Tag" [(ngModel)]="newTag" />
-                    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addTagToModel()" matTooltip="Add tag">
-                      <mat-icon>add</mat-icon>
-                  </button>
-                  </mat-form-field>
-            </ng-template>
+          <ng-template #cannotUpdate>
+            <img
+              mat-card-avatar
+              class="entity_image_jaqpots"
+              src="assets/model.jpg"
+            />
+          </ng-template>
+        </ng-template>
+      </div>
+      <!-- </mat-card-header> -->
+
+      <div *ngIf="modelToSee && modelOwner && entityId" class="content">
+        <mat-card-title class="entity">{{
+          entityId.split('/')[0].toUpperCase()
+        }}</mat-card-title>
+        <mat-card-title class="title"
+          >Title: {{ modelToSee.meta.titles[0] }}</mat-card-title
+        >
+        <mat-card-subtitle class="owner">
+          Owner:
+          <a class="owner_name" (click)="openUser()"
+            >{{ modelOwner.name }}
+          </a></mat-card-subtitle
+        >
+
+        <div class="model_descr" *ngIf="modelToSee">
+          <div *ngIf="!edit_descr; else editit">
+            <h5>Description:</h5>
+            <span>
+              <p>{{ modelToSee.meta.descriptions[0] }}</p>
+            </span>
           </div>
-  
+          <ng-template #editit>
+            <mat-form-field class="descr_input">
+              <textarea
+                class="descr_text"
+                matInput
+                placeholder="Description"
+                value="{{ modelToSee.meta.descriptions[0] }}"
+                [(ngModel)]="modelToSee.meta.descriptions[0]"
+              ></textarea>
+            </mat-form-field>
+          </ng-template>
+        </div>
+
+        <div class="model_descr" *ngIf="modelToSee">
+          <div *ngIf="!edit_descr; else editit">
+            <h5 *ngIf="modelToSee.meta.tags">Tags:</h5>
+            <span>
+              <p *ngFor="let tag of modelToSee.meta.tags">{{ tag }}</p>
+            </span>
+          </div>
+          <ng-template #editit>
+            <h5>Tags:</h5>
+            <!-- <p *ngFor="let tag of modelToSee.meta.tags;">{{tag}}</p> -->
+
+            <div *ngFor="let tag of modelToSee.meta.tags">
+              <mat-form-field class="tag_input">
+                <input matInput value="{{ tag }}" />
+                <button
+                  mat-button
+                  matSuffix
+                  mat-icon-button
+                  aria-label="Clear"
+                  (click)="deleteTag(tag)"
+                  matTooltip="Delete Tag"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <button
+              *ngIf="!addTagB"
+              mat-mini-fab
+              color="primary"
+              (click)="addTag()"
+              matTooltip="Add tag"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+
+            <mat-form-field *ngIf="addTagB" class="tag_input">
+              <input
+                matInput
+                class="tag_text"
+                placeholder="Tag"
+                [(ngModel)]="newTag"
+              />
+              <button
+                mat-button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="addTagToModel()"
+                matTooltip="Add tag"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-form-field>
+          </ng-template>
         </div>
       </div>
+    </div>
     <!-- </div> -->
   </mat-drawer>
   <mat-drawer-content>
-
-  <!-- <mat-tab-group fxFlex.xl="72%" fxFlex.lg="72%" fxFlex.md="68%" fxFlex.sm="68%" fxFlex.xs="96%" > -->
+    <!-- <mat-tab-group fxFlex.xl="72%" fxFlex.lg="72%" fxFlex.md="68%" fxFlex.sm="68%" fxFlex.xs="96%" > -->
     <mat-tab-group class="base_tabs">
       <mat-tab label="Overview" class="tab">
         <div class="markdown mat-elevation-z4">
           <div class="inner">
-            <app-markdown [viewOrEdit]="viewOrEdit" [entityMeta]="entityMeta" (markdownChanged)="markdownChanged($event)"></app-markdown>
+            <app-markdown
+              [viewOrEdit]="viewOrEdit"
+              [entityMeta]="entityMeta"
+              (markdownChanged)="markdownChanged($event)"
+            ></app-markdown>
           </div>
         </div>
       </mat-tab>
       <mat-tab label="Features" class="tab">
-          <ng-template matTabContent>
-            <app-model-features [viewOrEdit]="viewOrEdit" [modelToSee]="modelToSee" (modelChanged)="modelChanged($event)" (featsChangedArray)="featsUpdated($event)"></app-model-features>
-          </ng-template>
+        <ng-template matTabContent>
+          <app-model-features
+            [viewOrEdit]="viewOrEdit"
+            [modelToSee]="modelToSee"
+            (modelChanged)="modelChanged($event)"
+            (featsChangedArray)="featsUpdated($event)"
+          ></app-model-features>
+        </ng-template>
       </mat-tab>
       <mat-tab label="Predict / Validate" class="tab">
         <ng-template matTabContent>
-            <app-predict-validate [entityId]="entityId"></app-predict-validate>
+          <app-predict-validate [entityId]="entityId"></app-predict-validate>
         </ng-template>
       </mat-tab>
       <mat-tab label="Discussion" class="tab">
         <ng-template matTabContent>
-            <app-comments [entityId]="entityId"></app-comments>
+          <app-comments [entityId]="entityId"></app-comments>
         </ng-template>
       </mat-tab>
-  
+
       <mat-tab *ngIf="trainedMeta" label="Model meta" class="tab">
         <ng-template matTabContent>
-            <app-model-meta [trainedMeta]="trainedMeta"></app-model-meta>
+          <app-model-meta [trainedMeta]="trainedMeta"></app-model-meta>
         </ng-template>
       </mat-tab>
     </mat-tab-group>
-
-
   </mat-drawer-content>
 </mat-drawer-container>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div *ngIf="canEdit">
   <span class="dataset-action">
-
     <div *ngIf="!edit">
-      <button class="quick_view" matTooltip="Quick View" matTooltipPosition="after" (click)="quickView()" mat-fab>
+      <button
+        class="quick_view"
+        matTooltip="Quick View"
+        matTooltipPosition="after"
+        (click)="quickView()"
+        mat-fab
+      >
         <mat-icon>remove_red_eye</mat-icon>
       </button>
     </div>
 
     <div *ngIf="!edit">
-      <button class="share" matTooltip="Share" matTooltipPosition="above" (click)="share()" mat-fab>
+      <button
+        class="share"
+        matTooltip="Share"
+        matTooltipPosition="above"
+        (click)="share()"
+        mat-fab
+      >
         <mat-icon>share</mat-icon>
       </button>
     </div>
 
-
-    <div *ngIf="edit else save_b">
-      <button class="edit" matTooltip="Edit" matTooltipPosition="after" (click)="editAll()" mat-fab>
+    <div *ngIf="edit; else save_b">
+      <button
+        class="edit"
+        matTooltip="Edit"
+        matTooltipPosition="after"
+        (click)="editAll()"
+        mat-fab
+      >
         <mat-icon>edit</mat-icon>
       </button>
     </div>
     <ng-template #save_b>
       <div *ngIf="save">
-        <button class="save_b" matTooltip="Save" matTooltipPosition="above" (click)="saveAll()" mat-fab>
+        <button
+          class="save_b"
+          matTooltip="Save"
+          matTooltipPosition="above"
+          (click)="saveAll()"
+          mat-fab
+        >
           <mat-icon>save</mat-icon>
         </button>
       </div>

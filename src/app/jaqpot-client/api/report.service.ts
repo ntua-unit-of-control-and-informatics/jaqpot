@@ -1,4 +1,4 @@
-import {  Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import '../rxjs-operators';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
@@ -8,18 +8,18 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Report } from '../model/models';
 
 @Injectable()
-export class ReportApiService extends BaseClient<Report>{
+export class ReportApiService extends BaseClient<Report> {
+  _privateBasePath: string;
+  _reportBase: string = '/report/';
 
-    _privateBasePath:string;
-    _reportBase:string = "/report/"
-
-    constructor(http: HttpClient,
-        public sessionServise:SessionService,
-        public dialogsService:DialogsService,
-        public oidcSecurityService: OidcSecurityService){
-            super(http, dialogsService, oidcSecurityService, "/report/")
-        }
-
+  constructor(
+    http: HttpClient,
+    public sessionServise: SessionService,
+    public dialogsService: DialogsService,
+    public oidcSecurityService: OidcSecurityService,
+  ) {
+    super(http, dialogsService, oidcSecurityService, '/report/');
+  }
 }
 // /**
 //  * Jaqpot API
@@ -43,10 +43,8 @@ export class ReportApiService extends BaseClient<Report>{
 // import { Observable }                                        from 'rxjs/Observable';
 // import '../rxjs-operators';
 
-
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
-
 
 // @Injectable()
 // export class ReportService {
@@ -181,7 +179,6 @@ export class ReportApiService extends BaseClient<Report>{
 //             });
 //     }
 
-
 //     /**
 //      * Creates PDF from report
 //      *
@@ -203,12 +200,10 @@ export class ReportApiService extends BaseClient<Report>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json; charset=UTF-8'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -245,12 +240,10 @@ export class ReportApiService extends BaseClient<Report>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -291,12 +284,10 @@ export class ReportApiService extends BaseClient<Report>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -338,13 +329,11 @@ export class ReportApiService extends BaseClient<Report>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         headers.set('Content-Type', 'application/json');
 
@@ -384,12 +373,10 @@ export class ReportApiService extends BaseClient<Report>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Delete,

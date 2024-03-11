@@ -8,9 +8,8 @@ describe('AddImageDatasetDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddImageDatasetDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [AddImageDatasetDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -5,17 +5,14 @@ import { AuthGuardService } from './auth-guard.service';
 // import { ComponentService } from './component.service';
 
 @NgModule({
-  imports: [
-
-  ],
+  imports: [],
   declarations: [],
   exports: [],
   entryComponents: [],
   providers: [
-    AuthGuardService
+    AuthGuardService,
     // SessionService,
     // ComponentService
-  ]
-
+  ],
 })
-export class SessionModule { }
+export class SessionModule {}

@@ -10,49 +10,46 @@
  * Do not edit the class manually.
  */
 
-
-
 export interface MetaInfo {
-    identifiers?: Array<string>;
+  identifiers?: Array<string>;
 
-    comments?: Array<string>;
+  comments?: Array<string>;
 
-    descriptions?: Array<string>;
+  descriptions?: Array<string>;
 
-    titles?: Array<string>;
+  titles?: Array<string>;
 
-    subjects?: Array<string>;
+  subjects?: Array<string>;
 
-    publishers?: Array<string>;
+  publishers?: Array<string>;
 
-    creators?: Array<string>;
+  creators?: Array<string>;
 
-    contributors?: Array<string>;
+  contributors?: Array<string>;
 
-    audiences?: Array<string>;
+  audiences?: Array<string>;
 
-    rights?: Array<string>;
+  rights?: Array<string>;
 
-    sameAs?: Array<string>;
+  sameAs?: Array<string>;
 
-    seeAlso?: Array<string>;
+  seeAlso?: Array<string>;
 
-    hasSources?: Array<string>;
+  hasSources?: Array<string>;
 
-    doi?: Array<string>;
+  doi?: Array<string>;
 
-    date?: Date;
+  date?: Date;
 
-    picture?: string;
+  picture?: string;
 
-    markdown?: string;
+  markdown?: string;
 
-    tags?: Array<string>;
+  tags?: Array<string>;
 
-    read?: Array<string>;
+  read?: Array<string>;
 
-    write?: Array<string>;
+  write?: Array<string>;
 
-    execute?: Array<string>;
-    
+  execute?: Array<string>;
 }

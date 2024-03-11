@@ -1,75 +1,87 @@
 <div class="search_header">
-
   <div class="searchh">
-    <h4> Searched for: </h4>
+    <h4>Searched for:</h4>
   </div>
   <div *ngIf="searchTerm" class="searchht">
-    <p>{{searchTerm}}</p>
+    <p>{{ searchTerm }}</p>
   </div>
 
   <div class="searchf" *ngIf="totalFound">
-    <h4> Found: </h4>
+    <h4>Found:</h4>
   </div>
   <div *ngIf="totalFound" class="searchhf">
-    <p>{{totalFound}} entities</p>
+    <p>{{ totalFound }} entities</p>
   </div>
 
   <div class="searcht" *ngIf="duration">
-    <h4> In: </h4>
+    <h4>In:</h4>
   </div>
   <div *ngIf="duration" class="searchhd">
-    <p>{{duration}} ms</p>
+    <p>{{ duration }} ms</p>
   </div>
-
-
-
 </div>
 
 <!-- <div>
     <mat-divider class="divh"></mat-divider>
 </div> -->
 
-
-
 <div *ngIf="loading; else found" class="loading">
   <mat-spinner class="spinner"></mat-spinner>
 </div>
 
 <ng-template #found>
-
   <div class="search-all">
     <div class="found-list">
-        <div *ngFor="let fountEntity of _fountAndFecthed" class="foundentity mat-elevation-z2" (click)="quickView(fountEntity)">
-            <h4 *ngIf="fountEntity?.meta?.titles[0]" class="title">{{fountEntity.meta.titles[0]}}</h4>
-            <p *ngIf="fountEntity?.type" class="foundtype">{{fountEntity?.type}}</p>
-            <p *ngIf="fountEntity?.meta?.descriptions[0]" class="discription">{{fountEntity?.meta?.descriptions[0]}}</p>
-            <div *ngIf="fountEntity?.meta?.read" class="read">
-              <p class="s">Shared with: </p>
-              <p class="org" *ngFor="let org of fountEntity?.meta?.read"> {{ org }}</p>
-            </div>
-            <div *ngIf="fountEntity?.meta?.date" class="date">
-              Created: {{fountEntity.meta.date | date}}
-            </div>
-      
-            <button mat-icon-button color="primary" class="gobutton" matTooltip="View" (click)="goTo(fountEntity)">
-              <mat-icon>launch</mat-icon>
-            </button>
-            
-          </div>
+      <div
+        *ngFor="let fountEntity of _fountAndFecthed"
+        class="foundentity mat-elevation-z2"
+        (click)="quickView(fountEntity)"
+      >
+        <h4 *ngIf="fountEntity?.meta?.titles[0]" class="title">
+          {{ fountEntity.meta.titles[0] }}
+        </h4>
+        <p *ngIf="fountEntity?.type" class="foundtype">
+          {{ fountEntity?.type }}
+        </p>
+        <p *ngIf="fountEntity?.meta?.descriptions[0]" class="discription">
+          {{ fountEntity?.meta?.descriptions[0] }}
+        </p>
+        <div *ngIf="fountEntity?.meta?.read" class="read">
+          <p class="s">Shared with:</p>
+          <p class="org" *ngFor="let org of fountEntity?.meta?.read">
+            {{ org }}
+          </p>
+        </div>
+        <div *ngIf="fountEntity?.meta?.date" class="date">
+          Created: {{ fountEntity.meta.date | date }}
+        </div>
+
+        <button
+          mat-icon-button
+          color="primary"
+          class="gobutton"
+          matTooltip="View"
+          (click)="goTo(fountEntity)"
+        >
+          <mat-icon>launch</mat-icon>
+        </button>
+      </div>
     </div>
 
-
-    <app-search-quick-view [searchViewItem]="searchViewItem" class="quick-view"></app-search-quick-view>
-
+    <app-search-quick-view
+      [searchViewItem]="searchViewItem"
+      class="quick-view"
+    ></app-search-quick-view>
   </div>
 
   <!-- <div class="empty_space"></div> -->
 </ng-template>
 
-
-
-
 <div *ngIf="totalFound" class="paginator">
-  <mat-paginator [length]="totalFound" [pageSize]="20" (page)="pageEvent = changedPageEvent($event)">
+  <mat-paginator
+    [length]="totalFound"
+    [pageSize]="20"
+    (page)="pageEvent = changedPageEvent($event)"
+  >
   </mat-paginator>
 </div>

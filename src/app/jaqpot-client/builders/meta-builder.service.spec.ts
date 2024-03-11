@@ -5,11 +5,14 @@ import { MetaBuilderService } from './meta-builder.service';
 describe('MetaBuilderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MetaBuilderService]
+      providers: [MetaBuilderService],
     });
   });
 
-  it('should be created', inject([MetaBuilderService], (service: MetaBuilderService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [MetaBuilderService],
+    (service: MetaBuilderService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

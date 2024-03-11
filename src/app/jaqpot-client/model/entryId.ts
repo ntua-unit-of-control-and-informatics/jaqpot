@@ -10,15 +10,12 @@
  * Do not edit the class manually.
  */
 
-
-
 export interface EntryId {
-    
-    name?: string;
+  name?: string;
 
-    ownerUUID?: string;
+  ownerUUID?: string;
 
-    URI?: string;
+  URI?: string;
 
-    type?: string;
+  type?: string;
 }

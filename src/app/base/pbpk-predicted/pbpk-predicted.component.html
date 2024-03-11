@@ -13,17 +13,23 @@
     </div>
     <div *ngIf="data_available" class="example-table-container">
       <table mat-table [dataSource]="dataSource" class="table mat-elevation-z1">
-        <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <ng-container
+          [matColumnDef]="column"
+          *ngFor="let column of displayedColumns"
+        >
+          <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
           <td mat-cell *matCellDef="let element">
             <div *ngIf="column === 'image'; else noImage">
-              <img class="dataset_image" src="{{element[column]}}">
+              <img class="dataset_image" src="{{ element[column] }}" />
             </div>
-            <ng-template #noImage> {{element[column]}}</ng-template>
+            <ng-template #noImage> {{ element[column] }}</ng-template>
           </td>
         </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
   </div>
@@ -31,11 +37,22 @@
 </div>
 
 <div>
-  <button matTooltip="Downloads dataset" mat-raised-button color="primary" class="only_pred" (click)="gatherDownload()">
-    Download 
+  <button
+    matTooltip="Downloads dataset"
+    mat-raised-button
+    color="primary"
+    class="only_pred"
+    (click)="gatherDownload()"
+  >
+    Download
   </button>
 
-  <button matTooltip="View plots" mat-raised-button color="accent" (click)="plotsStart2()">
+  <button
+    matTooltip="View plots"
+    mat-raised-button
+    color="accent"
+    (click)="plotsStart2()"
+  >
     Plots
   </button>
 </div>
@@ -46,7 +63,5 @@
 
 <div *ngIf="createdPlotData">
   <app-chart-component [dataSource]="showData"></app-chart-component>
-    <!-- <app-multi-line [xs]="xPlot" [ys]="yPlot"></app-multi-line> -->
+  <!-- <app-multi-line [xs]="xPlot" [ys]="yPlot"></app-multi-line> -->
 </div>
-
-

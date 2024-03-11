@@ -72,26 +72,25 @@
     margin-top: 1em; */
 }
 
-.socialpng{
-    width: 1.5em;
+.socialpng {
+  width: 1.5em;
 }
 
-.social_input{
-    width:90%;
+.social_input {
+  width: 90%;
 }
 
-.input-f{
-    margin-left: 2em;
-    width:75%;
+.input-f {
+  margin-left: 2em;
+  width: 75%;
 }
 
-
-.edit{
+.edit {
   display: inline-block;
   position: fixed;
   bottom: 20px;
   right: 20px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   /* position: sticky; */
   /* top: 20px;
   right: 36px; */
@@ -99,12 +98,12 @@
   opacity: 0.4;
 }
 
-.edit:hover{
-  transition: all .2s ease-in-out;
+.edit:hover {
+  transition: all 0.2s ease-in-out;
   opacity: 1;
 }
 
-.save_b{
+.save_b {
   display: inline-block;
   position: fixed;
   bottom: 20px;
@@ -117,20 +116,18 @@
   /* opacity: 0.4; */
 }
 
-.delete-url{
+.delete-url {
   float: right;
   width: 2%;
   margin-top: 1em;
 }
 
-.simple-meta{
+.simple-meta {
   margin-left: 7%;
   width: 75%;
 }
 
-
-
-.info-card{
+.info-card {
   min-height: 400px;
   margin-bottom: 2em;
   margin-right: 17px;

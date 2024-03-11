@@ -8,9 +8,8 @@ describe('AddAlgorithmDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddAlgorithmDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [AddAlgorithmDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

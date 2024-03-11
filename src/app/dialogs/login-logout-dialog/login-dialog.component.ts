@@ -1,8 +1,8 @@
-import { Component, Inject , Optional} from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Credentials } from '../../ui-models/credentials';
-import { ErrorReport } from '../../ui-models/errorReport'
+import { ErrorReport } from '../../ui-models/errorReport';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,30 +11,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-dialog.component.css'],
   // providers: [Credentials]
 })
-export class LoginDialogComponent{
-
-  
+export class LoginDialogComponent {
   // private _authToken:AuthToken;
   // private subjectId:string;
   ok = false;
-  public errorReport: ErrorReport
-  public credentials:Credentials = new Credentials();
+  public errorReport: ErrorReport;
+  public credentials: Credentials = new Credentials();
   hide = true;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) credentials:Credentials,
+    @Inject(MAT_DIALOG_DATA) credentials: Credentials,
     @Optional() public dialogRef: MatDialogRef<LoginDialogComponent>,
-    private router:Router
-    ){   }
+    private router: Router,
+  ) {}
 
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
-
-  login(event, credentials){
-
+  login(event, credentials) {
     // this.aaService.login(credentials.username, credentials.password)
     //   .subscribe(
     //     authToken => {
@@ -44,8 +40,5 @@ export class LoginDialogComponent{
     //     },
     //     err => this.errorReport = err,
     //     );
-
   }
-
-
 }

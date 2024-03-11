@@ -1,98 +1,97 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
 
-h2{
+h2 {
   font-family: Courier;
   font-size: 1.5em;
 }
 
-main{
+main {
   height: 100%;
   width: 100%;
 }
 
-.app{
-  margin:0; 
-  padding:0;
+.app {
+  margin: 0;
+  padding: 0;
   overflow: auto;
   margin: 0;
   padding: 0em 0em;
 }
 
-
-.image{
+.image {
   margin-left: 8px;
   margin-top: 10px;
   height: 30%;
   width: 30%;
 }
 
-.side_menu{
+.side_menu {
   margin-right: 1em;
   margin-top: 8px;
 }
 
-.login{
+.login {
   margin-top: 3px;
 }
 
-.logout{
+.logout {
   margin-top: 8px;
 }
 
-mat-toolbar{
+mat-toolbar {
   /* min-height: 24px; */
-  max-height: 54px; 
+  max-height: 54px;
   /* min-height: 6vh;  */
   min-height: 54px;
   /* max-height: 6vh; */
 }
 
-.app_content{
+.app_content {
   /* height: 94vh; */
   min-height: calc(100vh - 54px);
   max-height: calc(100vh - 54px);
 }
 
-.side_menu{
+.side_menu {
   margin-top: 0%;
 }
 
-.sidenav_cont{
+.sidenav_cont {
   z-index: 0;
   min-height: calc(100vh - 54px);
   max-height: calc(100vh - 54px);
   overflow: auto;
 }
-.list_item{
+.list_item {
   min-height: 2em;
   height: 2em;
   margin: 0;
 }
-.sidenav{
+.sidenav {
   min-width: 12% !important;
 }
 
-.toolbar{
+.toolbar {
   /* position: fixed; */
   overflow: hidden;
   position: sticky;
   align-items: center;
-  -webkit-box-align: center;  
+  -webkit-box-align: center;
   box-shadow: 0px 5px 24px black;
   top: 0;
   overflow: hidden;
   z-index: 1;
 }
 
-i{
+i {
   font-size: 130%;
   margin-right: 40px;
 }
 
 .login {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   margin-right: 4px;
 }
 
@@ -101,15 +100,15 @@ i{
   cursor: pointer;
 }
 
-.app-action{
+.app-action {
   margin-right: 20px;
 }
 
-.notifications{
+.notifications {
   margin-right: 10px;
 }
 
-.notif-icon{
+.notif-icon {
   color: lightrey;
 }
 
@@ -117,17 +116,17 @@ i{
 
 } */
 
-.side_nav_a:hover{
+.side_nav_a:hover {
   background-color: lightgray;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.side_header{
+.side_header {
   margin-top: 4em;
   padding-top: 4em;
 }
 
-.side_icon{
+.side_icon {
   color: dimgrey;
   margin-right: 1em;
   margin-left: 0.5em;
@@ -143,8 +142,7 @@ i{
   margin-bottom: 6px;
 } */
 
-
-.toxi_pic{
+.toxi_pic {
   color: dimgrey;
   /* margin-right: 1em;
   margin-left: 0.5em; */
@@ -152,39 +150,39 @@ i{
   margin-bottom: 6px;
 }
 
-.toxi_img{
+.toxi_img {
   /* margin-right: 1em; */
   margin-left: 0.8em;
-  padding-right: 1.3em; 
-  width: 18%
+  padding-right: 1.3em;
+  width: 18%;
 }
 
-.account{
+.account {
   margin-top: 8px;
   margin-right: 4px;
   font-size: 1.4em;
   color: beige;
 }
-.settings{
+.settings {
   /* margin-left: 2em; */
   margin-bottom: 12px;
   margin-right: 0.5em;
   font-size: 0.95em;
 }
 
-.info{
-  height:80px;
+.info {
+  height: 80px;
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
-.infoa{
+.infoa {
   float: right;
   margin-top: 2em;
 }
 
-.infoh{
+.infoh {
   float: left;
 }
 
@@ -197,8 +195,7 @@ i{
   margin-top: 10%;
 }
 
-
-.land_all{
+.land_all {
   height: 100vh;
   width: 100%;
   overflow: hidden;
@@ -213,12 +210,11 @@ i{
   opacity: 0.6;
 }
 
-
-.landing-image{
+.landing-image {
   width: 80%;
   float: left;
 }
 
-.welcome-p{
+.welcome-p {
   padding: 1em;
 }

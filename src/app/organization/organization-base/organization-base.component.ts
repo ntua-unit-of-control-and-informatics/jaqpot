@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+} from '../../../../node_modules/@angular/router';
 import { OrganizationService } from '../../jaqpot-client/api/organization.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfilepicDialogComponent } from '../../dialogs/profilepic-dialog/profilepic-dialog.component';
@@ -17,127 +20,133 @@ import { Meta, Organization } from '@euclia/accounts-client/dist/models/models';
 @Component({
   selector: 'app-organization-base',
   templateUrl: './organization-base.component.html',
-  styleUrls: ['./organization-base.component.css']
+  styleUrls: ['./organization-base.component.css'],
 })
 export class OrganizationBaseComponent implements OnInit {
-
   // editFromP:Subject<boolean> = new Subject();
-  editFromP:boolean = false;
+  editFromP: boolean = false;
 
-  creators:User[];
-  contributors:User[];
-  organization:Organization;
+  creators: User[];
+  contributors: User[];
+  organization: Organization;
   edit = false;
   canedit = false;
-  photo_unavail=true;
+  photo_unavail = true;
   edit_l = false;
   edit_w = false;
   edit_c = false;
   editabout = false;
-  confirmationResult:boolean;
+  confirmationResult: boolean;
 
-
-  affiliations:Organization[];
-  website:string;
-  entityMeta:Meta;
-  viewOrEdit:String = "view";
-  canUpdatePhoto:boolean = false;
-  editing:boolean = false;
-  canDelete:boolean = false;
+  affiliations: Organization[];
+  website: string;
+  entityMeta: Meta;
+  viewOrEdit: String = 'view';
+  canUpdatePhoto: boolean = false;
+  editing: boolean = false;
+  canDelete: boolean = false;
 
   navigationSubscription;
 
-  thisOrg:string;
+  thisOrg: string;
 
-  orgmodels:Model[];
+  orgmodels: Model[];
 
   constructor(
     public dialog: MatDialog,
-    private notifApi:NotificationService,
+    private notifApi: NotificationService,
     private route: ActivatedRoute,
-    private organizationService:OrganizationService,
-    private modelApi:ModelApiService,
-    private datasetApi:DatasetService,
-    private userApi:UserService,
-    private router:Router,
-    private sessionService:SessionService,
-    private dialogsService:DialogsService,
-    private notifFactory:NotificationFactoryService
-  ) {  
+    private organizationService: OrganizationService,
+    private modelApi: ModelApiService,
+    private datasetApi: DatasetService,
+    private userApi: UserService,
+    private router: Router,
+    private sessionService: SessionService,
+    private dialogsService: DialogsService,
+    private notifFactory: NotificationFactoryService,
+  ) {
     // this.navigationSubscription = this.router.events.subscribe(e=>{
     //   if (e instanceof NavigationEnd) {
     //     this.ngOnInit();
     //   }
     // })
-   }
+  }
 
   ngOnInit() {
-    const id = this.route.snapshot.params.id
-    this.thisOrg = this.route.snapshot.params.id
-    this.creators = []
-    this.contributors = []
-    this.organizationService.getOrgById(id).then((orgGot:Organization) =>{
-        this.organization = orgGot
-        if(typeof orgGot.meta.website != 'undefined'){
-          this.website = orgGot.meta.website
-        }
-        // if(typeof orgGot.affiliations != "undefined"){
-        //   this.affiliations = []
-        //   orgGot.affiliations.forEach(id =>{
-        //     this.organizationService.getWithIdSecured(id).subscribe((org:Organization)=>{
-        //       this.affiliations.push(org)
-        //     })
-        //   })
-        // }
-        this.entityMeta = orgGot.meta
-        var userData = this.sessionService.getUserData();
-        if(userData.groups.includes('/Administrator') && this.organization._id === 'Jaqpot'){
-          this.canedit = true;
-          this.canUpdatePhoto = true;
-        }
-        if(this.organization.meta
-           && this.organization.creator
-           && this.organization.creator.includes(userData.sub) ||  this.organization.users && this.organization.users.includes(userData.sub)){
-            this.canedit = true;
-            this.canUpdatePhoto = true;
-        }
-        if(this.organization.meta && this.organization.creator
-          && this.organization.creator.includes(userData.sub)){
-            this.canDelete = true;
-          }
-        if(this.organization.meta.picture == null){
-          this.photo_unavail = true;
-        }else{
-          this.photo_unavail = false;
-        }
-        if(typeof orgGot.creator  != 'undefined'){
-            this.userApi.getUserById(orgGot.creator).then((userGot:User) =>{
-              if(!this.creators.includes(userGot)){
-                this.creators.push(userGot)
-              }
-            })
-        }
-        if(typeof orgGot.users != 'undefined'){
-          orgGot.users.forEach((userId:string) =>{
-            this.userApi.getUserById(userId).then((userGot:User) =>{
-              if(!this.contributors.includes(userGot)){
-                this.contributors.push(userGot)
-              }
-            })
-          })
-        }
+    const id = this.route.snapshot.params.id;
+    this.thisOrg = this.route.snapshot.params.id;
+    this.creators = [];
+    this.contributors = [];
+    this.organizationService.getOrgById(id).then((orgGot: Organization) => {
+      this.organization = orgGot;
+      if (typeof orgGot.meta.website != 'undefined') {
+        this.website = orgGot.meta.website;
       }
-    )
+      // if(typeof orgGot.affiliations != "undefined"){
+      //   this.affiliations = []
+      //   orgGot.affiliations.forEach(id =>{
+      //     this.organizationService.getWithIdSecured(id).subscribe((org:Organization)=>{
+      //       this.affiliations.push(org)
+      //     })
+      //   })
+      // }
+      this.entityMeta = orgGot.meta;
+      var userData = this.sessionService.getUserData();
+      if (
+        userData.groups.includes('/Administrator') &&
+        this.organization._id === 'Jaqpot'
+      ) {
+        this.canedit = true;
+        this.canUpdatePhoto = true;
+      }
+      if (
+        (this.organization.meta &&
+          this.organization.creator &&
+          this.organization.creator.includes(userData.sub)) ||
+        (this.organization.users &&
+          this.organization.users.includes(userData.sub))
+      ) {
+        this.canedit = true;
+        this.canUpdatePhoto = true;
+      }
+      if (
+        this.organization.meta &&
+        this.organization.creator &&
+        this.organization.creator.includes(userData.sub)
+      ) {
+        this.canDelete = true;
+      }
+      if (this.organization.meta.picture == null) {
+        this.photo_unavail = true;
+      } else {
+        this.photo_unavail = false;
+      }
+      if (typeof orgGot.creator != 'undefined') {
+        this.userApi.getUserById(orgGot.creator).then((userGot: User) => {
+          if (!this.creators.includes(userGot)) {
+            this.creators.push(userGot);
+          }
+        });
+      }
+      if (typeof orgGot.users != 'undefined') {
+        orgGot.users.forEach((userId: string) => {
+          this.userApi.getUserById(userId).then((userGot: User) => {
+            if (!this.contributors.includes(userGot)) {
+              this.contributors.push(userGot);
+            }
+          });
+        });
+      }
+    });
   }
 
-  ngOnDestoy(){
-    delete this.contributors
-    delete this.creators
-    delete this.organization
+  ngOnDestoy() {
+    delete this.contributors;
+    delete this.creators;
+    delete this.organization;
   }
 
-
-  addOrgPicDialog(){
+  addOrgPicDialog() {
     // let dialogRef = this.dialog.open(ProfilepicDialogComponent,{})
     // dialogRef.afterClosed().subscribe(result => {
     //   this.organization.meta.picture = result;
@@ -153,8 +162,8 @@ export class OrganizationBaseComponent implements OnInit {
     // });
   }
 
-  editForm(){
-    this.viewOrEdit = "edit";
+  editForm() {
+    this.viewOrEdit = 'edit';
     this.editFromP = true;
     this.edit = true;
     this.edit_l = true;
@@ -164,7 +173,7 @@ export class OrganizationBaseComponent implements OnInit {
     this.editabout = true;
   }
 
-  saveForm(){
+  saveForm() {
     // // this.editFromP.next(false)
     // this.editFromP = false;
     // this.edit = false;
@@ -185,7 +194,7 @@ export class OrganizationBaseComponent implements OnInit {
     // })
   }
 
-  deleteOrg(){
+  deleteOrg() {
     // this.dialogsService.confirmDeletion("Are you sure you want to delete organization?", "DELETE").subscribe(result => {
     //   this.confirmationResult = result;
     //   if(result === true){
@@ -197,7 +206,7 @@ export class OrganizationBaseComponent implements OnInit {
     // });
   }
 
-  updatePhoto(){
+  updatePhoto() {
     // this.dialogsService.updatePhoto(this.userApi, this.datasetApi, this.modelApi).subscribe((result) =>{
     //   if(result != undefined){
     //     this.organization.meta.picture = result
@@ -209,33 +218,39 @@ export class OrganizationBaseComponent implements OnInit {
     // })
   }
 
-  fetchOrganization(){
-    const id = this.route.snapshot.params.id
-    this.organizationService.getOrgById(id).then((orgGot:Organization) =>{
-      this.organization = orgGot
-      
-      this.entityMeta = orgGot.meta
+  fetchOrganization() {
+    const id = this.route.snapshot.params.id;
+    this.organizationService.getOrgById(id).then((orgGot: Organization) => {
+      this.organization = orgGot;
+
+      this.entityMeta = orgGot.meta;
       var userData = this.sessionService.getUserData();
-      if(userData.groups.includes('/Administrator') && this.organization._id === 'Jaqpot'){
+      if (
+        userData.groups.includes('/Administrator') &&
+        this.organization._id === 'Jaqpot'
+      ) {
         this.edit = true;
         this.canedit = true;
       }
-      if(this.organization.meta
-         && this.organization.creator
-         && this.organization.creator.includes(userData.sub) || this.organization.users.includes(userData.sub)){
-          this.edit = true;
-          this.canedit = true;
-          this.canUpdatePhoto = true;
+      if (
+        (this.organization.meta &&
+          this.organization.creator &&
+          this.organization.creator.includes(userData.sub)) ||
+        this.organization.users.includes(userData.sub)
+      ) {
+        this.edit = true;
+        this.canedit = true;
+        this.canUpdatePhoto = true;
       }
-      if(this.organization.meta.picture == null){
+      if (this.organization.meta.picture == null) {
         this.photo_unavail = true;
-      }else{
+      } else {
         this.photo_unavail = false;
       }
-    })
+    });
   }
 
-  addAdministrator(){
+  addAdministrator() {
     // let users:string[] = this.organization.userIds.slice()
     // let index = users.indexOf(this.organization.meta.creators[0], 0)
     // if(index > -1){
@@ -268,29 +283,35 @@ export class OrganizationBaseComponent implements OnInit {
     // })
   }
 
-  markdownChanged(event){
-    this.organization.meta = event
+  markdownChanged(event) {
+    this.organization.meta = event;
   }
 
-  openUserDialog(user:User){
-    this.dialogsService.quickUser(this.userApi, user)
-  }
-  
-  addAffiliations(){
-    const fromOrg = this.route.snapshot.params.id
-    this.dialogsService.openAffiliationRequest(this.organizationService, this.notifApi, this.notifFactory, fromOrg);
+  openUserDialog(user: User) {
+    this.dialogsService.quickUser(this.userApi, user);
   }
 
-  onOrgClicked(organization: Organization){
-    
-    this.dialogsService.onOrganizationView(organization, this.organizationService, false)
-    
+  addAffiliations() {
+    const fromOrg = this.route.snapshot.params.id;
+    this.dialogsService.openAffiliationRequest(
+      this.organizationService,
+      this.notifApi,
+      this.notifFactory,
+      fromOrg,
+    );
   }
 
+  onOrgClicked(organization: Organization) {
+    this.dialogsService.onOrganizationView(
+      organization,
+      this.organizationService,
+      false,
+    );
+  }
 
-  removeAffiliation(organizationClicked: Organization){
+  removeAffiliation(organizationClicked: Organization) {
     // this.dialogsService.confirmDeletion("Are you sure you want to remove affiliation", "REMOVE").subscribe(result =>{
-    //   if(result === true){        
+    //   if(result === true){
     //     let ind = organizationClicked.affiliations.indexOf(this.thisOrg)
     //     if(ind>-1){
     //       organizationClicked.affiliations.splice(ind, 1)
@@ -308,5 +329,4 @@ export class OrganizationBaseComponent implements OnInit {
     //   }
     // })
   }
-
 }

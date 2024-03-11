@@ -10,41 +10,41 @@ import { UserService } from '../../jaqpot-client/api/user.service';
 @Component({
   selector: 'app-view-notifs',
   templateUrl: './view-notifs.component.html',
-  styleUrls: ['./view-notifs.component.css']
+  styleUrls: ['./view-notifs.component.css'],
 })
 export class ViewNotifsComponent implements OnChanges {
-
   @Input() notifications_to_view: Notification[];
   @Input() category: string;
 
   @Input() loading: boolean;
 
   constructor(
-    private dialogsService:DialogsService,
-    private organizationService:OrganizationService,
-    private notificationService:NotificationService,
-    private datasetService:DatasetService,
-    private modelService:ModelApiService,
-    private userService:UserService
-  ) { }
+    private dialogsService: DialogsService,
+    private organizationService: OrganizationService,
+    private notificationService: NotificationService,
+    private datasetService: DatasetService,
+    private modelService: ModelApiService,
+    private userService: UserService,
+  ) {}
 
-  ngOnChanges() {
+  ngOnChanges() {}
+
+  openNotifDialog(notif) {
+    this.dialogsService
+      .openActualNotifDialog(
+        notif,
+        this.organizationService,
+        this.notificationService,
+        this.datasetService,
+        this.modelService,
+        this.userService,
+        'viewAll',
+      )
+      .subscribe((res) => {
+        if (typeof res != 'undefined' && res === 'deleted') {
+          let ind = this.notifications_to_view.indexOf(notif);
+          this.notifications_to_view.splice(ind, 1);
+        }
+      });
   }
-
-  openNotifDialog(notif){
-    this.dialogsService.openActualNotifDialog(notif,
-       this.organizationService, 
-       this.notificationService, 
-       this.datasetService,
-       this.modelService,
-       this.userService,
-       'viewAll').subscribe(res => {
-         if(typeof res != 'undefined' && res === 'deleted' ){
-           let ind = this.notifications_to_view.indexOf(notif)
-           this.notifications_to_view.splice(ind, 1)
-         }
-       })
-  }
-
-
 }

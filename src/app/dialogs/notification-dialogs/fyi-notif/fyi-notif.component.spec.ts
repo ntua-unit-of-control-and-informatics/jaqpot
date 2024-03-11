@@ -8,9 +8,8 @@ describe('FyiNotifComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FyiNotifComponent ]
-    })
-    .compileComponents();
+      declarations: [FyiNotifComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
