@@ -14,7 +14,7 @@
 
 import { Inject, Injectable, Optional } from '@angular/core';
 import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
-import { Observable , of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 import '../rxjs-operators';
 
 // import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
@@ -23,69 +23,73 @@ import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { BaseClient } from './base.client';
-import { HttpClient} from '@angular/common/http';
-import { EucliaAccountsFactory, IEucliaAccounts } from '@euclia/accounts-client/dist/EucliaAccounts';
+import { HttpClient } from '@angular/common/http';
+import {
+  EucliaAccountsFactory,
+  IEucliaAccounts,
+} from '@euclia/accounts-client/dist/EucliaAccounts';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
 
 @Injectable()
-export class OrganizationService{
-    
-    _privateBasePath:string;
-    private orgnanization:Organization;
-    _organizationBase:string
-    private accountsClient:IEucliaAccounts
+export class OrganizationService {
+  _privateBasePath: string;
+  private orgnanization: Organization;
+  _organizationBase: string;
+  private accountsClient: IEucliaAccounts;
 
-    constructor(http: HttpClient,
-        public sessionServise:SessionService,
-        public dialogsService:DialogsService,
-        public oidcSecurityService: OidcSecurityService){
-            // super(http, dialogsService, oidcSecurityService, "/organization/")
-            // console.log("Orgs api at:")
-            // console.log(Config.AccountsApi)
-            this._privateBasePath = Config.JaqpotBase;
-            this.accountsClient = new EucliaAccountsFactory(Config.AccountsApi).getClient(),
-            this._organizationBase = this._privateBasePath + "/organization/";
-        }
+  constructor(
+    http: HttpClient,
+    public sessionServise: SessionService,
+    public dialogsService: DialogsService,
+    public oidcSecurityService: OidcSecurityService,
+  ) {
+    // super(http, dialogsService, oidcSecurityService, "/organization/")
+    // console.log("Orgs api at:")
+    // console.log(Config.AccountsApi)
+    this._privateBasePath = Config.JaqpotBase;
+    (this.accountsClient = new EucliaAccountsFactory(
+      Config.AccountsApi,
+    ).getClient()),
+      (this._organizationBase = this._privateBasePath + '/organization/');
+  }
 
-        public getOrgById(id:string):Promise<Organization>{
-            const token = this.oidcSecurityService.getToken();
-            return this.accountsClient.getOrganization(id, token)
-        }
+  public getOrgById(id: string): Promise<Organization> {
+    const token = this.oidcSecurityService.getToken();
+    return this.accountsClient.getOrganization(id, token);
+  }
 
-        // public searchOrgById(id:string): Observable<Array<Organization>> {
-        //     const token = this.oidcSecurityService.getToken();
-        //     const tokenValue = 'Bearer ' + token;
-        //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-        //     let params = new HttpParams().set('orgname', id);
-        //     return this.http.get(this._organizationBase + "search/and/found", { headers: headers, params: params }).pipe(
-        //         tap((res : Response) => {  
-        //             return res      
-        //         }),catchError( err => this.dialogsService.onError(err) ));
-        // }
+  // public searchOrgById(id:string): Observable<Array<Organization>> {
+  //     const token = this.oidcSecurityService.getToken();
+  //     const tokenValue = 'Bearer ' + token;
+  //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+  //     let params = new HttpParams().set('orgname', id);
+  //     return this.http.get(this._organizationBase + "search/and/found", { headers: headers, params: params }).pipe(
+  //         tap((res : Response) => {
+  //             return res
+  //         }),catchError( err => this.dialogsService.onError(err) ));
+  // }
 
-        // public removeAffiliation(orgs:Organization[]):Observable<Response>{
-        //     const token = this.oidcSecurityService.getToken();
-        //     const tokenValue = 'Bearer ' + token;
-        //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-        //     return this.http.put(this._organizationBase + "affiliations", orgs, { headers: headers }).pipe(
-        //         tap((res : Response) => {  
-        //             return res      
-        //         }),catchError( err => this.dialogsService.onError(err) ));
-        // }
+  // public removeAffiliation(orgs:Organization[]):Observable<Response>{
+  //     const token = this.oidcSecurityService.getToken();
+  //     const tokenValue = 'Bearer ' + token;
+  //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+  //     return this.http.put(this._organizationBase + "affiliations", orgs, { headers: headers }).pipe(
+  //         tap((res : Response) => {
+  //             return res
+  //         }),catchError( err => this.dialogsService.onError(err) ));
+  // }
 
+  // public updateOrganizationById(id:string, user:User): Observable<User> {
+  //     let params = new URLSearchParams();
 
-    // public updateOrganizationById(id:string, user:User): Observable<User> {
-    //     let params = new URLSearchParams();
-            
-    //     let headers = new Headers({'Content-Type':'application/json'});
-    //     const token = this.oidcSecurityService.getToken();
-    //     const tokenValue = 'Bearer ' + token;
-    //     headers.set('Authorization', tokenValue);
-    
-    //     return this.http.put(this._userBase + id, user ,{ headers: headers, search: params }).pipe(
-    //         map((res : Response) => {  
-    //             return res.json()            
-    //         }),catchError( err => this.dialogsService.onError(err) ));
-    // }
+  //     let headers = new Headers({'Content-Type':'application/json'});
+  //     const token = this.oidcSecurityService.getToken();
+  //     const tokenValue = 'Bearer ' + token;
+  //     headers.set('Authorization', tokenValue);
 
+  //     return this.http.put(this._userBase + id, user ,{ headers: headers, search: params }).pipe(
+  //         map((res : Response) => {
+  //             return res.json()
+  //         }),catchError( err => this.dialogsService.onError(err) ));
+  // }
 }

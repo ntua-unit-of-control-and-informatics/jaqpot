@@ -8,9 +8,8 @@ describe('ViewNotifsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewNotifsComponent ]
-    })
-    .compileComponents();
+      declarations: [ViewNotifsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,7 +1,14 @@
-import {throwError as observableThrowError,  Observable, interval } from 'rxjs';
+import { throwError as observableThrowError, Observable, interval } from 'rxjs';
 import { Inject, Injectable, Optional } from '@angular/core';
 import '../rxjs-operators';
-import { map, filter, catchError, mergeMap, tap, retryWhen } from 'rxjs/operators';
+import {
+  map,
+  filter,
+  catchError,
+  mergeMap,
+  tap,
+  retryWhen,
+} from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
@@ -11,33 +18,30 @@ import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo, Model, Task } from '../model/models';
 
-
-
 @Injectable()
-export class TaskApiService extends BaseClient<Task>{
+export class TaskApiService extends BaseClient<Task> {
+  _privateBasePath: string;
+  private dataset: Dataset;
+  _modelBase: string = '/task/';
 
-    _privateBasePath:string;
-    private dataset:Dataset;
-    _modelBase:string = "/task/"
+  constructor(
+    http: HttpClient,
+    public sessionServise: SessionService,
+    public dialogsService: DialogsService,
+    public oidcSecurityService: OidcSecurityService,
+  ) {
+    super(http, dialogsService, oidcSecurityService, '/task/');
+  }
 
-    constructor(http: HttpClient,
-        public sessionServise:SessionService,
-        public dialogsService:DialogsService,
-        public oidcSecurityService: OidcSecurityService){
-            super(http, dialogsService, oidcSecurityService, "/task/")
-    }
-
-    public getTask(taskId:string):Observable<Task>{
-        const token = this.oidcSecurityService.getToken();
-        const tokenValue = 'Bearer ' + token;
-        let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-        let pathFormed = Config.JaqpotBase + this._modelBase + taskId
-        return this.http.get(pathFormed, {headers:headers})
-        
-    }
-
-
-
+  public getTask(taskId: string): Observable<Task> {
+    const token = this.oidcSecurityService.getToken();
+    const tokenValue = 'Bearer ' + token;
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', tokenValue);
+    let pathFormed = Config.JaqpotBase + this._modelBase + taskId;
+    return this.http.get(pathFormed, { headers: headers });
+  }
 }
 
 // import { Inject, Injectable, Optional }                      from '@angular/core';
@@ -52,7 +56,6 @@ export class TaskApiService extends BaseClient<Task>{
 
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
-
 
 // @Injectable()
 // export class TaskService {
@@ -170,7 +173,6 @@ export class TaskApiService extends BaseClient<Task>{
 //             });
 //     }
 
-
 //     /**
 //      * Deletes a Task of given ID
 //      * Deletes a Task given its ID in the URI. When the DELETE method is applied, the task is interrupted and tagged as CANCELLED. Note that this method does not return a response on success. If the task does not exist, an error report will be returned to the client accompanied by an HTTP status code 404. Note also that authentication and authorization restrictions apply, so clients need to be authenticated with a valid token and have appropriate rights to be able to successfully apply this method.
@@ -192,12 +194,10 @@ export class TaskApiService extends BaseClient<Task>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Delete,
@@ -233,7 +233,6 @@ export class TaskApiService extends BaseClient<Task>{
 //         if (subjectid !== undefined && subjectid !== null) {
 //             headers.set('subjectid', String(subjectid));
 //         }
-
 
 //         // to determine the Accept header
 //         let produces: string[] = [
@@ -287,13 +286,11 @@ export class TaskApiService extends BaseClient<Task>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -330,12 +327,10 @@ export class TaskApiService extends BaseClient<Task>{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //         ];
 //         headers.set('Content-Type', 'application/octet-stream');
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,

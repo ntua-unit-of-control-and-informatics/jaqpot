@@ -1,48 +1,45 @@
-import { MetaInfo } from "./metaInfo";
+import { MetaInfo } from './metaInfo';
 
+export interface Notification {
+  meta?: MetaInfo;
 
-export interface Notification{
+  _id?: string;
 
-    meta?: MetaInfo;
+  type?: string;
 
-    _id?: string;
+  answer?: string;
 
-    type?: string
+  body?: string;
 
-    answer?: string
+  from?: string;
 
-    body?: string
+  to?: string;
 
-    from?: string
+  viewed?: Boolean;
 
-    to?: string
+  owner?: string;
 
-    viewed?: Boolean
+  invitationTo?: string;
 
-    owner?: string
+  affiliatedOrg?: string;
 
-    invitationTo?: string
+  entityShared?: string;
 
-    affiliatedOrg?: string
+  organizationShared?: string;
 
-    entityShared?: string
-
-    organizationShared?: string
-    
-    resolved?: boolean
-    
+  resolved?: boolean;
 }
 
-export enum TYPE{
-    SIMPLE = "SIMPLE",
-    INVITATION = "INVITATION",
-    FYI = "FYI",
-    SHARE = "SHARE",
-    AFFILIATION = "AFFILIATION",
-    BROKENAFFILIATION = "BROKENAFFILIATION"
+export enum TYPE {
+  SIMPLE = 'SIMPLE',
+  INVITATION = 'INVITATION',
+  FYI = 'FYI',
+  SHARE = 'SHARE',
+  AFFILIATION = 'AFFILIATION',
+  BROKENAFFILIATION = 'BROKENAFFILIATION',
 }
 
-export enum ANSWER{
-    ACEEPT = "ACCEPT",
-    DECLINE = "DECLINE"
+export enum ANSWER {
+  ACEEPT = 'ACCEPT',
+  DECLINE = 'DECLINE',
 }

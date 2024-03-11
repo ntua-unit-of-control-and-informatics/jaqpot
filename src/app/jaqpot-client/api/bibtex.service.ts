@@ -26,7 +26,6 @@
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
 
-
 // @Injectable()
 // export class BibtexService {
 
@@ -179,7 +178,6 @@
 //             });
 //     }
 
-
 //     /**
 //      * Creates a new BibTeX entry
 //      * Creates a new BibTeX entry which is assigned a random unique ID. Clients are not allowed to specify a custom ID when using this method. Clients should use PUT instead in such a case.
@@ -200,13 +198,11 @@
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         headers.set('Content-Type', 'application/json');
 
@@ -251,13 +247,11 @@
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         headers.set('Content-Type', 'application/json');
 
@@ -297,13 +291,11 @@
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Delete,
@@ -341,7 +333,6 @@
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -392,13 +383,11 @@
 //             queryParameters.set('max', <any>max);
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -440,13 +429,11 @@
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         headers.set('Content-Type', 'application/json');
 

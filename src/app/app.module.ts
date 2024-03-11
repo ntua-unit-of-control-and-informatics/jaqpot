@@ -1,46 +1,49 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgModule, APP_INITIALIZER} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {A11yModule} from '@angular/cdk/a11y';
-import {BidiModule} from '@angular/cdk/bidi';
-import {ObserversModule} from '@angular/cdk/observers';
-import {OverlayModule} from '@angular/cdk/overlay';
-import {PlatformModule} from '@angular/cdk/platform';
-import {PortalModule} from '@angular/cdk/portal';
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import {CdkStepperModule} from '@angular/cdk/stepper';
-import {CdkTableModule} from '@angular/cdk/table';
-import {OverlayContainer} from '@angular/cdk/overlay';
-import {MatToolbarModule} from '@angular/material/toolbar'
-import {MatButtonToggleModule} from '@angular/material/button-toggle'
-import {MatChipsModule} from '@angular/material/chips'
-import {MatDialogModule} from '@angular/material//dialog'
-import {MatGridListModule} from '@angular/material/grid-list'
-import {MatProgressBarModule} from '@angular/material/progress-bar'
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
-import {MatRadioModule} from '@angular/material/radio'
-import {MatSelectModule} from '@angular/material/select'
-import {MatSlideToggleModule, _MatSlideToggleRequiredValidatorModule} from '@angular/material/slide-toggle'
-import {MatStepperModule} from '@angular/material/stepper'
-import {MatTabsModule} from '@angular/material/tabs'
-import {MatAutocompleteModule} from '@angular/material/autocomplete'
-import {MatTableModule} from '@angular/material/table'
-import {MatIconModule} from '@angular/material/icon'
-import {MatButtonModule} from '@angular/material/button'
-import {MatCardModule} from '@angular/material/card'
-import {MatSidenavModule} from '@angular/material/sidenav'
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatInputModule} from '@angular/material/input'
-import {MatExpansionModule} from '@angular/material/expansion'
-import {MatTooltipModule} from '@angular/material/tooltip'
-import {MatListModule} from '@angular/material/list'
-import {MatPaginatorModule} from '@angular/material/paginator'
-import {MatSnackBarModule} from '@angular/material/snack-bar'
-import {MatBadgeModule} from '@angular/material/badge'
-import {MatMenuModule} from '@angular/material/menu'
-import {AppComponent} from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { A11yModule } from '@angular/cdk/a11y';
+import { BidiModule } from '@angular/cdk/bidi';
+import { ObserversModule } from '@angular/cdk/observers';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PlatformModule } from '@angular/cdk/platform';
+import { PortalModule } from '@angular/cdk/portal';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material//dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import {
+  MatSlideToggleModule,
+  _MatSlideToggleRequiredValidatorModule,
+} from '@angular/material/slide-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatMenuModule } from '@angular/material/menu';
+import { AppComponent } from './app.component';
 
 // import { DialogsModule } from './dialogs/dialogs.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -59,10 +62,15 @@ import { Router } from '@angular/router';
 import { SessionModule } from './session/session.module';
 import { AlgorithmDetailComponent } from './algorithms/algorithm-detail/algorithm-detail.component';
 import { DatasetDetailComponent } from './dataset/dataset-detail/dataset-detail.component';
-import { AuthModule, OidcSecurityService, OidcConfigService, LogLevel, } from 'angular-auth-oidc-client';
+import {
+  AuthModule,
+  OidcSecurityService,
+  OidcConfigService,
+  LogLevel,
+} from 'angular-auth-oidc-client';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
-import {  HttkBaseComponent } from './httk/base/httk.base.component';
+import { HttkBaseComponent } from './httk/base/httk.base.component';
 import { CreatehttkmodelComponent } from './httk/createhttkmodel/createhttkmodel.component';
 import { ParameterlistComponent } from './base/components/parameterlist/parameterlist.component';
 import { ParameterstepsComponent } from './base/components/parametersteps/parametersteps.component';
@@ -103,16 +111,19 @@ import { MultiLineComponent } from './d3/multi-line/multi-line.component';
 import { map, switchMap } from 'rxjs/operators';
 import { configf } from './config/conf';
 import { Config } from './config/config';
-import { MatPseudoCheckboxModule, MatRippleModule } from '@angular/material/core';
+import {
+  MatPseudoCheckboxModule,
+  MatRippleModule,
+} from '@angular/material/core';
 import { ModelMetaComponent } from './models/model-meta/model-meta.component';
 
 import { ChartComponentComponent } from './base/components/chart-component/chart-component.component';
-import { NgApexchartsModule } from "ng-apexcharts";
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // import { EucliaAccounts } from '@euclia/accounts-client';
 /**
- * NgModule that includes all Material modules that are required to serve 
+ * NgModule that includes all Material modules that are required to serve
  * the Plunker.
  */
 
@@ -169,8 +180,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatAutocompleteModule,
     MatTableModule,
     MatBadgeModule,
-    MatFormFieldModule, MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   declarations: [],
 
@@ -182,12 +194,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     //     deps: [OidcConfigService],
     //     multi: true
     // }
-  ]
+  ],
 })
 export class MaterialModule {}
 
 @NgModule({
-
   imports: [
     BrowserModule,
     NgApexchartsModule,
@@ -208,12 +219,19 @@ export class MaterialModule {}
     FlexLayoutModule,
     MarkdownModule.forRoot(),
     // AuthModule.forRoot( { storage:SecurityStorage } ),
-    AuthModule.forRoot( ),
+    AuthModule.forRoot(),
     CommonModule,
-    
   ],
-  exports: [DialogsModule, MaterialModule, AppRoutingModule, RouterModule, MatFormFieldModule, MatInputModule],
-  declarations: [AppComponent,
+  exports: [
+    DialogsModule,
+    MaterialModule,
+    AppRoutingModule,
+    RouterModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
+  declarations: [
+    AppComponent,
     ModelMetaComponent,
     BaseComponent,
     ModelMetaComponent,
@@ -252,88 +270,110 @@ export class MaterialModule {}
     PredictedComponent,
     SimpleDatasetComponent,
     ValidateComponent,
-    ValidationReportComponent,SearchAllComponentComponent,SearchBaseComponent, SearchQuickViewComponent,
-    PredArchiveComponent, JaqpotNotificationsComponent, ViewNotifsComponent ,PbpkPredictedComponent,MultiLineComponent
+    ValidationReportComponent,
+    SearchAllComponentComponent,
+    SearchBaseComponent,
+    SearchQuickViewComponent,
+    PredArchiveComponent,
+    JaqpotNotificationsComponent,
+    ViewNotifsComponent,
+    PbpkPredictedComponent,
+    MultiLineComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [SessionService, OidcConfigService,
+  providers: [
+    SessionService,
+    OidcConfigService,
     {
-        provide: APP_INITIALIZER,
-        useFactory: configureAuth,
-        deps: [OidcConfigService, HttpClient],
-        multi: true,
-    }],
-  entryComponents: []
+      provide: APP_INITIALIZER,
+      useFactory: configureAuth,
+      deps: [OidcConfigService, HttpClient],
+      multi: true,
+    },
+  ],
+  entryComponents: [],
 })
 export class AppModule {
-
-  subscription:Subscription;
-  theme:string;
-  constructor(private overlayContainer: OverlayContainer
-              , private sessionService: SessionService
-              , private oidcConfigService: OidcConfigService
-              , public oidcSecurityService: OidcSecurityService) {
-    
+  subscription: Subscription;
+  theme: string;
+  constructor(
+    private overlayContainer: OverlayContainer,
+    private sessionService: SessionService,
+    private oidcConfigService: OidcConfigService,
+    public oidcSecurityService: OidcSecurityService,
+  ) {
     var _theme = sessionService.get('theme');
-    if(_theme === 'dark-theme'){
-      this.overlayContainer.getContainerElement().classList.remove('default-theme'); 
+    if (_theme === 'dark-theme') {
+      this.overlayContainer
+        .getContainerElement()
+        .classList.remove('default-theme');
       this.overlayContainer.getContainerElement().classList.add('dark-theme');
-    }else{
-      this.overlayContainer.getContainerElement().classList.remove('dark-theme');
-      this.overlayContainer.getContainerElement().classList.add('default-theme');
+    } else {
+      this.overlayContainer
+        .getContainerElement()
+        .classList.remove('dark-theme');
+      this.overlayContainer
+        .getContainerElement()
+        .classList.add('default-theme');
     }
 
-    this.subscription= this.sessionService
-    .getTheme().subscribe(theme => {
+    this.subscription = this.sessionService.getTheme().subscribe((theme) => {
       var the = (<any>Object).values(theme);
-      if(the[0] === 'dark-theme'){
+      if (the[0] === 'dark-theme') {
         this.theme = 'dark-theme';
-        this.overlayContainer.getContainerElement().classList.remove('default-theme'); 
+        this.overlayContainer
+          .getContainerElement()
+          .classList.remove('default-theme');
         this.overlayContainer.getContainerElement().classList.add('dark-theme');
-      }else{
-        this.theme = 'default-theme'
-        this.overlayContainer.getContainerElement().classList.remove('dark-theme');
-        this.overlayContainer.getContainerElement().classList.add('default-theme');
+      } else {
+        this.theme = 'default-theme';
+        this.overlayContainer
+          .getContainerElement()
+          .classList.remove('dark-theme');
+        this.overlayContainer
+          .getContainerElement()
+          .classList.add('default-theme');
       }
-    }
-  )
-
+    });
   }
 
-  changeTheme(theme:string){
+  changeTheme(theme: string) {
     this.overlayContainer.getContainerElement().classList.add(theme);
   }
 }
 
-export function configureAuth(oidcConfigService: OidcConfigService, httpClient: HttpClient) {
+export function configureAuth(
+  oidcConfigService: OidcConfigService,
+  httpClient: HttpClient,
+) {
   const setupAction$ = httpClient.get<any>(`/assets/conf.json`).pipe(
-      map((customConfig:configf) => {
-        Config.JaqpotBase = customConfig.jaqpotApi
-        // Config.AccountsApi = customConfig.accountsApi
-        // console.log("Accounts api at:")
-        // console.log(Config.AccountsApi)
-          return {
-              stsServer: customConfig.stsServer,
-              redirectUrl: customConfig.redirect_url,
-              clientId: customConfig.client_id,
-              responseType: customConfig.response_type,
-              scope: customConfig.scope,
-              // postLogoutRedirectUri: customConfig.baseurl,
-              // startCheckSession: customConfig.start_checksession,
-              // silentRenew: customConfig.silent_renew,
-              silentRenewUrl: customConfig.silent_redirect_url,
-              postLogoutRedirectUri: window.location.origin,
-              // postLoginRoute: customConfig.baseurl,
-              // forbiddenRoute: customConfig.baseurl,
-              // unauthorizedRoute: customConfig.baseurl,
-              logLevel: LogLevel.Error, // LogLevel.Debug,
-              maxIdTokenIatOffsetAllowedInSeconds: 120,
-              historyCleanupOff: true,
-              autoUserinfo: true,
-              storage: localStorage
-          };
-      }),
-      switchMap((config) => oidcConfigService.withConfig(config))
+    map((customConfig: configf) => {
+      Config.JaqpotBase = customConfig.jaqpotApi;
+      // Config.AccountsApi = customConfig.accountsApi
+      // console.log("Accounts api at:")
+      // console.log(Config.AccountsApi)
+      return {
+        stsServer: customConfig.stsServer,
+        redirectUrl: customConfig.redirect_url,
+        clientId: customConfig.client_id,
+        responseType: customConfig.response_type,
+        scope: customConfig.scope,
+        // postLogoutRedirectUri: customConfig.baseurl,
+        // startCheckSession: customConfig.start_checksession,
+        // silentRenew: customConfig.silent_renew,
+        silentRenewUrl: customConfig.silent_redirect_url,
+        postLogoutRedirectUri: window.location.origin,
+        // postLoginRoute: customConfig.baseurl,
+        // forbiddenRoute: customConfig.baseurl,
+        // unauthorizedRoute: customConfig.baseurl,
+        logLevel: LogLevel.Error, // LogLevel.Debug,
+        maxIdTokenIatOffsetAllowedInSeconds: 120,
+        historyCleanupOff: true,
+        autoUserinfo: true,
+        storage: localStorage,
+      };
+    }),
+    switchMap((config) => oidcConfigService.withConfig(config)),
   );
 
   return () => setupAction$.toPromise();

@@ -1,23 +1,22 @@
-.userinfo{
-    margin-top: 20px;
-    width: 400px;
-    /* text-align: center; */
+.userinfo {
+  margin-top: 20px;
+  width: 400px;
+  /* text-align: center; */
 }
 
-p{
-    word-wrap: break-word;
-    position: relative;
-    display: block;
-
+p {
+  word-wrap: break-word;
+  position: relative;
+  display: block;
 }
 
-.logoutb{
-    margin-top: 20px; 
-    margin-bottom: 10px;
-    margin-right: 10px;
-    float: right;
+.logoutb {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  float: right;
 }
 
-.id{
-    color: royalblue;
+.id {
+  color: royalblue;
 }

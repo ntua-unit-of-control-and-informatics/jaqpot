@@ -5,11 +5,14 @@ import { DatasetFactoryService } from './dataset-factory.service';
 describe('DatasetDummyFactoryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DatasetFactoryService]
+      providers: [DatasetFactoryService],
     });
   });
 
-  it('should be created', inject([DatasetFactoryService], (service: DatasetFactoryService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [DatasetFactoryService],
+    (service: DatasetFactoryService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

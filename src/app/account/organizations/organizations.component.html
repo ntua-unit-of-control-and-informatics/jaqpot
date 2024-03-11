@@ -1,12 +1,16 @@
 <mat-list>
   <mat-divider></mat-divider>
-  <mat-list-item class="listItem" *ngFor="let organization of organizations" (click)="onOrgClicked(organization)">
+  <mat-list-item
+    class="listItem"
+    *ngFor="let organization of organizations"
+    (click)="onOrgClicked(organization)"
+  >
     <div *ngIf="organization.meta && organization.meta.picture">
       <img class="orgim" [src]="organization?.meta?.picture" />
     </div>
-    <h4 class="orgtitle" mat-line>{{organization?._id}}</h4>
+    <h4 class="orgtitle" mat-line>{{ organization?._id }}</h4>
     <div *ngIf="organization.city">
-      <p mat-line> {{organization?.city}}, {{organization?.country}} </p>
+      <p mat-line>{{ organization?.city }}, {{ organization?.country }}</p>
     </div>
   </mat-list-item>
   <mat-divider></mat-divider>

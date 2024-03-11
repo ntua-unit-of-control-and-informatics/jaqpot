@@ -12,18 +12,16 @@
 //   observeTaskId:string
 //   observe: Subject<Task> = new Subject();
 
-
 //   constructor(
 //     taskId:string,
 //     private _taskApi:TaskApiService
-//   ) { 
+//   ) {
 //     this.observeTaskId = taskId
-    
+
 //   }
 
-
 //   public startObserving(){
-    
+
 //     this.observe.subscribe((task:Task) =>{
 //       console.log(task)
 //     })
@@ -44,6 +42,5 @@
 //           })
 
 //   }
-  
 
 // }

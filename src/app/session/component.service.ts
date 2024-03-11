@@ -10,15 +10,15 @@
 // export class ComponentService{
 
 //     constructor(private factoryResolver: ComponentFactoryResolver) { }
-    
+
 //       public setRootViewContainerRef(viewContainerRef) {
 //         this.rootViewContainer = viewContainerRef
 //       }
-    
+
 //       public addDynamicComponent() {
 //         const factory = this.factoryResolver.resolveComponentFactory(DynamicComponent)
 //         const component = factory.create(this.rootViewContainer.parentInjector)
-        
+
 //         this.rootViewContainer.insert(component.hostView)
 //       }
 

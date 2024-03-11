@@ -7,20 +7,14 @@ import { AddAlgorithmDialogComponent } from '../../dialogs/add-algorithm-dialog/
 @Component({
   selector: 'app-algorithms',
   templateUrl: './algorithms.component.html',
-  styleUrls: ['./algorithms.component.css']
+  styleUrls: ['./algorithms.component.css'],
 })
 export class AlgorithmsComponent implements OnInit {
+  constructor(public dialog: MatDialog) {}
 
-  constructor(public dialog: MatDialog) { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  addAlgoDialog() {
+    let dialogRef = this.dialog.open(AddAlgorithmDialogComponent, {});
   }
-
-  addAlgoDialog(){
-    let dialogRef = this.dialog.open(AddAlgorithmDialogComponent,{
-    });
-  }
-
-  
-
 }

@@ -8,41 +8,34 @@ import { Organization } from '@euclia/accounts-client/dist/models/models';
 @Component({
   selector: 'app-organizations',
   templateUrl: './organizations.component.html',
-  styleUrls: ['./organizations.component.css']
+  styleUrls: ['./organizations.component.css'],
 })
 export class OrganizationsComponent implements OnInit {
+  organization: Organization;
 
-  organization:Organization
-
-  organizations:Array<Organization> = new Array<Organization>();
-  @Input() user:User;
+  organizations: Array<Organization> = new Array<Organization>();
+  @Input() user: User;
   @Output() dialogClosed = new EventEmitter<boolean>();
 
   constructor(
-      public organizationService:OrganizationService,
-      public dialogService:DialogsService,
-      public userService:UserService
-    )
-  { }
+    public organizationService: OrganizationService,
+    public dialogService: DialogsService,
+    public userService: UserService,
+  ) {}
 
   ngOnInit() {
-    this.user.organizations.forEach(org =>{
-      this.organizationService.getOrgById(org)
-          .then((organ) =>{
-            this.organizations.push(organ)
-          }
-      )
-    })
+    this.user.organizations.forEach((org) => {
+      this.organizationService.getOrgById(org).then((organ) => {
+        this.organizations.push(organ);
+      });
+    });
   }
 
-  onOrgClicked(organization: Organization){
-    this.dialogService.onOrganizationView(organization, this.organizationService, true).subscribe(
-      result =>{
-        this.dialogClosed.emit(true)
-      }
-    )
-    
+  onOrgClicked(organization: Organization) {
+    this.dialogService
+      .onOrganizationView(organization, this.organizationService, true)
+      .subscribe((result) => {
+        this.dialogClosed.emit(true);
+      });
   }
-
-  
 }

@@ -12,26 +12,24 @@
 
 import { MetaInfo } from './metaInfo';
 
-
 export interface Feature {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    units?: string;
+  units?: string;
 
-    predictorFor?: string;
+  predictorFor?: string;
 
-    admissibleValues?: Array<string>;
+  admissibleValues?: Array<string>;
 
-    id?: string;
+  id?: string;
 
-    _id?: string;
-
+  _id?: string;
 }

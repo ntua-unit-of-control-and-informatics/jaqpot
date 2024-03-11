@@ -10,19 +10,16 @@
  * Do not edit the class manually.
  */
 
-
-
 export interface DatasetData {
-    title?: string;
+  title?: string;
 
-    description?: string;
+  description?: string;
 
-    bundle?: string;
+  bundle?: string;
 
-    descriptors?: Array<string>;
+  descriptors?: Array<string>;
 
-    intersectColumns?: boolean;
+  intersectColumns?: boolean;
 
-    retainNullValues?: boolean;
-
+  retainNullValues?: boolean;
 }

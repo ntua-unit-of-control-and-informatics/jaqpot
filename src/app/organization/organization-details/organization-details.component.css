@@ -1,11 +1,11 @@
-p{
-    margin-top: 2em;
+p {
+  margin-top: 2em;
 }
 
-.orgmeta{
-    /* width:60%; */
-    margin-top: 2em;
-    margin-left: 1em;
+.orgmeta {
+  /* width:60%; */
+  margin-top: 2em;
+  margin-left: 1em;
 }
 
 /* .add-description{
@@ -20,64 +20,63 @@ p{
     width: 75%;
 } */
 
-.audience{
-    width: 40%;
-    float:left;
+.audience {
+  width: 40%;
+  float: left;
 }
 
-.discription{
-    width: 40%;
-    float:left;
+.discription {
+  width: 40%;
+  float: left;
 }
 
-.subject{
-    width: 40%;
-    float:left;
+.subject {
+  width: 40%;
+  float: left;
 }
 
-.edit-description{
-    width: 100%;
+.edit-description {
+  width: 100%;
 }
 
-.edit-description-f{
-    width: 70%;
-    float: left;
+.edit-description-f {
+  width: 70%;
+  float: left;
 }
 
-.delete-description-b{
-    margin-left: 0.5em;
-    /* margin: 0em; */
-    margin-bottom: 3em;
-    margin-top: 1em;
+.delete-description-b {
+  margin-left: 0.5em;
+  /* margin: 0em; */
+  margin-bottom: 3em;
+  margin-top: 1em;
 }
 
-.edit-subject{
-    width: 100%;
+.edit-subject {
+  width: 100%;
 }
 
-.edit-subject-f{
-    width: 70%;
+.edit-subject-f {
+  width: 70%;
 }
 
-.delete-subject-b{
-    margin-left: 0.5em;
-    /* margin: 0em; */
-    margin-bottom: 3em;
-    margin-top: 1em;
+.delete-subject-b {
+  margin-left: 0.5em;
+  /* margin: 0em; */
+  margin-bottom: 3em;
+  margin-top: 1em;
 }
 
-.edit-audience{
-    width: 100%;
+.edit-audience {
+  width: 100%;
 }
 
-.edit-audience-f{
-    width: 70%;
+.edit-audience-f {
+  width: 70%;
 }
 
-.delete-audience-b{
-    margin-left: 0.5em;
-    /* margin: 0em; */
-    margin-bottom: 3em;
-    margin-top: 1em;
+.delete-audience-b {
+  margin-left: 0.5em;
+  /* margin: 0em; */
+  margin-bottom: 3em;
+  margin-top: 1em;
 }
-

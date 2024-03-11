@@ -10,11 +10,8 @@
  * Do not edit the class manually.
  */
 
-
-
 export interface ArrayCalculation {
-    colNames?: Array<string>;
+  colNames?: Array<string>;
 
-    values?: { [key: string]: Array<any>; };
-
+  values?: { [key: string]: Array<any> };
 }

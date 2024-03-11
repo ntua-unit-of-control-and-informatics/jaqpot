@@ -8,9 +8,7 @@ import { ModelMetaComponent } from './model-meta/model-meta.component';
 // import { ModelIdComponent } from './model-id/model-id.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
+  imports: [CommonModule],
+  declarations: [],
 })
-export class ModelsModuleModule { }
+export class ModelsModuleModule {}

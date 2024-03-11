@@ -9,30 +9,28 @@ import { Organization } from '@euclia/accounts-client/dist/models/models';
 @Component({
   selector: 'app-affiliations-dialog',
   templateUrl: './affiliations-dialog.component.html',
-  styleUrls: ['./affiliations-dialog.component.css']
+  styleUrls: ['./affiliations-dialog.component.css'],
 })
 export class AffiliationsDialogComponent implements OnInit {
+  organizationApi: OrganizationService;
+  notificationApi: NotificationService;
+  notificationFactory: NotificationFactoryService;
+  fromOrg: string;
 
-  organizationApi:OrganizationService;
-  notificationApi:NotificationService;
-  notificationFactory:NotificationFactoryService;
-  fromOrg:string;
+  organizations: Organization[] = [];
+  orgsearch: string;
 
-  organizations:Organization[] = []
-  orgsearch:string;
+  addBodyB: boolean;
+  requestMessage: string;
 
-  addBodyB:boolean;
-  requestMessage:string;
-
-  orgActivated:string;
+  orgActivated: string;
 
   constructor(
-    private sessionService:SessionService,
-    public snackBar: MatSnackBar
-  ) {  }
+    private sessionService: SessionService,
+    public snackBar: MatSnackBar,
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   inputChanged(orgname: string) {
     // if(orgname.length > 1){
@@ -51,22 +49,31 @@ export class AffiliationsDialogComponent implements OnInit {
     // }
   }
 
-
-  request(){
-    this.organizationApi.getOrgById(this.orgsearch).then((orgToRequest:Organization) =>{
-      let userData = this.sessionService.getUserData()
-      let notif = this.notificationFactory.affiliationNotification(userData.sub, orgToRequest.creator[0], this.fromOrg, this.orgsearch, this.requestMessage)
-      this.notificationApi.postEntity(notif).subscribe((not:Notification)=>{
-        this.openSnackBar("Affiliation request created", "Ok");
-      })
-    })
+  request() {
+    this.organizationApi
+      .getOrgById(this.orgsearch)
+      .then((orgToRequest: Organization) => {
+        let userData = this.sessionService.getUserData();
+        let notif = this.notificationFactory.affiliationNotification(
+          userData.sub,
+          orgToRequest.creator[0],
+          this.fromOrg,
+          this.orgsearch,
+          this.requestMessage,
+        );
+        this.notificationApi
+          .postEntity(notif)
+          .subscribe((not: Notification) => {
+            this.openSnackBar('Affiliation request created', 'Ok');
+          });
+      });
   }
 
-  addBody(){
+  addBody() {
     this.addBodyB = true;
   }
 
-  cancelBody(){
+  cancelBody() {
     this.addBodyB = false;
   }
 
@@ -75,6 +82,4 @@ export class AffiliationsDialogComponent implements OnInit {
       duration: 3200,
     });
   }
-
 }
-

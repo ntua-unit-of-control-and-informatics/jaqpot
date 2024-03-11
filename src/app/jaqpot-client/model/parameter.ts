@@ -12,42 +12,40 @@
 
 import { MetaInfo } from './metaInfo';
 
-
 export interface Parameter {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    name?: string;
+  name?: string;
 
-    value?: any;
+  value?: any;
 
-    scope?: Parameter.ScopeEnum;
+  scope?: Parameter.ScopeEnum;
 
-    allowedValues?: Array<any>;
+  allowedValues?: Array<any>;
 
-    minValue?: any;
+  minValue?: any;
 
-    maxValue?: any;
+  maxValue?: any;
 
-    minArraySize?: number;
+  minArraySize?: number;
 
-    maxArraySize?: number;
+  maxArraySize?: number;
 
-    description?: string;
+  description?: string;
 
-    id?: string;
-
+  id?: string;
 }
 export namespace Parameter {
-    export enum ScopeEnum {
-        OPTIONAL = <any> 'OPTIONAL',
-        MANDATORY = <any> 'MANDATORY'
-    }
+  export enum ScopeEnum {
+    OPTIONAL = <any>'OPTIONAL',
+    MANDATORY = <any>'MANDATORY',
+  }
 }

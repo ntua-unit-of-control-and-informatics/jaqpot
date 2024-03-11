@@ -1,5 +1,3 @@
 export interface SearchSession {
-
-    seacrhSession?:string;
-
+  seacrhSession?: string;
 }

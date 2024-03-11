@@ -25,7 +25,6 @@
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
 
-
 // @Injectable()
 // export class OpenrisknetService {
 
@@ -93,7 +92,6 @@
 //             });
 //     }
 
-
 //     /**
 //      * Creates Dataset By SMILES document
 //      * Calculates descriptors from SMILES document, returns Dataset
@@ -144,7 +142,6 @@
 //         // to determine the Accept header
 //         let produces: string[] = [
 //         ];
-
 
 //         if (file !== undefined) {
 //             formParams.set('file', <any>file);

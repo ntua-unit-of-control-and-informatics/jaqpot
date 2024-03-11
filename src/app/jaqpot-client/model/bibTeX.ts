@@ -12,87 +12,85 @@
 
 import { MetaInfo } from './metaInfo';
 
-
 export interface BibTeX {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    author?: string;
+  author?: string;
 
-    title?: string;
+  title?: string;
 
-    bookTitle?: string;
+  bookTitle?: string;
 
-    school?: string;
+  school?: string;
 
-    chapter?: string;
+  chapter?: string;
 
-    copyright?: string;
+  copyright?: string;
 
-    edition?: string;
+  edition?: string;
 
-    editor?: string;
+  editor?: string;
 
-    crossref?: string;
+  crossref?: string;
 
-    address?: string;
+  address?: string;
 
-    year?: string;
+  year?: string;
 
-    pages?: string;
+  pages?: string;
 
-    volume?: string;
+  volume?: string;
 
-    number?: string;
+  number?: string;
 
-    journal?: string;
+  journal?: string;
 
-    isbn?: string;
+  isbn?: string;
 
-    issn?: string;
+  issn?: string;
 
-    keywords?: string;
+  keywords?: string;
 
-    key?: string;
+  key?: string;
 
-    annotation?: string;
+  annotation?: string;
 
-    series?: string;
+  series?: string;
 
-    url?: string;
+  url?: string;
 
-    bibType?: BibTeX.BibTypeEnum;
+  bibType?: BibTeX.BibTypeEnum;
 
-    publisher?: string;
+  publisher?: string;
 
-    id?: string;
+  id?: string;
 
-    abstract?: string;
-
+  abstract?: string;
 }
 export namespace BibTeX {
-    export enum BibTypeEnum {
-        Article = <any> 'Article',
-        Book = <any> 'Book',
-        Conference = <any> 'Conference',
-        Phdthesis = <any> 'Phdthesis',
-        Booklet = <any> 'Booklet',
-        Inbook = <any> 'Inbook',
-        Incollection = <any> 'Incollection',
-        Inproceedings = <any> 'Inproceedings',
-        Manual = <any> 'Manual',
-        Mastersthesis = <any> 'Mastersthesis',
-        Misc = <any> 'Misc',
-        Proceedings = <any> 'Proceedings',
-        TechReport = <any> 'TechReport',
-        Unpublished = <any> 'Unpublished',
-        Entry = <any> 'Entry'
-    }
+  export enum BibTypeEnum {
+    Article = <any>'Article',
+    Book = <any>'Book',
+    Conference = <any>'Conference',
+    Phdthesis = <any>'Phdthesis',
+    Booklet = <any>'Booklet',
+    Inbook = <any>'Inbook',
+    Incollection = <any>'Incollection',
+    Inproceedings = <any>'Inproceedings',
+    Manual = <any>'Manual',
+    Mastersthesis = <any>'Mastersthesis',
+    Misc = <any>'Misc',
+    Proceedings = <any>'Proceedings',
+    TechReport = <any>'TechReport',
+    Unpublished = <any>'Unpublished',
+    Entry = <any>'Entry',
+  }
 }

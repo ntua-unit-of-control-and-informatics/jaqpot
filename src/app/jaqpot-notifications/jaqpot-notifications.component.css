@@ -1,14 +1,14 @@
 .example-container {
-    width: 100%;
-    height: calc(100vh - 55px);
-    /* border: 1px solid #555; */
-  }
+  width: 100%;
+  height: calc(100vh - 55px);
+  /* border: 1px solid #555; */
+}
 
-.notif_sidenav{
+.notif_sidenav {
   /* border-right: 0; */
 }
 
-.notif-pagin{
+.notif-pagin {
   background-color: inherit;
   float: left;
   /* width: 45%; */

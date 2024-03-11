@@ -13,7 +13,7 @@
     width: 100%;
 } */
 
-.only_pred{
+.only_pred {
   margin-top: 2em;
   margin-bottom: 1em;
 }
@@ -21,7 +21,7 @@
 th {
   min-width: 4em;
 }
-.plot-spinner{
+.plot-spinner {
   margin: auto;
   margin-top: 2em;
   margin-bottom: 2em;
@@ -40,7 +40,6 @@ td {
   position: relative;
   max-height: 400px;
   overflow: auto;
-
 }
 
 table {
@@ -67,7 +66,6 @@ table {
   /* justify-content: center; */
 }
 
-
 .example-rate-limit-reached {
   color: #980000;
   max-width: 360px;
@@ -80,7 +78,7 @@ table {
   max-width: 64px;
 }
 
-.dataset_image{
+.dataset_image {
   max-width: 192px;
   max-height: 192px;
   margin: 0 auto;
@@ -90,6 +88,6 @@ table {
   max-width: 124px;
 }
 
-.only_pred{
-  margin-right: 2em; 
+.only_pred {
+  margin-right: 2em;
 }

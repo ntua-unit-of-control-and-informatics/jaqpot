@@ -10,30 +10,29 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-fyi-notif',
   templateUrl: './fyi-notif.component.html',
-  styleUrls: ['./fyi-notif.component.css']
+  styleUrls: ['./fyi-notif.component.css'],
 })
 export class FyiNotifComponent implements OnInit {
+  _notification: Notification;
+  _organizationApi: OrganizationService;
+  _notificationApi: NotificationService;
+  _userApi: UserService;
+  _modelApi: ModelApiService;
+  _datasetApi: DatasetService;
 
-  _notification:Notification
-  _organizationApi:OrganizationService
-  _notificationApi:NotificationService
-  _userApi:UserService
-  _modelApi:ModelApiService
-  _datasetApi:DatasetService
+  openedFrom: string;
 
-  openedFrom:string
+  constructor(public snackBar: MatSnackBar) {}
 
-  constructor(public snackBar: MatSnackBar) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-
-  resolveNotification(){
+  resolveNotification() {
     this._notification.viewed = true;
-    this._notificationApi.putEntitySecured(this._notification).subscribe(notifNew=>{
-      this.openSnackBar("Notification won't appear any more", "")
-    })
+    this._notificationApi
+      .putEntitySecured(this._notification)
+      .subscribe((notifNew) => {
+        this.openSnackBar("Notification won't appear any more", '');
+      });
   }
 
   openSnackBar(message: string, action: string) {

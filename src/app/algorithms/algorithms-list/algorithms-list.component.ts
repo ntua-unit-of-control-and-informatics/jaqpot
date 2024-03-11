@@ -1,7 +1,13 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  Inject,
+} from '@angular/core';
 import { AlgorithmService } from '../../jaqpot-client/api/algorithm.service';
 import { Algorithm } from '../../jaqpot-client';
-import { startWith, scan, switchMap, map, catchError} from 'rxjs/operators';
+import { startWith, scan, switchMap, map, catchError } from 'rxjs/operators';
 import { SessionService } from '../../session/session.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,16 +16,12 @@ import { merge } from 'rxjs';
 @Component({
   selector: 'app-algorithms-list',
   templateUrl: './algorithms-list.component.html',
-  styleUrls: ['./algorithms-list.component.css']
+  styleUrls: ['./algorithms-list.component.css'],
 })
 export class AlgorithmsListComponent implements AfterViewInit {
-
-
-  public _algorithms:Algorithm[];
-  public _count:string;
+  public _algorithms: Algorithm[];
+  public _count: string;
   // private subscription:Subscription;
-
-
 
   displayedColumns = ['Id', 'Descriptions', 'Titles', 'Subjects'];
   // dataSource = new MatTableDataSource<Algorithm>(this._algorithms);
@@ -28,59 +30,56 @@ export class AlgorithmsListComponent implements AfterViewInit {
   isLoadingResults = false;
   isRateLimitReached = false;
 
-  selectedAlgo:Algorithm;
+  selectedAlgo: Algorithm;
 
   // sessionService:SessionService;
 
-
-  constructor(private _algoService:AlgorithmService,
-         public sessionService:SessionService){
-    
-  }
+  constructor(
+    private _algoService: AlgorithmService,
+    public sessionService: SessionService,
+  ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
 
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
    */
-  ngOnInit(){
+  ngOnInit() {
     this.getCount();
     this.resultsLength = Number(this._count);
   }
 
   ngAfterViewInit() {
-
     // this.dataSource.paginator = this.paginator;
 
-    merge(this.paginator.page)
-      startWith(null)
-      switchMap(() => {
-        this.isLoadingResults = true;
-        return this._algoService.getAlgorithms(
-          null,
-          this.paginator.pageIndex * this.paginator.pageSize,
-          this.paginator.pageSize);
-        }),map(data => {
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
-          this.resultsLength = Number(this._count);
-          return data
-        })
-        // ,catchError(err => {
-        //   this.isLoadingResults = false;
-        //   this.isRateLimitReached = true;
-        //   // return Observable.of([]);
-        // })
-        // subscribe(data => this.dataSource.data = data);
-
+    merge(this.paginator.page);
+    startWith(null);
+    switchMap(() => {
+      this.isLoadingResults = true;
+      return this._algoService.getAlgorithms(
+        null,
+        this.paginator.pageIndex * this.paginator.pageSize,
+        this.paginator.pageSize,
+      );
+    }),
+      map((data) => {
+        this.isLoadingResults = false;
+        this.isRateLimitReached = false;
+        this.resultsLength = Number(this._count);
+        return data;
+      });
+    // ,catchError(err => {
+    //   this.isLoadingResults = false;
+    //   this.isRateLimitReached = true;
+    //   // return Observable.of([]);
+    // })
+    // subscribe(data => this.dataSource.data = data);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.clearMem();
   }
-
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -88,30 +87,25 @@ export class AlgorithmsListComponent implements AfterViewInit {
     // this.dataSource.filter = filterValue;
   }
 
-  private clearMem(){
+  private clearMem() {
     this._algorithms = null;
   }
 
-  private getAlgos(){
+  private getAlgos() {
     this._algoService
       .getAlgorithms(null, this.paginator.pageIndex, this.paginator.pageSize)
-      .subscribe(algos => {
+      .subscribe((algos) => {
         this._algorithms = algos;
-      })
+      });
   }
 
-  private onSelect(algorithm:Algorithm){
+  private onSelect(algorithm: Algorithm) {
     // this.sessionService.setAlgorithm(algorithm);
   }
 
-
-  private getCount(){
-    this._algoService.getAlgorithmsCount()
-      .subscribe(res => {
-        this._count = res.headers.get('total');
-      })
+  private getCount() {
+    this._algoService.getAlgorithmsCount().subscribe((res) => {
+      this._count = res.headers.get('total');
+    });
   }
-
-
 }
-

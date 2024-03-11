@@ -8,9 +8,8 @@ describe('ShareNotifDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShareNotifDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [ShareNotifDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

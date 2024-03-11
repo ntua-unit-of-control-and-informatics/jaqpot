@@ -1,131 +1,218 @@
 <div *ngIf="user" id="social">
   <div>
-  <img class="socialpng" src="assets/internet.png">
-  <mat-form-field class="input-f">
-    <input class="social_input" type="url" matInput #message maxlength="256" placeholder="Website url" required pattern="https?://.+"
-      [ngModel]="user?.website "  [formControl]="websiteURL">
-  </mat-form-field>
-  <div class="delete-url" *ngIf="user?.website else editbts">
-    <button mat-mini-fab matTooltip="Delete url" color="warn" (click)="deleteWebsiteUrl()">
-      <mat-icon>delete</mat-icon>
-    </button>
-
-  </div>
-  <ng-template #editbts>
-    <div class="delete-url" *ngIf="editWeb else saveWeb">
-      <button mat-mini-fab matTooltip="Edit url" color="accent" (click)="editWebsiteUrl()">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </div>
-
-    <ng-template #saveWeb>
-        <div class="save-url" >
-          <button mat-mini-fab matTooltip="Save url" color="accent" (click)="saveWebsiteUrl()">
-            <mat-icon>save</mat-icon>
-          </button>
-        </div>
-      </ng-template>
-
-  </ng-template>
-</div>
-
-
-<div>
-  <img class="socialpng" src="assets/github.png">
-  <mat-form-field class="input-f">
-    <input class="social_input" type="url" matInput #message maxlength="256" placeholder="Github url" required pattern="https?://.+"
-      [ngModel]="user?.github "  [formControl]="githubURL">
-  </mat-form-field>
-  <div class="delete-url" *ngIf="user?.github else editgitbts">
-    <button mat-mini-fab matTooltip="Delete url" color="warn" (click)="deleteGithubUrl()">
-      <mat-icon>delete</mat-icon>
-    </button>
-
-  </div>
-  <ng-template #editgitbts>
-    <div class="delete-url" *ngIf="editGithub else saveGit">
-      <button mat-mini-fab matTooltip="Edit url" color="accent" (click)="editGithubUrl()">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </div>
-
-    <ng-template #saveGit>
-        <div class="save-url" >
-          <button mat-mini-fab matTooltip="Save url" color="accent" (click)="saveGithubUrl()">
-            <mat-icon>save</mat-icon>
-          </button>
-        </div>
-      </ng-template>
-
-  </ng-template>
-</div>
-
-
-<div>
-    <img class="socialpng" src="assets/linkedin.png">
+    <img class="socialpng" src="assets/internet.png" />
     <mat-form-field class="input-f">
-      <input class="social_input" type="url" matInput #message maxlength="256" placeholder="Linkedin url" required pattern="https?://.+"
-        [ngModel]="user?.linkedin "  [formControl]="linkedinURL">
+      <input
+        class="social_input"
+        type="url"
+        matInput
+        #message
+        maxlength="256"
+        placeholder="Website url"
+        required
+        pattern="https?://.+"
+        [ngModel]="user?.website"
+        [formControl]="websiteURL"
+      />
     </mat-form-field>
-    <div class="delete-url" *ngIf="user?.linkedin else editlinkbts">
-      <button mat-mini-fab matTooltip="Delete url" color="warn" (click)="deleteLinkedinUrl()">
+    <div class="delete-url" *ngIf="user?.website; else editbts">
+      <button
+        mat-mini-fab
+        matTooltip="Delete url"
+        color="warn"
+        (click)="deleteWebsiteUrl()"
+      >
         <mat-icon>delete</mat-icon>
       </button>
-  
     </div>
-    <ng-template #editlinkbts>
-      <div class="delete-url" *ngIf="editLinkedin else saveLin">
-        <button mat-mini-fab matTooltip="Edit url" color="accent" (click)="editLinkedinUrl()">
+    <ng-template #editbts>
+      <div class="delete-url" *ngIf="editWeb; else saveWeb">
+        <button
+          mat-mini-fab
+          matTooltip="Edit url"
+          color="accent"
+          (click)="editWebsiteUrl()"
+        >
           <mat-icon>edit</mat-icon>
         </button>
       </div>
-  
-      <ng-template #saveLin>
-          <div class="save-url" >
-            <button mat-mini-fab matTooltip="Save url" color="accent" (click)="saveLinkedinUrl()">
-              <mat-icon>save</mat-icon>
-            </button>
-          </div>
-        </ng-template>
-  
+
+      <ng-template #saveWeb>
+        <div class="save-url">
+          <button
+            mat-mini-fab
+            matTooltip="Save url"
+            color="accent"
+            (click)="saveWebsiteUrl()"
+          >
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </ng-template>
     </ng-template>
   </div>
 
-
   <div>
-      <img class="socialpng" src="assets/twitter.png">
-      <mat-form-field class="input-f">
-        <input class="social_input" type="url" matInput #message maxlength="256" placeholder="Twitter url" required pattern="https?://.+"
-          [ngModel]="user?.twitter "  [formControl]="twitterURL">
-      </mat-form-field>
-      <div class="delete-url" *ngIf="user?.twitter else edittwitbts">
-        <button mat-mini-fab matTooltip="Delete url" color="warn" (click)="deleteTwitterUrl()">
-          <mat-icon>delete</mat-icon>
+    <img class="socialpng" src="assets/github.png" />
+    <mat-form-field class="input-f">
+      <input
+        class="social_input"
+        type="url"
+        matInput
+        #message
+        maxlength="256"
+        placeholder="Github url"
+        required
+        pattern="https?://.+"
+        [ngModel]="user?.github"
+        [formControl]="githubURL"
+      />
+    </mat-form-field>
+    <div class="delete-url" *ngIf="user?.github; else editgitbts">
+      <button
+        mat-mini-fab
+        matTooltip="Delete url"
+        color="warn"
+        (click)="deleteGithubUrl()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <ng-template #editgitbts>
+      <div class="delete-url" *ngIf="editGithub; else saveGit">
+        <button
+          mat-mini-fab
+          matTooltip="Edit url"
+          color="accent"
+          (click)="editGithubUrl()"
+        >
+          <mat-icon>edit</mat-icon>
         </button>
-    
       </div>
-      <ng-template #edittwitbts>
-        <div class="delete-url" *ngIf="editTwitter else saveTwi">
-          <button mat-mini-fab matTooltip="Edit url" color="accent" (click)="editTwitterUrl()">
-            <mat-icon>edit</mat-icon>
+
+      <ng-template #saveGit>
+        <div class="save-url">
+          <button
+            mat-mini-fab
+            matTooltip="Save url"
+            color="accent"
+            (click)="saveGithubUrl()"
+          >
+            <mat-icon>save</mat-icon>
           </button>
         </div>
-    
-        <ng-template #saveTwi>
-            <div class="save-url" >
-              <button mat-mini-fab matTooltip="Save url" color="accent" (click)="saveTwitterUrl()">
-                <mat-icon>save</mat-icon>
-              </button>
-            </div>
-          </ng-template>
-    
       </ng-template>
-    </div>
-
+    </ng-template>
   </div>
 
+  <div>
+    <img class="socialpng" src="assets/linkedin.png" />
+    <mat-form-field class="input-f">
+      <input
+        class="social_input"
+        type="url"
+        matInput
+        #message
+        maxlength="256"
+        placeholder="Linkedin url"
+        required
+        pattern="https?://.+"
+        [ngModel]="user?.linkedin"
+        [formControl]="linkedinURL"
+      />
+    </mat-form-field>
+    <div class="delete-url" *ngIf="user?.linkedin; else editlinkbts">
+      <button
+        mat-mini-fab
+        matTooltip="Delete url"
+        color="warn"
+        (click)="deleteLinkedinUrl()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <ng-template #editlinkbts>
+      <div class="delete-url" *ngIf="editLinkedin; else saveLin">
+        <button
+          mat-mini-fab
+          matTooltip="Edit url"
+          color="accent"
+          (click)="editLinkedinUrl()"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
 
-  <!-- <div class="social-input" [formGroup]="urlForm">
+      <ng-template #saveLin>
+        <div class="save-url">
+          <button
+            mat-mini-fab
+            matTooltip="Save url"
+            color="accent"
+            (click)="saveLinkedinUrl()"
+          >
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+
+  <div>
+    <img class="socialpng" src="assets/twitter.png" />
+    <mat-form-field class="input-f">
+      <input
+        class="social_input"
+        type="url"
+        matInput
+        #message
+        maxlength="256"
+        placeholder="Twitter url"
+        required
+        pattern="https?://.+"
+        [ngModel]="user?.twitter"
+        [formControl]="twitterURL"
+      />
+    </mat-form-field>
+    <div class="delete-url" *ngIf="user?.twitter; else edittwitbts">
+      <button
+        mat-mini-fab
+        matTooltip="Delete url"
+        color="warn"
+        (click)="deleteTwitterUrl()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <ng-template #edittwitbts>
+      <div class="delete-url" *ngIf="editTwitter; else saveTwi">
+        <button
+          mat-mini-fab
+          matTooltip="Edit url"
+          color="accent"
+          (click)="editTwitterUrl()"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+
+      <ng-template #saveTwi>
+        <div class="save-url">
+          <button
+            mat-mini-fab
+            matTooltip="Save url"
+            color="accent"
+            (click)="saveTwitterUrl()"
+          >
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>
+
+<!-- <div class="social-input" [formGroup]="urlForm">
 
     <form [formGroup]="urlForm">
       <img class="socialpng" src="assets/github.png">
@@ -158,8 +245,7 @@
     </form>
   </div> -->
 
-
-  <!-- <div class="social-input" [formGroup]="urlForm">
+<!-- <div class="social-input" [formGroup]="urlForm">
 
     <form [formGroup]="urlForm">
       <img class="socialpng" src="assets/twitter.png">
@@ -174,5 +260,3 @@
       </div>
     </form>
   </div> -->
-
-

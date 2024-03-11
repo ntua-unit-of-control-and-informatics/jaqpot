@@ -8,9 +8,8 @@ describe('HttkmodelsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HttkmodelsComponent ]
-    })
-    .compileComponents();
+      declarations: [HttkmodelsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

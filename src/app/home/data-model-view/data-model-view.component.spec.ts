@@ -8,9 +8,8 @@ describe('DataModelViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataModelViewComponent ]
-    })
-    .compileComponents();
+      declarations: [DataModelViewComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

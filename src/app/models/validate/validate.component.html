@@ -1,100 +1,137 @@
 <div *ngIf="!taskStarted; else task" class="validate mat-elevation-z2">
-    <h4>Upload dataset with the required features and values</h4>
+  <h4>Upload dataset with the required features and values</h4>
 
-    <button matTooltip="Download template dataset (csv)" mat-icon-button color="primary" (click)="downloadTemplate()">
-      <mat-icon>arrow_downward</mat-icon>
-    </button>
+  <button
+    matTooltip="Download template dataset (csv)"
+    mat-icon-button
+    color="primary"
+    (click)="downloadTemplate()"
+  >
+    <mat-icon>arrow_downward</mat-icon>
+  </button>
 
-    <button matTooltip="Upload dataset (should at least contain independent features)" mat-icon-button color="accent"
-      type="button" onclick="document.getElementById('fileToUpload').click()">
-      <mat-icon>arrow_upward</mat-icon>
-    </button>
-    <input #dataInput id="fileToUpload" type="file" style="display:none;" accept="image/*, .csv" multiple="multiple"
-      (change)="changeListener($event.target.files)">
+  <button
+    matTooltip="Upload dataset (should at least contain independent features)"
+    mat-icon-button
+    color="accent"
+    type="button"
+    onclick="document.getElementById('fileToUpload').click()"
+  >
+    <mat-icon>arrow_upward</mat-icon>
+  </button>
+  <input
+    #dataInput
+    id="fileToUpload"
+    type="file"
+    style="display: none"
+    accept="image/*, .csv"
+    multiple="multiple"
+    (change)="changeListener($event.target.files)"
+  />
 
-    <div *ngIf="datasetFormated">
-      <app-simple-dataset [datasetToSee]="datasetForValidation"></app-simple-dataset>
+  <div *ngIf="datasetFormated">
+    <app-simple-dataset
+      [datasetToSee]="datasetForValidation"
+    ></app-simple-dataset>
+  </div>
+
+  <div *ngIf="datasetFormated" class="input_val_butt">
+    <div>
+      <h5>Choose validation method</h5>
+      <mat-button-toggle-group
+        #group="matButtonToggleGroup"
+        [value]="selectedVal"
+        (change)="onValChange(group.value)"
+      >
+        <mat-button-toggle
+          matTooltip="Validation for regression "
+          value="REGRESSION"
+        >
+          <mat-icon>show_chart</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle
+          matTooltip="Validation for classification "
+          value="CLASSIFICATION"
+        >
+          <mat-icon>scatter_plot</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <button
+        class="b2"
+        matTooltip="Erase dataset"
+        mat-button
+        color="warn"
+        (click)="eraseDataset()"
+      >
+        Erase dataset
+      </button>
+      <button
+        class="b1"
+        matTooltip="Choose validation type and start procedure"
+        mat-button
+        color="accent"
+        (click)="startValidation()"
+        [disabled]="disabled"
+      >
+        Start procedure
+      </button>
     </div>
-
-
-
-
-
-
-    <div *ngIf="datasetFormated" class="input_val_butt">
-
-      <div >
-        <h5>Choose validation method</h5>
-          <mat-button-toggle-group #group="matButtonToggleGroup" [value]="selectedVal" (change)="onValChange(group.value)">
-              <mat-button-toggle matTooltip="Validation for regression " value="REGRESSION">
-                <mat-icon>show_chart</mat-icon>
-              </mat-button-toggle>
-              <mat-button-toggle matTooltip="Validation for classification " value="CLASSIFICATION">
-                <mat-icon>scatter_plot</mat-icon>
-              </mat-button-toggle>
-            </mat-button-toggle-group>
-
-            <button class="b2" matTooltip="Erase dataset" mat-button color="warn" (click)="eraseDataset()">
-                Erase dataset
-              </button>
-              <button class="b1" matTooltip="Choose validation type and start procedure"
-                  mat-button color="accent" 
-                  (click)="startValidation()"
-                  [disabled] = "disabled">
-                Start procedure
-              </button>
-      </div>
-
-
-    </div>
+  </div>
 </div>
 
-
 <ng-template #task>
-    <div class="task mat-elevation-z2">
-      <h4>Task started</h4>
-      <h5>Validation report will be returned</h5>
-  
-      <mat-progress-bar class="example-margin" [color]="warn" [mode]="Determinate" [value]="progressValue" [bufferValue]="bufferValue">
-      </mat-progress-bar>
-  
-      <div *ngIf="taskGot">
-        <div *ngFor="let com of taskGot.meta.comments">
-          <h6>
-            {{com}}
-          </h6>
-        </div>
+  <div class="task mat-elevation-z2">
+    <h4>Task started</h4>
+    <h5>Validation report will be returned</h5>
+
+    <mat-progress-bar
+      class="example-margin"
+      [color]="warn"
+      [mode]="Determinate"
+      [value]="progressValue"
+      [bufferValue]="bufferValue"
+    >
+    </mat-progress-bar>
+
+    <div *ngIf="taskGot">
+      <div *ngFor="let com of taskGot.meta.comments">
+        <h6>
+          {{ com }}
+        </h6>
       </div>
-  
-      <div *ngIf="taskHasError">
-        <mat-icon color="warn">warning</mat-icon>
-        <h5 class="error_header">Task finished with error</h5>
-  
-        <button matTooltip="View error" mat-icon-button (click)="viewTheError()">
-          <mat-icon>arrow_drop_down</mat-icon>
-        </button>
-  
-        <div *ngIf="viewError">
-          <h5>Error: {{taskGot.errorReport.code}}</h5>
-          <h5>Message: {{taskGot.errorReport.message}}</h5>
-  
-          <div *ngIf="_canSeeDetails">
-            <h6>Details : {{taskGot.errorReport.details}}</h6>
-          </div>
-        </div>
-  
-      </div>
-  
-      <div *ngIf="taskCompletedSuccesfully">
-        <button matTooltip="View Report" mat-icon-button (click)="viewTheReport()">
-          <mat-icon>done_all</mat-icon>
-        </button>
-  
-        <div *ngIf="viewReport && report" class="predicted">
-          <app-validation-report [report]="report"></app-validation-report>
-        </div>
-  
-      </div>
-  
     </div>
-  </ng-template>
+
+    <div *ngIf="taskHasError">
+      <mat-icon color="warn">warning</mat-icon>
+      <h5 class="error_header">Task finished with error</h5>
+
+      <button matTooltip="View error" mat-icon-button (click)="viewTheError()">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+
+      <div *ngIf="viewError">
+        <h5>Error: {{ taskGot.errorReport.code }}</h5>
+        <h5>Message: {{ taskGot.errorReport.message }}</h5>
+
+        <div *ngIf="_canSeeDetails">
+          <h6>Details : {{ taskGot.errorReport.details }}</h6>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="taskCompletedSuccesfully">
+      <button
+        matTooltip="View Report"
+        mat-icon-button
+        (click)="viewTheReport()"
+      >
+        <mat-icon>done_all</mat-icon>
+      </button>
+
+      <div *ngIf="viewReport && report" class="predicted">
+        <app-validation-report [report]="report"></app-validation-report>
+      </div>
+    </div>
+  </div>
+</ng-template>

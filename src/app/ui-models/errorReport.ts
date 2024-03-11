@@ -1,11 +1,9 @@
-export class ErrorReport{
+export class ErrorReport {
+  constructor() {}
 
-    constructor(){}
-
-    public httpStatus:number;
-    public message:string;
-    public details:string;
-    public trace:string;
-    public id:string;
-    
+  public httpStatus: number;
+  public message: string;
+  public details: string;
+  public trace: string;
+  public id: string;
 }

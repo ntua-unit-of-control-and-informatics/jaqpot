@@ -1,94 +1,92 @@
-.cannot{
-    margin:0 auto;
-    width: 96%;
+.cannot {
+  margin: 0 auto;
+  width: 96%;
 }
 
-.cannot_card{
-    margin: 2em;
+.cannot_card {
+  margin: 2em;
 }
 
 .base {
-    margin-top: 1em;
-    margin-left: 4px;
-    margin-right: 4px;
-    margin-bottom: 4px;
-    padding: 1em;
+  margin-top: 1em;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 1em;
 }
 
-.can{
-    margin-top: 1em;
-    margin-left: 4px;
-    margin-right: 4px;
-    padding: 1em;
+.can {
+  margin-top: 1em;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 1em;
 }
 
-.method{
-    width: 100%;
-    margin: 0 auto;
+.method {
+  width: 100%;
+  margin: 0 auto;
 }
 
-.input-form{
-    margin: 4px;
+.input-form {
+  margin: 4px;
 }
 
-.full-width{
-    margin: 0.6em;
-    width: 90%;
-    /* margin-bottom: 1em; */
+.full-width {
+  margin: 0.6em;
+  width: 90%;
+  /* margin-bottom: 1em; */
 }
 
-.input_val_butt{
-    width:100%;
-    margin-top: 1em;
-    margin-bottom: 2em;
+.input_val_butt {
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 
-.first_card{
-    margin-bottom: 2em;
+.first_card {
+  margin-bottom: 2em;
 }
 
-.b1{
-    float: right;
-    margin-top: 8px;
+.b1 {
+  float: right;
+  margin-top: 8px;
 }
 
-.b2{
-    margin-top: 8px;
+.b2 {
+  margin-top: 8px;
 }
 
-
-.doa{
-    float:right;
-    margin-right: 1em;
+.doa {
+  float: right;
+  margin-right: 1em;
 }
 
-.aValue{
-    margin-top:1em;
+.aValue {
+  margin-top: 1em;
 }
 
-.task{
-    margin-top: 1em;
-    margin-left: 4px;
-    margin-right: 4px;
-    margin-bottom: 6em;
-    padding: 1em;
+.task {
+  margin-top: 1em;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 6em;
+  padding: 1em;
 }
 
-.error_header{
-    margin-top: 1em;
+.error_header {
+  margin-top: 1em;
 }
 
-
-.input_vals_h{
-    margin-bottom: 1em;
-    margin-top: 4em;
+.input_vals_h {
+  margin-bottom: 1em;
+  margin-top: 4em;
 }
 
-.predicted{
-    margin-top: 1em;
-    margin-bottom: 1em;
+.predicted {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
-.input_header{
-    margin-bottom: 1em;
+.input_header {
+  margin-bottom: 1em;
 }

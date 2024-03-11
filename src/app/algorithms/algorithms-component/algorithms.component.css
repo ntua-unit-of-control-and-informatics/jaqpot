@@ -1,44 +1,39 @@
-.algogrid{
-    /* margin-left: 20px; */
-    margin: 20px;
-    /* overflow: auto; */
+.algogrid {
+  /* margin-left: 20px; */
+  margin: 20px;
+  /* overflow: auto; */
 }
 
-
-
-
-.algowrap{
-    display: flex;
-    width: 1000px;
-    height: 80%;
-} 
-
-.algolist{
-    float: left;
-    width:75%;
+.algowrap {
+  display: flex;
+  width: 1000px;
+  height: 80%;
 }
 
-.algodet{
-    float: left;
-    width:25%;
+.algolist {
+  float: left;
+  width: 75%;
 }
 
+.algodet {
+  float: left;
+  width: 25%;
+}
 
-
-button{
-    display: inline-block;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    transition: all .2s ease-in-out;
-    /* position: sticky; */
-    /* top: 20px;
+button {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: all 0.2s ease-in-out;
+  /* position: sticky; */
+  /* top: 20px;
     right: 36px; */
-    color: lightseagreen;
-    opacity: 0.4;
+  color: lightseagreen;
+  opacity: 0.4;
 }
 
-button:hover{
-    transition: all .2s ease-in-out;
-    opacity: 1;
+button:hover {
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
 }

@@ -1,106 +1,105 @@
-.dialog_content{
-    width:1100px;
-    max-height: 500px;
-    overflow: auto;
+.dialog_content {
+  width: 1100px;
+  max-height: 500px;
+  overflow: auto;
 }
 
-.meta{
-    width:20%;
-    /* height:1000px; */
-    float: left;
+.meta {
+  width: 20%;
+  /* height:1000px; */
+  float: left;
 }
 
-.data{
-    min-width: 50%;
-    max-width: 50%;
-    overflow: auto; 
-    float: left;
-    max-height: 560px;
-    /* min-height: 600px; */
-    overflow: auto;
-    margin-bottom: 2em;
-    margin-top: 1em;
-    /* margin-left: 2em;
+.data {
+  min-width: 50%;
+  max-width: 50%;
+  overflow: auto;
+  float: left;
+  max-height: 560px;
+  /* min-height: 600px; */
+  overflow: auto;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  /* margin-left: 2em;
     /* overflow: auto; */
 }
 
-.features{
-    width: 30%;
-    margin-top: 1em;
-    /* margin-left: 2em; */
-    /* padding-right: 5em; */
-    float: left;
-    max-height: 560px;
-    overflow: auto;
+.features {
+  width: 30%;
+  margin-top: 1em;
+  /* margin-left: 2em; */
+  /* padding-right: 5em; */
+  float: left;
+  max-height: 560px;
+  overflow: auto;
 }
 
-.feat_header{
-    position: sticky;
+.feat_header {
+  position: sticky;
 }
 
-.feat_card{
-    width: 80%;
-    margin: 1em;
-    padding-right: 17px;
+.feat_card {
+  width: 80%;
+  margin: 1em;
+  padding-right: 17px;
 }
 
-table{
-    width: 100%;
-    height:100%;
-    /* margin-bottom: 2em; */
+table {
+  width: 100%;
+  height: 100%;
+  /* margin-bottom: 2em; */
 }
 
-.feat_header{
-    margin-left: 1em;
+.feat_header {
+  margin-left: 1em;
 }
 
-.dataset_photo{
-    width:100%;
-    margin-top: 2em;
-    float: left;
+.dataset_photo {
+  width: 100%;
+  margin-top: 2em;
+  float: left;
 }
 
-.image-crop{
-    margin-top: 2em;
+.image-crop {
+  margin-top: 2em;
 }
 
 .upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-
-  }
-    
-.upload-btn-wrapper input[type=file] {
-    font-size: 100px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-  }
-
-.cropped{
-    border-radius: 25%;
-    margin-top: 3%;
-    width:80%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
 }
 
-.submit-btn{
-    float:right;
+.upload-btn-wrapper input[type='file'] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 
-.spinner{
-    display: table;
-    margin: 0 auto;
+.cropped {
+  border-radius: 25%;
+  margin-top: 3%;
+  width: 80%;
 }
 
-.dataset_image{
-    margin-top: 0.5em;
-    width: 100%;
-    border-radius: 25%;
-    border: 2px gray solid;
+.submit-btn {
+  float: right;
 }
 
-.feat_input{
-    width: 94%;
+.spinner {
+  display: table;
+  margin: 0 auto;
+}
+
+.dataset_image {
+  margin-top: 0.5em;
+  width: 100%;
+  border-radius: 25%;
+  border: 2px gray solid;
+}
+
+.feat_input {
+  width: 94%;
 }

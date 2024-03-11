@@ -5,11 +5,14 @@ import { DatasetBuilderService } from './dataset-builder.service';
 describe('DatasetBuilderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DatasetBuilderService]
+      providers: [DatasetBuilderService],
     });
   });
 
-  it('should be created', inject([DatasetBuilderService], (service: DatasetBuilderService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [DatasetBuilderService],
+    (service: DatasetBuilderService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

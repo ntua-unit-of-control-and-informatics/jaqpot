@@ -1,48 +1,39 @@
 <div *ngIf="viewItem; else quickViewStart">
-
   <div class="exists">
-
-    <h3>{{viewItem.meta.titles[0]}}</h3>
+    <h3>{{ viewItem.meta.titles[0] }}</h3>
 
     <div class="all">
-      <h5>{{viewItem.type}}</h5>
+      <h5>{{ viewItem.type }}</h5>
       <div *ngIf="owner" class="owner">
         <!-- <mat-icon>account_circle</mat-icon> -->
-        Owner: <a class="owner_name" (click)="openUser()">{{owner.name}} </a>
+        Owner: <a class="owner_name" (click)="openUser()">{{ owner.name }} </a>
       </div>
 
       <div *ngIf="viewItem.meta.date" class="date">
-        Created: {{viewItem.meta.date | date}}
+        Created: {{ viewItem.meta.date | date }}
       </div>
 
       <div *ngIf="viewItem.meta.descriptions" class="description">
-        Description: {{viewItem.meta.descriptions[0]}}
+        Description: {{ viewItem.meta.descriptions[0] }}
       </div>
 
       <div *ngIf="orgs.length > 0" class="shared">
         <h5>Shared with</h5>
         <div *ngFor="let org of orgs" class="org_shared">
-            <a class="orgs" (click)="openOrg(org)"> {{org.title}}</a>
+          <a class="orgs" (click)="openOrg(org)"> {{ org.title }}</a>
         </div>
 
         <!-- <ul class="ul">
           <a *ngFor="let org of orgs" class="orgs" (click)="openOrg(org)"> {{org._id}}</a>
         </ul> -->
       </div>
-
     </div>
   </div>
-
 </div>
 
 <ng-template #quickViewStart>
   <div class="no_header">
-    <h5>
-      No item selected
-    </h5>
+    <h5>No item selected</h5>
     <mat-icon>warning</mat-icon>
   </div>
-
-
-
 </ng-template>

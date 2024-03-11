@@ -25,7 +25,6 @@
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
 
-
 // @Injectable()
 // export class InterlabService {
 
@@ -93,7 +92,6 @@
 //             });
 //     }
 
-
 //     /**
 //      * Creates Interlab Testing Report
 //      * Creates Interlab Testing Report
@@ -129,7 +127,6 @@
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         if (title !== undefined) {
 //             formParams.set('title', <any>title);

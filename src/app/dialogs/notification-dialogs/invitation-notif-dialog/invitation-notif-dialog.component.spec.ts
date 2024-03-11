@@ -8,9 +8,8 @@ describe('InvitationNotifDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InvitationNotifDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [InvitationNotifDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

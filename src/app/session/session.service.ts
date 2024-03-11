@@ -1,197 +1,188 @@
-import {Injectable} from '@angular/core';
-import {Observable, Subject,  BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { Algorithm } from '../jaqpot-client/model/algorithm';
 import { Dataset } from '../jaqpot-client/model/dataset';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Injectable()
-export class SessionService{
+export class SessionService {
+  private subjectId = new Subject<any>();
+  token: string;
+  userid: string;
+  userEmail: string;
+  private accessToken: Subject<string>;
+  private userName = new Subject<any>();
+  //private loggedIn = new Subject<any>();
+  private theme = new Subject<any>();
+  // algo:Algorithm
+  // algorithm$: Subject<Algorithm> = new BehaviorSubject(this.algo);
+  // modelingAlgorithm:Algorithm
+  // modelingAlgorithm$: Subject<Algorithm> = new BehaviorSubject(this.modelingAlgorithm);
+  // private dataset: Dataset;
 
-    private subjectId = new Subject<any>();
-    token: string;
-    userid:string;
-    userEmail:string;
-    private accessToken: Subject<string>;
-    private userName = new Subject<any>();
-    //private loggedIn = new Subject<any>();
-    private theme = new Subject<any>();
-    // algo:Algorithm
-    // algorithm$: Subject<Algorithm> = new BehaviorSubject(this.algo);
-    // modelingAlgorithm:Algorithm
-    // modelingAlgorithm$: Subject<Algorithm> = new BehaviorSubject(this.modelingAlgorithm);
-    // private dataset: Dataset;
-    
+  userData$: Observable<any>;
 
+  _userData: any;
 
-    userData$: Observable<any>;
+  constructor(private _oidc: OidcSecurityService) {
+    // this.token = this._oidc.getToken()
+    // this.accessToken.next(this._oidc.getToken())
+    // this.token = this._oidc.getToken()
+    // this.userData$ = this._oidc.userData$
+    // this.userData$.subscribe(d=>{
+    //     this._userData = d
+    //     this.userid = d.sub
+    //     this.userEmail = d.email
+    // })
+  }
 
-    _userData:any
+  getSubjectId(): Observable<any> {
+    return this.subjectId.asObservable();
+  }
 
-    constructor(
-        private _oidc:OidcSecurityService
-    ){
-        // this.token = this._oidc.getToken()
-        // this.accessToken.next(this._oidc.getToken())
-        // this.token = this._oidc.getToken()
-        // this.userData$ = this._oidc.userData$
-        // this.userData$.subscribe(d=>{
-        //     this._userData = d
-        //     this.userid = d.sub
-        //     this.userEmail = d.email
-        // })
-    }
+  getUserId() {
+    return this.userid;
+  }
 
-    getSubjectId(): Observable<any>{
-        return this.subjectId.asObservable();
-    }
+  getUserData() {
+    return this._userData;
+  }
 
+  setUserData(userData: any) {
+    this._userData = userData;
+    this.userEmail = userData.email;
+    this.userid = userData.sub;
+  }
 
-    getUserId(){        
-        return this.userid;
-    }
+  getUserName(): Observable<any> {
+    return this.userName.asObservable();
+  }
 
-    getUserData(){
-        return this._userData
-    }
+  getTheme(): Observable<any> {
+    return this.theme.asObservable();
+  }
 
-    setUserData(userData:any){
-        this._userData = userData
-        this.userEmail = userData.email
-        this.userid = userData.sub
-    }
+  getTokenObservable(): Observable<string> {
+    return this.accessToken.asObservable();
+  }
 
-    getUserName(): Observable<any>{
-        return this.userName.asObservable();
-    }
+  getToken(): string {
+    return this._oidc.getToken();
+    // return this.token
+  }
 
-    getTheme(): Observable<any>{
-        return this.theme.asObservable();
-    }
+  // getAlgorithm(): Observable<Algorithm>{
+  //     return this.algorithm$.asObservable();
+  // }
 
-    getTokenObservable(): Observable<string>{
-        return this.accessToken.asObservable()
-    }
+  // clearAlgorithm(){
+  //     this.algorithm$.next();
+  // }
 
-    getToken(): string{
-        return this._oidc.getToken()
-        // return this.token
-    }
+  // setAlgorithm(algorithm:Algorithm){
+  //     this.algorithm$.next( algorithm )
+  // }
 
-    // getAlgorithm(): Observable<Algorithm>{
-    //     return this.algorithm$.asObservable();
-    // }
+  // getDataset(){
+  //     return this.dataset;
+  // }
 
-    // clearAlgorithm(){
-    //     this.algorithm$.next();
-    // }
+  // clearDataset(){
+  //     this.dataset = null;
+  // }
 
-    // setAlgorithm(algorithm:Algorithm){
-    //     this.algorithm$.next( algorithm )
-    // }
+  // setDataset(dataset:Dataset){
+  //     this.dataset = dataset
+  // }
 
-    // getDataset(){
-    //     return this.dataset;
-    // }
+  // clearModelingAlgorithm(){
+  //     this.modelingAlgorithm$.next();
+  // }
 
-    // clearDataset(){
-    //     this.dataset = null;
-    // }
+  // setModelingAlgorithm(algorithm:Algorithm){
+  //     this.modelingAlgorithm$.next( algorithm )
+  // }
 
-    // setDataset(dataset:Dataset){
-    //     this.dataset = dataset 
-    // }
+  // getModelingAlgorithm(){
+  //     return this.modelingAlgorithm$.asObservable();
+  // }
 
-    // clearModelingAlgorithm(){
-    //     this.modelingAlgorithm$.next();
-    // }
+  // clearModelingDataset(){
+  //     this.modelingDataset.next();
+  // }
 
-    // setModelingAlgorithm(algorithm:Algorithm){
-    //     this.modelingAlgorithm$.next( algorithm )
-    // }
+  // setModelingDataset(dataset:Dataset){
+  //     this.modelingDataset.next( dataset )
+  // }
 
-    // getModelingAlgorithm(){
-    //     return this.modelingAlgorithm$.asObservable();
-    // }
+  // getModelingDataset(){
+  //     return this.modelingDataset.asObservable();
+  // }
 
-    // clearModelingDataset(){
-    //     this.modelingDataset.next();
-    // }
+  setAccessToken(key: string, value: any) {
+    localStorage.setItem(key, value);
+  }
 
-    // setModelingDataset(dataset:Dataset){
-    //     this.modelingDataset.next( dataset )
-    // }
+  // getAccessToken(){
+  //     return this.accessToken.asObservable();
+  // }
 
-    // getModelingDataset(){
-    //     return this.modelingDataset.asObservable();
-    // }
+  get(key: any) {
+    return localStorage.getItem(key);
+  }
 
-    setAccessToken(key:string, value:any){
-        localStorage.setItem(key, value)
-    }
-
-    // getAccessToken(){
-    //     return this.accessToken.asObservable();
-    // }
-
-    get(key: any){
-        return localStorage.getItem(key);
-    }
-
-    remove(key:any){
-        switch(key){
-            case 'subjectId':{
-                this.subjectId.next();
-                break;
-            }
-            //case 'loggedIn':{
-           //     var fal = "false";
-           //     this.loggedIn.next({ fal });
-          //      break;
-         //   }
-            case 'userName':{
-                this.userName.next();
-                break;
-            }
-
-        }
-        return localStorage.removeItem(key);
-    }
-
-    clear(){
-        var nul = "null";
-        this.subjectId.next({ nul });
-     //   this.loggedIn.next({ nul });
-        this.userName.next({ nul });
-        return localStorage.clear();
-    }
-
-    clearUsername(){
+  remove(key: any) {
+    switch (key) {
+      case 'subjectId': {
+        this.subjectId.next();
+        break;
+      }
+      //case 'loggedIn':{
+      //     var fal = "false";
+      //     this.loggedIn.next({ fal });
+      //      break;
+      //   }
+      case 'userName': {
         this.userName.next();
-        return localStorage.clear();
+        break;
+      }
     }
+    return localStorage.removeItem(key);
+  }
 
-    clearSubject(){
-        var nul = "null";
-        this.subjectId.next({ nul });
+  clear() {
+    var nul = 'null';
+    this.subjectId.next({ nul });
+    //   this.loggedIn.next({ nul });
+    this.userName.next({ nul });
+    return localStorage.clear();
+  }
+
+  clearUsername() {
+    this.userName.next();
+    return localStorage.clear();
+  }
+
+  clearSubject() {
+    var nul = 'null';
+    this.subjectId.next({ nul });
+  }
+
+  set(key: any, data: any) {
+    switch (key) {
+      case 'subjectId': {
+        this.subjectId.next({ data });
+        break;
+      }
+      case 'userName': {
+        this.userName.next({ data });
+        break;
+      }
+      case 'theme': {
+        this.theme.next({ data });
+        break;
+      }
     }
-
-    set(key:any, data:any){
-        switch(key){
-            case 'subjectId':{
-                this.subjectId.next({ data });
-                break;
-            }
-            case 'userName':{
-                this.userName.next({ data });
-                break;
-            }
-            case 'theme':{
-                this.theme.next({ data });
-                break;
-            }
-        }
-        return localStorage.setItem(key, data);
-    }
-
-
+    return localStorage.setItem(key, data);
+  }
 }

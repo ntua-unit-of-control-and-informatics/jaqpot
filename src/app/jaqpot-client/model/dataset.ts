@@ -14,61 +14,59 @@ import { DataEntry } from './dataEntry';
 import { FeatureInfo } from './featureInfo';
 import { MetaInfo } from './metaInfo';
 
-
 export interface Dataset {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    datasetURI?: string;
+  datasetURI?: string;
 
-    byModel?: string;
+  byModel?: string;
 
-    dataEntry?: Array<DataEntry>;
+  dataEntry?: Array<DataEntry>;
 
-    features?: Array<FeatureInfo>;
+  features?: Array<FeatureInfo>;
 
-    totalRows?: number;
+  totalRows?: number;
 
-    totalColumns?: number;
+  totalColumns?: number;
 
-    descriptors?: Array<Dataset.DescriptorsEnum>;
+  descriptors?: Array<Dataset.DescriptorsEnum>;
 
-    existence?: Dataset.ExistenceEnum;
+  existence?: Dataset.ExistenceEnum;
 
-    id?: string;
+  id?: string;
 
-    _id?: string;
+  _id?: string;
 
-    onTrash?: boolean;
-
+  onTrash?: boolean;
 }
 export namespace Dataset {
-    export enum DescriptorsEnum {
-        EXPERIMENTAL = <any> 'EXPERIMENTAL',
-        IMAGE = <any> 'IMAGE',
-        GO = <any> 'GO',
-        MOPAC = <any> 'MOPAC',
-        CDK = <any> 'CDK',
-        PREDICTED = <any> 'PREDICTED',
-        FORPREDICTION = <any> 'FORPREDICTION'
-    }
+  export enum DescriptorsEnum {
+    EXPERIMENTAL = <any>'EXPERIMENTAL',
+    IMAGE = <any>'IMAGE',
+    GO = <any>'GO',
+    MOPAC = <any>'MOPAC',
+    CDK = <any>'CDK',
+    PREDICTED = <any>'PREDICTED',
+    FORPREDICTION = <any>'FORPREDICTION',
+  }
 }
 
 export namespace Dataset {
-    export enum ExistenceEnum {
-        EXPERIMENTAL = <any> 'EXPERIMENTAL',
-        UPLOADED = <any> 'UPLOADED',
-        CREATED = <any> 'CREATED',
-        TRANFORMED = <any> "TRANSFORMED",
-        PREDICTED = <any> "PREDICTED",
-        DESCRIPTORSADDED = <any> "DESCRIPTORSADDED",
-        FORPREDICTION = <any> "FORPREDICTION"
-    }
+  export enum ExistenceEnum {
+    EXPERIMENTAL = <any>'EXPERIMENTAL',
+    UPLOADED = <any>'UPLOADED',
+    CREATED = <any>'CREATED',
+    TRANFORMED = <any>'TRANSFORMED',
+    PREDICTED = <any>'PREDICTED',
+    DESCRIPTORSADDED = <any>'DESCRIPTORSADDED',
+    FORPREDICTION = <any>'FORPREDICTION',
+  }
 }

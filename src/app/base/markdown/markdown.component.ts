@@ -1,40 +1,45 @@
-import { Component, OnInit, OnChanges, Input, ContentChild, ViewChild, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  ContentChild,
+  ViewChild,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { MetaInfo } from '../../jaqpot-client';
 import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
-  styleUrls: ['./markdown.component.css']
+  styleUrls: ['./markdown.component.css'],
 })
 export class MarkdownComponent implements OnChanges {
+  @Input() viewOrEdit: string;
 
-  @Input() viewOrEdit:string;
-
-  @Input() entityMeta:MetaInfo;
+  @Input() entityMeta: MetaInfo;
   @Output() markdownChanged = new EventEmitter<any>();
-  
+
   null = new FormControl('', []);
 
-  view:boolean = false;
-  edit:boolean = false;
+  view: boolean = false;
+  edit: boolean = false;
 
-  constructor() { 
-
-  }
+  constructor() {}
 
   ngOnChanges() {
-    if(this.viewOrEdit === "edit"){
+    if (this.viewOrEdit === 'edit') {
       this.edit = true;
       this.view = false;
-    }else{
+    } else {
       this.edit = false;
       this.view = true;
     }
   }
 
-  markChanged(){
-    this.markdownChanged.emit(this.entityMeta)
+  markChanged() {
+    this.markdownChanged.emit(this.entityMeta);
   }
-
 }

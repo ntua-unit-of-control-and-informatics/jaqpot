@@ -1,34 +1,34 @@
-.content{
-    width:220px;
+.content {
+  width: 220px;
 }
 
-.buttons{
-    /* margin-left: 1em; */
-    margin-right: 2em;
+.buttons {
+  /* margin-left: 1em; */
+  margin-right: 2em;
 }
 
-.manage_accounts{
-    margin-bottom: 1em;
+.manage_accounts {
+  margin-bottom: 1em;
 }
 
-.b-h2{
-    float: right;
-    margin: 12px;
-    margin-right: 84px;
+.b-h2 {
+  float: right;
+  margin: 12px;
+  margin-right: 84px;
 }
 
-.b-h1{
-    float: right;
-    margin: 12px;
-    margin-right: 22px;
+.b-h1 {
+  float: right;
+  margin: 12px;
+  margin-right: 22px;
 }
 
-.buttons-api-key{
-    margin-top: 1em;
+.buttons-api-key {
+  margin-top: 1em;
 }
 
-.b-h3{
-    float: right;
-    margin: -25px;
-    margin-right: 80px;
+.b-h3 {
+  float: right;
+  margin: -25px;
+  margin-right: 80px;
 }

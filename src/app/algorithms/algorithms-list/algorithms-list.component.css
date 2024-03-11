@@ -1,11 +1,10 @@
-
-.algocard{
+.algocard {
   display: inline-block;
   vertical-align: top;
   min-height: 600px;
   min-width: 40%;
   margin: 2em;
- }
+}
 
 .algo-table {
   /* display: flex; */
@@ -16,7 +15,7 @@
   /* height: 550px; */
 }
 
-.mat-card{
+.mat-card {
   min-width: 40%;
 }
 
@@ -24,7 +23,7 @@
   min-width: 90%;
 } */
 
-mat-form-field{
+mat-form-field {
   min-height: 20px;
   padding: 8px 24px 0;
   min-width: 100%;
@@ -41,9 +40,8 @@ mat-form-field{
   min-height: 90%;
 }
 
-
 .mat-row:hover {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   background-color: lightgray;
   cursor: pointer;
 }

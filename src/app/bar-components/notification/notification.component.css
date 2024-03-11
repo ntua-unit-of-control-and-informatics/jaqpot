@@ -1,13 +1,13 @@
 .mat-menu-panel.notif-menu {
-    min-width: 300px;
-    margin-top: 3em;
+  min-width: 300px;
+  margin-top: 3em;
 }
 
-.notif-icon-b{
-    margin-top:0.5em;
+.notif-icon-b {
+  margin-top: 0.5em;
 }
 
-.view-all{
-    float: right;
-    margin: 1em;
+.view-all {
+  float: right;
+  margin: 1em;
 }

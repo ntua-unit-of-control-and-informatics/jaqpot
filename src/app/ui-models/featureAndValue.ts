@@ -1,6 +1,6 @@
-import { Feature } from "../jaqpot-client";
+import { Feature } from '../jaqpot-client';
 
-export interface FeatureAndValue{
-    feature?:Feature
-    value?:string
-  }
+export interface FeatureAndValue {
+  feature?: Feature;
+  value?: string;
+}

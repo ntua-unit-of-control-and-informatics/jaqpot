@@ -8,9 +8,8 @@ describe('OrganizationDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrganizationDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [OrganizationDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

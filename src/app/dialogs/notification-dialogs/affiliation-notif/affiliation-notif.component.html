@@ -1,96 +1,132 @@
 <div>
-    <h2 mat-dialog-title>Affiliation</h2>
-  
-  
+  <h2 mat-dialog-title>Affiliation</h2>
+</div>
+<mat-dialog-content>
+  <!-- <mat-divider></mat-divider> -->
+
+  <div class="base-content">
+    <p>{{ _notification.body }}</p>
   </div>
-  <mat-dialog-content>
-    <!-- <mat-divider></mat-divider> -->
-  
-    <div class="base-content">
-      <p>{{_notification.body}}</p>
-    </div>
-  
-    <div class="from-content" *ngIf="organToAffiliate && from && yourOrgan">
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              From user
-            </mat-panel-title>
-            <mat-panel-description>
-              {{from.name}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-  
-          <div class="cont-all">
-            <div class="user-photo" *ngIf="from?.meta?.picture">
-              <img class="from-im" [src]="from.meta.picture" />
-            </div>
-  
-            <div class="user-cont">
-              <p>{{from.name}} <span *ngIf="from.occupation">| {{from.occupation }} </span><span *ngIf="from.occupationAt">at
-                  {{from.occupationAt }} </span></p>
-              <p *ngIf="from.livesAtCity"> {{from.livesAtCity}} <span *ngIf="from.livesAtCountry">{{from.livesAtCountry}}
-                </span></p>
-            </div>
-          </div>
-        </mat-expansion-panel>
-  
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Affiliate with
-            </mat-panel-title>
-            <mat-panel-description>
-              {{organToAffiliate._id}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="cont-all">
-            <div class="organ-photo" *ngIf="organToAffiliate?.meta?.picture">
-              <img class="organ-im" [src]="organToAffiliate.meta.picture" />
-            </div>
-  
-            <div class="organ-cont">
-              <p>{{organToAffiliate.city}} <span *ngIf="organToAffiliate?.country"> {{organToAffiliate.country}}</span> </p>
-              <p>{{organToAffiliate.about}} </p>
-            </div>
-          </div>
-        </mat-expansion-panel>
 
+  <div class="from-content" *ngIf="organToAffiliate && from && yourOrgan">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> From user </mat-panel-title>
+          <mat-panel-description>
+            {{ from.name }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Affiliate your Organization
-              </mat-panel-title>
-              <mat-panel-description>
-                {{yourOrgan._id}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="cont-all">
-              <div class="organ-photo" *ngIf="yourOrgan?.meta?.picture">
-                <img class="organ-im" [src]="yourOrgan.meta.picture" />
-              </div>
-    
-              <div class="organ-cont">
-                <p>{{yourOrgan.city}} <span *ngIf="yourOrgan?.country"> {{yourOrgan.country}}</span> </p>
-                <p>{{yourOrgan.about}} </p>
-              </div>
-            </div>
-          </mat-expansion-panel>
-  
-      </mat-accordion>
-    </div>
-  
-  
-  
-  </mat-dialog-content>
-  
-  <mat-dialog-actions>
-    <button mat-raised-button color="accent" matTooltip="Accept invitation" [mat-dialog-close]="true" (click)="acceptInvitation()">Accept</button>
-    <button mat-raised-button color="warn" matTooltip="Decline invitation" [mat-dialog-close]="true" (click)="declineInvitation()">Decline</button>
-    <div *ngIf="openedFrom === 'menu'">
-        <button mat-button matTooltip="Notification won't appear" [mat-dialog-close]="true" (click)="resolveNotification()">remove</button>
-    </div>
-    <div *ngIf="openedFrom === 'viewAll'"><button mat-button matTooltip="Notification will be deleted" [mat-dialog-close]="true" (click)="deleteNotification()">Delete</button></div> 
-   </mat-dialog-actions>
+        <div class="cont-all">
+          <div class="user-photo" *ngIf="from?.meta?.picture">
+            <img class="from-im" [src]="from.meta.picture" />
+          </div>
+
+          <div class="user-cont">
+            <p>
+              {{ from.name }}
+              <span *ngIf="from.occupation">| {{ from.occupation }} </span
+              ><span *ngIf="from.occupationAt"
+                >at {{ from.occupationAt }}
+              </span>
+            </p>
+            <p *ngIf="from.livesAtCity">
+              {{ from.livesAtCity }}
+              <span *ngIf="from.livesAtCountry"
+                >{{ from.livesAtCountry }}
+              </span>
+            </p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Affiliate with </mat-panel-title>
+          <mat-panel-description>
+            {{ organToAffiliate._id }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="cont-all">
+          <div class="organ-photo" *ngIf="organToAffiliate?.meta?.picture">
+            <img class="organ-im" [src]="organToAffiliate.meta.picture" />
+          </div>
+
+          <div class="organ-cont">
+            <p>
+              {{ organToAffiliate.city }}
+              <span *ngIf="organToAffiliate?.country">
+                {{ organToAffiliate.country }}</span
+              >
+            </p>
+            <p>{{ organToAffiliate.about }}</p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Affiliate your Organization </mat-panel-title>
+          <mat-panel-description>
+            {{ yourOrgan._id }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="cont-all">
+          <div class="organ-photo" *ngIf="yourOrgan?.meta?.picture">
+            <img class="organ-im" [src]="yourOrgan.meta.picture" />
+          </div>
+
+          <div class="organ-cont">
+            <p>
+              {{ yourOrgan.city }}
+              <span *ngIf="yourOrgan?.country"> {{ yourOrgan.country }}</span>
+            </p>
+            <p>{{ yourOrgan.about }}</p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="accent"
+    matTooltip="Accept invitation"
+    [mat-dialog-close]="true"
+    (click)="acceptInvitation()"
+  >
+    Accept
+  </button>
+  <button
+    mat-raised-button
+    color="warn"
+    matTooltip="Decline invitation"
+    [mat-dialog-close]="true"
+    (click)="declineInvitation()"
+  >
+    Decline
+  </button>
+  <div *ngIf="openedFrom === 'menu'">
+    <button
+      mat-button
+      matTooltip="Notification won't appear"
+      [mat-dialog-close]="true"
+      (click)="resolveNotification()"
+    >
+      remove
+    </button>
+  </div>
+  <div *ngIf="openedFrom === 'viewAll'">
+    <button
+      mat-button
+      matTooltip="Notification will be deleted"
+      [mat-dialog-close]="true"
+      (click)="deleteNotification()"
+    >
+      Delete
+    </button>
+  </div>
+</mat-dialog-actions>

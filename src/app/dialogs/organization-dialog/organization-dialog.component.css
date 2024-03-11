@@ -1,38 +1,38 @@
-.all{
-    width:400px;
+.all {
+  width: 400px;
 }
-.orgpic{
-    margin-top: 1em;
-    border-radius: 10%;
-    float: left;
+.orgpic {
+  margin-top: 1em;
+  border-radius: 10%;
+  float: left;
 }
-.basis{
-    float: left;
-    height: 100%;
-}
-
-.orgtitle{
-    margin-left: 1em;
+.basis {
+  float: left;
+  height: 100%;
 }
 
-.orgsite{
-    margin-left: 1em;
+.orgtitle {
+  margin-left: 1em;
 }
 
-.contact{
-    margin-left: 1em;
+.orgsite {
+  margin-left: 1em;
 }
 
-.orgwhere{
-    margin-left: 1em;
+.contact {
+  margin-left: 1em;
 }
 
-.orgcont{
-    width:600px;
-    margin-top: 2em;
+.orgwhere {
+  margin-left: 1em;
 }
 
-.vieworg{
-    margin-top: 1em;
-    float: right;
+.orgcont {
+  width: 600px;
+  margin-top: 2em;
+}
+
+.vieworg {
+  margin-top: 1em;
+  float: right;
 }

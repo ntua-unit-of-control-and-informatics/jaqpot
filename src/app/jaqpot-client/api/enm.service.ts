@@ -27,7 +27,6 @@
 // import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 // import { Configuration }                                     from '../configuration';
 
-
 // @Injectable()
 // export class EnmService {
 
@@ -138,7 +137,6 @@
 //             });
 //     }
 
-
 //     /**
 //      * Creates Bundle
 //      * Reads Substances from SubstanceOwner and creates Bundle.
@@ -159,13 +157,11 @@
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         headers.set('Content-Type', 'application/json');
 
@@ -200,13 +196,11 @@
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         headers.set('Content-Type', 'application/json');
 
@@ -235,11 +229,9 @@
 //         let queryParameters = new URLSearchParams();
 //         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -265,11 +257,9 @@
 //         let queryParameters = new URLSearchParams();
 //         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,

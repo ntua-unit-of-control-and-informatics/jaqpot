@@ -13,52 +13,50 @@
 import { ErrorReport } from './errorReport';
 import { MetaInfo } from './metaInfo';
 
-
 export interface Task {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    resultUri?: string;
+  resultUri?: string;
 
-    result?: string;
+  result?: string;
 
-    percentageCompleted?: number;
+  percentageCompleted?: number;
 
-    errorReport?: ErrorReport;
+  errorReport?: ErrorReport;
 
-    httpStatus?: number;
+  httpStatus?: number;
 
-    duration?: number;
+  duration?: number;
 
-    type?: Task.TypeEnum;
+  type?: Task.TypeEnum;
 
-    id?: string;
+  id?: string;
 
-    _id?: string;
+  _id?: string;
 
-    status?: Task.StatusEnum;
-
+  status?: Task.StatusEnum;
 }
 export namespace Task {
-    export enum TypeEnum {
-        TRAINING = <any> 'TRAINING',
-        PREDICTION = <any> 'PREDICTION',
-        PREPARATION = <any> 'PREPARATION',
-        VALIDATION = <any> 'VALIDATION'
-    }
-    export enum StatusEnum {
-        RUNNING = <any> 'RUNNING',
-        COMPLETED = <any> 'COMPLETED',
-        CANCELLED = <any> 'CANCELLED',
-        ERROR = <any> 'ERROR',
-        REJECTED = <any> 'REJECTED',
-        QUEUED = <any> 'QUEUED'
-    }
+  export enum TypeEnum {
+    TRAINING = <any>'TRAINING',
+    PREDICTION = <any>'PREDICTION',
+    PREPARATION = <any>'PREPARATION',
+    VALIDATION = <any>'VALIDATION',
+  }
+  export enum StatusEnum {
+    RUNNING = <any>'RUNNING',
+    COMPLETED = <any>'COMPLETED',
+    CANCELLED = <any>'CANCELLED',
+    ERROR = <any>'ERROR',
+    REJECTED = <any>'REJECTED',
+    QUEUED = <any>'QUEUED',
+  }
 }

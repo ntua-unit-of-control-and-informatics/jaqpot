@@ -12,11 +12,9 @@
 
 import { EntryId } from './entryId';
 
-
 export interface DataEntry {
-    entryId?: EntryId;
+  entryId?: EntryId;
 
-    // values?: Map<string,any>;
-    values?: { [key: string]: any; };
-
+  // values?: Map<string,any>;
+  values?: { [key: string]: any };
 }

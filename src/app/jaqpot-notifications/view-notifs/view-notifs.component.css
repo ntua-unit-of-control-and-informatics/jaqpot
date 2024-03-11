@@ -1,16 +1,16 @@
-.category{
-    margin-left: 2em;
-    height: 10px;
+.category {
+  margin-left: 2em;
+  height: 10px;
 }
 
-.view-notifs{
-    height: calc(100vh - 166px);
-    position: static;
-    width: 100%;
-    overflow-y: scroll;
+.view-notifs {
+  height: calc(100vh - 166px);
+  position: static;
+  width: 100%;
+  overflow-y: scroll;
 }
 
-.notif-spin{
-    margin-top: 22%;
-    margin-left: 44%;
+.notif-spin {
+  margin-top: 22%;
+  margin-left: 44%;
 }

@@ -3,22 +3,36 @@
   <input type="file" (change)="fileChangeEvent($event)" />
 </div>
 
-<div style="width: 600px;">
-  <div style="float: left; width: 50%;">
-    <h3 style="margin-left: 35%;" >Pic chosen</h3>
+<div style="width: 600px">
+  <div style="float: left; width: 50%">
+    <h3 style="margin-left: 35%">Pic chosen</h3>
     <div class="image-crop">
-      <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="2 / 2" [resizeToWidth]="128"
-        format="jpeg" (imageCroppedBase64)="imageCroppedBase64($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"
-        style="max-height: 33vh" [style.display]="cropperReady ? null : 'none'"></image-cropper>
+      <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="2 / 2"
+        [resizeToWidth]="128"
+        format="jpeg"
+        (imageCroppedBase64)="imageCroppedBase64($event)"
+        (imageLoaded)="imageLoaded()"
+        (loadImageFailed)="loadImageFailed()"
+        style="max-height: 33vh"
+        [style.display]="cropperReady ? null : 'none'"
+      ></image-cropper>
     </div>
   </div>
-  <div style="float: left; width: 30%; margin-left: 18%;">
+  <div style="float: left; width: 30%; margin-left: 18%">
     <h3>Pic will look like</h3>
     <img class="cropped" [src]="croppedImage" />
   </div>
 </div>
 <div class="action">
-  <button (click)="onCloseConfirm()" 
-      mat-raised-button color="accent" 
-      [disabled]="saveDisactivated">Save</button>
+  <button
+    (click)="onCloseConfirm()"
+    mat-raised-button
+    color="accent"
+    [disabled]="saveDisactivated"
+  >
+    Save
+  </button>
 </div>

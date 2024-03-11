@@ -8,9 +8,8 @@ describe('PredArchiveComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PredArchiveComponent ]
-    })
-    .compileComponents();
+      declarations: [PredArchiveComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

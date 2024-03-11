@@ -1,42 +1,39 @@
 <app-httk-base></app-httk-base>
 
 <div class="container">
-
   <div class="card-s">
-    <h3 class="titl">
-      Model Creation
-    </h3>
+    <h3 class="titl">Model Creation</h3>
     <mat-card class="step-card">
-
       <mat-card-header>
-
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          Create httk model and predictions
-        </mat-card-title>
+        <mat-card-title> Create httk model and predictions </mat-card-title>
         <mat-card-subtitle>
           Follow steps to create an httk model
         </mat-card-subtitle>
-
       </mat-card-header>
       <mat-divider class="card-div"></mat-divider>
       <mat-card-content>
         <!-- <app-parametersteps *ngIf="parameters" [parameters]="parameters"></app-parametersteps> -->
         <mat-vertical-stepper class="model-steps" [linear]="true" #stepper>
-
           <!-- <mat-step *ngFor="let parameter of parameters" [stepControl]="parametersFormGroup"></mat-step> -->
 
           <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
               <ng-template matStepLabel>Select species</ng-template>
               <mat-form-field>
-                <mat-select [(value)]="species" formControlName="firstCtrl" required>
+                <mat-select
+                  [(value)]="species"
+                  formControlName="firstCtrl"
+                  required
+                >
                   <mat-option value="Human">Human</mat-option>
                   <mat-option value="Rat">Rat</mat-option>
                 </mat-select>
               </mat-form-field>
               <div>
-                <button mat-button matStepperNext (click)="submitedSpecies()">Next</button>
+                <button mat-button matStepperNext (click)="submitedSpecies()">
+                  Next
+                </button>
               </div>
             </form>
           </mat-step>
@@ -45,11 +42,21 @@
             <form class="example-form">
               <ng-template matStepLabel>Select Chem name</ng-template>
               <mat-form-field class="example-full-width">
-                <input type="text" placeholder="Pick chem" aria-label="Number" matInput [formControl]="chemControl"
-                  [matAutocomplete]="auto" [(ngModel)]="chemname">
+                <input
+                  type="text"
+                  placeholder="Pick chem"
+                  aria-label="Number"
+                  matInput
+                  [formControl]="chemControl"
+                  [matAutocomplete]="auto"
+                  [(ngModel)]="chemname"
+                />
                 <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of chemoptions | async" [value]="option">
-                    {{option}}
+                  <mat-option
+                    *ngFor="let option of chemoptions | async"
+                    [value]="option"
+                  >
+                    {{ option }}
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
@@ -64,7 +71,12 @@
             <form [formGroup]="secondFormGroup">
               <ng-template matStepLabel>Fill out the dose</ng-template>
               <mat-form-field>
-                <input matInput placeholder="Dose" formControlName="secCtrl" required>
+                <input
+                  matInput
+                  placeholder="Dose"
+                  formControlName="secCtrl"
+                  required
+                />
               </mat-form-field>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
@@ -75,9 +87,17 @@
 
           <mat-step [stepControl]="thirdFormGroup">
             <form [formGroup]="thirdFormGroup">
-              <ng-template matStepLabel>Fill out the days of the concentration that you wish to see</ng-template>
+              <ng-template matStepLabel
+                >Fill out the days of the concentration that you wish to
+                see</ng-template
+              >
               <mat-form-field>
-                <input matInput placeholder="Days" formControlName="thirdCtrl" required>
+                <input
+                  matInput
+                  placeholder="Days"
+                  formControlName="thirdCtrl"
+                  required
+                />
               </mat-form-field>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
@@ -88,9 +108,16 @@
 
           <mat-step [stepControl]="fourthFormGroup">
             <form [formGroup]="fourthFormGroup">
-              <ng-template matStepLabel>Fill out the title of the prediction</ng-template>
+              <ng-template matStepLabel
+                >Fill out the title of the prediction</ng-template
+              >
               <mat-form-field>
-                <input matInput placeholder="Title" formControlName="fourthCtrl" required>
+                <input
+                  matInput
+                  placeholder="Title"
+                  formControlName="fourthCtrl"
+                  required
+                />
               </mat-form-field>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
@@ -101,9 +128,16 @@
 
           <mat-step [stepControl]="sixthFormGroup">
             <form [formGroup]="sixthFormGroup">
-              <ng-template matStepLabel>Fill out the description of the prediction</ng-template>
+              <ng-template matStepLabel
+                >Fill out the description of the prediction</ng-template
+              >
               <mat-form-field>
-                <input matInput placeholder="Description" formControlName="sixthCtrl" required>
+                <input
+                  matInput
+                  placeholder="Description"
+                  formControlName="sixthCtrl"
+                  required
+                />
               </mat-form-field>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
@@ -120,19 +154,22 @@
               <button mat-button (click)="stepper.reset()">Reset</button>
             </div>
           </mat-step>
-
         </mat-vertical-stepper>
 
-
         <section *ngIf="taskGot">
-          <mat-progress-bar class="httk-progress" [color]="prmary" [mode]="determinate" [value]="progressValue">
+          <mat-progress-bar
+            class="httk-progress"
+            [color]="prmary"
+            [mode]="determinate"
+            [value]="progressValue"
+          >
           </mat-progress-bar>
 
           <div class="coms">
             <div *ngIf="taskGot" class="taskGot">
               <div *ngFor="let com of taskGot.meta.comments">
                 <h6>
-                  {{com}}
+                  {{ com }}
                 </h6>
               </div>
             </div>
@@ -140,7 +177,7 @@
             <div *ngIf="predTask" class="predTask">
               <div *ngFor="let com of predTask.meta.comments">
                 <h6>
-                  {{com}}
+                  {{ com }}
                 </h6>
               </div>
             </div>
@@ -150,32 +187,39 @@
           <mat-icon color="warn">warning</mat-icon>
           <h5 class="error_header">Task finished with error</h5>
 
-          <button matTooltip="View error" mat-mini-fab color="primary" (click)="viewTheError()">
+          <button
+            matTooltip="View error"
+            mat-mini-fab
+            color="primary"
+            (click)="viewTheError()"
+          >
             <mat-icon>arrow_drop_down</mat-icon>
           </button>
 
           <div *ngIf="viewError">
-            <h5>Error: {{taskGot.errorReport.code}}</h5>
-            <h5>Message: {{taskGot.errorReport.message}}</h5>
+            <h5>Error: {{ taskGot.errorReport.code }}</h5>
+            <h5>Message: {{ taskGot.errorReport.message }}</h5>
 
             <div *ngIf="_canSeeDetails">
-              <h6>Details : {{taskGot.errorReport.details}}</h6>
+              <h6>Details : {{ taskGot.errorReport.details }}</h6>
             </div>
           </div>
         </div>
 
         <div *ngIf="predictionCompletedSuccesfully">
-          <button matTooltip="View Prediction" mat-mini-fab color="primary" (click)="viewTheResult()">
+          <button
+            matTooltip="View Prediction"
+            mat-mini-fab
+            color="primary"
+            (click)="viewTheResult()"
+          >
             <mat-icon>done_all</mat-icon>
           </button>
 
           <div *ngIf="viewPrediction && actualPredicted" class="predicted">
             <app-predicted [predictedDataset]="actualPredicted"></app-predicted>
           </div>
-
         </div>
-
-
       </mat-card-content>
       <mat-card-actions>
         <!-- <button mat-button>Create</button> -->
@@ -183,8 +227,6 @@
       </mat-card-actions>
     </mat-card>
   </div>
-
-
 </div>
 <div class="paramlist" *ngIf="parameters">
   <app-parameterlist [parameters]="parameters"></app-parameterlist>

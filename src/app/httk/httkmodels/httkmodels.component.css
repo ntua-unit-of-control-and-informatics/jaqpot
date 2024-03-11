@@ -1,18 +1,18 @@
-.httk-models{
-    margin-left: 7.3vh;
-    width:1200px;
-    height: calc(100vh - 124px);
-    overflow: auto;
+.httk-models {
+  margin-left: 7.3vh;
+  width: 1200px;
+  height: calc(100vh - 124px);
+  overflow: auto;
 }
 
-.httk-model{
-    padding-right: 1em;
-    padding-left: 1em;
-    padding-top: 1em;
+.httk-model {
+  padding-right: 1em;
+  padding-left: 1em;
+  padding-top: 1em;
 }
 
-.paginator{
-    background-color: inherit;
-    margin-left: 1em;
-    margin-right: 1em;
+.paginator {
+  background-color: inherit;
+  margin-left: 1em;
+  margin-right: 1em;
 }

@@ -1,33 +1,31 @@
-.wrapper{
-    margin: 0.2em;
+.wrapper {
+  margin: 0.2em;
 }
 
-.h1{
-    margin:1em;
-    padding: 1em;
+.h1 {
+  margin: 1em;
+  padding: 1em;
 }
 
-
-
-.accordion_tab{
-    width: 98%;
-    margin: 0 auto;
+.accordion_tab {
+  width: 98%;
+  margin: 0 auto;
 }
 
-.accodrion{
-    margin-bottom: 1em;
-    padding: 2em;
+.accodrion {
+  margin-bottom: 1em;
+  padding: 2em;
 }
 
-.feat{
-    margin: 1em;
+.feat {
+  margin: 1em;
 }
 
-.feat_input{
-    width:100%;
+.feat_input {
+  width: 100%;
 }
 
-.feat_edit{
-    margin: 0 auto;
-    margin-bottom: 1em;
+.feat_edit {
+  margin: 0 auto;
+  margin-bottom: 1em;
 }

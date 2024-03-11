@@ -8,9 +8,8 @@ describe('JaqpotNotificationsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JaqpotNotificationsComponent ]
-    })
-    .compileComponents();
+      declarations: [JaqpotNotificationsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

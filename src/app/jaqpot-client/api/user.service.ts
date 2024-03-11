@@ -6,84 +6,86 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { BaseClient } from './base.client';
 
-import {EucliaAccountsFactory, EucliaAccountsImplementation} from '@euclia/accounts-client'
-import {IEucliaAccounts} from '@euclia/accounts-client'
-import {User as EucliaUser} from '@euclia/accounts-client' 
+import {
+  EucliaAccountsFactory,
+  EucliaAccountsImplementation,
+} from '@euclia/accounts-client';
+import { IEucliaAccounts } from '@euclia/accounts-client';
+import { User as EucliaUser } from '@euclia/accounts-client';
 // import {User} from '@euclia/accounts-client/'
 
 @Injectable()
-export class UserService{
+export class UserService {
+  private _privateBasePath: string;
 
-    
-    private _privateBasePath : string;
+  // private user:User;
+  private _userBase: string;
+  private accountsClient: IEucliaAccounts;
 
+  constructor(
+    public http: HttpClient,
+    public sessionServise: SessionService,
+    public dialogsService: DialogsService,
+    public oidcSecurityService: OidcSecurityService,
+  ) {
+    // super(http, dialogsService, oidcSecurityService, "/user/")
+    // console.log("User api at:")
+    // console.log(Config.AccountsApi)
+    (this.accountsClient = new EucliaAccountsFactory(
+      Config.AccountsApi,
+    ).getClient()),
+      (this._privateBasePath = Config.JaqpotBase);
+    this._userBase = this._privateBasePath + '/user/';
+  }
 
-    // private user:User;
-    private _userBase : string;
-    private accountsClient:IEucliaAccounts
+  public getUserById(id: string): Promise<EucliaUser> {
+    const token = this.oidcSecurityService.getToken();
+    return this.accountsClient.getUser(id, token);
+  }
 
-    constructor(public http: HttpClient,
-        public sessionServise:SessionService,
-        public dialogsService:DialogsService,
-        public oidcSecurityService: OidcSecurityService){
-            // super(http, dialogsService, oidcSecurityService, "/user/")
-            // console.log("User api at:")
-            // console.log(Config.AccountsApi)
-            this.accountsClient = new EucliaAccountsFactory(Config.AccountsApi).getClient(),
-            this._privateBasePath = Config.JaqpotBase;
-            this._userBase = this._privateBasePath + "/user/"
-        }
+  // public getUserById(id:string): Observable<User> {
+  //     const token = this.oidcSecurityService.getToken();
+  //     const tokenValue = 'Bearer ' + token;
+  //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+  //     let params = new HttpParams();
+  //     return this.http.get(this._userBase + id, { headers: headers, params: params }).pipe(
+  //         tap((res : Response) => {
+  //             return res
+  //         }),catchError( err => this.dialogsService.onError(err) ));
+  // }
 
+  // public updateUserById(id:string, user:User): Observable<User> {
+  //     const token = this.oidcSecurityService.getToken();
+  //     const tokenValue = 'Bearer ' + token;
+  //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+  //     let params = new HttpParams();
+  //     return this.http.put(this._userBase + id, user ,{ headers: headers, params: params }).pipe(
+  //         tap((res : Response) => {
+  //             return res
+  //         }),catchError( err => this.dialogsService.onError(err) ));
+  // }
 
-    public getUserById(id:string): Promise<EucliaUser> {
-        const token = this.oidcSecurityService.getToken();
-        return this.accountsClient.getUser(id, token)        
-    }
+  // public searchUserByName(name:string): Observable<Array<User>> {
+  //     const token = this.oidcSecurityService.getToken();
+  //     const tokenValue = 'Bearer ' + token;
+  //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+  //     let params = new HttpParams().set('name', name);
+  //     return this.http.get(this._userBase + "search/and/found", { headers: headers, params: params }).pipe(
+  //         tap((res : Response) => {
+  //             return res
+  //         }),catchError( err => this.dialogsService.onError(err) ));
+  // }
 
-    // public getUserById(id:string): Observable<User> {
-    //     const token = this.oidcSecurityService.getToken();
-    //     const tokenValue = 'Bearer ' + token;
-    //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-    //     let params = new HttpParams();
-    //     return this.http.get(this._userBase + id, { headers: headers, params: params }).pipe(
-    //         tap((res : Response) => {
-    //             return res         
-    //         }),catchError( err => this.dialogsService.onError(err) ));
-    // }
-    
-    // public updateUserById(id:string, user:User): Observable<User> {
-    //     const token = this.oidcSecurityService.getToken();
-    //     const tokenValue = 'Bearer ' + token;
-    //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-    //     let params = new HttpParams();
-    //     return this.http.put(this._userBase + id, user ,{ headers: headers, params: params }).pipe(
-    //         tap((res : Response) => {  
-    //             return res           
-    //         }),catchError( err => this.dialogsService.onError(err) ));
-    // }
-
-    // public searchUserByName(name:string): Observable<Array<User>> {
-    //     const token = this.oidcSecurityService.getToken();
-    //     const tokenValue = 'Bearer ' + token;
-    //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-    //     let params = new HttpParams().set('name', name);
-    //     return this.http.get(this._userBase + "search/and/found", { headers: headers, params: params }).pipe(
-    //         tap((res : Response) => {  
-    //             return res         
-    //         }),catchError( err => this.dialogsService.onError(err) ));
-    // }
-
-    // public searchUserEmail(email:string): Observable<Array<User>> {
-    //     const token = this.oidcSecurityService.getToken();
-    //     const tokenValue = 'Bearer ' + token;
-    //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
-    //     let params = new HttpParams().set('mail', email);
-    //     return this.http.get(this._userBase + "search/and/found", { headers: headers, params: params }).pipe(
-    //         tap((res : Response) => {  
-    //             return res         
-    //         }),catchError( err => this.dialogsService.onError(err) ));
-    // }
-
+  // public searchUserEmail(email:string): Observable<Array<User>> {
+  //     const token = this.oidcSecurityService.getToken();
+  //     const tokenValue = 'Bearer ' + token;
+  //     let headers = new HttpHeaders().set('Content-Type','application/json').set('Authorization', tokenValue);
+  //     let params = new HttpParams().set('mail', email);
+  //     return this.http.get(this._userBase + "search/and/found", { headers: headers, params: params }).pipe(
+  //         tap((res : Response) => {
+  //             return res
+  //         }),catchError( err => this.dialogsService.onError(err) ));
+  // }
 }
 
 //     protected basePath = 'http://dev.jaqpot.org:8081/jaqpot/services';
@@ -181,7 +183,6 @@ export class UserService{
 //             });
 //     }
 
-
 //     /**
 //      * Finds User by Id
 //      * Finds specified user
@@ -203,13 +204,11 @@ export class UserService{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -246,12 +245,10 @@ export class UserService{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -292,13 +289,11 @@ export class UserService{
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,

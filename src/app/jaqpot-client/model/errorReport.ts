@@ -13,51 +13,49 @@
 // import { ErrorReport } from './errorReport';
 import { MetaInfo } from './metaInfo';
 
-
 /**
  * Error report for various exceptions in the Jaqpot Framework
  */
 export interface ErrorReport {
-    meta?: MetaInfo;
+  meta?: MetaInfo;
 
-    ontologicalClasses?: Array<string>;
+  ontologicalClasses?: Array<string>;
 
-    visible?: boolean;
+  visible?: boolean;
 
-    temporary?: boolean;
+  temporary?: boolean;
 
-    featured?: boolean;
+  featured?: boolean;
 
-    /**
-     * Error code
-     */
-    code?: string;
+  /**
+   * Error code
+   */
+  code?: string;
 
-    /**
-     * Who is to blame
-     */
-    actor?: string;
+  /**
+   * Who is to blame
+   */
+  actor?: string;
 
-    /**
-     * Short error message
-     */
-    message?: string;
+  /**
+   * Short error message
+   */
+  message?: string;
 
-    /**
-     * Details to be used for debugging.
-     */
-    details?: string;
+  /**
+   * Details to be used for debugging.
+   */
+  details?: string;
 
-    /**
-     * Accompanying HTTP status.
-     */
-    httpStatus?: number;
+  /**
+   * Accompanying HTTP status.
+   */
+  httpStatus?: number;
 
-    /**
-     * Trace error report.
-     */
-    trace?: ErrorReport;
+  /**
+   * Trace error report.
+   */
+  trace?: ErrorReport;
 
-    id?: string;
-
+  id?: string;
 }

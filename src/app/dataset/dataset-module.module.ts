@@ -13,7 +13,7 @@
 //   MatProgressSpinnerModule,
 //   MatFormFieldModule,
 //   MatTooltipModule,
-//   MatListModule, 
+//   MatListModule,
 //   MatButtonToggle,
 //   MatButtonToggleModule} from '@angular/material';
 // import { DialogsModule } from '../dialogs/dialogs.module';

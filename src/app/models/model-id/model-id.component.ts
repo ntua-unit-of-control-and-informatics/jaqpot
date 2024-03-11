@@ -1,5 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd, UrlSerializer } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  NavigationEnd,
+  UrlSerializer,
+} from '@angular/router';
 import { SessionService } from '../../session/session.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
 import { Model, MetaInfo, Feature } from '../../jaqpot-client';
@@ -12,40 +17,43 @@ import { NotificationService } from '../../jaqpot-client/api/notification.servic
 import { NotificationFactoryService } from '../../jaqpot-client/factories/notification-factory.service';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { User } from '@euclia/accounts-client/dist/models/user';
-import { OidcClientNotification, OidcSecurityService, PublicConfiguration } from 'angular-auth-oidc-client';
+import {
+  OidcClientNotification,
+  OidcSecurityService,
+  PublicConfiguration,
+} from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-model-id',
   templateUrl: './model-id.component.html',
-  styleUrls: ['./model-id.component.css']
+  styleUrls: ['./model-id.component.css'],
 })
 export class ModelIdComponent implements OnInit, OnDestroy {
-
   navigationSubscription;
 
-  id:string;
-  entityId:string;
-  modelId:string;
+  id: string;
+  entityId: string;
+  modelId: string;
 
-  user:User;
-  modelToSee:Model;
-  modelOwner:User;
+  user: User;
+  modelToSee: Model;
+  modelOwner: User;
 
-  canUpdatePhoto:boolean = false;
+  canUpdatePhoto: boolean = false;
 
-  edit:boolean = false;
-  canEdit:boolean = false;
-  edit_descr:boolean=false;
-  save:boolean = false;
-  viewOrEdit:string = "view"
+  edit: boolean = false;
+  canEdit: boolean = false;
+  edit_descr: boolean = false;
+  save: boolean = false;
+  viewOrEdit: string = 'view';
 
-  entityMeta:MetaInfo;
+  entityMeta: MetaInfo;
 
-  featsUpdatedArray:Feature[]
+  featsUpdatedArray: Feature[];
 
-  newTag:string;
-  addTagB:boolean = false;
+  newTag: string;
+  addTagB: boolean = false;
 
   configuration: PublicConfiguration;
   userDataChanged$: Observable<OidcClientNotification<any>>;
@@ -57,202 +65,199 @@ export class ModelIdComponent implements OnInit, OnDestroy {
   trainedMeta: Object;
 
   constructor(
-    private rightsService:RightsService,
-    private router:Router,
+    private rightsService: RightsService,
+    private router: Router,
     private route: ActivatedRoute,
-    private sessionService:SessionService,
-    private modelApi:ModelApiService,
-    private featureApi:FeatureApiService,
-    private dialogsService:DialogsService,
-    private userApi:UserService,
-    private datasetApi:DatasetService,
-    private organizationApi:OrganizationService,
-    private notificationService:NotificationService,
-    private notificationFactory:NotificationFactoryService,
-    private oidcSecurityService:OidcSecurityService
-  ) { 
-    this.navigationSubscription = this.router.events.subscribe(e=>{
+    private sessionService: SessionService,
+    private modelApi: ModelApiService,
+    private featureApi: FeatureApiService,
+    private dialogsService: DialogsService,
+    private userApi: UserService,
+    private datasetApi: DatasetService,
+    private organizationApi: OrganizationService,
+    private notificationService: NotificationService,
+    private notificationFactory: NotificationFactoryService,
+    private oidcSecurityService: OidcSecurityService,
+  ) {
+    this.navigationSubscription = this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.ngOnInit();
       }
-    })
+    });
   }
 
   ngOnInit() {
-    
     this.userData$ = this.oidcSecurityService.userData$;
 
-    this.id = this.route.snapshot.params.id
-    this.entityId = "model/" + this.id
-    this.modelId = this.id
-    this.modelApi.getWithIdSecured(this.id).subscribe((model:Model) =>{
+    this.id = this.route.snapshot.params.id;
+    this.entityId = 'model/' + this.id;
+    this.modelId = this.id;
+    this.modelApi.getWithIdSecured(this.id).subscribe((model: Model) => {
       this.modelToSee = model;
       this.entityMeta = model.meta;
 
-        try{
-          this.trainedMeta = model.additionalInfo['fromUser']['meta']
-        }catch(e){
-          e
+      try {
+        this.trainedMeta = model.additionalInfo['fromUser']['meta'];
+      } catch (e) {
+        e;
+      }
+
+      this.userApi
+        .getUserById(this.sessionService.getUserId())
+        .then((user: User) => {
+          this.user = user;
+          this.edit = this.rightsService.canEdit(model.meta, user);
+          this.canEdit = this.rightsService.canEdit(model.meta, user);
+          this.canUpdatePhoto = this.edit;
+          this.userApi
+            .getUserById(this.modelToSee.meta.creators[0])
+            .then((owner: User) => {
+              this.modelOwner = owner;
+            });
+        });
+    });
+
+    this.oidcSecurityService.isAuthenticated$.subscribe((is) => {
+      if (is === false) {
+        if (this.router.url.includes('model')) {
+          localStorage.setItem('goToModel', this.router.url.split('/')[2]);
         }
-        
-      
-
-      this.userApi.getUserById(this.sessionService.getUserId()).then((user:User)=>{
-        this.user = user
-        this.edit = this.rightsService.canEdit(model.meta, user);
-        this.canEdit = this.rightsService.canEdit(model.meta, user);
-        this.canUpdatePhoto = this.edit
-        this.userApi.getUserById(this.modelToSee.meta.creators[0]).then((owner:User)=>{
-          this.modelOwner = owner
-        })
-      })
-    })
-
-    this.oidcSecurityService.isAuthenticated$.subscribe(is =>{
-
-      if(is === false){
-        if(this.router.url.includes('model')){
-          localStorage.setItem('goToModel',this.router.url.split("/")[2])
-        }
-        this.oidcSecurityService.authorize()
-      }else{
-        this.userData$.subscribe(d =>{
-          if(d){
-            this.sessionService.setUserData(d)
+        this.oidcSecurityService.authorize();
+      } else {
+        this.userData$.subscribe((d) => {
+          if (d) {
+            this.sessionService.setUserData(d);
           }
-        })
-        localStorage.removeItem('goToModel')
+        });
+        localStorage.removeItem('goToModel');
       }
-    })
-
-
+    });
   }
 
-  ngOnDestroy(){
-    if (this.navigationSubscription) {  
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
-   }
+    }
   }
 
-  updatePhoto(){
-    this.dialogsService.updatePhoto(this.modelApi, this.modelApi, this.userApi).subscribe((result) =>{
-      if(result != undefined){
-        this.modelToSee.meta.picture = result
-        this.modelApi.putMeta(this.modelToSee).subscribe((res:MetaInfo) => {
-          this.modelToSee.meta = res
-        })
-      }
-      this.fetchModel()
-    })
+  updatePhoto() {
+    this.dialogsService
+      .updatePhoto(this.modelApi, this.modelApi, this.userApi)
+      .subscribe((result) => {
+        if (result != undefined) {
+          this.modelToSee.meta.picture = result;
+          this.modelApi.putMeta(this.modelToSee).subscribe((res: MetaInfo) => {
+            this.modelToSee.meta = res;
+          });
+        }
+        this.fetchModel();
+      });
   }
 
-  fetchModel(){
-    this.modelApi.getWithIdSecured(this.id).subscribe((model:Model) =>{
-      this.modelToSee = model
-      if(model.meta.creators.includes(this.sessionService.getUserId()) 
-        || typeof model.meta.write != 'undefined' && this.user.organizations.forEach(org =>{
-          model.meta.write.includes(org)
-        })){
-        
+  fetchModel() {
+    this.modelApi.getWithIdSecured(this.id).subscribe((model: Model) => {
+      this.modelToSee = model;
+      if (
+        model.meta.creators.includes(this.sessionService.getUserId()) ||
+        (typeof model.meta.write != 'undefined' &&
+          this.user.organizations.forEach((org) => {
+            model.meta.write.includes(org);
+          }))
+      ) {
         this.edit = true;
         this.canUpdatePhoto = true;
       }
-    })
+    });
   }
 
-
-  quickView(){
-    if(this.viewOrEdit === "edit"){
-      this.viewOrEdit = "view"
-    }else{
-      this.viewOrEdit = "edit"
+  quickView() {
+    if (this.viewOrEdit === 'edit') {
+      this.viewOrEdit = 'view';
+    } else {
+      this.viewOrEdit = 'edit';
     }
   }
 
-  openUser(){
-    this.dialogsService.quickUser(this.userApi, this.modelOwner)
+  openUser() {
+    this.dialogsService.quickUser(this.userApi, this.modelOwner);
   }
 
-
-  share(){
-    this.dialogsService.openSharingDialog("model"
-        , this.entityId
-        , this.modelApi
-        , this.datasetApi
-        , this.organizationApi
-        , this.notificationService
-        , this.notificationFactory
-        , this.userApi
-        , this.sessionService.getUserId()).subscribe(resp =>{
-          this.modelApi.getWithIdSecured(this.id).subscribe((model:Model)=>{
-            this.modelToSee = model;
-          })
+  share() {
+    this.dialogsService
+      .openSharingDialog(
+        'model',
+        this.entityId,
+        this.modelApi,
+        this.datasetApi,
+        this.organizationApi,
+        this.notificationService,
+        this.notificationFactory,
+        this.userApi,
+        this.sessionService.getUserId(),
+      )
+      .subscribe((resp) => {
+        this.modelApi.getWithIdSecured(this.id).subscribe((model: Model) => {
+          this.modelToSee = model;
         });
+      });
   }
 
-  editAll(){
+  editAll() {
     this.edit_descr = true;
     this.edit = false;
     this.save = true;
-    this.viewOrEdit = "edit";
+    this.viewOrEdit = 'edit';
   }
 
-
-  markdownChanged(meta){
-    this.modelToSee.meta = meta
+  markdownChanged(meta) {
+    this.modelToSee.meta = meta;
   }
 
-  datasetChanged(dataset){
-    this.modelToSee = dataset
+  datasetChanged(dataset) {
+    this.modelToSee = dataset;
   }
 
-  featsUpdated(feats:Feature[]){
-    this.featsUpdatedArray = feats
+  featsUpdated(feats: Feature[]) {
+    this.featsUpdatedArray = feats;
   }
 
-  saveAll(){
+  saveAll() {
     this.edit_descr = false;
     this.save = false;
     this.edit = true;
-    this.viewOrEdit = "view";
-    if(typeof this.featsUpdatedArray != 'undefined'){
-      this.featsUpdatedArray.forEach((feat:Feature)=>{
-        this.featureApi.putWithIdSecured(feat._id.toString(), feat).subscribe((feat:Feature)=>{
-        })
-      })
+    this.viewOrEdit = 'view';
+    if (typeof this.featsUpdatedArray != 'undefined') {
+      this.featsUpdatedArray.forEach((feat: Feature) => {
+        this.featureApi
+          .putWithIdSecured(feat._id.toString(), feat)
+          .subscribe((feat: Feature) => {});
+      });
     }
-    this.modelApi.putMeta(this.modelToSee).subscribe((res:MetaInfo) => {
-      this.modelToSee.meta = res
-    })
-    
+    this.modelApi.putMeta(this.modelToSee).subscribe((res: MetaInfo) => {
+      this.modelToSee.meta = res;
+    });
   }
 
-  modelChanged($event){
+  modelChanged($event) {}
 
-  }
-
-  addTag(){
+  addTag() {
     this.addTagB = true;
   }
 
-
-  addTagToModel(){
-    if(typeof this.modelToSee.meta.tags === 'undefined'){
-      this.modelToSee.meta.tags = []
-      this.modelToSee.meta.tags.push(this.newTag)
-      this.newTag = ''
-      this.addTagB = true
+  addTagToModel() {
+    if (typeof this.modelToSee.meta.tags === 'undefined') {
+      this.modelToSee.meta.tags = [];
+      this.modelToSee.meta.tags.push(this.newTag);
+      this.newTag = '';
+      this.addTagB = true;
     }
-    this.modelToSee.meta.tags.push(this.newTag)
-    this.newTag = ''
-    this.addTagB = true
+    this.modelToSee.meta.tags.push(this.newTag);
+    this.newTag = '';
+    this.addTagB = true;
   }
 
-
-  deleteTag(tag){
-    let index = this.modelToSee.meta.tags.indexOf(tag)
-    this.modelToSee.meta.tags.splice(index, 1)
+  deleteTag(tag) {
+    let index = this.modelToSee.meta.tags.indexOf(tag);
+    this.modelToSee.meta.tags.splice(index, 1);
   }
-
-
 }

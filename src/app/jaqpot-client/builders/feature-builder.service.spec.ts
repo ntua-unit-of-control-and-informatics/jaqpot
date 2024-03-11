@@ -5,11 +5,14 @@ import { FeatureBuilderService } from './feature-builder.service';
 describe('FeatureBuilderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FeatureBuilderService]
+      providers: [FeatureBuilderService],
     });
   });
 
-  it('should be created', inject([FeatureBuilderService], (service: FeatureBuilderService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [FeatureBuilderService],
+    (service: FeatureBuilderService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

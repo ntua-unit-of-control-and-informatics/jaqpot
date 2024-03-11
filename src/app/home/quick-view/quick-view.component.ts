@@ -9,30 +9,31 @@ import { Organization } from '@euclia/accounts-client/dist/models/models';
 @Component({
   selector: 'app-quick-view',
   templateUrl: './quick-view.component.html',
-  styleUrls: ['./quick-view.component.css']
+  styleUrls: ['./quick-view.component.css'],
 })
 export class QuickViewComponent implements OnChanges {
+  @Input() viewItem: ViewItem;
 
-  @Input() viewItem: ViewItem
+  user: User;
+  org: Organization;
+  orgs: Organization[] = [];
 
-  user:User
-  org:Organization
-  orgs:Organization[] = []
-
-  owner:User
+  owner: User;
 
   constructor(
-    private dialogsServise:DialogsService,
-    private userApi:UserService,
-    private orgsApi:OrganizationService
-  ) { }
+    private dialogsServise: DialogsService,
+    private userApi: UserService,
+    private orgsApi: OrganizationService,
+  ) {}
 
   ngOnChanges() {
-    this.orgs = []
-    if(typeof this.viewItem != 'undefined'){
-      this.userApi.getUserById(this.viewItem.meta.creators[0]).then((user:User)=>{
-        this.owner = user
-      })
+    this.orgs = [];
+    if (typeof this.viewItem != 'undefined') {
+      this.userApi
+        .getUserById(this.viewItem.meta.creators[0])
+        .then((user: User) => {
+          this.owner = user;
+        });
     }
     // if(typeof this.viewItem !='undefined' && typeof this.viewItem.meta.read != 'undefined' && this.viewItem.meta.read.length > 0 ){
     //   this.viewItem.meta.read.forEach(orgId=>{
@@ -43,12 +44,11 @@ export class QuickViewComponent implements OnChanges {
     // }
   }
 
-  openUser(){
-    this.dialogsServise.quickUser(this.userApi, this.owner)
+  openUser() {
+    this.dialogsServise.quickUser(this.userApi, this.owner);
   }
 
-  openOrg(org){
-    this.dialogsServise.onOrganizationView(org, this.orgsApi, true)
+  openOrg(org) {
+    this.dialogsServise.onOrganizationView(org, this.orgsApi, true);
   }
-
 }

@@ -5,28 +5,24 @@ import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.ser
 @Component({
   selector: 'app-simple-dataset',
   templateUrl: './simple-dataset.component.html',
-  styleUrls: ['./simple-dataset.component.css']
+  styleUrls: ['./simple-dataset.component.css'],
 })
 export class SimpleDatasetComponent implements OnInit {
+  @Input() datasetToSee: Dataset;
 
-  @Input() datasetToSee:Dataset
+  displayedColumns: string[] = [];
+  dataSource: { [key: string]: any } = {};
+  data_available: boolean = false;
 
-  displayedColumns:string[] = [];
-  dataSource:{ [key: string]: any; } = {};
-  data_available:boolean = false;
-
-  constructor(
-    private _seeDataset:DatasetToViewdataService
-  ) { }
+  constructor(private _seeDataset: DatasetToViewdataService) {}
 
   ngOnInit() {
-    this.displayedColumns.push("Id")
-    this.datasetToSee.features.forEach((feInf:FeatureInfo) =>{
-      this.displayedColumns.push(feInf.name)
-    })
+    this.displayedColumns.push('Id');
+    this.datasetToSee.features.forEach((feInf: FeatureInfo) => {
+      this.displayedColumns.push(feInf.name);
+    });
     // console.log(this.datasetToSee)
     this.dataSource = this._seeDataset.createViewData(this.datasetToSee, 1);
     this.data_available = true;
   }
-
 }

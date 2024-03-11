@@ -1,70 +1,79 @@
 <div>
-    <h2 mat-dialog-title>Affiliation broken</h2>
-  
-  
+  <h2 mat-dialog-title>Affiliation broken</h2>
+</div>
+<mat-dialog-content>
+  <!-- <mat-divider></mat-divider> -->
+
+  <div class="base-content">
+    <p>{{ _notification.body }}</p>
   </div>
-  <mat-dialog-content>
-    <!-- <mat-divider></mat-divider> -->
-  
-    <div class="base-content">
-      <p>{{_notification.body}}</p>
-    </div>
-  
-    <div class="from-content" *ngIf="brokeWith && from">
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              From user
-            </mat-panel-title>
-            <mat-panel-description>
-              {{from.name}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-  
-          <div class="cont-all">
-            <div class="user-photo" *ngIf="from?.meta?.picture">
-              <img class="from-im" [src]="from.meta.picture" />
-            </div>
-  
-            <div class="user-cont">
-              <p>{{from.name}} <span *ngIf="from.occupation">| {{from.occupation }} </span><span *ngIf="from.occupationAt">at
-                  {{from.occupationAt }} </span></p>
-              <p *ngIf="from.livesAtCity"> {{from.livesAtCity}} <span *ngIf="from.livesAtCountry">{{from.livesAtCountry}}
-                </span></p>
-            </div>
+
+  <div class="from-content" *ngIf="brokeWith && from">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> From user </mat-panel-title>
+          <mat-panel-description>
+            {{ from.name }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="cont-all">
+          <div class="user-photo" *ngIf="from?.meta?.picture">
+            <img class="from-im" [src]="from.meta.picture" />
           </div>
-        </mat-expansion-panel>
-  
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Broken with
-            </mat-panel-title>
-            <mat-panel-description>
-              {{brokeWith._id}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="cont-all">
-            <div class="brokeWith-photo" *ngIf="brokeWith.meta.picture">
-              <img class="brokeWith-im" [src]="brokeWith.meta.picture" />
-            </div>
-  
-            <div class="brokeWith-cont">
-              <p>{{brokeWith.city}} <span *ngIf="brokeWith.country"> {{brokeWith.country}}</span> </p>
-              <p>{{brokeWith.about}} </p>
-            </div>
+
+          <div class="user-cont">
+            <p>
+              {{ from.name }}
+              <span *ngIf="from.occupation">| {{ from.occupation }} </span
+              ><span *ngIf="from.occupationAt"
+                >at {{ from.occupationAt }}
+              </span>
+            </p>
+            <p *ngIf="from.livesAtCity">
+              {{ from.livesAtCity }}
+              <span *ngIf="from.livesAtCountry"
+                >{{ from.livesAtCountry }}
+              </span>
+            </p>
           </div>
-        </mat-expansion-panel>
-  
-      </mat-accordion>
-    </div>
-  
-  
-  
-  </mat-dialog-content>
-  
-  <mat-dialog-actions>
-    <button mat-raised-button color="warn" matTooltip="Resolve notification" [mat-dialog-close]="true" (click)="resolveNotification()">Resolve</button>
-  </mat-dialog-actions>
-  
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Broken with </mat-panel-title>
+          <mat-panel-description>
+            {{ brokeWith._id }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="cont-all">
+          <div class="brokeWith-photo" *ngIf="brokeWith.meta.picture">
+            <img class="brokeWith-im" [src]="brokeWith.meta.picture" />
+          </div>
+
+          <div class="brokeWith-cont">
+            <p>
+              {{ brokeWith.city }}
+              <span *ngIf="brokeWith.country"> {{ brokeWith.country }}</span>
+            </p>
+            <p>{{ brokeWith.about }}</p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="warn"
+    matTooltip="Resolve notification"
+    [mat-dialog-close]="true"
+    (click)="resolveNotification()"
+  >
+    Resolve
+  </button>
+</mat-dialog-actions>

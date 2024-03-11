@@ -25,21 +25,34 @@
     </ul>
   </ng-template> -->
 
-
-
-  <div *ngIf="edit else sub">
+  <div *ngIf="edit; else sub">
     <h3>Subjects</h3>
     <div class="add-subject">
-      <div class="edit-subject" *ngFor="let subj of subjects; let in=index; trackBy:trackByFn">
+      <div
+        class="edit-subject"
+        *ngFor="let subj of subjects; let in = index; trackBy: trackByFn"
+      >
         <mat-form-field class="edit-subject-f">
-          <textarea matInput placeholder="subject" [(ngModel)]="subjects[in]">{{subj}}</textarea>
+          <textarea matInput placeholder="subject" [(ngModel)]="subjects[in]">{{
+            subj
+          }}</textarea>
         </mat-form-field>
-        <button class="delete-subject-b" mat-mini-fab color="primary" (click)="deleteSubject(subjects[in])">
+        <button
+          class="delete-subject-b"
+          mat-mini-fab
+          color="primary"
+          (click)="deleteSubject(subjects[in])"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </div>
 
-      <button class="add-subject-b" mat-mini-fab color="primary" (click)="addSubject()">
+      <button
+        class="add-subject-b"
+        mat-mini-fab
+        color="primary"
+        (click)="addSubject()"
+      >
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -48,25 +61,42 @@
     <div *ngIf="subjects">
       <h3>Subjects</h3>
       <ul>
-        <li *ngFor="let subj of subjects">{{subj}}</li>
+        <li *ngFor="let subj of subjects">{{ subj }}</li>
       </ul>
     </div>
   </ng-template>
 
-
-  <div *ngIf="edit else aud">
+  <div *ngIf="edit; else aud">
     <h3>Audiences</h3>
     <div class="add-audience">
-      <div class="edit-audience" *ngFor="let aud of audiences; let in=index; trackBy:trackByFn">
+      <div
+        class="edit-audience"
+        *ngFor="let aud of audiences; let in = index; trackBy: trackByFn"
+      >
         <mat-form-field class="edit-audience-f">
-          <textarea matInput placeholder="audience" [(ngModel)]="audiences[in]">{{aud}}</textarea>
+          <textarea
+            matInput
+            placeholder="audience"
+            [(ngModel)]="audiences[in]"
+            >{{ aud }}</textarea
+          >
         </mat-form-field>
-        <button class="delete-audience-b" mat-mini-fab color="primary" (click)="deleteAudience(audiences[in])">
+        <button
+          class="delete-audience-b"
+          mat-mini-fab
+          color="primary"
+          (click)="deleteAudience(audiences[in])"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </div>
 
-      <button class="add-audience-b" mat-mini-fab color="primary" (click)="addAudience()">
+      <button
+        class="add-audience-b"
+        mat-mini-fab
+        color="primary"
+        (click)="addAudience()"
+      >
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -75,10 +105,8 @@
     <div *ngIf="audiences">
       <h3>Audiences</h3>
       <ul>
-        <li *ngFor="let aud of audiences">{{aud}}</li>
+        <li *ngFor="let aud of audiences">{{ aud }}</li>
       </ul>
     </div>
   </ng-template>
-
-
 </div>

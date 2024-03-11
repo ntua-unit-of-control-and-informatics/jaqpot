@@ -5,10 +5,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 @Component({
   selector: 'app-profilepic-dialog',
   templateUrl: './profilepic-dialog.component.html',
-  styleUrls: ['./profilepic-dialog.component.css']
+  styleUrls: ['./profilepic-dialog.component.css'],
 })
 export class ProfilepicDialogComponent implements OnInit {
-
   imageChangedEvent: any = '';
   croppedImage: any = '';
   loadImageFailed: any = '';
@@ -18,33 +17,28 @@ export class ProfilepicDialogComponent implements OnInit {
 
   constructor(
     @Optional() public dialogRef: MatDialogRef<ProfilepicDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public profPic: string){
+    @Inject(MAT_DIALOG_DATA) public profPic: string,
+  ) {}
 
-  }
-
-  ngOnInit() {
- 
-  }
+  ngOnInit() {}
 
   fileChangeEvent(event: any): void {
-      this.imageChangedEvent = event;
+    this.imageChangedEvent = event;
   }
   imageCroppedBase64(image: string) {
-      this.croppedImage = image;
-      this.saveDisactivated = false;
+    this.croppedImage = image;
+    this.saveDisactivated = false;
   }
 
   imageLoaded() {
     this.cropperReady = true;
   }
-  
-  imageLoadFailed () {
+
+  imageLoadFailed() {
     console.log('Load failed');
   }
 
   onCloseConfirm() {
-    
     this.dialogRef.close(this.croppedImage);
   }
-
 }

@@ -38,31 +38,31 @@ import { HttkApiService } from './api/httk.service';
 // import { ValidationService } from './api/validation.service';
 
 @NgModule({
-  imports:      [SessionModule],
+  imports: [SessionModule],
   declarations: [],
-  exports:      [],
-  providers:    [ 
+  exports: [],
+  providers: [
     // AaService,
     SessionService,
     AlgorithmService,
-    FeatureApiService, 
-    // AlgorithmService, 
-    // BibtexService, 
+    FeatureApiService,
+    // AlgorithmService,
+    // BibtexService,
     DatasetService,
-    // DoseresponseService, 
-    // EnmService, 
-    // FeatureService, 
-    // InterlabService, 
-    ModelApiService, 
-    // OpenrisknetService, 
-    // PmmlService, 
-    // ReadacrossService, 
-    // ReportService, 
-    // TaskService, 
+    // DoseresponseService,
+    // EnmService,
+    // FeatureService,
+    // InterlabService,
+    ModelApiService,
+    // OpenrisknetService,
+    // PmmlService,
+    // ReadacrossService,
+    // ReportService,
+    // TaskService,
     UserService,
     OrganizationService,
     NotificationService,
-    // ValidationService 
+    // ValidationService
     NotificationFactoryService,
     NotificationBuilderService,
     DatasetBuilderService,
@@ -74,16 +74,16 @@ import { HttkApiService } from './api/httk.service';
     ReportApiService,
     SearchApiService,
     DoaApiService,
-    HttkApiService
+    HttkApiService,
     // DatasetApiFacadeService
     // Feature
-    ]
+  ],
 })
 export class JaqpotClientModule {
-    // public static forConfig(configurationFactory: () => ConfigService): ModuleWithProviders {
-    //     return {
-    //         ngModule: JaqpotClientModule,
-    //         providers: [ {provide: ConfigService, useFactory: configurationFactory}]
-    //     }
-    // }
+  // public static forConfig(configurationFactory: () => ConfigService): ModuleWithProviders {
+  //     return {
+  //         ngModule: JaqpotClientModule,
+  //         providers: [ {provide: ConfigService, useFactory: configurationFactory}]
+  //     }
+  // }
 }

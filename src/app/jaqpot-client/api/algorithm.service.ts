@@ -26,88 +26,113 @@ import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { HttpHeaders, HttpParams, HttpClient, HttpResponse } from '@angular/common/http';
-
+import {
+  HttpHeaders,
+  HttpParams,
+  HttpClient,
+  HttpResponse,
+} from '@angular/common/http';
 
 @Injectable()
 export class AlgorithmService {
+  private _basePath: string;
+  private _defaultHeaders: Headers = new Headers();
 
-    private _basePath : string;
-    private _defaultHeaders: Headers = new Headers();
+  private _getAlgorithmsEndpoint: string;
+  private _postAlgorithmEndpoint: string;
+  private _getAlgorithmById: string;
+  private _deleteAlgorithmEndpoint: string;
+  private _getAlgorithmByIdEndpoint: string;
+  private _modifyAlgorithmEndpoint: string;
+  private _createModelEndpoint: string;
+  private _errorReportEndpoint: ErrorReport;
 
-    private _getAlgorithmsEndpoint : string;
-    private _postAlgorithmEndpoint : string;
-    private _getAlgorithmById : string;
-    private _deleteAlgorithmEndpoint : string;
-    private _getAlgorithmByIdEndpoint : string;
-    private _modifyAlgorithmEndpoint: string;
-    private _createModelEndpoint:string
-    private _errorReportEndpoint: ErrorReport;
+  private _subjectId: string;
 
-    private _subjectId:string;
+  constructor(
+    private http: HttpClient,
+    private sessionServise: SessionService,
+    private dialogsService: DialogsService,
+    public oidcSecurityService: OidcSecurityService,
+  ) {
+    this._basePath = Config.JaqpotBase;
 
-    constructor(private http: HttpClient,
-        private sessionServise:SessionService,
-        private dialogsService:DialogsService,
-        public oidcSecurityService: OidcSecurityService){
-        this._basePath = Config.JaqpotBase;
-        
-        this._getAlgorithmsEndpoint = this._basePath + "/algorithm";
-        this._getAlgorithmById = this._basePath + "/algorithm/";
-        this._postAlgorithmEndpoint = this._basePath + "/algorithm";
-        this._deleteAlgorithmEndpoint = this._basePath + "/algorithm";
-        this._getAlgorithmByIdEndpoint = this._basePath + "/algotithm";
-        this._modifyAlgorithmEndpoint = this._basePath + "/algorithm";
-        this._createModelEndpoint = this._basePath + "/algorithm";
-    }
+    this._getAlgorithmsEndpoint = this._basePath + '/algorithm';
+    this._getAlgorithmById = this._basePath + '/algorithm/';
+    this._postAlgorithmEndpoint = this._basePath + '/algorithm';
+    this._deleteAlgorithmEndpoint = this._basePath + '/algorithm';
+    this._getAlgorithmByIdEndpoint = this._basePath + '/algotithm';
+    this._modifyAlgorithmEndpoint = this._basePath + '/algorithm';
+    this._createModelEndpoint = this._basePath + '/algorithm';
+  }
 
+  public getAlgorithms(
+    _class?: string,
+    start?: number,
+    max?: number,
+  ): Observable<Array<Algorithm>> {
+    let params = new HttpParams();
+    params.set('class', _class);
+    params.set('start', start.toString());
+    params.set('max', max.toString());
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    headers.set('subjectid', this._subjectId);
+    const token = this.oidcSecurityService.getToken();
+    const tokenValue = 'Bearer ' + token;
+    headers.set('Authorization', tokenValue);
+    return this.http
+      .get(this._getAlgorithmsEndpoint, { headers: headers, params: params })
+      .pipe(
+        tap((res: Response) => {
+          return res.json();
+        }),
+        catchError(this.dialogsService.onError),
+      );
+  }
 
-    public getAlgorithms( _class?: string, start?: number, max?: number): Observable<Array<Algorithm>> {
-        let params = new HttpParams();
-        params.set('class', _class);
-        params.set('start', start.toString());
-        params.set('max', max.toString());
-        let headers = new HttpHeaders({'Content-Type':'application/json'});
-        headers.set('subjectid', this._subjectId);
-        const token = this.oidcSecurityService.getToken();
-        const tokenValue = 'Bearer ' + token;
-        headers.set('Authorization', tokenValue);
-        return this.http.get(this._getAlgorithmsEndpoint, { headers: headers, params: params }).pipe(
-            tap((res : Response) => {
-                return res.json();
-            }),catchError( this.dialogsService.onError ));
-        
-    }
+  public getAlgorithmsCount(
+    _class?: string,
+    start?: number,
+    max?: number,
+  ): Observable<Response> {
+    let params = new HttpParams();
+    params.set('class', _class);
+    params.set('start', '0');
+    params.set('max', '1');
 
-    public getAlgorithmsCount( _class?: string, start?: number, max?: number): Observable<Response> {
-        let params = new HttpParams();
-        params.set('class', _class);
-        params.set('start', "0");
-        params.set('max', "1");
-        
-        let headers = new HttpHeaders({'Content-Type':'application/json'});
-        const token = this.oidcSecurityService.getToken();
-        const tokenValue = 'Bearer ' + token;
-        headers.set('Authorization', tokenValue);
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const token = this.oidcSecurityService.getToken();
+    const tokenValue = 'Bearer ' + token;
+    headers.set('Authorization', tokenValue);
 
-        return this.http.get(this._getAlgorithmsEndpoint, { headers: headers, params: params }).pipe(
-            map((res : Response) => {
-                var total = res.headers.get('total');   
-                return res;             
-            }),catchError( this.dialogsService.onError ));
-    }
+    return this.http
+      .get(this._getAlgorithmsEndpoint, { headers: headers, params: params })
+      .pipe(
+        map((res: Response) => {
+          var total = res.headers.get('total');
+          return res;
+        }),
+        catchError(this.dialogsService.onError),
+      );
+  }
 
-    public getAlgorithmById(id:string): Observable<Algorithm> {
-        let params = new HttpParams();
-        const token = this.oidcSecurityService.getToken();
-        const tokenValue = 'Bearer ' + token;
-        let headers = new HttpHeaders({'Content-Type':'application/json'}).set('Authorization', tokenValue);
-        return this.http.get(this._getAlgorithmById + id, { headers: headers, params: params }).pipe(
-            tap((res : Response) => {  
-                return res;             
-            }),catchError( err => this.dialogsService.onError(err) ));
-    }
-
+  public getAlgorithmById(id: string): Observable<Algorithm> {
+    let params = new HttpParams();
+    const token = this.oidcSecurityService.getToken();
+    const tokenValue = 'Bearer ' + token;
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' }).set(
+      'Authorization',
+      tokenValue,
+    );
+    return this.http
+      .get(this._getAlgorithmById + id, { headers: headers, params: params })
+      .pipe(
+        tap((res: Response) => {
+          return res;
+        }),
+        catchError((err) => this.dialogsService.onError(err)),
+      );
+  }
 }
 //     protected basePath = 'http://dev.jaqpot.org:8081/jaqpot/services';
 //     public defaultHeaders: Headers = new Headers();
@@ -268,7 +293,6 @@ export class AlgorithmService {
 //             });
 //     }
 
-
 //     /**
 //      * Creates Algorithm
 //      * Registers a new JPDI-compliant algorithm service. When registering a new JPDI-compliant algorithm web service it is crucial to propertly annotate your algorithm with appropriate ontological classes following the &lt;a href&#x3D;\&quot;http://opentox.org/dev/apis/api-1.1/Algorithms\&quot;&gt;OpenTox algorithms ontology&lt;/a&gt;. For instance, a Clustering algorithm must be annotated with &lt;code&gt;ot:Clustering&lt;/code&gt;. It is also important for discoverability to add tags to your algorithm using the &lt;code&gt;meta.subjects&lt;/code&gt; field. An example is provided below.
@@ -304,13 +328,11 @@ export class AlgorithmService {
 //             headers.set('tags', String(tags));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         headers.set('Content-Type', 'application/json');
 
@@ -350,12 +372,10 @@ export class AlgorithmService {
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Delete,
@@ -392,14 +412,12 @@ export class AlgorithmService {
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list',
 //             'application/ld+json'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -445,13 +463,11 @@ export class AlgorithmService {
 //             headers.set('subjectid', String(subjectid));
 //         }
 
-
 //         // to determine the Accept header
 //         let produces: string[] = [
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         let requestOptions: RequestOptionsArgs = new RequestOptions({
 //             method: RequestMethod.Get,
@@ -492,7 +508,6 @@ export class AlgorithmService {
 //         if (subjectid !== undefined && subjectid !== null) {
 //             headers.set('subjectid', String(subjectid));
 //         }
-
 
 //         // to determine the Accept header
 //         let produces: string[] = [
@@ -570,7 +585,6 @@ export class AlgorithmService {
 //             'application/json',
 //             'text/uri-list'
 //         ];
-
 
 //         if (title !== undefined) {
 //             formParams.set('title', <any>title);

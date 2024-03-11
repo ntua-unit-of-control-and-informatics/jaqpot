@@ -5,7 +5,8 @@
   float: right;
 }
 
-.acc_toolbar {}
+.acc_toolbar {
+}
 
 .back_button {
   margin-right: 1em;
@@ -54,7 +55,7 @@ mat-toolbar {
   width: 100%;
 } */
 
-.mat-dialog-content{
+.mat-dialog-content {
   min-height: 80%;
   max-height: 80%;
 }

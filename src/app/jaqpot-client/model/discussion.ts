@@ -1,16 +1,14 @@
-import { Reply } from "./reply";
-import { MetaInfo } from "./metaInfo";
+import { Reply } from './reply';
+import { MetaInfo } from './metaInfo';
 
 export interface Discussion {
-    
-    meta?:MetaInfo
+  meta?: MetaInfo;
 
-    onEntity?: string;
+  onEntity?: string;
 
-    comment?: string;
+  comment?: string;
 
-    replies?: Reply[];
+  replies?: Reply[];
 
-    _id?:string;
-    
+  _id?: string;
 }

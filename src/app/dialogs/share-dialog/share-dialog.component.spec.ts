@@ -8,9 +8,8 @@ describe('ShareDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShareDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [ShareDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -10,23 +10,20 @@
  * Do not edit the class manually.
  */
 
-
-
 export interface UserQuota {
-    userId?: string;
+  userId?: string;
 
-    tasks?: number;
+  tasks?: number;
 
-    tasksRunning?: number;
+  tasksRunning?: number;
 
-    models?: number;
+  models?: number;
 
-    algorithms?: number;
+  algorithms?: number;
 
-    datasets?: number;
+  datasets?: number;
 
-    bibtex?: number;
+  bibtex?: number;
 
-    reports?: number;
-
+  reports?: number;
 }

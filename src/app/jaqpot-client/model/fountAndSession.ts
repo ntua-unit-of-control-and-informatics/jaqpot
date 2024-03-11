@@ -1,6 +1,6 @@
-import { FountEntities } from "./fountEntities";
+import { FountEntities } from './fountEntities';
 
-export interface FoundAndSession{
-    foundEntities?:Array<FountEntities>;
-    sessionId?:string;
+export interface FoundAndSession {
+  foundEntities?: Array<FountEntities>;
+  sessionId?: string;
 }
