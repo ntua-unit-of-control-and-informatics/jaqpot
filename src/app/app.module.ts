@@ -120,6 +120,7 @@ import { ModelMetaComponent } from './models/model-meta/model-meta.component';
 import { ChartComponentComponent } from './base/components/chart-component/chart-component.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { environment } from '../environments/environment';
 
 // import { EucliaAccounts } from '@euclia/accounts-client';
 /**
@@ -287,7 +288,7 @@ export class MaterialModule {}
     {
       provide: APP_INITIALIZER,
       useFactory: configureAuth,
-      deps: [OidcConfigService, HttpClient],
+      deps: [OidcConfigService],
       multi: true,
     },
   ],
@@ -342,39 +343,29 @@ export class AppModule {
   }
 }
 
-export function configureAuth(
-  oidcConfigService: OidcConfigService,
-  httpClient: HttpClient,
-) {
-  const setupAction$ = httpClient.get<any>(`/assets/conf.json`).pipe(
-    map((customConfig: configf) => {
-      Config.JaqpotBase = customConfig.jaqpotApi;
-      // Config.AccountsApi = customConfig.accountsApi
-      // console.log("Accounts api at:")
-      // console.log(Config.AccountsApi)
-      return {
-        stsServer: customConfig.stsServer,
-        redirectUrl: customConfig.redirect_url,
-        clientId: customConfig.client_id,
-        responseType: customConfig.response_type,
-        scope: customConfig.scope,
-        // postLogoutRedirectUri: customConfig.baseurl,
-        // startCheckSession: customConfig.start_checksession,
-        // silentRenew: customConfig.silent_renew,
-        silentRenewUrl: customConfig.silent_redirect_url,
-        postLogoutRedirectUri: window.location.origin,
-        // postLoginRoute: customConfig.baseurl,
-        // forbiddenRoute: customConfig.baseurl,
-        // unauthorizedRoute: customConfig.baseurl,
-        logLevel: LogLevel.Error, // LogLevel.Debug,
-        maxIdTokenIatOffsetAllowedInSeconds: 120,
-        historyCleanupOff: true,
-        autoUserinfo: true,
-        storage: localStorage,
-      };
-    }),
-    switchMap((config) => oidcConfigService.withConfig(config)),
-  );
+export function configureAuth(oidcConfigService: OidcConfigService) {
+  Config.JaqpotBase = environment.jaqpotApi;
 
-  return () => setupAction$.toPromise();
+  const oidcConfig = {
+    stsServer: environment.stsServer,
+    redirectUrl: environment.redirect_url,
+    clientId: environment.client_id,
+    responseType: environment.response_type,
+    scope: environment.scope,
+    // postLogoutRedirectUri: customConfig.baseurl,
+    // startCheckSession: customConfig.start_checksession,
+    // silentRenew: customConfig.silent_renew,
+    silentRenewUrl: environment.silent_redirect_url,
+    postLogoutRedirectUri: window.location.origin,
+    // postLoginRoute: customConfig.baseurl,
+    // forbiddenRoute: customConfig.baseurl,
+    // unauthorizedRoute: customConfig.baseurl,
+    logLevel: LogLevel.Error, // LogLevel.Debug,
+    maxIdTokenIatOffsetAllowedInSeconds: 120,
+    historyCleanupOff: true,
+    autoUserinfo: true,
+    storage: localStorage,
+  };
+
+  return () => oidcConfigService.withConfig(oidcConfig);
 }
