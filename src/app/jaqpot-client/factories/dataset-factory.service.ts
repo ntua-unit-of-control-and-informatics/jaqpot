@@ -13,8 +13,8 @@ import { MetaBuilderService } from '../builders/meta-builder.service';
 import { FeatureInfoBuilderService } from '../builders/feature-info-builder.service';
 import { DataEntryBuilderService } from '../builders/data-entry-builder.service';
 import { FeatureAndValue } from '../../ui-models/featureAndValue';
-import { Config } from '../../config/config';
 import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -242,7 +242,7 @@ export class DatasetFactoryService {
         values[k.toString()] = Number(feat.value);
       }
       let featureInfo: FeatureInfo = <FeatureInfo>{};
-      featureInfo.uri = Config.JaqpotBase + '/feature/' + feat.feature._id;
+      featureInfo.uri = environment.jaqpotApi + '/feature/' + feat.feature._id;
       featureInfo.name = feat.feature.meta.titles[0];
       featureInfo.key = k.toString();
       dataset.features.push(featureInfo);
@@ -326,7 +326,7 @@ export class DatasetFactoryService {
     let k2 = 0;
     features.forEach((feat: FeatureAndValue) => {
       let featureInfo: FeatureInfo = <FeatureInfo>{};
-      featureInfo.uri = Config.JaqpotBase + '/feature/' + feat.feature._id;
+      featureInfo.uri = environment.jaqpotApi + '/feature/' + feat.feature._id;
       featureInfo.key = k2.toString();
       featureInfo.name = feat.feature.meta.titles[0];
       dataset.features.push(featureInfo);
@@ -431,7 +431,7 @@ export class DatasetFactoryService {
     let k2 = 0;
     indepFeatures.forEach((feat: FeatureAndValue) => {
       let featureInfo: FeatureInfo = <FeatureInfo>{};
-      featureInfo.uri = Config.JaqpotBase + '/feature/' + feat.feature._id;
+      featureInfo.uri = environment.jaqpotApi + '/feature/' + feat.feature._id;
       featureInfo.name = feat.feature.meta.titles[0];
       featureInfo.key = k2.toString();
       dataset.features.push(featureInfo);
@@ -439,7 +439,7 @@ export class DatasetFactoryService {
     });
     depFeatures.forEach((feat: FeatureAndValue) => {
       let featureInfo: FeatureInfo = <FeatureInfo>{};
-      featureInfo.uri = Config.JaqpotBase + '/feature/' + feat.feature._id;
+      featureInfo.uri = environment.jaqpotApi + '/feature/' + feat.feature._id;
       featureInfo.name = feat.feature.meta.titles[0];
       featureInfo.key = k2.toString();
       dataset.features.push(featureInfo);

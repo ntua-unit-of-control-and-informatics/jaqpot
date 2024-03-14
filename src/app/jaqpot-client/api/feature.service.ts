@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import '../rxjs-operators';
 
-import { ErrorReport } from '../model/errorReport';
-import { Task } from '../model/task';
-
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';

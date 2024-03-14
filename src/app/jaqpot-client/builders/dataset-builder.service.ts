@@ -6,7 +6,7 @@ import {
   Feature,
   DataEntry,
 } from '../model/models';
-import { Config } from '../../config/config';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export class DatasetBuilderService {
     _features.forEach((f) => {
       let _feat_info = <FeatureInfo>{};
       if (f.id != null) {
-        _feat_info.uri = Config.JaqpotBase + '/feature/' + f.id;
+        _feat_info.uri = environment.jaqpotApi + '/feature/' + f.id;
       }
       if (f.units != null) {
         _feat_info.units = f.units;

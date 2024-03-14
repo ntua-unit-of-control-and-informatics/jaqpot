@@ -10,13 +10,13 @@ import {
   retryWhen,
 } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo, Model, Task } from '../model/models';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class TaskApiService extends BaseClient<Task> {
@@ -39,7 +39,7 @@ export class TaskApiService extends BaseClient<Task> {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
-    let pathFormed = Config.JaqpotBase + this._modelBase + taskId;
+    let pathFormed = environment.jaqpotApi + this._modelBase + taskId;
     return this.http.get(pathFormed, { headers: headers });
   }
 }

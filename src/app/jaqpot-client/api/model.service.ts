@@ -3,7 +3,6 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import '../rxjs-operators';
 import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
@@ -11,6 +10,7 @@ import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo, Model, Task } from '../model/models';
 import { Domain } from 'domain';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ModelApiService extends BaseClient<Dataset> {
@@ -33,7 +33,7 @@ export class ModelApiService extends BaseClient<Dataset> {
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
     const pathFormed =
-      Config.JaqpotBase + this._modelBase + model._id + '/meta';
+      environment.jaqpotApi + this._modelBase + model._id + '/meta';
     return this.http.put(pathFormed, model, { headers: headers }).pipe(
       tap((res: Response) => {
         return res;
@@ -53,7 +53,7 @@ export class ModelApiService extends BaseClient<Dataset> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', tokenValue);
-    const pathFormed = Config.JaqpotBase + this._modelBase + modelId;
+    const pathFormed = environment.jaqpotApi + this._modelBase + modelId;
     let body = new HttpParams();
     body = body.set('dataset_uri', datasetUri);
     body = body.set('visible', visible);
@@ -75,7 +75,7 @@ export class ModelApiService extends BaseClient<Dataset> {
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
     const pathFormed =
-      Config.JaqpotBase + this._modelBase + modelId + '/ontrash';
+      environment.jaqpotApi + this._modelBase + modelId + '/ontrash';
     return this.http.put(pathFormed, model, { headers: headers }).pipe(
       tap((res: Response) => {
         return res;

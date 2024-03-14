@@ -3,13 +3,13 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import '../rxjs-operators';
 import { map, filter, catchError, mergeMap, tap } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo, Model, Task } from '../model/models';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ValidationApiService extends BaseClient<Task> {
@@ -36,7 +36,7 @@ export class ValidationApiService extends BaseClient<Task> {
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', tokenValue);
     let pathFormed =
-      Config.JaqpotBase + this._validateBase + 'test_set_validation';
+      environment.jaqpotApi + this._validateBase + 'test_set_validation';
     let body = new HttpParams();
     body = body.set('test_dataset_uri', datasetUri);
     body = body.set('model_uri', modelUri);

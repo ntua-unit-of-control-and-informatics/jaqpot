@@ -22,7 +22,6 @@ import { ErrorReport } from '../model/errorReport';
 import { Task } from '../model/task';
 
 // import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -32,6 +31,7 @@ import {
   HttpClient,
   HttpResponse,
 } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class AlgorithmService {
@@ -55,7 +55,7 @@ export class AlgorithmService {
     private dialogsService: DialogsService,
     public oidcSecurityService: OidcSecurityService,
   ) {
-    this._basePath = Config.JaqpotBase;
+    this._basePath = environment.jaqpotApi;
 
     this._getAlgorithmsEndpoint = this._basePath + '/algorithm';
     this._getAlgorithmById = this._basePath + '/algorithm/';

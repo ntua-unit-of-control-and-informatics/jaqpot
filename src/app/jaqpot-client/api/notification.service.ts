@@ -8,7 +8,6 @@ import { ErrorReport } from '../model/errorReport';
 import { Task } from '../model/task';
 
 // import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import {
@@ -23,6 +22,7 @@ import { User } from '../model/user';
 import { BaseClient } from './base.client';
 import { Organization } from '../model/organization';
 import { Notification } from '../model/notification';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class NotificationService extends BaseClient<Notification> {
@@ -37,7 +37,7 @@ export class NotificationService extends BaseClient<Notification> {
     public oidcSecurityService: OidcSecurityService,
   ) {
     super(http, dialogsService, oidcSecurityService, '/notification/');
-    this._privateBasePath = Config.JaqpotBase + this._notificationBase;
+    this._privateBasePath = environment.jaqpotApi + this._notificationBase;
   }
 
   public getUnreadNotifications(): Observable<any> {

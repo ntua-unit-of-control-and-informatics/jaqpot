@@ -6,14 +6,13 @@ import { Dataset } from '../model/dataset';
 import { ErrorReport } from '../model/errorReport';
 import { Task } from '../model/task';
 
-// import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MetaInfo } from '../model/models';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class DatasetService extends BaseClient<Dataset> {
@@ -53,7 +52,7 @@ export class DatasetService extends BaseClient<Dataset> {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
-    let pathFormed = Config.JaqpotBase + this._datasetBase;
+    let pathFormed = environment.jaqpotApi + this._datasetBase;
     return this.http.post(pathFormed, dataset, { headers: headers }).pipe(
       tap((res: Response) => {
         return res;
@@ -69,7 +68,7 @@ export class DatasetService extends BaseClient<Dataset> {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
-    let pathFormed = Config.JaqpotBase + this._datasetBase;
+    let pathFormed = environment.jaqpotApi + this._datasetBase;
     return this.http.post(pathFormed, dataset, { headers: headers }).pipe(
       tap((res: Response) => {
         return res;
@@ -86,7 +85,7 @@ export class DatasetService extends BaseClient<Dataset> {
       .set('Authorization', tokenValue);
     let params = new HttpParams().set('query', 'UNREAD');
     let pathFormed =
-      Config.JaqpotBase + this._datasetBase + dataset._id + '/meta';
+      environment.jaqpotApi + this._datasetBase + dataset._id + '/meta';
     return this.http.put(pathFormed, dataset, { headers: headers }).pipe(
       tap((res: Response) => {
         return res;
@@ -105,7 +104,7 @@ export class DatasetService extends BaseClient<Dataset> {
       .set('dataEntries', 'true')
       .set('rowStart', start.toString())
       .set('rowMax', max.toString());
-    let pathFormed = Config.JaqpotBase + this._datasetBase + datasetId;
+    let pathFormed = environment.jaqpotApi + this._datasetBase + datasetId;
     return this.http.get(pathFormed, { headers: headers, params: params }).pipe(
       tap((res: Response) => {
         return res;
@@ -124,7 +123,7 @@ export class DatasetService extends BaseClient<Dataset> {
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
     let pathFormed =
-      Config.JaqpotBase + this._datasetBase + datasetId + '/ontrash';
+      environment.jaqpotApi + this._datasetBase + datasetId + '/ontrash';
     return this.http.put(pathFormed, dataset, { headers: headers }).pipe(
       tap((res: Response) => {
         return res;

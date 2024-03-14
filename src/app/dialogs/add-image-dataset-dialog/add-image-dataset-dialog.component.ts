@@ -6,7 +6,7 @@ import { Dataset, FeatureInfo, DataEntry, Feature } from '../../jaqpot-client';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatasetToViewdataService } from '../../services/dataset-to-viewdata.service';
 import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-factory.service';
-import { Config } from '../../config/config';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-add-image-dataset-dialog',
@@ -116,7 +116,7 @@ export class AddImageDatasetDialogComponent implements OnInit {
                 let key_name = de_key.split('/');
                 if (key_name[1] === key) {
                   let data_entry_new_key =
-                    Config.JaqpotBase + '/feature/' + _temp_actual_ids[key];
+                    environment.jaqpotApi + '/feature/' + _temp_actual_ids[key];
                   de.values[data_entry_new_key] = de.values[de_key];
                   delete de.values[de_key];
                   // values[data_entry_new_key] = de.values[de_key]
@@ -129,7 +129,7 @@ export class AddImageDatasetDialogComponent implements OnInit {
           let featurInf: FeatureInfo[] = this.datasetToSee.features;
           featurInf.forEach((fi) => {
             fi.uri =
-              Config.JaqpotBase + '/feature/' + _temp_actual_ids[fi.name];
+              environment.jaqpotApi + '/feature/' + _temp_actual_ids[fi.name];
           });
           this.datasetApi
             .uploadNewDataset(this.datasetToSee)

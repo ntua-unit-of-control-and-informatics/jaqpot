@@ -10,13 +10,13 @@ import {
   retryWhen,
 } from 'rxjs/operators';
 import { Dataset } from '../model/dataset';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { SearchSession } from '../model/searchSession';
 import { FountEntities } from '../model/fountEntities';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SearchApiService {
@@ -39,7 +39,7 @@ export class SearchApiService {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
-    let pathFormed = Config.JaqpotBase + this._searchBase;
+    let pathFormed = environment.jaqpotApi + this._searchBase;
     let params = new HttpParams().set('term', searchTerm);
     return this.http.get(pathFormed, { headers: headers, params: params }).pipe(
       tap((res: Response) => {
@@ -59,7 +59,7 @@ export class SearchApiService {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
-    let pathFormed = Config.JaqpotBase + this._searchBase + 'session';
+    let pathFormed = environment.jaqpotApi + this._searchBase + 'session';
     let params = new HttpParams()
       .set('session', sessionId)
       .set('from', from.toString())
