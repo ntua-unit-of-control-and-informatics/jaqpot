@@ -1,6 +1,8 @@
 /**
  * Jaqpot API
- * Jaqpot v4 (Quattro) is the 4th version of a YAQP, a RESTful web service which can be used to train machine learning models and use them to obtain toxicological predictions for given chemical compounds or engineered nano materials. The project is written in Java8 and JEE7.
+ * Jaqpot v4 (Quattro) is the 4th version of a YAQP, a RESTful web service which can be used to train
+ * machine learning models and use them to obtain toxicological predictions for given chemical compounds or engineered nano materials.
+ * The project is written in Java8 and JEE7.
  *
  * OpenAPI spec version: 4.0.3
  * Contact: hampos@me.com
@@ -29,17 +31,17 @@ import {
   IEucliaAccounts,
 } from '@euclia/accounts-client/dist/EucliaAccounts';
 import { Organization } from '@euclia/accounts-client/dist/models/models';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class OrganizationService {
   _privateBasePath: string;
-  private orgnanization: Organization;
   _organizationBase: string;
   private accountsClient: IEucliaAccounts;
 
   constructor(
     http: HttpClient,
-    public sessionServise: SessionService,
+    public sessionService: SessionService,
     public dialogsService: DialogsService,
     public oidcSecurityService: OidcSecurityService,
   ) {
@@ -48,7 +50,7 @@ export class OrganizationService {
     // console.log(Config.AccountsApi)
     this._privateBasePath = Config.JaqpotBase;
     (this.accountsClient = new EucliaAccountsFactory(
-      Config.AccountsApi,
+      environment.accountsApi,
     ).getClient()),
       (this._organizationBase = this._privateBasePath + '/organization/');
   }

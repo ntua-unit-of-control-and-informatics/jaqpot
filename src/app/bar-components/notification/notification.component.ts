@@ -12,6 +12,7 @@ import { Config } from '../../config/config';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-notification',
@@ -34,7 +35,7 @@ export class NotificationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (Config.notif_poll === true) {
+    if (environment.notificationPolling === true) {
       interval(10000)
         .pipe(
           startWith(0),

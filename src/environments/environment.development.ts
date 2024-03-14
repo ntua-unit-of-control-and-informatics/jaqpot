@@ -12,4 +12,5 @@ export const environment: Env = {
   silent_redirect_url: 'https://app.jaqpot.org/assets/silent-renew.html',
   baseurl: 'http://localhost:4200',
   logLevel: 'debug',
+  notificationPolling: false
 };

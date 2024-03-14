@@ -2,17 +2,13 @@ import { Injectable } from '@angular/core';
 import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
-import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { BaseClient } from './base.client';
 
-import {
-  EucliaAccountsFactory,
-  EucliaAccountsImplementation,
-} from '@euclia/accounts-client';
+import { EucliaAccountsFactory } from '@euclia/accounts-client';
 import { IEucliaAccounts } from '@euclia/accounts-client';
 import { User as EucliaUser } from '@euclia/accounts-client';
-// import {User} from '@euclia/accounts-client/'
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UserService {
@@ -24,7 +20,7 @@ export class UserService {
 
   constructor(
     public http: HttpClient,
-    public sessionServise: SessionService,
+    public sessionService: SessionService,
     public dialogsService: DialogsService,
     public oidcSecurityService: OidcSecurityService,
   ) {
@@ -32,7 +28,7 @@ export class UserService {
     // console.log("User api at:")
     // console.log(Config.AccountsApi)
     (this.accountsClient = new EucliaAccountsFactory(
-      Config.AccountsApi,
+      environment.accountsApi,
     ).getClient()),
       (this._privateBasePath = Config.JaqpotBase);
     this._userBase = this._privateBasePath + '/user/';
@@ -150,7 +146,8 @@ export class UserService {
 
 //     /**
 //      * Retrieves user&#39;s quota
-//      * Returns user&#39;s quota given the user&#39;s ID. Authenicated users can access only their own quota. Jaqpot administrators can access the quota of all Jaqpot users.
+//      * Returns user&#39;s quota given the user&#39;s ID. Authenicated users can access only their own quota.
+//      * Jaqpot administrators can access the quota of all Jaqpot users.
 //      * @param id
 //      * @param subjectid Clients need to authenticate in order to access this resource
 //      */
@@ -226,7 +223,8 @@ export class UserService {
 
 //     /**
 //      * Retrieves user&#39;s quota
-//      * Returns user&#39;s quota given the user&#39;s ID. Authenicated users can access only their own quota. Jaqpot administrators can access the quota of all Jaqpot users.
+//      * Returns user&#39;s quota given the user&#39;s ID. Authenicated users can access only their own quota.
+//      * Jaqpot administrators can access the quota of all Jaqpot users.
 //      * @param id
 //      * @param subjectid Clients need to authenticate in order to access this resource
 //      */

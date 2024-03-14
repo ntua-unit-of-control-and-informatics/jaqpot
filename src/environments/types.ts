@@ -3,6 +3,7 @@ export interface Env {
   logLevel: string;
   production: boolean;
   jaqpotApi: string;
+  notificationPolling: boolean;
   scope: string;
   silent_redirect_url: string;
   accountsApi: string;
