@@ -16,7 +16,6 @@ import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { FeatureAndValue } from '../../ui-models/featureAndValue';
 import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
-import { Config } from '../../config/config';
 import { TaskApiService } from '../../jaqpot-client/api/task.service';
 import { Subject, throwError } from 'rxjs';
 import { tap, delay, catchError } from 'rxjs/operators';
@@ -278,7 +277,7 @@ export class PredictValidateComponent implements OnInit {
     this.taskStarted = true;
     // console.log(dataset)
     this._datasetApi.postEntity(dataset).subscribe((dataset: Dataset) => {
-      let datasetUri = Config.JaqpotBase + '/dataset/' + dataset._id;
+      let datasetUri = environment.jaqpotApi + '/dataset/' + dataset._id;
       this._modelApi
         .predict(this.model._id, datasetUri, 'true', this.addDoa === 'true')
         .subscribe((task: Task) => {
@@ -294,7 +293,7 @@ export class PredictValidateComponent implements OnInit {
     this._datasetApi
       .uploadNewDatasetForPrediction(this.datasetForPrediction)
       .subscribe((dataset: Dataset) => {
-        let datasetUri = Config.JaqpotBase + '/dataset/' + dataset._id;
+        let datasetUri = environment.jaqpotApi + '/dataset/' + dataset._id;
         this._modelApi
           .predict(this.model._id, datasetUri, 'true', this.addDoa === 'true')
           .subscribe((task: Task) => {

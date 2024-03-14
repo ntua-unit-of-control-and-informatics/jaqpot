@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { HttpClient } from '@angular/common/http';
@@ -30,7 +29,7 @@ export class UserService {
     (this.accountsClient = new EucliaAccountsFactory(
       environment.accountsApi,
     ).getClient()),
-      (this._privateBasePath = Config.JaqpotBase);
+      (this._privateBasePath = environment.jaqpotApi);
     this._userBase = this._privateBasePath + '/user/';
   }
 

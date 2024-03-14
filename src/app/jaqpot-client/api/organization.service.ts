@@ -20,7 +20,6 @@ import { Observable, of } from 'rxjs';
 import '../rxjs-operators';
 
 // import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
-import { Config } from '../../config/config';
 import { SessionService } from '../../session/session.service';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -48,7 +47,7 @@ export class OrganizationService {
     // super(http, dialogsService, oidcSecurityService, "/organization/")
     // console.log("Orgs api at:")
     // console.log(Config.AccountsApi)
-    this._privateBasePath = Config.JaqpotBase;
+    this._privateBasePath = environment.jaqpotApi;
     (this.accountsClient = new EucliaAccountsFactory(
       environment.accountsApi,
     ).getClient()),

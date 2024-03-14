@@ -6,12 +6,12 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import '../rxjs-operators';
-import { Config } from '../../config/config';
 import { OidcSecurityService } from '../../../../node_modules/angular-auth-oidc-client';
 import { tap, catchError, map } from '../../../../node_modules/rxjs/operators';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { Model } from '../model/model';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,7 @@ export abstract class BaseClient<T> {
     protected oidcSecurityService: OidcSecurityService,
     protected requestPath: String,
   ) {
-    this._basePath = Config.JaqpotBase;
+    this._basePath = environment.jaqpotApi;
     this._path = this._basePath + this.requestPath;
   }
 

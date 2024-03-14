@@ -108,9 +108,6 @@ import { ViewNotifsComponent } from './jaqpot-notifications/view-notifs/view-not
 import { HttkmodelsComponent } from './httk/httkmodels/httkmodels.component';
 import { PbpkPredictedComponent } from './base/pbpk-predicted/pbpk-predicted.component';
 import { MultiLineComponent } from './d3/multi-line/multi-line.component';
-import { map, switchMap } from 'rxjs/operators';
-import { configf } from './config/conf';
-import { Config } from './config/config';
 import {
   MatPseudoCheckboxModule,
   MatRippleModule,
@@ -344,8 +341,6 @@ export class AppModule {
 }
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
-  Config.JaqpotBase = environment.jaqpotApi;
-
   const oidcConfig = {
     stsServer: environment.stsServer,
     redirectUrl: environment.redirect_url,

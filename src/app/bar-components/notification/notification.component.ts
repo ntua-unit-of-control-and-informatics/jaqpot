@@ -8,7 +8,6 @@ import { OrganizationService } from '../../jaqpot-client/api/organization.servic
 import { UserService } from '../../jaqpot-client/api/user.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { ModelApiService } from '../../jaqpot-client/api/model.service';
-import { Config } from '../../config/config';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';

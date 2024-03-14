@@ -7,7 +7,7 @@ import { FeatureFactoryService } from '../../jaqpot-client/factories/feature-fac
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FeatureApiService } from '../../jaqpot-client/api/feature.service';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
-import { Config } from '../../config/config';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-add-dataset-dialog',
@@ -66,7 +66,7 @@ export class AddDatasetDialogComponent implements OnInit {
       datasetDiscription: new FormControl('', Validators.required),
     });
     const rows = this.csv.split(/\r?\n/);
-    let ids = rows[0].split(/,|;/);
+    const ids = rows[0].split(/,|;/);
     this.possible_ids.push('None');
     ids.forEach((id) => {
       this.possible_ids.push(id);
@@ -79,7 +79,7 @@ export class AddDatasetDialogComponent implements OnInit {
   idChanged($event) {
     this.data_available = false;
     this.features_available = false;
-    let dataset_id = this.selected;
+    const dataset_id = this.selected;
     this.dataset_to_check = {};
     this.displayedColumns = [];
     this.dataSource = [];
@@ -95,7 +95,7 @@ export class AddDatasetDialogComponent implements OnInit {
     this.dataset_to_check.features.forEach((fi) => {
       this.features_to_edit.push(this.featFactory.featFromFeatInfo(fi));
     });
-    for (let key in this.dataSource[0]) {
+    for (const key in this.dataSource[0]) {
       this.displayedColumns.push(key);
     }
     this.data_available = true;
@@ -118,9 +118,9 @@ export class AddDatasetDialogComponent implements OnInit {
     console.log('Load failed');
   }
 
-  uplodDataset() {
-    let _temp_actual_ids: { [key: string]: any } = {};
-    let feat_length = this.features_to_edit.length;
+  uploadDataset() {
+    const _temp_actual_ids: { [key: string]: any } = {};
+    const feat_length = this.features_to_edit.length;
     // console.log(feat_length)
     let i = 0;
     this.content = false;
@@ -130,15 +130,15 @@ export class AddDatasetDialogComponent implements OnInit {
         _temp_actual_ids[feature.meta.titles[0]] = feature._id;
         i += 1;
         if (i === feat_length) {
-          for (let key in _temp_actual_ids) {
-            let data_entry: DataEntry[] = this.dataset_to_check.dataEntry;
+          for (const key in _temp_actual_ids) {
+            const data_entry: DataEntry[] = this.dataset_to_check.dataEntry;
             data_entry.forEach((de) => {
               // let values: { [key: string]: any; } = {}
-              for (let de_key in de.values) {
-                let key_name = de_key.split('/');
+              for (const de_key in de.values) {
+                const key_name = de_key.split('/');
                 if (key_name[1] === key) {
-                  let data_entry_new_key =
-                    Config.JaqpotBase + '/feature/' + _temp_actual_ids[key];
+                  const data_entry_new_key =
+                    environment.jaqpotApi + '/feature/' + _temp_actual_ids[key];
                   de.values[data_entry_new_key] = de.values[de_key];
                   delete de.values[de_key];
                   // values[data_entry_new_key] = de.values[de_key]
@@ -148,10 +148,10 @@ export class AddDatasetDialogComponent implements OnInit {
             });
             // console.log(this.dataset_to_check)
           }
-          let featurInf: FeatureInfo[] = this.dataset_to_check.features;
+          const featurInf: FeatureInfo[] = this.dataset_to_check.features;
           featurInf.forEach((fi) => {
             fi.uri =
-              Config.JaqpotBase + '/feature/' + _temp_actual_ids[fi.name];
+              environment.jaqpotApi + '/feature/' + _temp_actual_ids[fi.name];
           });
           this.datasetApi
             .uploadNewDataset(this.dataset_to_check)

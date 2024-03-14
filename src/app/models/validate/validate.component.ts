@@ -3,7 +3,6 @@ import { FeatureAndValue } from '../../ui-models/featureAndValue';
 import { DialogsService } from '../../dialogs/dialogs.service';
 import { DatasetFactoryService } from '../../jaqpot-client/factories/dataset-factory.service';
 import { Dataset, Task, Model, Report } from '../../jaqpot-client';
-import { Config } from '../../config/config';
 import { DatasetService } from '../../jaqpot-client/api/dataset.service';
 import { throwError, Subject } from 'rxjs';
 import { TaskApiService } from '../../jaqpot-client/api/task.service';
@@ -11,6 +10,7 @@ import { delay } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ValidationApiService } from '../../jaqpot-client/api/validation.service';
 import { ReportApiService } from '../../jaqpot-client/api/report.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-validate',
@@ -131,8 +131,8 @@ export class ValidateComponent implements OnInit {
     this._datasetApi
       .postEntity(this.datasetForValidation)
       .subscribe((dataset: Dataset) => {
-        let datasetUri = Config.JaqpotBase + '/dataset/' + dataset._id;
-        let modelUri = Config.JaqpotBase + '/model/' + this.model._id;
+        let datasetUri = environment.jaqpotApi + '/dataset/' + dataset._id;
+        let modelUri = environment.jaqpotApi + '/model/' + this.model._id;
         this._validateApi
           .externalValidation(modelUri, datasetUri, this.validationType)
           .subscribe((task: Task) => {

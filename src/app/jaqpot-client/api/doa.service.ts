@@ -6,9 +6,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseClient } from './base.client';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Doa } from '../model/doa';
-import { Config } from '../../config/config';
 import { tap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class DoaApiService extends BaseClient<Doa> {
@@ -30,7 +30,7 @@ export class DoaApiService extends BaseClient<Doa> {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
-    let pathFormed = Config.JaqpotBase + this._doaBase;
+    let pathFormed = environment.jaqpotApi + this._doaBase;
     let params = new HttpParams().set('hasSources', hasSources);
     return this.http.get(pathFormed, { headers: headers, params: params }).pipe(
       tap((res: Response) => {
@@ -46,7 +46,7 @@ export class DoaApiService extends BaseClient<Doa> {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', tokenValue);
-    let pathFormed = Config.JaqpotBase + this._doaBase;
+    let pathFormed = environment.jaqpotApi + this._doaBase;
     let params = new HttpParams().set('hasSources', hasSources);
     return this.http.get<Response>(pathFormed, {
       headers: headers,
